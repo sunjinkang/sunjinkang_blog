@@ -334,6 +334,12 @@
     {### END POST BODY ###}
     {#####################}
 
+    <div>
+      {% if theme.passage_end_tag.enable %}
+        {% include 'passage-end-tag.swig' %}
+      {% endif %}
+    </div>
+
     {% if theme.wechat_subscriber.enabled and not is_index %}
       <div>
         {% include 'wechat-subscriber.swig' %}
