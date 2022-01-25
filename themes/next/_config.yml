@@ -94,6 +94,8 @@ index_with_subtitle: false
 menu:
   home: / || home
   vue: /vue
+  vue-change: /vue/change.html
+  vue-dependency: /vue/dependency.html
   #about: /about/ || user
   #tags: /tags/ || tags
   #categories: /categories/ || th
