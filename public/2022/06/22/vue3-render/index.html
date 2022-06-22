@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml" />
+
 
 
 
@@ -197,19 +199,39 @@
       
         
         <li class="menu-item menu-item-vue">
-          <a href="/vue/%20" rel="section">
+          <a href="/vue" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-vue"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             vue
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+        <li class="menu-item menu-item-vue-change">
+          <a href="/vue/change.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            vue-change
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-vue-dependency">
+          <a href="/vue/dependency.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            vue-dependency
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br />
             
             Archives
           </a>
@@ -326,6 +348,15 @@
     
     
 
+    <div>
+      
+        <div>
+    <div style="text-align: center;color: #ccc;font-size:14px;">------------------------------本文结束<i class="fa fa-paw"></i>感谢您的阅读------------------------</div>
+</div>
+
+      
+    </div>
+
     
 
     
@@ -426,7 +457,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives%20%7C%7C%20archives">
               
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
@@ -441,7 +472,30 @@
           </nav>
 
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sunjinkang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="2060037942@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -485,12 +539,18 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
-
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_pv">
+      本站访问数：<span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
   
 </div>
 
@@ -550,6 +610,8 @@
   
 
 
+  
+
 
 
 
@@ -588,6 +650,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

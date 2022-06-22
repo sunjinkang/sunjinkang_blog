@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="一些使用hexo搭建博客时遇到的问题1、一段时间为使用hexo，重新打开，生成新页面时，终端报错：’hexo’ 不是内部或外部命令，也不是可运行的程序或批处理文件  或 bash: hexo: command not found解决办法：重新运行命令：npm install hexo-cli -g">
-<meta property="og:type" content="article">
-<meta property="og:title" content="about-use-hexo">
-<meta property="og:url" content="https://sunjinkang.github.io/2022/03/26/about-use-hexo/index.html">
+<meta name="description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2.x迁移到3.x变更点">
+<meta property="og:url" content="https://sunjinkang.github.io/Vue/change.html">
 <meta property="og:site_name" content="Sun ...something">
-<meta property="og:description" content="一些使用hexo搭建博客时遇到的问题1、一段时间为使用hexo，重新打开，生成新页面时，终端报错：’hexo’ 不是内部或外部命令，也不是可运行的程序或批处理文件  或 bash: hexo: command not found解决办法：重新运行命令：npm install hexo-cli -g">
+<meta property="og:description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-26T13:14:29.000Z">
-<meta property="article:modified_time" content="2022-03-26T13:18:39.053Z">
+<meta property="article:published_time" content="2022-01-25T06:17:57.000Z">
+<meta property="article:modified_time" content="2022-06-22T15:26:48.869Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://sunjinkang.github.io/2022/03/26/about-use-hexo/"/>
+  <link rel="canonical" href="https://sunjinkang.github.io/Vue/change.html"/>
 
 
 
 
 
-  <title>about-use-hexo | Sun ...something</title>
+  <title>2.x迁移到3.x变更点 | Sun ...something</title>
   
 
 
@@ -252,151 +252,137 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/03/26/about-use-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">about-use-hexo</h1>
-        
+	<h1 class="post-title" itemprop="name headline">2.x迁移到3.x变更点</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-03-26T21:14:29+08:00">
-                2022-03-26
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h2 id="一些使用hexo搭建博客时遇到的问题"><a href="#一些使用hexo搭建博客时遇到的问题" class="headerlink" title="一些使用hexo搭建博客时遇到的问题"></a>一些使用hexo搭建博客时遇到的问题</h2><p>1、一段时间为使用hexo，重新打开，生成新页面时，终端报错：’hexo’ 不是内部或外部命令，也不是可运行的程序或批处理文件  或 bash: hexo: command not found<br>解决办法：重新运行命令：npm install hexo-cli -g</p>
+      <div class="post-body">
+        
+        
+          <h3 id="生命周期变更"><a href="#生命周期变更" class="headerlink" title="生命周期变更"></a>生命周期变更</h3><table>
+<thead>
+<tr>
+<th align="center">选项式 API</th>
+<th align="center">Hook inside setup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">beforeCreate</td>
+<td align="center">Not needed*</td>
+</tr>
+<tr>
+<td align="center">created</td>
+<td align="center">Not needed*</td>
+</tr>
+<tr>
+<td align="center">beforeMount</td>
+<td align="center">onBeforeMount</td>
+</tr>
+<tr>
+<td align="center">mounted</td>
+<td align="center">onMounted</td>
+</tr>
+<tr>
+<td align="center">beforeUpdate</td>
+<td align="center">onBeforeUpdate</td>
+</tr>
+<tr>
+<td align="center">updated</td>
+<td align="center">onUpdated</td>
+</tr>
+<tr>
+<td align="center">beforeUnmount</td>
+<td align="center">onBeforeUnmount</td>
+</tr>
+<tr>
+<td align="center">unmounted</td>
+<td align="center">onUnmounted</td>
+</tr>
+<tr>
+<td align="center">errorCaptured</td>
+<td align="center">onErrorCaptured</td>
+</tr>
+<tr>
+<td align="center">renderTracked</td>
+<td align="center">onRenderTracked</td>
+</tr>
+<tr>
+<td align="center">renderTriggered</td>
+<td align="center">onRenderTriggered</td>
+</tr>
+<tr>
+<td align="center">activated</td>
+<td align="center">onActivated</td>
+</tr>
+<tr>
+<td align="center">deactivated</td>
+<td align="center">onDeactivated</td>
+</tr>
+</tbody></table>
+<h3 id="vue3允许组件有多个根节点"><a href="#vue3允许组件有多个根节点" class="headerlink" title="vue3允许组件有多个根节点"></a>vue3允许组件有多个根节点</h3><h3 id="移除过滤器"><a href="#移除过滤器" class="headerlink" title="移除过滤器"></a>移除过滤器</h3><p>过滤器已移除，且不再支持，建议用计算属性或方法代替过滤器，而不是使用过滤器</p>
+<h3 id="template应用挂载变更"><a href="#template应用挂载变更" class="headerlink" title="template应用挂载变更"></a>template应用挂载变更</h3><p>在 Vue 2.x 中，当挂载一个具有 template 的应用时，被渲染的内容会替换我们要挂载的目标元素。<br>在 Vue 3.x 中，被渲染的应用会作为子元素插入，从而替换目标元素的 innerHTML</p>
+<h3 id="过渡的-class-名更改"><a href="#过渡的-class-名更改" class="headerlink" title="过渡的 class 名更改"></a>过渡的 class 名更改</h3><p>过渡类名 v-enter 修改为 v-enter-from、过渡类名 v-leave 修改为 v-leave-from</p>
+<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
+<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</p>
+<h3 id="移除v-on-native修饰符"><a href="#移除v-on-native修饰符" class="headerlink" title="移除v-on.native修饰符"></a>移除v-on.native修饰符</h3><p>v-on 的 .native 修饰符已被移除。同时，新增的 emits 选项允许子组件定义真正会被触发的事件。因此，对于子组件中未被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 inheritAttrs: false)。</p>
+<h3 id="v-if-与-v-for-的优先级变更"><a href="#v-if-与-v-for-的优先级变更" class="headerlink" title="v-if 与 v-for 的优先级变更"></a>v-if 与 v-for 的优先级变更</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">在一个元素上同时使用 v-if 和 v-for 时，v-for 会优先作用</td>
+<td align="left">v-if 总是优先于 v-for 生效</td>
+</tr>
+</tbody></table>
+<h3 id="v-bind-合并行为"><a href="#v-bind-合并行为" class="headerlink" title="v-bind 合并行为"></a>v-bind 合并行为</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">如果一个元素同时定义了 v-bind=”object” 和一个相同的独立 attribute，那么这个独立 attribute 总是会覆盖 object 中的绑定（即不分先后）</td>
+<td align="left">如果一个元素同时定义了 v-bind=”object” 和一个相同的独立 attribute，那么绑定的声明顺序将决定它们如何被合并（即后覆盖前）</td>
+</tr>
+</tbody></table>
+<h3 id="VNode-生命周期事件"><a href="#VNode-生命周期事件" class="headerlink" title="VNode 生命周期事件"></a>VNode 生命周期事件</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">事件来监听组件生命周期,以 hook: 前缀开头，并跟随相应的生命周期钩子的名字</td>
+<td align="left">以 vnode- 前缀开头，事件也可用于 HTML 元素</td>
+</tr>
+</tbody></table>
+<p>举例：vnode- 前缀：@vnode-updated=”onUpdated”；或者在驼峰命名法的情况下附带前缀 vnode：@vnodeUpdated=”onUpdated”；<br>生命周期钩子 beforeDestroy 和 destroyed 已经分别被重命名为 beforeUnmount 和 unmounted，所以相应的事件名也需要更新。</p>
+<p><a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/migration/introduction.html">从vue2迁移官方文档(注意vue3改为默认安装版本后官方文档地址可能发生迁移，该跳转地址可能存在问题)</a></p>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    <div>
-      
-        <div>
-    <div style="text-align: center;color: #ccc;font-size:14px;">------------------------------本文结束<i class="fa fa-paw"></i>感谢您的阅读------------------------</div>
-</div>
-
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2022/03/26/var-const-let/" rel="next" title="var-const-let">
-                <i class="fa fa-chevron-left"></i> var-const-let
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/05/23/browser-render/" rel="prev" title="browser-render">
-                browser-render <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -514,7 +500,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">一些使用hexo搭建博客时遇到的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%98%E6%9B%B4"><span class="nav-number">1.</span> <span class="nav-text">生命周期变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue3%E5%85%81%E8%AE%B8%E7%BB%84%E4%BB%B6%E6%9C%89%E5%A4%9A%E4%B8%AA%E6%A0%B9%E8%8A%82%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">vue3允许组件有多个根节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">移除过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template%E5%BA%94%E7%94%A8%E6%8C%82%E8%BD%BD%E5%8F%98%E6%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">template应用挂载变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E7%9A%84-class-%E5%90%8D%E6%9B%B4%E6%94%B9"><span class="nav-number">5.</span> <span class="nav-text">过渡的 class 名更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%85%B3-prop-%E5%90%8D%E7%A7%B0%E5%8F%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text"> 组件的相关 prop 名称变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition-Group-%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">7.</span> <span class="nav-text">Transition Group 根元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4v-on-native%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">移除v-on.native修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if-%E4%B8%8E-v-for-%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%98%E6%9B%B4"><span class="nav-number">9.</span> <span class="nav-text">v-if 与 v-for 的优先级变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-bind-%E5%90%88%E5%B9%B6%E8%A1%8C%E4%B8%BA"><span class="nav-number">10.</span> <span class="nav-text">v-bind 合并行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VNode-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">VNode 生命周期事件</span></a></li></ol></div>
             
 
           </div>

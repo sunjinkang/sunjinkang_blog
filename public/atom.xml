@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sun ...something</title>
+  
+  <subtitle>about what I have learned and some interesting things</subtitle>
+  <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://sunjinkang.github.io/"/>
+  <updated>2022-06-22T15:21:04.684Z</updated>
+  <id>https://sunjinkang.github.io/</id>
+  
+  <author>
+    <name>Sun Jinkang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue3-render</title>
+    <link href="https://sunjinkang.github.io/2022/06/22/vue3-render/"/>
+    <id>https://sunjinkang.github.io/2022/06/22/vue3-render/</id>
+    <published>2022-06-22T14:12:51.000Z</published>
+    <updated>2022-06-22T15:21:04.684Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p><img src="/images/vue3_render.png" alt="vue3_render"><br>(1)创建一个vue实例 -&gt; 初始化实例（包括需要相关事件与生命周期函数等）<br>(2)调用beforeCreate<br>(3)初始化注入，包括data、method等添加到实例对象<br>(4)实例创建完成，调用created<br>(5)有el挂载，使用template替换；无挂载，使用mount自动挂载<br>(6)有template，进行编译，使其成为render函数<br>(7)（1）有template，使用模板构建抽象语法树；（2）通过数据获取元素的outerHTML属性值即元素结构的字符串形式构建HTML模板<br>(8)调用beforeMount（vue实例挂载在虚拟DOM上）<br>(9)生成HTML元素节点，替换页面原有的挂载节点（页面渲染）<br>(10)调用mounted<br>– （1）数据变更，即将重新渲染<br>– （2）调用beforeUpdate<br>– （3）进行虚拟DOM和真实DOM对比，进行patch<br>– （4）渲染完成，调用updated<br>(11)实例销毁之前调用beforeUnmount<br>(12)实例销毁，vm.$destroy<br>(13)销毁后调用unmounted</p><h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2><p><img src="/images/render.png" alt="render"><br>(1)首先会判断Vnode是否存在，如果不存在，则调用unmount函数，进行组件的卸载<br>(2)否则调用patch函数，对组件进行patch（PS: patch是一个递归的过程）<br>(3)patch 结束后，会调用flushPostFlushCbs函数冲刷任务池<br>(4)最后更新容器上的Vnode<br>注：patch函数的主要职责就是去判断Vnode的节点类型（打上patchFlag标志），然后调用对应类型的Vnode处理方式，进行更细致的patch（最后进行render渲染）</p><h2 id="patch函数"><a href="#patch函数" class="headerlink" title="patch函数"></a>patch函数</h2><p><img src="/images/render_node1.png" alt="render_node1"><br><img src="/images/render_node2.png" alt="render_node2"><br><img src="/images/render_function.png" alt="render_function"><br>注：patch依据不同节点类型，执行不同的处理函数，包括：Text、Comment、Static、Fragment等<br>(1)n1 与 n2 是待比较的两个节点，n1 为旧节点，n2 为新节点<br>(2)container 是新节点的容器<br>(3)anchor 是一个锚点，用来标识当我们对新旧节点做增删或移动等操作时，以哪个节点为参照物<br>(4)optimized 参数是是否开启优化模式的标识</p><h2 id="卸载组件"><a href="#卸载组件" class="headerlink" title="卸载组件"></a>卸载组件</h2><p>如果调用render函数时没有传Vnode，则会调用unmount函数对组件进行卸载 ，卸载过程中：<br>(1)如果存在ref，会首先重置ref<br>(2)如果组件是经过Keep-Alive缓存的组件，会通过deactivate对组件进行卸载<br>(3)如果是组件类型Vnode，会通过unmountComponent函数对组件进行卸载</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;渲染流程&quot;&gt;&lt;a href=&quot;#渲染流程&quot; class=&quot;headerlink&quot; title=&quot;渲染流程&quot;&gt;&lt;/a&gt;渲染流程&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/vue3_render.png&quot; alt=&quot;vue3_render&quot;&gt;&lt;br&gt;(1)创建</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>react-render</title>
+    <link href="https://sunjinkang.github.io/2022/06/22/react-render/"/>
+    <id>https://sunjinkang.github.io/2022/06/22/react-render/</id>
+    <published>2022-06-22T14:12:37.000Z</published>
+    <updated>2022-06-22T14:39:19.133Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><h4 id="React-createElement语法糖"><a href="#React-createElement语法糖" class="headerlink" title="React.createElement语法糖"></a>React.createElement语法糖</h4><p>(1)React.createElement(type, [props], […children]);<br>(2)type：元素类型<br>(3)props：属性值<br>(4)children：子元素</p><h4 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h4><p>(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系<br>(2)$$typeof：标识符，使用Symbol数据结构确保唯一性</p><h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/images/fiber_tree.png" alt="filter_tree"></p><h2 id="Element转化为Dom"><a href="#Element转化为Dom" class="headerlink" title="Element转化为Dom"></a>Element转化为Dom</h2><p>(1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化<br>(2)ReactDOM.render(element, container[, callback])<br>(3)ReactDOM.render三个参数，其中第一个参数便是生成的虚拟Dom，第二个参数则是一个真实Dom，此Dom相当于是一个容器，React元素将被渲染到这个容器里面去，第三个参数则是一个callback function</p><h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/images/update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/images/force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;主要步骤&quot;&gt;&lt;a href=&quot;#主要步骤&quot; class=&quot;headerlink&quot; title=&quot;主要步骤&quot;&gt;&lt;/a&gt;主要步骤&lt;/h2&gt;&lt;h4 id=&quot;React-createElement语法糖&quot;&gt;&lt;a href=&quot;#React-createElement语法糖&quot;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>browser-render</title>
+    <link href="https://sunjinkang.github.io/2022/05/23/browser-render/"/>
+    <id>https://sunjinkang.github.io/2022/05/23/browser-render/</id>
+    <published>2022-05-23T06:13:56.000Z</published>
+    <updated>2022-06-22T14:27:49.350Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p>(1)深度遍历解析HTML建立DOM树<br>(2)解析CSS建立CSSOM树<br>(3)依据DOM树和CSSOM树构造Render树<br>(4)计算各元素尺寸、位置<br>(5)绘制页面像素信息<br>(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<br>(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完某一部分（整体大块的）内容就显示一部分内容，同时，可能还在通过网络下载其余内容。)</p><h2 id="GUI渲染线程"><a href="#GUI渲染线程" class="headerlink" title="GUI渲染线程"></a>GUI渲染线程</h2><p>(1)解析HTML，CSS，构建DOM树和Render树，布局和绘制等<br>(2)重排/重绘<br>–1、重排又称重构、回流，当我们通过JavaScript或者CSS修改了元素的几何位置属性，例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段。重排需要更新完整的渲染流水线，所以开销也是最大的。每个页面至少需要一次reflow，就是在页面第一次加载的时候。<br>–2、任何页面布局和几何属性的改变都会触发重排，比如：<br>页面渲染初始化；(无法避免)<br>添加或删除可见的DOM元素；<br>元素位置的改变；<br>改变元素尺寸（宽、高、内外边距、边框等）；<br>浏览器窗口尺寸的变化（resize事件发生时）；<br>填充内容的改变，比如文本的改变或图片大小改变而引起的计算值宽度和高度的改变；<br>读取某些元素属性：（offsetLeft/Top/Height/Width,　clientTop/Left/Width/Height,　scrollTop/Left/Width/Height,　width/height,　getComputedStyle(),　currentStyle(IE)　)<br>–3、重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。比如通过 JavaScript 更改某些元素的背景颜色，没有改变元素的几何属性，那么布局阶段不会执行，而是直接进入绘制阶段。<br>–4、重绘省去了布局和分层阶段，效率会高于重排。重排必定会引发重绘，但重绘不一定会引发重排。</p><h2 id="JS引擎线程"><a href="#JS引擎线程" class="headerlink" title="JS引擎线程"></a>JS引擎线程</h2><p>(1)解析Javascript脚本，单线程执行<br>(2)与GUI互斥，GUI ON then JS Suspend.等待着任务队列中任务的到来，然后加以处理，JS执行的时间过长会导致页面渲染加载阻塞</p><h2 id="事件触发线程"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h2><p>(1)归属于浏览器而不是JS引擎，用来控制事件循环<br>(2)当JS引擎执行代码块如click事件时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件待处理队列的队尾，等待JS引擎的处理</p><h2 id="定时触发器线程"><a href="#定时触发器线程" class="headerlink" title="定时触发器线程"></a>定时触发器线程</h2><p>(1)setInterval与setTimeout所在线程<br>(2)浏览器定时计数器并不是由JS引擎计数的,因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确<br>(3)计时完毕后，将事件添加到事件队列中，等待JS引擎空闲后执行</p><h2 id="异步http请求线程"><a href="#异步http请求线程" class="headerlink" title="异步http请求线程"></a>异步http请求线程</h2><p>(1)在XMLHttpRequest在连接后是通过浏览器新开一个线程请求<br>(2)将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</p><h2 id="实现hover等鼠标操作"><a href="#实现hover等鼠标操作" class="headerlink" title="实现hover等鼠标操作"></a>实现hover等鼠标操作</h2><p><img src="/images/hover.png" alt="hover"></p><h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/images/performance.png" alt="performance"></p><h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/images/network.png" alt="network"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;渲染流程&quot;&gt;&lt;a href=&quot;#渲染流程&quot; class=&quot;headerlink&quot; title=&quot;渲染流程&quot;&gt;&lt;/a&gt;渲染流程&lt;/h2&gt;&lt;p&gt;(1)深度遍历解析HTML建立DOM树&lt;br&gt;(2)解析CSS建立CSSOM树&lt;br&gt;(3)依据DOM树和CSSOM树构造R</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>about-use-hexo</title>
+    <link href="https://sunjinkang.github.io/2022/03/26/about-use-hexo/"/>
+    <id>https://sunjinkang.github.io/2022/03/26/about-use-hexo/</id>
+    <published>2022-03-26T13:14:29.000Z</published>
+    <updated>2022-03-26T13:18:39.053Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一些使用hexo搭建博客时遇到的问题"><a href="#一些使用hexo搭建博客时遇到的问题" class="headerlink" title="一些使用hexo搭建博客时遇到的问题"></a>一些使用hexo搭建博客时遇到的问题</h2><p>1、一段时间为使用hexo，重新打开，生成新页面时，终端报错：’hexo’ 不是内部或外部命令，也不是可运行的程序或批处理文件  或 bash: hexo: command not found<br>解决办法：重新运行命令：npm install hexo-cli -g</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一些使用hexo搭建博客时遇到的问题&quot;&gt;&lt;a href=&quot;#一些使用hexo搭建博客时遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;一些使用hexo搭建博客时遇到的问题&quot;&gt;&lt;/a&gt;一些使用hexo搭建博客时遇到的问题&lt;/h2&gt;&lt;p&gt;1、一段时间</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>var-const-let</title>
+    <link href="https://sunjinkang.github.io/2022/03/26/var-const-let/"/>
+    <id>https://sunjinkang.github.io/2022/03/26/var-const-let/</id>
+    <published>2022-03-26T13:04:12.000Z</published>
+    <updated>2022-03-26T13:54:40.738Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会"><a href="#1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会" class="headerlink" title="1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会"></a>1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a,<span class="built_in">window</span>.a);    <span class="comment">// 100 100</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b,<span class="built_in">window</span>.b);    <span class="comment">// 10 undefined</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(c,<span class="built_in">window</span>.c);    <span class="comment">// 1 undefined</span></span><br></pre></td></tr></table></figure><p>let声明的变量或const声明的常量会挂载到Script下，var会挂载到Global下（window类似于Global的代理）。可查看文章<a href="https://zhuanlan.zhihu.com/p/114128108">let和const声明的变量到底去哪里了？</a></p><h4 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h4>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot;&gt;&lt;a href=&quot;#1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot; class=&quot;headerlink&quot; title=&quot;1、挂载</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://sunjinkang.github.io/2022/01/08/hello-world/"/>
+    <id>https://sunjinkang.github.io/2022/01/08/hello-world/</id>
+    <published>2022-01-08T00:57:36.399Z</published>
+    <updated>2022-01-08T00:57:36.399Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
