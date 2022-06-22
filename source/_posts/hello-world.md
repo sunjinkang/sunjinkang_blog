@@ -36,3 +36,7 @@ $ hexo deploy
 ```
 
 More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+
+### deploy产生如下错误的解决方法
+(1)使用hexo部署报错Error: Spawn failed
+解决办法：删除.deploy_git文件夹 -> 修改_config.yml文件中deploy的repository地址，修改为SSH方式 -> 按顺序执行命令hexo clean、hexo generate、hexo deploy

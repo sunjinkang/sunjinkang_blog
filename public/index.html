@@ -1006,6 +1006,7 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="deploy产生如下错误的解决方法"><a href="#deploy产生如下错误的解决方法" class="headerlink" title="deploy产生如下错误的解决方法"></a>deploy产生如下错误的解决方法</h3><p>(1)使用hexo部署报错Error: Spawn failed<br>解决办法：删除.deploy_git文件夹 -&gt; 修改_config.yml文件中deploy的repository地址，修改为SSH方式 -&gt; 按顺序执行命令hexo clean、hexo generate、hexo deploy</p>
 
           
         
