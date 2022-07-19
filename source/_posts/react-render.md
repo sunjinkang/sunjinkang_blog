@@ -16,7 +16,7 @@ tags:
 
 #### 协调算法
 #### filter图示
-![filter_tree](/images/fiber_tree.png)
+![filter_tree](fiber_tree.png)
 
 ## Element转化为Dom
 (1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化
@@ -25,7 +25,7 @@ tags:
 
 ## 源码相关
 1、setState触发更新、父组件重新渲染时触发更新
-![update_class](/images/update_class.png)
+![update_class](update_class.png)
 (1)static getDerivedStateFromProps()
 (2)shouldComponentUpdate(nextProps,nextState)
 (3)render()
@@ -33,7 +33,7 @@ tags:
 (5)componentDidUpdate(prevProps,prevState,snapshot)
 其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参
 2、forceUpdate触发更新
-![force_update](/images/force_update.png)
+![force_update](force_update.png)
 (1)static getDerivedStateFromProps()
 (2)render()
 (3)getSnapshotBeforeUpdate()

@@ -97,4 +97,4 @@ chrome=1告诉浏览器，如果当前IE浏览器安装了Google Chrome Frame插
 ---- cache-control、Pragma、Expires，和缓存相关的设置，但是遗憾的是这些往往不生效，我们一般都通过http headers来设置缓存策略  ？？？？
 
 (3)charset属性：meta元素是一个字符集声明，告诉文档使用哪种字符编码
-(4)itemprop属性：mate元素提供用户定义的元数据
+(4)itemprop属性：meta元素提供用户定义的元数据
