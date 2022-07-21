@@ -73,3 +73,6 @@ undefined == false // false
 
 #### 类型转换表
 ![类型转换对照表](convert-table.png)
+
+#### 类型转换对照网站
+https://dorey.github.io/JavaScript-Equality-Table/

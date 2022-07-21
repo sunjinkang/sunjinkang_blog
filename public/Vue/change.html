@@ -1,274 +1,177 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
+    <meta name="description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
 <meta property="og:type" content="website">
 <meta property="og:title" content="2.x迁移到3.x变更点">
-<meta property="og:url" content="https://sunjinkang.github.io/Vue/change.html">
+<meta property="og:url" content="https://sunjinkang.github.io/vue/change.html">
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-25T06:17:57.000Z">
-<meta property="article:modified_time" content="2022-06-22T15:26:48.869Z">
+<meta property="article:modified_time" content="2022-01-25T10:10:54.040Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://sunjinkang.github.io/vue/change">
 
 
 
-  <link rel="canonical" href="https://sunjinkang.github.io/Vue/change.html"/>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/vue/change.html","path":"vue/change.html","title":"2.x迁移到3.x变更点"}</script>
 
-
-
-
-
-  <title>2.x迁移到3.x变更点 | Sun ...something</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2.x迁移到3.x变更点 | Sun ...something
+</title>
   
 
 
 
 
 
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-
-<meta name="generator" content="Hexo 5.4.1"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sun ...something</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
-      
-        <p class="site-subtitle">about what I have learned and some interesting things</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun ...something</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
-<nav class="site-nav">
+
+
+
+
+
+
+</div>
+        
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
         </li>
-      
-        
-        <li class="menu-item menu-item-vue">
-          <a href="/vue" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue
-          </a>
+        <li class="sidebar-nav-overview">
+          Overview
         </li>
-      
-        
-        <li class="menu-item menu-item-vue-change">
-          <a href="/vue/change.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue-change
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-vue-dependency">
-          <a href="/vue/dependency.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue-dependency
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+      </ul>
 
-      
-    </ul>
-  
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%98%E6%9B%B4"><span class="nav-number">1.</span> <span class="nav-text">生命周期变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue3%E5%85%81%E8%AE%B8%E7%BB%84%E4%BB%B6%E6%9C%89%E5%A4%9A%E4%B8%AA%E6%A0%B9%E8%8A%82%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">vue3允许组件有多个根节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">移除过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template%E5%BA%94%E7%94%A8%E6%8C%82%E8%BD%BD%E5%8F%98%E6%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">template应用挂载变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E7%9A%84-class-%E5%90%8D%E6%9B%B4%E6%94%B9"><span class="nav-number">5.</span> <span class="nav-text">过渡的 class 名更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%85%B3-prop-%E5%90%8D%E7%A7%B0%E5%8F%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text"> 组件的相关 prop 名称变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition-Group-%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">7.</span> <span class="nav-text">Transition Group 根元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4v-on-native%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">移除v-on.native修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if-%E4%B8%8E-v-for-%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%98%E6%9B%B4"><span class="nav-number">9.</span> <span class="nav-text">v-if 与 v-for 的优先级变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-bind-%E5%90%88%E5%B9%B6%E8%A1%8C%E4%B8%BA"><span class="nav-number">10.</span> <span class="nav-text">v-bind 合并行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VNode-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">VNode 生命周期事件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-  
-</nav>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
 
 
 
- </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-  <div id="posts" class="posts-expand">
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
     
     
     
-    <div class="post-block page">
-      <header class="post-header">
+    <div class="post-block" lang="en"><header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">2.x迁移到3.x变更点</h1>
+<h1 class="post-title" itemprop="name headline">2.x迁移到3.x变更点
+</h1>
 
-
+<div class="post-meta-container">
+</div>
 
 </header>
 
       
       
-      
       <div class="post-body">
-        
-        
           <h3 id="生命周期变更"><a href="#生命周期变更" class="headerlink" title="生命周期变更"></a>生命周期变更</h3><table>
 <thead>
 <tr>
@@ -332,8 +235,8 @@
 <h3 id="vue3允许组件有多个根节点"><a href="#vue3允许组件有多个根节点" class="headerlink" title="vue3允许组件有多个根节点"></a>vue3允许组件有多个根节点</h3><h3 id="移除过滤器"><a href="#移除过滤器" class="headerlink" title="移除过滤器"></a>移除过滤器</h3><p>过滤器已移除，且不再支持，建议用计算属性或方法代替过滤器，而不是使用过滤器</p>
 <h3 id="template应用挂载变更"><a href="#template应用挂载变更" class="headerlink" title="template应用挂载变更"></a>template应用挂载变更</h3><p>在 Vue 2.x 中，当挂载一个具有 template 的应用时，被渲染的内容会替换我们要挂载的目标元素。<br>在 Vue 3.x 中，被渲染的应用会作为子元素插入，从而替换目标元素的 innerHTML</p>
 <h3 id="过渡的-class-名更改"><a href="#过渡的-class-名更改" class="headerlink" title="过渡的 class 名更改"></a>过渡的 class 名更改</h3><p>过渡类名 v-enter 修改为 v-enter-from、过渡类名 v-leave 修改为 v-leave-from</p>
-<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
-<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</p>
+<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</transition></h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
+<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</transition-group></p>
 <h3 id="移除v-on-native修饰符"><a href="#移除v-on-native修饰符" class="headerlink" title="移除v-on.native修饰符"></a>移除v-on.native修饰符</h3><p>v-on 的 .native 修饰符已被移除。同时，新增的 emits 选项允许子组件定义真正会被触发的事件。因此，对于子组件中未被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 inheritAttrs: false)。</p>
 <h3 id="v-if-与-v-for-的优先级变更"><a href="#v-if-与-v-for-的优先级变更" class="headerlink" title="v-if 与 v-for 的优先级变更"></a>v-if 与 v-for 的优先级变更</h3><table>
 <thead>
@@ -374,316 +277,40 @@
 <p>举例：vnode- 前缀：@vnode-updated=”onUpdated”；或者在驼峰命名法的情况下附带前缀 vnode：@vnodeUpdated=”onUpdated”；<br>生命周期钩子 beforeDestroy 和 destroyed 已经分别被重命名为 beforeUnmount 和 unmounted，所以相应的事件名也需要更新。</p>
 <p><a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/migration/introduction.html">从vue2迁移官方文档(注意vue3改为默认安装版本后官方文档地址可能发生迁移，该跳转地址可能存在问题)</a></p>
 
-        
       </div>
       
       
       
     </div>
+
     
     
-    
-  </div>
 
 
-          </div>
-          
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives%20%7C%7C%20archives">
-              
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/sunjinkang" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="2060037942@qq.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%98%E6%9B%B4"><span class="nav-number">1.</span> <span class="nav-text">生命周期变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue3%E5%85%81%E8%AE%B8%E7%BB%84%E4%BB%B6%E6%9C%89%E5%A4%9A%E4%B8%AA%E6%A0%B9%E8%8A%82%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">vue3允许组件有多个根节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">移除过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template%E5%BA%94%E7%94%A8%E6%8C%82%E8%BD%BD%E5%8F%98%E6%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">template应用挂载变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E7%9A%84-class-%E5%90%8D%E6%9B%B4%E6%94%B9"><span class="nav-number">5.</span> <span class="nav-text">过渡的 class 名更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%85%B3-prop-%E5%90%8D%E7%A7%B0%E5%8F%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text"> 组件的相关 prop 名称变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition-Group-%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">7.</span> <span class="nav-text">Transition Group 根元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4v-on-native%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">移除v-on.native修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if-%E4%B8%8E-v-for-%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%98%E6%9B%B4"><span class="nav-number">9.</span> <span class="nav-text">v-if 与 v-for 的优先级变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-bind-%E5%90%88%E5%B9%B6%E8%A1%8C%E4%B8%BA"><span class="nav-number">10.</span> <span class="nav-text">v-bind 合并行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VNode-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">VNode 生命周期事件</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
-  <div class="powered-by">
-    <i class="fa fa-user-md"></i>
-    <span id="busuanzi_container_site_pv">
-      本站访问数：<span id="busuanzi_value_site_pv"></span>
-    </span>
-  </div>
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -696,34 +323,6 @@
 
 
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

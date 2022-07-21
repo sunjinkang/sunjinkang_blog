@@ -1,87 +1,26 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
+    <meta name="description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="browser-render">
 <meta property="og:url" content="https://sunjinkang.github.io/2022/05/23/browser-render/index.html">
@@ -92,249 +31,191 @@
 <meta property="og:image" content="https://sunjinkang.github.io/images/performance.png">
 <meta property="og:image" content="https://sunjinkang.github.io/images/network.png">
 <meta property="article:published_time" content="2022-05-23T06:13:56.000Z">
-<meta property="article:modified_time" content="2022-06-22T14:27:49.350Z">
+<meta property="article:modified_time" content="2022-06-23T01:58:33.677Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sunjinkang.github.io/images/hover.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://sunjinkang.github.io/2022/05/23/browser-render/">
 
 
 
-  <link rel="canonical" href="https://sunjinkang.github.io/2022/05/23/browser-render/"/>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/05/23/browser-render/","path":"2022/05/23/browser-render/","title":"browser-render"}</script>
 
-
-
-
-
-  <title>browser-render | Sun ...something</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>browser-render | Sun ...something</title>
   
 
 
 
 
 
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-
-<meta name="generator" content="Hexo 5.4.1"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sun ...something</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
-      
-        <p class="site-subtitle">about what I have learned and some interesting things</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun ...something</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
-<nav class="site-nav">
+
+
+
+
+
+
+</div>
+        
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
         </li>
-      
-        
-        <li class="menu-item menu-item-vue">
-          <a href="/vue" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue
-          </a>
+        <li class="sidebar-nav-overview">
+          Overview
         </li>
-      
-        
-        <li class="menu-item menu-item-vue-change">
-          <a href="/vue/change.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue-change
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-vue-dependency">
-          <a href="/vue/dependency.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            vue-dependency
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+      </ul>
 
-      
-    </ul>
-  
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">渲染流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI%E6%B8%B2%E6%9F%93%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">GUI渲染线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E5%BC%95%E6%93%8E%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">JS引擎线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">事件触发线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E8%A7%A6%E5%8F%91%E5%99%A8%E7%BA%BF%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">定时触发器线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5http%E8%AF%B7%E6%B1%82%E7%BA%BF%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">异步http请求线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0hover%E7%AD%89%E9%BC%A0%E6%A0%87%E6%93%8D%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">实现hover等鼠标操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8performance%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD"><span class="nav-number">8.</span> <span class="nav-text">使用performance分析页面性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8network%E8%B0%83%E8%AF%95"><span class="nav-number">9.</span> <span class="nav-text">使用network调试</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-  
-</nav>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
 
 
 
- </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/05/23/browser-render/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sun Jinkang">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="browser-render | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          browser-render
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">browser-render</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-23T14:13:56+08:00">
-                2022-05-23
-              </time>
-            
+      <time title="Created: 2022-05-23 14:13:56" itemprop="dateCreated datePublished" datetime="2022-05-23T14:13:56+08:00">2022-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-23 09:58:33" itemprop="dateModified" datetime="2022-06-23T09:58:33+08:00">2022-06-23</time>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p>(1)深度遍历解析HTML建立DOM树<br>(2)解析CSS建立CSSOM树<br>(3)依据DOM树和CSSOM树构造Render树<br>(4)计算各元素尺寸、位置<br>(5)绘制页面像素信息<br>(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<br>(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完某一部分（整体大块的）内容就显示一部分内容，同时，可能还在通过网络下载其余内容。)</p>
 <h2 id="GUI渲染线程"><a href="#GUI渲染线程" class="headerlink" title="GUI渲染线程"></a>GUI渲染线程</h2><p>(1)解析HTML，CSS，构建DOM树和Render树，布局和绘制等<br>(2)重排/重绘<br>–1、重排又称重构、回流，当我们通过JavaScript或者CSS修改了元素的几何位置属性，例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段。重排需要更新完整的渲染流水线，所以开销也是最大的。每个页面至少需要一次reflow，就是在页面第一次加载的时候。<br>–2、任何页面布局和几何属性的改变都会触发重排，比如：<br>页面渲染初始化；(无法避免)<br>添加或删除可见的DOM元素；<br>元素位置的改变；<br>改变元素尺寸（宽、高、内外边距、边框等）；<br>浏览器窗口尺寸的变化（resize事件发生时）；<br>填充内容的改变，比如文本的改变或图片大小改变而引起的计算值宽度和高度的改变；<br>读取某些元素属性：（offsetLeft/Top/Height/Width,　clientTop/Left/Width/Height,　scrollTop/Left/Width/Height,　width/height,　getComputedStyle(),　currentStyle(IE)　)<br>–3、重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。比如通过 JavaScript 更改某些元素的背景颜色，没有改变元素的几何属性，那么布局阶段不会执行，而是直接进入绘制阶段。<br>–4、重绘省去了布局和分层阶段，效率会高于重排。重排必定会引发重绘，但重绘不一定会引发重排。</p>
 <h2 id="JS引擎线程"><a href="#JS引擎线程" class="headerlink" title="JS引擎线程"></a>JS引擎线程</h2><p>(1)解析Javascript脚本，单线程执行<br>(2)与GUI互斥，GUI ON then JS Suspend.等待着任务队列中任务的到来，然后加以处理，JS执行的时间过长会导致页面渲染加载阻塞</p>
@@ -345,371 +226,61 @@
 <h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/images/performance.png" alt="performance"></p>
 <h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/images/network.png" alt="network"></p>
 
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-        <div>
-    <div style="text-align: center;color: #ccc;font-size:14px;">------------------------------本文结束<i class="fa fa-paw"></i>感谢您的阅读------------------------</div>
-</div>
-
-      
     </div>
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
 
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2022/03/26/about-use-hexo/" rel="next" title="about-use-hexo">
-                <i class="fa fa-chevron-left"></i> about-use-hexo
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/06/22/react-render/" rel="prev" title="react-render">
-                react-render <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives%20%7C%7C%20archives">
-              
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/26/about-use-hexo/" rel="prev" title="about-use-hexo">
+                  <i class="fa fa-chevron-left"></i> about-use-hexo
                 </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/sunjinkang" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="2060037942@qq.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
+            <div class="post-nav-item">
+                <a href="/2022/06/22/react-render/" rel="next" title="react-render">
+                  react-render <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">渲染流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI%E6%B8%B2%E6%9F%93%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">GUI渲染线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E5%BC%95%E6%93%8E%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">JS引擎线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">事件触发线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E8%A7%A6%E5%8F%91%E5%99%A8%E7%BA%BF%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">定时触发器线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5http%E8%AF%B7%E6%B1%82%E7%BA%BF%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">异步http请求线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0hover%E7%AD%89%E9%BC%A0%E6%A0%87%E6%93%8D%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">实现hover等鼠标操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8performance%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD"><span class="nav-number">8.</span> <span class="nav-text">使用performance分析页面性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8network%E8%B0%83%E8%AF%95"><span class="nav-number">9.</span> <span class="nav-text">使用network调试</span></a></li></ol></div>
-            
-
           </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
-  <div class="powered-by">
-    <i class="fa fa-user-md"></i>
-    <span id="busuanzi_container_site_pv">
-      本站访问数：<span id="busuanzi_value_site_pv"></span>
-    </span>
-  </div>
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
 
-        
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -722,34 +293,6 @@
 
 
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
