@@ -19,6 +19,22 @@ ArrayLike，也叫作类数组。是一种按照索引存储数据且具有lengt
 3、上传文件是选择的file对象
 4、自定义的某些对象
 
+#### 判断一个数组是不是伪数组的方法
+1、Array.isArray
+```javascript
+// fakeArray表示伪数组
+// array 表示正常数组
+Array.isArray(fakeArray); // false
+Array.isArray(array); // true
+```
+2、instanceof
+```javascript
+// fakeArray表示伪数组
+// array 表示正常数组
+fakeArray instanceof Array; // false
+array instanceof Array; // true
+```
+
 #### 将数组转为真正数组的方法
 1、使用Array.prototype.slice.call()
 ![Array.prototype.slice.call转换](prototype_call.png)
