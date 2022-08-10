@@ -1,5 +1,5 @@
 ---
-title: browser-render
+title: 浏览器渲染
 date: 2022-05-23 14:13:56
 tags:
 ---

@@ -22,7 +22,7 @@
 
     <meta name="description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="browser-render">
+<meta property="og:title" content="浏览器渲染">
 <meta property="og:url" content="https://sunjinkang.github.io/2022/05/23/browser-render/index.html">
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://sunjinkang.github.io/images/performance.png">
 <meta property="og:image" content="https://sunjinkang.github.io/images/network.png">
 <meta property="article:published_time" content="2022-05-23T06:13:56.000Z">
-<meta property="article:modified_time" content="2022-06-23T01:58:33.677Z">
+<meta property="article:modified_time" content="2022-08-10T03:12:04.104Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sunjinkang.github.io/images/hover.png">
@@ -41,10 +41,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/05/23/browser-render/","path":"2022/05/23/browser-render/","title":"browser-render"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/05/23/browser-render/","path":"2022/05/23/browser-render/","title":"浏览器渲染"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>browser-render | Sun ...something</title>
+<title>浏览器渲染 | Sun ...something</title>
   
 
 
@@ -137,7 +137,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -201,12 +201,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="browser-render | Sun ...something">
+      <meta itemprop="name" content="浏览器渲染 | Sun ...something">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          browser-render
+          浏览器渲染
         </h1>
 
         <div class="post-meta-container">
@@ -224,7 +224,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-23 09:58:33" itemprop="dateModified" datetime="2022-06-23T09:58:33+08:00">2022-06-23</time>
+      <time title="Modified: 2022-08-10 11:12:04" itemprop="dateModified" datetime="2022-08-10T11:12:04+08:00">2022-08-10</time>
     </span>
 
   
@@ -259,13 +259,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/03/26/about-use-hexo/" rel="prev" title="about-use-hexo">
-                  <i class="fa fa-chevron-left"></i> about-use-hexo
+                <a href="/2022/03/26/about-use-hexo/" rel="prev" title="使用hexo相关">
+                  <i class="fa fa-chevron-left"></i> 使用hexo相关
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/22/react-render/" rel="next" title="react-render">
-                  react-render <i class="fa fa-chevron-right"></i>
+                <a href="/2022/06/22/react-render/" rel="next" title="react渲染">
+                  react渲染 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

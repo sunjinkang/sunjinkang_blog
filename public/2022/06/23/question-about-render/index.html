@@ -22,13 +22,13 @@
 
     <meta name="description" content="疑问点(1)react中的快照的具体作用是什么？vue3中是否有类似的操作？类似渲染的子节点？？？(2)react中将调试打印的信息放在块级作用域中？为什么不直接放在代码里面？没什么特别意义，团队规范规定(3)vue3中在patch的时候，为什么在有了patchElement（感觉能满足大部分情况了）的情况下，分了其他几种类型？性能、更新(4)react中react和react-dom的关系？vu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="question-about-render">
+<meta property="og:title" content="react &amp; vue渲染问题">
 <meta property="og:url" content="https://sunjinkang.github.io/2022/06/23/question-about-render/index.html">
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="疑问点(1)react中的快照的具体作用是什么？vue3中是否有类似的操作？类似渲染的子节点？？？(2)react中将调试打印的信息放在块级作用域中？为什么不直接放在代码里面？没什么特别意义，团队规范规定(3)vue3中在patch的时候，为什么在有了patchElement（感觉能满足大部分情况了）的情况下，分了其他几种类型？性能、更新(4)react中react和react-dom的关系？vu">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-23T05:21:12.000Z">
-<meta property="article:modified_time" content="2022-06-23T10:51:11.023Z">
+<meta property="article:modified_time" content="2022-08-10T03:14:53.040Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -37,10 +37,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/06/23/question-about-render/","path":"2022/06/23/question-about-render/","title":"question-about-render"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/06/23/question-about-render/","path":"2022/06/23/question-about-render/","title":"react & vue渲染问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>question-about-render | Sun ...something</title>
+<title>react & vue渲染问题 | Sun ...something</title>
   
 
 
@@ -133,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -197,12 +197,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="question-about-render | Sun ...something">
+      <meta itemprop="name" content="react & vue渲染问题 | Sun ...something">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          question-about-render
+          react & vue渲染问题
         </h1>
 
         <div class="post-meta-container">
@@ -212,9 +212,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-23 13:21:12 / Modified: 18:51:11" itemprop="dateCreated datePublished" datetime="2022-06-23T13:21:12+08:00">2022-06-23</time>
+      <time title="Created: 2022-06-23 13:21:12" itemprop="dateCreated datePublished" datetime="2022-06-23T13:21:12+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-08-10 11:14:53" itemprop="dateModified" datetime="2022-08-10T11:14:53+08:00">2022-08-10</time>
     </span>
 
   
@@ -241,13 +247,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/22/vue3-render/" rel="prev" title="vue3-render">
-                  <i class="fa fa-chevron-left"></i> vue3-render
+                <a href="/2022/06/22/vue3-render/" rel="prev" title="vue3渲染">
+                  <i class="fa fa-chevron-left"></i> vue3渲染
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/27/create-fixed-length-array/" rel="next" title="create-fixed-length-array">
-                  create-fixed-length-array <i class="fa fa-chevron-right"></i>
+                <a href="/2022/06/27/create-fixed-length-array/" rel="next" title="js-新建固定长度数据">
+                  js-新建固定长度数据 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

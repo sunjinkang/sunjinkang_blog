@@ -1,5 +1,5 @@
 ---
-title: create-fixed-length-array
+title: js-新建固定长度数据
 date: 2022-06-27 10:20:46
 tags:
 ---
