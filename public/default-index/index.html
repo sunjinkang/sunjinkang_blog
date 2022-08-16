@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -178,6 +178,123 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/11/js-transform/js-transform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/11/js-transform/js-transform/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-11 13:19:34 / Modified: 17:29:33" itemprop="dateCreated datePublished" datetime="2022-08-11T13:19:34+08:00">2022-08-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(`1 - true: ${1 - true}`);
+      console.log(`1 - false: ${1 - false}`);
+      console.log(`1 - null: ${1 - null}`);
+      console.log(`1 - undefined: ${1 - undefined}`);
+      console.log(`2 * ['5']: ${2 * ['5']}`);
+
+      console.log(`123 + '123': ${123 + '123'}`);
+      console.log(`123 + null: ${123 + null}`);
+      console.log(`123 + true: ${123 + true}`);
+      console.log(`123 + {}: ${123 + {}}`);
+
+      console.log(`NaN == NaN: ${NaN == NaN}`);
+
+      console.log(`true == 1: ${true == 1}`);
+      console.log(`true == '2': ${true == '2'}`);
+      console.log(`true == ['1']: ${true == ['1']}`);
+      console.log(`true == ['2']: ${true == ['2']}`);
+      console.log(`undefined == false: ${undefined == false}`);
+      console.log(`null == false: ${null == false}`);
+
+      console.log(`123 == '123': ${123 == '123'}`);
+      console.log(`'' == 0: ${'' == 0}`);
+
+      console.log(`null == undefined: ${null == undefined}`); // true
+      console.log(`null == '': ${null == ''}`); // false
+      console.log(`null == 0: ${null == 0}`); // false
+      console.log(`null == false: ${null == false}`); // false
+      console.log(`undefined == '': ${undefined == ''}`); // false
+      console.log(`undefined == 0: ${undefined == 0}`); // false
+      console.log(`undefined == false: ${undefined == false}`); // false
+
+      console.log(`'[object Object]' == {}: ${'[object Object]' == {}}`); // true
+      console.log(`'1,2,3' == [1, 2, 3]: ${'1,2,3' == [1, 2, 3]}`); // true
+
+      console.log(`'10' > '2': ${'10' > '2'}`); // false
+    </script>
+  </body>
+</html>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/09/devan-operation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -214,7 +331,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:12:48" itemprop="dateModified" datetime="2022-08-10T11:12:48+08:00">2022-08-10</time>
+      <time title="Modified: 2022-08-16 17:32:30" itemprop="dateModified" datetime="2022-08-16T17:32:30+08:00">2022-08-16</time>
     </span>
 
   
@@ -227,7 +344,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。</p>
+<h4 id="什么是装箱拆箱？"><a href="#什么是装箱拆箱？" class="headerlink" title="什么是装箱拆箱？"></a>什么是装箱拆箱？</h4><p>装箱：把基本数据类型转化为对应的引用类型的操作<br>拆箱：把引用类型转化为基本数据类型的操作</p>
+<p>基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symbol<br>引用数据类型：对象(Object)、数组(Array)、函数(Function)</p>
+<h4 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h4><h4 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h4><p>场景</p>
+<p>用处</p>
+
       
     </div>
 
@@ -800,7 +922,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:13:09" itemprop="dateModified" datetime="2022-08-10T11:13:09+08:00">2022-08-10</time>
+      <time title="Modified: 2022-08-16 11:06:06" itemprop="dateModified" datetime="2022-08-16T11:06:06+08:00">2022-08-16</time>
     </span>
 
   
@@ -816,6 +938,12 @@
           <h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a target="_blank" rel="noopener" href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p>
 <h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a target="_blank" rel="noopener" href="https://chromestatus.com/features">chrome status</a></p>
 <h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p>
+<h4 id="css层叠样式表"><a href="#css层叠样式表" class="headerlink" title="css层叠样式表"></a>css层叠样式表</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade">官方文档</a></p>
+<h4 id="Recoil"><a href="#Recoil" class="headerlink" title="Recoil"></a>Recoil</h4><p><a target="_blank" rel="noopener" href="https://recoiljs.org/">官方文档</a></p>
+<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p><a target="_blank" rel="noopener" href="https://reactjs.org/">官方文档</a></p>
+<h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><p><a target="_blank" rel="noopener" href="https://vuejs.org/">官方文档</a></p>
+<h4 id="VueUse–vue使用的hooks库"><a href="#VueUse–vue使用的hooks库" class="headerlink" title="VueUse–vue使用的hooks库"></a>VueUse–vue使用的hooks库</h4><p><a target="_blank" rel="noopener" href="https://vueuse.org/">官方文档</a></p>
+<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/">官方文档</a></p>
 
       
     </div>
@@ -904,88 +1032,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/github%E6%8E%A8%E9%80%81%E4%BB%A3%E7%A0%81%E5%BC%B9%E7%AA%97%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E8%BE%93%E5%85%A5%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/30/github%E6%8E%A8%E9%80%81%E4%BB%A3%E7%A0%81%E5%BC%B9%E7%AA%97%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E8%BE%93%E5%85%A5%EF%BC%9F/" class="post-title-link" itemprop="url">github推送代码弹窗应该怎么输入？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-30 10:45:15 / Modified: 13:22:12" itemprop="dateCreated datePublished" datetime="2022-06-30T10:45:15+08:00">2022-06-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="github推送代码弹窗应该怎么输入"><a href="#github推送代码弹窗应该怎么输入" class="headerlink" title="github推送代码弹窗应该怎么输入?"></a>github推送代码弹窗应该怎么输入?</h4><p>当本地修改代码后，需要推送到github仓库时，由于本地未记录用户名与密码，导致push时，先后出现GitHub登录弹窗，以及一个小弹窗，<br>鉴于在输入实际操作中，两次输入username和password不知道应该怎么输入，做个记录，避免遗忘。</p>
-<p>(1)本地修改代码，提交。本文仅从git push开始记录，之前的命令和操作如果不知道怎么办，请自行百度或Google。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>—- 注意：有时推送代码时，会出现超时等情况，可能是网络问题，可多试几次或稍后再试</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line"><span class="attr">fatal</span>: unable to access <span class="string">&#x27;https://github.com/sunjinkang/test_vue3_sql.git/&#x27;</span>: Failed to connect to github.com port <span class="number">443</span>: Timed out</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------</span></span><br><span class="line">$ git push</span><br><span class="line"><span class="attr">fatal</span>: unable to access <span class="string">&#x27;https://github.com/sunjinkang/test_vue3_sql.git/&#x27;</span>: OpenSSL SSL_read: Connection was aborted, errno <span class="number">10053</span></span><br></pre></td></tr></table></figure>
-<p>(2)第一个GitHub登录弹窗<br><img src alt="github_login"><br>该弹窗中 <strong>username为github的登录邮箱，password为GitHub的登录密码</strong><br>—- 注意：本次输入完成后，虽然输入的均为正确信息，但是由于GitHub不在支持用户名密码推送，改为使用令牌，导致输入后悔提示登录失败</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logon failed, use ctrl+c to cancel basic credential prompt.</span><br><span class="line"><span class="attr">remote</span>: Support <span class="keyword">for</span> password authentication was removed on August <span class="number">13</span>, <span class="number">2021.</span> Please use a personal access token instead.</span><br></pre></td></tr></table></figure>
-<p>(3)第二个登录弹窗<br>![login_insert]<br>该弹窗会出现两次，第一次输入username，第二次输入password，<strong>username为GitHub的登录邮箱，<font color="Red">password为GitHub网站的连接令牌(Personal access tokens)(如何生成token可以查看文章<a href="/2022/06/30/github%E7%94%9F%E6%88%90%E4%BB%A4%E7%89%8C-Personal-access-tokens-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4/">github生成令牌</a>)</font></strong><br>—- 注意：如果password输入错误，会导致无法提交</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line">Logon failed, use ctrl+c to cancel basic credential prompt.</span><br><span class="line"><span class="attr">remote</span>: Support <span class="keyword">for</span> password authentication was removed on August <span class="number">13</span>, <span class="number">2021.</span> Please use a personal access token instead.</span><br><span class="line"><span class="attr">remote</span>: Please see https:<span class="comment">//github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.</span></span><br><span class="line">fatal: Authentication failed <span class="keyword">for</span> <span class="string">&#x27;https://github.com/xxxxxxx.git/&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>当username和password输入完成后，就可以正常push代码啦</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/default-index/page/2/">2</a><a class="extend next" rel="next" href="/default-index/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/default-index/page/2/">2</a><a class="page-number" href="/default-index/page/3/">3</a><a class="extend next" rel="next" href="/default-index/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

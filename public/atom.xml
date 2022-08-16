@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2022-08-10T03:12:48.793Z</updated>
+  <updated>2022-08-11T09:29:33.722Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -17,12 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://sunjinkang.github.io/2022/08/11/js-transform/js-transform/"/>
+    <id>https://sunjinkang.github.io/2022/08/11/js-transform/js-transform/</id>
+    <published>2022-08-11T05:19:34.637Z</published>
+    <updated>2022-08-11T09:29:33.722Z</updated>
+    
+    <content type="html"><![CDATA[<!DOCTYPE html><html lang="en">  <head>    <meta charset="UTF-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Document</title>  </head>  <body>    <script>      console.log(`1 - true: ${1 - true}`);      console.log(`1 - false: ${1 - false}`);      console.log(`1 - null: ${1 - null}`);      console.log(`1 - undefined: ${1 - undefined}`);      console.log(`2 * ['5']: ${2 * ['5']}`);      console.log(`123 + '123': ${123 + '123'}`);      console.log(`123 + null: ${123 + null}`);      console.log(`123 + true: ${123 + true}`);      console.log(`123 + {}: ${123 + {}}`);      console.log(`NaN == NaN: ${NaN == NaN}`);      console.log(`true == 1: ${true == 1}`);      console.log(`true == '2': ${true == '2'}`);      console.log(`true == ['1']: ${true == ['1']}`);      console.log(`true == ['2']: ${true == ['2']}`);      console.log(`undefined == false: ${undefined == false}`);      console.log(`null == false: ${null == false}`);      console.log(`123 == '123': ${123 == '123'}`);      console.log(`'' == 0: ${'' == 0}`);      console.log(`null == undefined: ${null == undefined}`); // true      console.log(`null == '': ${null == ''}`); // false      console.log(`null == 0: ${null == 0}`); // false      console.log(`null == false: ${null == false}`); // false      console.log(`undefined == '': ${undefined == ''}`); // false      console.log(`undefined == 0: ${undefined == 0}`); // false      console.log(`undefined == false: ${undefined == false}`); // false      console.log(`'[object Object]' == {}: ${'[object Object]' == {}}`); // true      console.log(`'1,2,3' == [1, 2, 3]: ${'1,2,3' == [1, 2, 3]}`); // true      console.log(`'10' > '2': ${'10' > '2'}`); // false    </script>  </body></html>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta nam</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>装箱拆箱操作</title>
     <link href="https://sunjinkang.github.io/2022/08/09/devan-operation/"/>
     <id>https://sunjinkang.github.io/2022/08/09/devan-operation/</id>
     <published>2022-08-09T05:43:57.000Z</published>
-    <updated>2022-08-10T03:12:48.793Z</updated>
+    <updated>2022-08-16T09:32:30.561Z</updated>
     
+    <content type="html"><![CDATA[<p>我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。</p><h4 id="什么是装箱拆箱？"><a href="#什么是装箱拆箱？" class="headerlink" title="什么是装箱拆箱？"></a>什么是装箱拆箱？</h4><p>装箱：把基本数据类型转化为对应的引用类型的操作<br>拆箱：把引用类型转化为基本数据类型的操作</p><p>基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symbol<br>引用数据类型：对象(Object)、数组(Array)、函数(Function)</p><h4 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h4><h4 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h4><p>场景</p><p>用处</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。&lt;/p&gt;
+&lt;h4 id=&quot;什么是装箱拆箱？&quot;&gt;&lt;a href=&quot;#什么是装箱拆箱？&quot; class=&quot;headerlin</summary>
+      
     
     
     
@@ -148,9 +181,9 @@
     <link href="https://sunjinkang.github.io/2022/07/05/document-location/"/>
     <id>https://sunjinkang.github.io/2022/07/05/document-location/</id>
     <published>2022-07-05T08:17:32.000Z</published>
-    <updated>2022-08-10T03:13:09.848Z</updated>
+    <updated>2022-08-16T03:06:06.205Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p><h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a href="https://chromestatus.com/features">chrome status</a></p><h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p><h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a href="https://chromestatus.com/features">chrome status</a></p><h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p><h4 id="css层叠样式表"><a href="#css层叠样式表" class="headerlink" title="css层叠样式表"></a>css层叠样式表</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade">官方文档</a></p><h4 id="Recoil"><a href="#Recoil" class="headerlink" title="Recoil"></a>Recoil</h4><p><a href="https://recoiljs.org/">官方文档</a></p><h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p><a href="https://reactjs.org/">官方文档</a></p><h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><p><a href="https://vuejs.org/">官方文档</a></p><h4 id="VueUse–vue使用的hooks库"><a href="#VueUse–vue使用的hooks库" class="headerlink" title="VueUse–vue使用的hooks库"></a>VueUse–vue使用的hooks库</h4><p><a href="https://vueuse.org/">官方文档</a></p><h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p><a href="https://html.spec.whatwg.org/">官方文档</a></p>]]></content>
     
     
       
@@ -376,26 +409,6 @@
       
       
     <summary type="html">&lt;h4 id=&quot;1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot;&gt;&lt;a href=&quot;#1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot; class=&quot;headerlink&quot; title=&quot;1、挂载</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://sunjinkang.github.io/2022/01/05/hello-world/"/>
-    <id>https://sunjinkang.github.io/2022/01/05/hello-world/</id>
-    <published>2022-01-05T09:20:43.363Z</published>
-    <updated>2022-06-23T01:58:33.679Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><h3 id="deploy产生如下错误的解决方法"><a href="#deploy产生如下错误的解决方法" class="headerlink" title="deploy产生如下错误的解决方法"></a>deploy产生如下错误的解决方法</h3><p>(1)使用hexo部署报错Error: Spawn failed<br>解决办法：删除.deploy_git文件夹 -&gt; 修改_config.yml文件中deploy的repository地址，修改为SSH方式 -&gt; 按顺序执行命令hexo clean、hexo generate、hexo deploy</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
       
     
     
