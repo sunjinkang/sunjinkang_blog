@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2022-08-11T09:29:33.722Z</updated>
+  <updated>2022-08-26T05:14:06.011Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript设计模式</title>
+    <link href="https://sunjinkang.github.io/2022/08/20/about-design-model/"/>
+    <id>https://sunjinkang.github.io/2022/08/20/about-design-model/</id>
+    <published>2022-08-20T06:47:46.000Z</published>
+    <updated>2022-08-26T05:14:06.011Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里<br>1、封装<br>使用原型(prototype)为类添加属性和方法的两种方式(<strong>注意两种不能混用</strong>)：<br>(1)为原型对象属性赋值</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype.display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>(2)将一个对象赋值给类的原型对象</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype = &#123;</span><br><span class="line">  display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>使用this和原型(prototype)为类添加属性和方法的区别：<br>(1)使用this添加的属性和方法是在当前对象上添加的，每次通过类创建新对象时，this指向的属性和方法都会得到相应的创建<br>(2)通过prototype继承的属性和方法是每个对象通过prototype访问到的，新创建对象时，不会再新创建属性和方法</p><p>constructor是什么？<br>constructor是一个属性，当创建一个函数或者对象时都会为其创建一个原型对象prototype，在 prototype对象中又会像函数中创建 this一样创建一个constructor属性，那么constructor属性指向的就是拥有整个原型对象的函数或对象。<br><a href="prototype.png">prototype</a></p><p>属性与方法的封装<br>私有属性与私有方法<br>由于JavaScript的函数级作用域，声明在函数内部的变量以及方法在外界是访问不到的,通过此特性创建类的私有变量以及私有方法<br>共有属性和共有方法<br>在函数内部通过 this创建的属性和方法，在类创建对象时，每个对象自身都拥有一份并且可以在外部访问到。因此通过this创建的属性可看作是对象共有属性和对象共有方法<br>特权方法(类的构造器)<br>通过this创建的方法，不但可以访问这些对象的共有属性与共有方法，而且还能访问到类（创建时）或对象自身的私有属性和私有方法，由于这些方法权利比较大，所以我们又将它看作特权方法。在对象创建时通过使用这些特权方法我们可以初始化实例对象的一些属性,因此这些在创建对象时调用的特权方法还可以看作是类的构造器<br><a href="public-and-private.png">public-and-private</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h4&gt;&lt;p&gt;面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基本数据类型-Symbol</title>
+    <link href="https://sunjinkang.github.io/2022/08/19/about-symbol/"/>
+    <id>https://sunjinkang.github.io/2022/08/19/about-symbol/</id>
+    <published>2022-08-19T05:37:24.000Z</published>
+    <updated>2022-08-19T05:42:42.437Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="什么是Symbol"><a href="#什么是Symbol" class="headerlink" title="什么是Symbol?"></a>什么是Symbol?</h4><h4 id="有什么用处？"><a href="#有什么用处？" class="headerlink" title="有什么用处？"></a>有什么用处？</h4><h4 id="Symbol的属性"><a href="#Symbol的属性" class="headerlink" title="Symbol的属性"></a>Symbol的属性</h4><h4 id="Symbol的方法"><a href="#Symbol的方法" class="headerlink" title="Symbol的方法"></a>Symbol的方法</h4>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;什么是Symbol&quot;&gt;&lt;a href=&quot;#什么是Symbol&quot; class=&quot;headerlink&quot; title=&quot;什么是Symbol?&quot;&gt;&lt;/a&gt;什么是Symbol?&lt;/h4&gt;&lt;h4 id=&quot;有什么用处？&quot;&gt;&lt;a href=&quot;#有什么用处？&quot; class=&quot;he</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -116,6 +156,26 @@
       
     <summary type="html">&lt;h4 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h4&gt;&lt;p&gt;ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。&lt;/p&gt;
 &lt;h4 id=&quot;特征&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>javascript DOM编程艺术阅读笔记</title>
+    <link href="https://sunjinkang.github.io/2022/07/31/about-dom/"/>
+    <id>https://sunjinkang.github.io/2022/07/31/about-dom/</id>
+    <published>2022-07-31T05:42:45.000Z</published>
+    <updated>2022-08-26T05:14:06.016Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h4><p>1、DOM<br>DOM是一套对文档的内容进行抽象和概念化的方法。</p><p>第0级DOM(DOM Level 0)<br>试验性质的初级DOM，在还未形成统一标准的初期阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。</p><p>第1级DMO(DOM Level 1)<br>Netscape、微软和其他一些浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第1级DOM”(DOM Level 1) 。</p><p>2、浏览器战争<br>2.1 DHTML<br>DHTML是“Dynamic HTML”(动态HTML)的简称。DHTML并不是一项新技术，而是描述HTML、CSS和.JavaScript技术组合的术语。背后含义:<br>(1)利用HTML把网页标记为各种元素;<br>(2)利用CSS设置元素样式和它们的显示位置;<br>(3)利用JavaScript实时地操控页面和改变样式。</p><h4 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h4><p>循环语句<br>1、while循环</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>do…while循环</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure><p>  2、for循环</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (initial condition; test condition; alter condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>函数<br>1、变量的作用域<br>全局变量(global variable)可以在脚本中的任何位置被引用。一旦你在某个脚本里声明了一个全局变量，就可以从这个脚本中的任何位置―一包括函数内部—―引用它。全局变量的作用域是整个脚本。<br>局部变量(local variable）只存在于声明它的那个函数的内部，在那个函数的外部是无法引用它的。局部变量的作用域仅限于某个特定的函数。</p><p>对象<br>对象（object）是一种非常重要的数据类型，但此前我们还没有认真对待它。对象是自包含的数据集合，包含在对象里的数据可以通过两种形式访问——属性（property)和方法(method) :<br>-属性是隶属于某个特定对象的变量<br>-方法是只有某个特定对象才能调用的函数<br>对象就是由一些属性和方法组合在一起而构成的一个数据实体</p><p>1、用户定义对象(user-defined object)<br>由程序员自行创建的对象</p><p>2、内建对象(native object)<br>JavaScript提供了一系列预先定义好的对象，这些可以拿来就用的对象称为内建对象( native object)<br>Array、Math、Date等</p><p>3、宿主对象(host object)<br>由浏览器提供的预定义对象被称为宿主对象(host object )<br>宿主对象包括document、Form、Image和Element等。我们可以通过这些对象获得关于网页上表单、图像和各种表单元素等信息</p><h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>1、文档:DOM中的’D’<br>如果没有document(文档），DOM也就无从谈起。当创建了一个网页并把它加载到Web浏览器中时，DOM就在幕后悄然而生。它把你编写的网页文档转换为一个文档对象</p><p>2、对象:DOM中的’O’<br>如上对象</p><p>3、模型:DOM中的’M’<br>DOM中的“M”代表着“Model”(模型)，但说它代表着“Map”(地图）也未尝不可。模型也好，地图也罢，它们的含义都是某种事物的表现形式。就像一个模型火车代表着一列真正的火车、一张城市街道图代表着一个实际存在的城市那样，DOM代表着加载到浏览器窗口的当前网页。浏览器提供了网页的地图（或者说模型)，可以通过JavaScript去读取这张地图</p><p>4、节点<br>(1)元素节点<br>(2)文本节点<br>(3)属性节点<br>(4)CSS<br>(5)获取元素<br>-getElementById 返回一个对象<br>-getElementsByTagName 返回一个对象数组，使用通配符（*）获取文档中总共有多少元素节点</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>) ;</span><br><span class="line"><span class="keyword">var</span> items = shopping.getElementsByTagName(<span class="string">&quot;*&quot;</span>) ;</span><br></pre></td></tr></table></figure><p>-getElementsByClassName 返回一个对象数组<br>使用这个方法还可以查找那些带有多个类名的元素。要指定多个类名，只要在字符串参数中用空格分隔类名即可<br>注意，即使在元素的class属性中，类名的顺序和参数中指定的不一样，也照样会匹配该元素。不仅类名的实际顺序不重要，就算元素还带有更多类名也没有关系。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> sales = shopping.getElementsByClassName(<span class="string">&quot;sale&quot;</span>);</span><br></pre></td></tr></table></figure><p>5、获取和设置属性<br>(1)getAttribute 只能通过元素节点调用<br>(2)setAttribute 只能通过元素节点调用，修改属性值<br>细节:通过setAttribute对文档做出修改后，在通过浏览器的viewsource(查看源代码）选项去查看文档的源代码时看到的仍将是改变前的属性值，也就是说，setAttribute做出的修改不会反映在文档本身的源代码里。这种“表里不一”的现象源自DOM的工作模式:先加载文档的静态内容，再动态刷新，动态刷新不影响文档的静态内容。这正是DOM的真正威力:对页面内容进行刷新却不需要在浏览器里刷新页面。</p><h4 id="案例研究：JavaScript图片库"><a href="#案例研究：JavaScript图片库" class="headerlink" title="案例研究：JavaScript图片库"></a>案例研究：JavaScript图片库</h4><p>DOM是一种适用于多种环境和多种程序设计语言的通用型API。如果想把DOM技巧运用在Web浏览器以外的应用环境里，严格遵守“第1级DOM”能够避免与兼容性有关的任何问题。<br>1、childNodes属性 用来获取任何一个元素的所有子元素<br>2、nodeType属性 共有12中可取值<br>以下3种具有实用价值：<br>-元素节点的nodeType属性值是1<br>-属性节点的nodeType属性值是2<br>-文本节点的nodeType属性值是3<br>3、nodeValue属性 得到和设置节点的值<br>4、firstChild和lastChild</p><h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>1、平稳退化<br>平稳退化(graceful degradation)，虽然某些功能无法使用，但最基本的操作仍能顺利完成<br>2、“javascript:”伪协议<br>“真”协议用来在因特网上的计算机之间传输数据包，如HTTP协议(http://) 、FTP协议（ftp://)等，伪协议则是一种非标准化的协议<br>“javascript:”伪协议让我们通过一个链接来调用JavaScript函数</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;javascript:popUp(&#x27;http://www.example.com/&#x27;);&quot;</span>&gt;Example&lt;/a&gt;</span><br></pre></td></tr></table></figure><p>3、CSS<br>结构与样式分离<br>渐进增强，用一些额外的信息层去包裹原始数据<br>4、分离javascript<br>5、向后兼容<br>(1)对象检测：检测浏览器对JavaScript的支持程度<br>(2)浏览器嗅探技术<br>通过提取浏览器供应商提供的信息来解决向后兼容问题。从理论上讲，可以通过JavaScript代码检索关于浏览器品牌和版本的信息，这些信息可以用来改善JavaScript脚本代码的向后兼容性，但这是一种风险非常大的技术。<br>首先，浏览器有时会“撒谎”。因为历史原因，有些浏览器会把自己报告为另外一种浏览器，还有一些浏览器允许用户任意修改这些信息<br>其次，为了适用于多种不同的浏览器，浏览器嗅探脚本会变得越来越复杂。如果想让浏览器嗅探脚本能够跨平台工作，就必须测试所有可能出现的供应商和版本号组合。这是一个无穷尽的任务，测试的组合情况越多，代码就越复杂和冗长<br>最后，许多浏览器嗅探脚本在进行这类测试时要求浏览器的版本号必须得到精确的匹配。因此，每当市场上出现新版本时，就不得不修改这些脚本<br>6、性能考虑<br>(1)尽量少访问DOM和尽量减少标记<br>(2)合并和放置脚本<br>多个脚本合并，减少请求次数<br>把所有/<script>标签都放到文档的末尾，/&lt;/body/&gt;标记之前，就可以让页面变得更快<br>(3)压缩脚本<br>压缩工具：<br>-Douglas Crockford的JSMin (<a href="http://www.crockford.com/javascript/jsmin.html">http://www.crockford.com/javascript/jsmin.html</a>)<br>-雅虎的YUI Compressor (<a href="http://developer.yahoo.com/yui/compressor">http://developer.yahoo.com/yui/compressor</a>)<br>-谷歌的Closure Compiler (<a href="http://closure-compiler.appspot.com/home">http://closure-compiler.appspot.com/home</a>)</p><h4 id="动态创建标记"><a href="#动态创建标记" class="headerlink" title="动态创建标记"></a>动态创建标记</h4><p>1、document.write &amp; innerHTML属性<br>2、DOM方法<br>(1)createElement<br>(1)appendChild<br>(1)createTextNode<br>(1)insertBefore<br>3、Ajax<br>(1)XMLHttpRequest对象</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHTTPObject</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest == <span class="string">&quot;undefined&quot;</span>) xMLHttpRequest =<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> Activexobject ( <span class="string">&quot;Msxm12.XMLHTTP.6.0&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject (<span class="string">&quot;Msxm12.XMLHTTP.3.0&quot;</span>);)<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject ( <span class="string">&quot;Msxm12.XMLHTTP&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest ( ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>XHTML5<br>本质上是使用严格的XML规则编写的HTML5。从技术角度说，Web浏览器应该将任何XHTML5文档都视为XML文档，而不是HTML文档。而在现实中，你还得在文档的头部发送正确的MIME类型，即application/xhtml+xml。有些浏览器不认识这个MIME类型，因而一般要在服务器端对浏览器进行探查后再发送。否则最坏的情况，页面很可能根本不会在浏览器中呈现。因此，绝大多数XHTML页面仍然是以HTML类型发送的。</p><h4 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h4><p>1、三位一体的网页<br>(1)结构层<br>网页的结构层(structural layer)由HTML或XHTML之类的标记语言负责创建<br>(2)表示层<br>表示层(presentation layer)由CSS负责完成。CSS描述页面内容应该如何呈现<br>(3)行为层<br>行为层(behavior layer)负责内容应该如何响应事件这一问题。这是JavaScript语言和DOM主宰的领域<br>(4)分离<br>-使用(X)HTML去搭建文档的结构<br>-使用CSS去设置文档的呈现效果<br>-使用DOM脚本去实现文档的行为<br>2、style属性<br>在外部样式表里声明的样式不会进入style对象，在文档的<head>部分里声明的样式也是如此<br>style对象只包含在HTML代码里用style属性声明的样式<br>3、何时该使用DOM脚本设置样式<br>(1)根据元素在节点树里的位置来设置样式<br>(2)根据某种条件反复设置某种样式<br>(3)响应事件<br>4、className属性</p><h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><p>1、canvas<br>2、video和audio</p></script></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;JavaScript简史&quot;&gt;&lt;a href=&quot;#JavaScript简史&quot; class=&quot;headerlink&quot; title=&quot;JavaScript简史&quot;&gt;&lt;/a&gt;JavaScript简史&lt;/h4&gt;&lt;p&gt;1、DOM&lt;br&gt;DOM是一套对文档的内容进行抽象和概念化的</summary>
       
     
     
@@ -349,66 +409,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;主要步骤&quot;&gt;&lt;a href=&quot;#主要步骤&quot; class=&quot;headerlink&quot; title=&quot;主要步骤&quot;&gt;&lt;/a&gt;主要步骤&lt;/h2&gt;&lt;h4 id=&quot;React-createElement语法糖&quot;&gt;&lt;a href=&quot;#React-createElement语法糖&quot;</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器渲染</title>
-    <link href="https://sunjinkang.github.io/2022/05/23/browser-render/"/>
-    <id>https://sunjinkang.github.io/2022/05/23/browser-render/</id>
-    <published>2022-05-23T06:13:56.000Z</published>
-    <updated>2022-08-10T03:12:04.104Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p>(1)深度遍历解析HTML建立DOM树<br>(2)解析CSS建立CSSOM树<br>(3)依据DOM树和CSSOM树构造Render树<br>(4)计算各元素尺寸、位置<br>(5)绘制页面像素信息<br>(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<br>(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完某一部分（整体大块的）内容就显示一部分内容，同时，可能还在通过网络下载其余内容。)</p><h2 id="GUI渲染线程"><a href="#GUI渲染线程" class="headerlink" title="GUI渲染线程"></a>GUI渲染线程</h2><p>(1)解析HTML，CSS，构建DOM树和Render树，布局和绘制等<br>(2)重排/重绘<br>–1、重排又称重构、回流，当我们通过JavaScript或者CSS修改了元素的几何位置属性，例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段。重排需要更新完整的渲染流水线，所以开销也是最大的。每个页面至少需要一次reflow，就是在页面第一次加载的时候。<br>–2、任何页面布局和几何属性的改变都会触发重排，比如：<br>页面渲染初始化；(无法避免)<br>添加或删除可见的DOM元素；<br>元素位置的改变；<br>改变元素尺寸（宽、高、内外边距、边框等）；<br>浏览器窗口尺寸的变化（resize事件发生时）；<br>填充内容的改变，比如文本的改变或图片大小改变而引起的计算值宽度和高度的改变；<br>读取某些元素属性：（offsetLeft/Top/Height/Width,　clientTop/Left/Width/Height,　scrollTop/Left/Width/Height,　width/height,　getComputedStyle(),　currentStyle(IE)　)<br>–3、重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。比如通过 JavaScript 更改某些元素的背景颜色，没有改变元素的几何属性，那么布局阶段不会执行，而是直接进入绘制阶段。<br>–4、重绘省去了布局和分层阶段，效率会高于重排。重排必定会引发重绘，但重绘不一定会引发重排。</p><h2 id="JS引擎线程"><a href="#JS引擎线程" class="headerlink" title="JS引擎线程"></a>JS引擎线程</h2><p>(1)解析Javascript脚本，单线程执行<br>(2)与GUI互斥，GUI ON then JS Suspend.等待着任务队列中任务的到来，然后加以处理，JS执行的时间过长会导致页面渲染加载阻塞</p><h2 id="事件触发线程"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h2><p>(1)归属于浏览器而不是JS引擎，用来控制事件循环<br>(2)当JS引擎执行代码块如click事件时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件待处理队列的队尾，等待JS引擎的处理</p><h2 id="定时触发器线程"><a href="#定时触发器线程" class="headerlink" title="定时触发器线程"></a>定时触发器线程</h2><p>(1)setInterval与setTimeout所在线程<br>(2)浏览器定时计数器并不是由JS引擎计数的,因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确<br>(3)计时完毕后，将事件添加到事件队列中，等待JS引擎空闲后执行</p><h2 id="异步http请求线程"><a href="#异步http请求线程" class="headerlink" title="异步http请求线程"></a>异步http请求线程</h2><p>(1)在XMLHttpRequest在连接后是通过浏览器新开一个线程请求<br>(2)将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</p><h2 id="实现hover等鼠标操作"><a href="#实现hover等鼠标操作" class="headerlink" title="实现hover等鼠标操作"></a>实现hover等鼠标操作</h2><p><img src="/images/hover.png" alt="hover"></p><h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/images/performance.png" alt="performance"></p><h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/images/network.png" alt="network"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;渲染流程&quot;&gt;&lt;a href=&quot;#渲染流程&quot; class=&quot;headerlink&quot; title=&quot;渲染流程&quot;&gt;&lt;/a&gt;渲染流程&lt;/h2&gt;&lt;p&gt;(1)深度遍历解析HTML建立DOM树&lt;br&gt;(2)解析CSS建立CSSOM树&lt;br&gt;(3)依据DOM树和CSSOM树构造R</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用hexo相关</title>
-    <link href="https://sunjinkang.github.io/2022/03/26/about-use-hexo/"/>
-    <id>https://sunjinkang.github.io/2022/03/26/about-use-hexo/</id>
-    <published>2022-03-26T13:14:29.000Z</published>
-    <updated>2022-08-10T03:11:53.291Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一些使用hexo搭建博客时遇到的问题"><a href="#一些使用hexo搭建博客时遇到的问题" class="headerlink" title="一些使用hexo搭建博客时遇到的问题"></a>一些使用hexo搭建博客时遇到的问题</h2><p>1、一段时间为使用hexo，重新打开，生成新页面时，终端报错：’hexo’ 不是内部或外部命令，也不是可运行的程序或批处理文件  或 bash: hexo: command not found<br>解决办法：重新运行命令：npm install hexo-cli -g</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;一些使用hexo搭建博客时遇到的问题&quot;&gt;&lt;a href=&quot;#一些使用hexo搭建博客时遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;一些使用hexo搭建博客时遇到的问题&quot;&gt;&lt;/a&gt;一些使用hexo搭建博客时遇到的问题&lt;/h2&gt;&lt;p&gt;1、一段时间</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>var、const、let区别</title>
-    <link href="https://sunjinkang.github.io/2022/03/26/var-const-let/"/>
-    <id>https://sunjinkang.github.io/2022/03/26/var-const-let/</id>
-    <published>2022-03-26T13:04:12.000Z</published>
-    <updated>2022-08-10T03:16:09.107Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会"><a href="#1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会" class="headerlink" title="1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会"></a>1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a,<span class="built_in">window</span>.a);    <span class="comment">// 100 100</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b,<span class="built_in">window</span>.b);    <span class="comment">// 10 undefined</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(c,<span class="built_in">window</span>.c);    <span class="comment">// 1 undefined</span></span><br></pre></td></tr></table></figure><p>let声明的变量或const声明的常量会挂载到Script下，var会挂载到Global下（window类似于Global的代理）。可查看文章<a href="https://zhuanlan.zhihu.com/p/114128108">let和const声明的变量到底去哪里了？</a></p><h4 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h4>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot;&gt;&lt;a href=&quot;#1、挂载节点不同：var声明的变量挂载在window上，const与let声明的变量不会&quot; class=&quot;headerlink&quot; title=&quot;1、挂载</summary>
       
     
     

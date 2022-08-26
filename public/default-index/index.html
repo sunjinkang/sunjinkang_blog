@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,158 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/20/about-design-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/20/about-design-model/" class="post-title-link" itemprop="url">JavaScript设计模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-20 14:47:46" itemprop="dateCreated datePublished" datetime="2022-08-20T14:47:46+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-08-26 13:14:06" itemprop="dateModified" datetime="2022-08-26T13:14:06+08:00">2022-08-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里<br>1、封装<br>使用原型(prototype)为类添加属性和方法的两种方式(<strong>注意两种不能混用</strong>)：<br>(1)为原型对象属性赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype.display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(2)将一个对象赋值给类的原型对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype = &#123;</span><br><span class="line">  display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用this和原型(prototype)为类添加属性和方法的区别：<br>(1)使用this添加的属性和方法是在当前对象上添加的，每次通过类创建新对象时，this指向的属性和方法都会得到相应的创建<br>(2)通过prototype继承的属性和方法是每个对象通过prototype访问到的，新创建对象时，不会再新创建属性和方法</p>
+<p>constructor是什么？<br>constructor是一个属性，当创建一个函数或者对象时都会为其创建一个原型对象prototype，在 prototype对象中又会像函数中创建 this一样创建一个constructor属性，那么constructor属性指向的就是拥有整个原型对象的函数或对象。<br><a href="prototype.png">prototype</a></p>
+<p>属性与方法的封装<br>私有属性与私有方法<br>由于JavaScript的函数级作用域，声明在函数内部的变量以及方法在外界是访问不到的,通过此特性创建类的私有变量以及私有方法<br>共有属性和共有方法<br>在函数内部通过 this创建的属性和方法，在类创建对象时，每个对象自身都拥有一份并且可以在外部访问到。因此通过this创建的属性可看作是对象共有属性和对象共有方法<br>特权方法(类的构造器)<br>通过this创建的方法，不但可以访问这些对象的共有属性与共有方法，而且还能访问到类（创建时）或对象自身的私有属性和私有方法，由于这些方法权利比较大，所以我们又将它看作特权方法。在对象创建时通过使用这些特权方法我们可以初始化实例对象的一些属性,因此这些在创建对象时调用的特权方法还可以看作是类的构造器<br><a href="public-and-private.png">public-and-private</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/19/about-symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/19/about-symbol/" class="post-title-link" itemprop="url">基本数据类型-Symbol</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-19 13:37:24 / Modified: 13:42:42" itemprop="dateCreated datePublished" datetime="2022-08-19T13:37:24+08:00">2022-08-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="什么是Symbol"><a href="#什么是Symbol" class="headerlink" title="什么是Symbol?"></a>什么是Symbol?</h4><h4 id="有什么用处？"><a href="#有什么用处？" class="headerlink" title="有什么用处？"></a>有什么用处？</h4><h4 id="Symbol的属性"><a href="#Symbol的属性" class="headerlink" title="Symbol的属性"></a>Symbol的属性</h4><h4 id="Symbol的方法"><a href="#Symbol的方法" class="headerlink" title="Symbol的方法"></a>Symbol的方法</h4>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -652,6 +804,116 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/31/about-dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/31/about-dom/" class="post-title-link" itemprop="url">javascript DOM编程艺术阅读笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-31 13:42:45" itemprop="dateCreated datePublished" datetime="2022-07-31T13:42:45+08:00">2022-07-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-08-26 13:14:06" itemprop="dateModified" datetime="2022-08-26T13:14:06+08:00">2022-08-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h4><p>1、DOM<br>DOM是一套对文档的内容进行抽象和概念化的方法。</p>
+<p>第0级DOM(DOM Level 0)<br>试验性质的初级DOM，在还未形成统一标准的初期阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。</p>
+<p>第1级DMO(DOM Level 1)<br>Netscape、微软和其他一些浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第1级DOM”(DOM Level 1) 。</p>
+<p>2、浏览器战争<br>2.1 DHTML<br>DHTML是“Dynamic HTML”(动态HTML)的简称。DHTML并不是一项新技术，而是描述HTML、CSS和.JavaScript技术组合的术语。背后含义:<br>(1)利用HTML把网页标记为各种元素;<br>(2)利用CSS设置元素样式和它们的显示位置;<br>(3)利用JavaScript实时地操控页面和改变样式。</p>
+<h4 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h4><p>循环语句<br>1、while循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>do…while循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure>
+<p>  2、for循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (initial condition; test condition; alter condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数<br>1、变量的作用域<br>全局变量(global variable)可以在脚本中的任何位置被引用。一旦你在某个脚本里声明了一个全局变量，就可以从这个脚本中的任何位置―一包括函数内部—―引用它。全局变量的作用域是整个脚本。<br>局部变量(local variable）只存在于声明它的那个函数的内部，在那个函数的外部是无法引用它的。局部变量的作用域仅限于某个特定的函数。</p>
+<p>对象<br>对象（object）是一种非常重要的数据类型，但此前我们还没有认真对待它。对象是自包含的数据集合，包含在对象里的数据可以通过两种形式访问——属性（property)和方法(method) :<br>-属性是隶属于某个特定对象的变量<br>-方法是只有某个特定对象才能调用的函数<br>对象就是由一些属性和方法组合在一起而构成的一个数据实体</p>
+<p>1、用户定义对象(user-defined object)<br>由程序员自行创建的对象</p>
+<p>2、内建对象(native object)<br>JavaScript提供了一系列预先定义好的对象，这些可以拿来就用的对象称为内建对象( native object)<br>Array、Math、Date等</p>
+<p>3、宿主对象(host object)<br>由浏览器提供的预定义对象被称为宿主对象(host object )<br>宿主对象包括document、Form、Image和Element等。我们可以通过这些对象获得关于网页上表单、图像和各种表单元素等信息</p>
+<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>1、文档:DOM中的’D’<br>如果没有document(文档），DOM也就无从谈起。当创建了一个网页并把它加载到Web浏览器中时，DOM就在幕后悄然而生。它把你编写的网页文档转换为一个文档对象</p>
+<p>2、对象:DOM中的’O’<br>如上对象</p>
+<p>3、模型:DOM中的’M’<br>DOM中的“M”代表着“Model”(模型)，但说它代表着“Map”(地图）也未尝不可。模型也好，地图也罢，它们的含义都是某种事物的表现形式。就像一个模型火车代表着一列真正的火车、一张城市街道图代表着一个实际存在的城市那样，DOM代表着加载到浏览器窗口的当前网页。浏览器提供了网页的地图（或者说模型)，可以通过JavaScript去读取这张地图</p>
+<p>4、节点<br>(1)元素节点<br>(2)文本节点<br>(3)属性节点<br>(4)CSS<br>(5)获取元素<br>-getElementById 返回一个对象<br>-getElementsByTagName 返回一个对象数组，使用通配符（*）获取文档中总共有多少元素节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>) ;</span><br><span class="line"><span class="keyword">var</span> items = shopping.getElementsByTagName(<span class="string">&quot;*&quot;</span>) ;</span><br></pre></td></tr></table></figure>
+<p>-getElementsByClassName 返回一个对象数组<br>使用这个方法还可以查找那些带有多个类名的元素。要指定多个类名，只要在字符串参数中用空格分隔类名即可<br>注意，即使在元素的class属性中，类名的顺序和参数中指定的不一样，也照样会匹配该元素。不仅类名的实际顺序不重要，就算元素还带有更多类名也没有关系。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> sales = shopping.getElementsByClassName(<span class="string">&quot;sale&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>5、获取和设置属性<br>(1)getAttribute 只能通过元素节点调用<br>(2)setAttribute 只能通过元素节点调用，修改属性值<br>细节:通过setAttribute对文档做出修改后，在通过浏览器的viewsource(查看源代码）选项去查看文档的源代码时看到的仍将是改变前的属性值，也就是说，setAttribute做出的修改不会反映在文档本身的源代码里。这种“表里不一”的现象源自DOM的工作模式:先加载文档的静态内容，再动态刷新，动态刷新不影响文档的静态内容。这正是DOM的真正威力:对页面内容进行刷新却不需要在浏览器里刷新页面。</p>
+<h4 id="案例研究：JavaScript图片库"><a href="#案例研究：JavaScript图片库" class="headerlink" title="案例研究：JavaScript图片库"></a>案例研究：JavaScript图片库</h4><p>DOM是一种适用于多种环境和多种程序设计语言的通用型API。如果想把DOM技巧运用在Web浏览器以外的应用环境里，严格遵守“第1级DOM”能够避免与兼容性有关的任何问题。<br>1、childNodes属性 用来获取任何一个元素的所有子元素<br>2、nodeType属性 共有12中可取值<br>以下3种具有实用价值：<br>-元素节点的nodeType属性值是1<br>-属性节点的nodeType属性值是2<br>-文本节点的nodeType属性值是3<br>3、nodeValue属性 得到和设置节点的值<br>4、firstChild和lastChild</p>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>1、平稳退化<br>平稳退化(graceful degradation)，虽然某些功能无法使用，但最基本的操作仍能顺利完成<br>2、“javascript:”伪协议<br>“真”协议用来在因特网上的计算机之间传输数据包，如HTTP协议(http://) 、FTP协议（ftp://)等，伪协议则是一种非标准化的协议<br>“javascript:”伪协议让我们通过一个链接来调用JavaScript函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;javascript:popUp(&#x27;http://www.example.com/&#x27;);&quot;</span>&gt;Example&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>3、CSS<br>结构与样式分离<br>渐进增强，用一些额外的信息层去包裹原始数据<br>4、分离javascript<br>5、向后兼容<br>(1)对象检测：检测浏览器对JavaScript的支持程度<br>(2)浏览器嗅探技术<br>通过提取浏览器供应商提供的信息来解决向后兼容问题。从理论上讲，可以通过JavaScript代码检索关于浏览器品牌和版本的信息，这些信息可以用来改善JavaScript脚本代码的向后兼容性，但这是一种风险非常大的技术。<br>首先，浏览器有时会“撒谎”。因为历史原因，有些浏览器会把自己报告为另外一种浏览器，还有一些浏览器允许用户任意修改这些信息<br>其次，为了适用于多种不同的浏览器，浏览器嗅探脚本会变得越来越复杂。如果想让浏览器嗅探脚本能够跨平台工作，就必须测试所有可能出现的供应商和版本号组合。这是一个无穷尽的任务，测试的组合情况越多，代码就越复杂和冗长<br>最后，许多浏览器嗅探脚本在进行这类测试时要求浏览器的版本号必须得到精确的匹配。因此，每当市场上出现新版本时，就不得不修改这些脚本<br>6、性能考虑<br>(1)尽量少访问DOM和尽量减少标记<br>(2)合并和放置脚本<br>多个脚本合并，减少请求次数<br>把所有/<script>标签都放到文档的末尾，/&lt;/body/&gt;标记之前，就可以让页面变得更快<br>(3)压缩脚本<br>压缩工具：<br>-Douglas Crockford的JSMin (<a target="_blank" rel="noopener" href="http://www.crockford.com/javascript/jsmin.html">http://www.crockford.com/javascript/jsmin.html</a>)<br>-雅虎的YUI Compressor (<a target="_blank" rel="noopener" href="http://developer.yahoo.com/yui/compressor">http://developer.yahoo.com/yui/compressor</a>)<br>-谷歌的Closure Compiler (<a target="_blank" rel="noopener" href="http://closure-compiler.appspot.com/home">http://closure-compiler.appspot.com/home</a>)</p>
+<h4 id="动态创建标记"><a href="#动态创建标记" class="headerlink" title="动态创建标记"></a>动态创建标记</h4><p>1、document.write &amp; innerHTML属性<br>2、DOM方法<br>(1)createElement<br>(1)appendChild<br>(1)createTextNode<br>(1)insertBefore<br>3、Ajax<br>(1)XMLHttpRequest对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHTTPObject</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest == <span class="string">&quot;undefined&quot;</span>) xMLHttpRequest =<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> Activexobject ( <span class="string">&quot;Msxm12.XMLHTTP.6.0&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject (<span class="string">&quot;Msxm12.XMLHTTP.3.0&quot;</span>);)<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject ( <span class="string">&quot;Msxm12.XMLHTTP&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest ( ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>XHTML5<br>本质上是使用严格的XML规则编写的HTML5。从技术角度说，Web浏览器应该将任何XHTML5文档都视为XML文档，而不是HTML文档。而在现实中，你还得在文档的头部发送正确的MIME类型，即application/xhtml+xml。有些浏览器不认识这个MIME类型，因而一般要在服务器端对浏览器进行探查后再发送。否则最坏的情况，页面很可能根本不会在浏览器中呈现。因此，绝大多数XHTML页面仍然是以HTML类型发送的。</p>
+<h4 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h4><p>1、三位一体的网页<br>(1)结构层<br>网页的结构层(structural layer)由HTML或XHTML之类的标记语言负责创建<br>(2)表示层<br>表示层(presentation layer)由CSS负责完成。CSS描述页面内容应该如何呈现<br>(3)行为层<br>行为层(behavior layer)负责内容应该如何响应事件这一问题。这是JavaScript语言和DOM主宰的领域<br>(4)分离<br>-使用(X)HTML去搭建文档的结构<br>-使用CSS去设置文档的呈现效果<br>-使用DOM脚本去实现文档的行为<br>2、style属性<br>在外部样式表里声明的样式不会进入style对象，在文档的<head>部分里声明的样式也是如此<br>style对象只包含在HTML代码里用style属性声明的样式<br>3、何时该使用DOM脚本设置样式<br>(1)根据元素在节点树里的位置来设置样式<br>(2)根据某种条件反复设置某种样式<br>(3)响应事件<br>4、className属性</p>
+<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><p>1、canvas<br>2、video和audio</p>
+</script></p>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/origin-type-and-reference-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -803,245 +1065,6 @@
 <h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/js-transform/convert-table.png" alt="类型转换对照表"></p>
 <h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
 <a class="btn" href="/"><i class="fa fa-home"></i></a>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/12/about-fe-theory/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/about-fe-theory/" class="post-title-link" itemprop="url">前端概念相关-渐进增强与优雅降级</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-12 10:37:56" itemprop="dateCreated datePublished" datetime="2022-07-12T10:37:56+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-18 13:47:25" itemprop="dateModified" datetime="2022-07-18T13:47:25+08:00">2022-07-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="渐进增强-Progressive-Enhancement-相当于向上兼容"><a href="#渐进增强-Progressive-Enhancement-相当于向上兼容" class="headerlink" title="渐进增强(Progressive Enhancement)(相当于向上兼容)"></a>渐进增强(Progressive Enhancement)(相当于向上兼容)</h4><p>一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验</p>
-<h4 id="优雅降级-Graceful-Degradation-相当于向下兼容"><a href="#优雅降级-Graceful-Degradation-相当于向下兼容" class="headerlink" title="优雅降级(Graceful Degradation)(相当于向下兼容)"></a>优雅降级(Graceful Degradation)(相当于向下兼容)</h4><p>一开始就构建站点的完整功能，然后针对浏览器测试和修复。比如一开始使用 CSS3 的特性构建了一个应用，然后逐步针对各大浏览器进行 hack 使其可以在低版本浏览器上正常浏览</p>
-<p>向下兼容指的是高版本支持低版本的或者说后期开发的版本支持和兼容早期开发的版本，向上兼容的很少<br>大多数软件都是向下兼容的</p>
-<h4 id="渐进增强与优雅降级的区别"><a href="#渐进增强与优雅降级的区别" class="headerlink" title="渐进增强与优雅降级的区别"></a>渐进增强与优雅降级的区别</h4><p>优雅降级和渐进增强都关注于同一网站在不同设备以及不同浏览器下的表现程度<br>关键的区别则在于它们各自关注于何处，以及这种关注如何影响工作的流程</p>
-<p>优雅降级观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨 (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。</p>
-<p>渐进增强观点则认为应关注于内容本身。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.transition &#123; <span class="comment">/*渐进增强写法*/</span></span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">          transition: all .5s;</span><br><span class="line">&#125;</span><br><span class="line">.transition &#123; <span class="comment">/*优雅降级写法*/</span></span><br><span class="line">          <span class="attr">transition</span>: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>前缀CSS3（-webkit-* / -moz-* / -o-*）和正常CSS3在浏览器中的支持情况是这样的：</p>
-<p>1、很久以前：浏览器前缀CSS3和正常CSS3都不支持；<br>2、不久之前：浏览器只支持前缀CSS3，不支持正常CSS3；<br>3、现在：浏览器既支持前缀CSS3，又支持正常CSS3；<br>4、未来：浏览器不支持前缀CSS3，仅支持正常CSS3.</p>
-<p>渐进增强的写法，优先考虑老版本浏览器的可用性，最后才考虑新版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，正常CSS3会覆盖前缀CSS3。优雅降级的写法，优先考虑新版本浏览器的可用性，最后才考虑老版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，前缀CSS3会覆盖正常的CSS3。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/05/document-location/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/document-location/" class="post-title-link" itemprop="url">各类文档地址</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-05 16:17:32" itemprop="dateCreated datePublished" datetime="2022-07-05T16:17:32+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-16 11:06:06" itemprop="dateModified" datetime="2022-08-16T11:06:06+08:00">2022-08-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a target="_blank" rel="noopener" href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p>
-<h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a target="_blank" rel="noopener" href="https://chromestatus.com/features">chrome status</a></p>
-<h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p>
-<h4 id="css层叠样式表"><a href="#css层叠样式表" class="headerlink" title="css层叠样式表"></a>css层叠样式表</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade">官方文档</a></p>
-<h4 id="Recoil"><a href="#Recoil" class="headerlink" title="Recoil"></a>Recoil</h4><p><a target="_blank" rel="noopener" href="https://recoiljs.org/">官方文档</a></p>
-<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p><a target="_blank" rel="noopener" href="https://reactjs.org/">官方文档</a></p>
-<h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><p><a target="_blank" rel="noopener" href="https://vuejs.org/">官方文档</a></p>
-<h4 id="VueUse–vue使用的hooks库"><a href="#VueUse–vue使用的hooks库" class="headerlink" title="VueUse–vue使用的hooks库"></a>VueUse–vue使用的hooks库</h4><p><a target="_blank" rel="noopener" href="https://vueuse.org/">官方文档</a></p>
-<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/">官方文档</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/github%E7%94%9F%E6%88%90%E4%BB%A4%E7%89%8C-Personal-access-tokens-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/30/github%E7%94%9F%E6%88%90%E4%BB%A4%E7%89%8C-Personal-access-tokens-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">github生成令牌(Personal_access_tokens)操作步骤</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-30 11:23:56 / Modified: 13:18:19" itemprop="dateCreated datePublished" datetime="2022-06-30T11:23:56+08:00">2022-06-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="github生成令牌"><a href="#github生成令牌" class="headerlink" title="github生成令牌"></a>github生成令牌</h4><p>(1)登录<a target="_blank" rel="noopener" href="https://github.com/">GitHub网站</a><br>(2)找到setting页面 -&gt; Developer setting<br>(3)选择 Personal access tokens ，点击 Generate new token 按钮<br>(4)需要填写token的权限范围<br>(5)<strong><font color="Red">注意：生成的token只在生成后可以看一次，一定要记得保存！！！</font></strong></p>
-
       
     </div>
 
