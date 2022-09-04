@@ -1,5 +1,5 @@
 ---
-title: JavaScript设计模式
+title: JavaScript设计模式读书笔记(1)
 date: 2022-08-20 14:47:46
 tags:
 ---
@@ -98,3 +98,11 @@ SuperClass.call(this，id);这条语句是构造函数式继承的精华，由�
 [how-to-inherit](how-to-inherit.png)
 
 **子类再想添加原型方法必须通过 prototype.对象，通过点语法的形式一个一个添加方法了，否则直接赋予对象就会覆盖掉从父类原型继承的对象**
+
+四、多继承
+单继承(extend)：对对象中的属性的一个浅复制过程，只能复制值类型的属性，无法复制引用类型属性
+[multiple-inherit](multiple-inherit.png)
+
+五、多态
+同一个方法多种调用方式
+[multiple-status](multiple-status.png)
