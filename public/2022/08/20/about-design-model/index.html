@@ -22,13 +22,13 @@
 
     <meta name="description" content="面向对象一、面向过程与面向对象面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里二、封装1、使用原型(prototype)为类添加属性和方法的两种方式(注意两种不能混用)：(1)为原型对象属性赋值 123Book.prototype.display &#x3D; func">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript设计模式">
+<meta property="og:title" content="JavaScript设计模式读书笔记(1)">
 <meta property="og:url" content="https://sunjinkang.github.io/2022/08/20/about-design-model/index.html">
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="面向对象一、面向过程与面向对象面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里二、封装1、使用原型(prototype)为类添加属性和方法的两种方式(注意两种不能混用)：(1)为原型对象属性赋值 123Book.prototype.display &#x3D; func">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-20T06:47:46.000Z">
-<meta property="article:modified_time" content="2022-08-29T14:10:54.184Z">
+<meta property="article:modified_time" content="2022-09-05T05:23:28.184Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -37,10 +37,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/08/20/about-design-model/","path":"2022/08/20/about-design-model/","title":"JavaScript设计模式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/08/20/about-design-model/","path":"2022/08/20/about-design-model/","title":"JavaScript设计模式读书笔记(1)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>JavaScript设计模式 | Sun ...something</title>
+<title>JavaScript设计模式读书笔记(1) | Sun ...something</title>
   
 
 
@@ -133,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -197,12 +197,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="JavaScript设计模式 | Sun ...something">
+      <meta itemprop="name" content="JavaScript设计模式读书笔记(1) | Sun ...something">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript设计模式
+          JavaScript设计模式读书笔记(1)
         </h1>
 
         <div class="post-meta-container">
@@ -220,7 +220,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-29 22:10:54" itemprop="dateModified" datetime="2022-08-29T22:10:54+08:00">2022-08-29</time>
+      <time title="Modified: 2022-09-05 13:23:28" itemprop="dateModified" datetime="2022-09-05T13:23:28+08:00">2022-09-05</time>
     </span>
 
   
@@ -256,6 +256,8 @@
 <p><a href="parasitic-combination-inherit.png">parasitic-combination-inherit</a></p>
 <p><a href="how-to-inherit.png">how-to-inherit</a></p>
 <p><strong>子类再想添加原型方法必须通过 prototype.对象，通过点语法的形式一个一个添加方法了，否则直接赋予对象就会覆盖掉从父类原型继承的对象</strong></p>
+<p>四、多继承<br>单继承(extend)：对对象中的属性的一个浅复制过程，只能复制值类型的属性，无法复制引用类型属性<br><a href="multiple-inherit.png">multiple-inherit</a></p>
+<p>五、多态<br>同一个方法多种调用方式<br><a href="multiple-status.png">multiple-status</a></p>
 
     </div>
 
@@ -274,8 +276,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/23/js-transform/js-transform/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/02/es6-object-strong/" rel="next" title="es6对象增强">
+                  es6对象增强 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
