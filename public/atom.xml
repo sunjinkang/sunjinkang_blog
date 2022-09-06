@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2022-09-05T06:42:22.960Z</updated>
+  <updated>2022-09-06T10:06:39.974Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript设计模式读书笔记(3)</title>
+    <link href="https://sunjinkang.github.io/2022/09/06/about-design-model2/"/>
+    <id>https://sunjinkang.github.io/2022/09/06/about-design-model2/</id>
+    <published>2022-09-06T07:11:48.000Z</published>
+    <updated>2022-09-06T10:06:39.974Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p><h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p><p>多用于兼容模式<br><a href="out-look.png">out-look</a></p><h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p><p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p><h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p><p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><a href="station-culculate.png">station-culculate</a></p><p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p><p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p><h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><a href="decorator.png">decorator</a></p><p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p><h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p><p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p><p><a href="bridge1.png">bridge1</a><br><a href="bridge2.png">bridge2</a><br><a href="bridge3.png">bridge3</a></p><p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p><h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;结构型设计模式&quot;&gt;&lt;a href=&quot;#结构型设计模式&quot; class=&quot;headerlink&quot; title=&quot;结构型设计模式&quot;&gt;&lt;/a&gt;结构型设计模式&lt;/h4&gt;&lt;p&gt;结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计&lt;/p&gt;
+&lt;h6 id=&quot;外观</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Object获取及设置原型对象</title>
@@ -61,14 +82,14 @@
     <link href="https://sunjinkang.github.io/2022/09/04/about-design-model1/"/>
     <id>https://sunjinkang.github.io/2022/09/04/about-design-model1/</id>
     <published>2022-09-04T13:29:09.000Z</published>
-    <updated>2022-09-05T05:23:28.199Z</updated>
+    <updated>2022-09-06T07:20:32.873Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h4><h6 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h6><p>(1)简单工厂模式(Simple Factory):又叫静态工厂方法，由一个工厂对象决定创建某一种产品对象类的实例。主要用来创建同一类对象。<br><a href="simple-factory1.png">simple-factory1</a><br><a href="simple-factory2.png">simple-factory2</a></p><p>(2)一个对象有时也可代替许多类<br><a href="create-pop.png">create-pop</a></p><p>第一种是通过类实例化对象创建的，第二种是通过创建一个新对象然后包装增强其属性和功能来实现的。他们之间的差异性也造成前面通过类创建的对象,如果这些类继承同一父类，那么他们的父类原型上的方法是可以共用的。而后面寄生方式创建的对象都是一个新的个体，所以他们的方法就不能共用了</p><h6 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h6>]]></content>
+    <content type="html"><![CDATA[<h4 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h4><p>创建型设计模式是一类处理对象创建的设计模式，通过某种方式控制对象的创建来避免基本对象创建时可能导致设计上的问题或增加设计上的复杂度</p><h6 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h6><p>(1)简单工厂模式(Simple Factory):又叫静态工厂方法，由一个工厂对象决定创建某一种产品对象类的实例。主要用来创建同一类对象。<br><a href="simple-factory1.png">simple-factory1</a><br><a href="simple-factory2.png">simple-factory2</a></p><p>(2)一个对象有时也可代替许多类<br><a href="create-pop.png">create-pop</a></p><p>第一种是通过类实例化对象创建的，第二种是通过创建一个新对象然后包装增强其属性和功能来实现的。他们之间的差异性也造成前面通过类创建的对象,如果这些类继承同一父类，那么他们的父类原型上的方法是可以共用的。而后面寄生方式创建的对象都是一个新的个体，所以他们的方法就不能共用了</p><h6 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h6><p>安全模式类：可以屏蔽使用这对类的错误使用造成的错误<br><a href="safe-model-class.png">safe-model-class</a><br><a href="safe-factory-model.png">safe-factory-model</a></p><h6 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h6><p>抽象工厂模式(Abstract Factory):通过对类的工厂抽象使其业务用于对产品类簇的创建，而不负责创建某一类产品的实例</p><p>(1)抽象类<br>抽象类是一种声明但不能使用的类<br><a href="abstract-car.png">abstract-car</a><br>创建的这个car类其实什么都不能做，创建时没有任何属性，然而原型prototype上的方法也不能使用，否则会报错。但在继承上却是很有用的，因为定义了一种类,并定义了该类所必备的方法，如果在子类中没有重写这些方法，那么当调用时能找到这些方法便会报错。这一特点是很有必要的，因为在一些大型应用中，总会有一些子类去继承另一些父类，这些父类经常会定义一些必要的方法，却没有具体的实现，如 car类中的 getPrice()和getSpeed()方法，那么一旦用子类创建了一个对象，该对象总是应该具备一些必要的方法，但如果这些必要的方法从父类中继承过来而没有具体去重写实现,那么实例化对象便会调用父类<br>中的这些方法，如果父类能有一个友好提示，那么对于忘记重写子类的这些错误遗漏的避免是很有帮助的。这也是抽象类的一个作用，即定义一个产品簇，并声明一些必备的方法，如果子类中没有去重写就会抛出错误。</p><p>(2)抽象工厂模式：一般用它来作为父类创建一些子类<br><a href="abstract-factory1.png">abstract-factory1</a><br><a href="abstract-factory2.png">abstract-factory2</a><br>抽象工厂其实是一个实现子类继承父类的方法，在这个方法中需要通过传递子类以及要继承父类(抽象类)的名称，并且在抽象工厂方法中又增加了一次对抽象类存在性的一次判断，如果存在，则将子类继承父类的方法。然后子类通过寄生式继承。继承父类过程中有一个地方需要注意，就是在对过渡类的原型继承时，不是继承父类的原型，而是通过new关键字复制的父类的一个实例，这么做是因为过渡类不应仅仅继承父类的原型方法，还要继承父类的对象属性，所以要通过new关键字将父类的构造函数执行一遍来复制构造函数中的属性和方法。对抽象工厂添加抽象类也很特殊,因为抽象工厂是个方法不需要实例化对象，故只需要一份，因此直接为抽象工厂添加类的属性即可，于是就可以通过点语法在抽象工厂上添加需要的三个汽车簇抽象类Car、Bus、Truck<br><a href="abstract-factory3.png">abstract-factory3</a></p><h6 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h6><p>建造者模式(Builder):将一个复杂对象的构建层与其表示层相互分离，同样的构建过程可采用不同的表示</p><p>工厂模式主要是为了创建对象实例或者类簇(抽象工厂)，关心的是最终产出(创建)的是什么。不关心你创建的整个过程，仅仅需要知道你最终创建的结果。所以通过工厂模式我们得到的都是对象实例或者类簇。<br>建造者模式在创建对象时要更为复杂一些，虽然其目的也是为了创建对象，但是它更多关心的是创建这个对象的整个过程，甚至于创建对象的每一个细节<br><a href="human.png">human</a><br><a href="name.png">name</a><br><a href="work.png">work</a><br><a href="person.png">person</a></p><p>工厂模式创建出来的是一个对象，它追求的是创建的结果<br>建造者模式不仅仅可得到创建的结果，也参与了创建的具体过程，对于创建的具体实现的细节也参与了干涉，这种模式创建的对象是一个复合对象</p><p><strong>注意：这种方式对于整体对象类的拆分无形中增加了结构的复杂性，因此如果对象粒度很小，或者模块间的复用率很低并且变动不大，最好还是创建整体对象</strong></p><h6 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h6><p>原型模式(Prototype):用原型实例指向创建对象的类，使用于创建新的对象的类共享原型对象的属性以及方法</p><p>原型模式就是将可复用的、可共享的、耗时大的从基类中提出来然后放在其原型中，然后子类通过组合继承或者寄生组合式继承而将方法和属性继承下来，对于子类中那些需要重写的方法进行重写,这样子类创建的对象既具有子类的属性和方法也共享了基类的原型方法<br><a href="prototype-model.png">prototype-model</a><br>原型模式有一个特点就是在任何时候都可以对基类或者子类进行方法的拓展，而且所有被实例化的对象或者类都能获取这些方法</p><p>(1)原型继承<br>原型模式更多的是用在对对象的创建上。比如创建一个实例对象的构造函数比较复杂，或者耗时比较长，或者通过创建多个对象来实现。此时最好不要用new关键字去复制这些基类，但可以通过对这些对象属性或者方法进行复制来实现创建，这是原型模式的最初思想。如果涉及多个对象，也可以通过原型模式来实现对新对象的创建。那么首先要有一个原型模式的对象复制方法<br><a href="prototype-inherit1.png">prototype-inherit1</a><br><a href="prototype-inherit2.png">prototype-inherit2</a></p><p><strong>原型对象更适合在创建复杂的对象时，对于那些需求一直在变化而导致对象结构不停地改变时，将那些比较稳定的属性与方法共用而提取的继承的实现</strong></p><h6 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h6><p>单例模式(Singleton):又被称为单体模式，是只允许实例化一次的对象类。有时我们也用一个对象来规划一个命名空间，井井有条地管理对象上的属性与方法</p><p>(1)命名空间<br>命名空间就是人们所说的namespace，有人也叫它名称空间。<br>它解决这么一类问题:为了让代码更易懂，人们常常用单词或者拼音定义变量或者方法，但由于人们可用的单词或者汉字拼音是有限的，所以不同的人定义的变量使用的单词名称很有可能重复，此时就需要用命名空间来约束每个人定义的变量来解决这类问题</p><p>(2)静态变量<br><a href="static-param.png">static-param</a></p><p>(3)惰性单例<br><a href="lazy-single-instance.png">lazy-single-instance</a></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h4 id=&quot;创建型设计模式&quot;&gt;&lt;a href=&quot;#创建型设计模式&quot; class=&quot;headerlink&quot; title=&quot;创建型设计模式&quot;&gt;&lt;/a&gt;创建型设计模式&lt;/h4&gt;&lt;h6 id=&quot;简单工厂模式&quot;&gt;&lt;a href=&quot;#简单工厂模式&quot; class=&quot;headerlink&quot; </summary>
+    <summary type="html">&lt;h4 id=&quot;创建型设计模式&quot;&gt;&lt;a href=&quot;#创建型设计模式&quot; class=&quot;headerlink&quot; title=&quot;创建型设计模式&quot;&gt;&lt;/a&gt;创建型设计模式&lt;/h4&gt;&lt;p&gt;创建型设计模式是一类处理对象创建的设计模式，通过某种方式控制对象的创建来避免基本对象创建时可能导致设</summary>
       
     
     
@@ -389,26 +410,6 @@
       
       
     <summary type="html">&lt;h4 id=&quot;meta标签的使用&quot;&gt;&lt;a href=&quot;#meta标签的使用&quot; class=&quot;headerlink&quot; title=&quot;meta标签的使用&quot;&gt;&lt;/a&gt;meta标签的使用&lt;/h4&gt;&lt;h6 id=&quot;文档级元数据元素&quot;&gt;&lt;a href=&quot;#文档级元数据元素&quot; class=&quot;</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MarkDown语法及示例</title>
-    <link href="https://sunjinkang.github.io/2022/06/27/text-type-about-markdown/"/>
-    <id>https://sunjinkang.github.io/2022/06/27/text-type-about-markdown/</id>
-    <published>2022-06-27T02:43:07.000Z</published>
-    <updated>2022-08-10T03:15:53.231Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="MarkDown语法及示例"><a href="#MarkDown语法及示例" class="headerlink" title="MarkDown语法及示例"></a>MarkDown语法及示例</h4><h6 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h6><p>```javascript<br>const name = ‘eric’;<br>….<br>``` </p><h6 id="加粗字体"><a href="#加粗字体" class="headerlink" title="加粗字体"></a>加粗字体</h6><p>**文字**</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;MarkDown语法及示例&quot;&gt;&lt;a href=&quot;#MarkDown语法及示例&quot; class=&quot;headerlink&quot; title=&quot;MarkDown语法及示例&quot;&gt;&lt;/a&gt;MarkDown语法及示例&lt;/h4&gt;&lt;h6 id=&quot;代码块&quot;&gt;&lt;a href=&quot;#代码块&quot; c</summary>
       
     
     
