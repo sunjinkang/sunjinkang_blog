@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2022-09-06T10:06:39.974Z</updated>
+  <updated>2022-09-07T10:03:18.170Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -17,13 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaScript设计模式读书笔记(4)</title>
+    <link href="https://sunjinkang.github.io/2022/09/07/about-design-model3/"/>
+    <id>https://sunjinkang.github.io/2022/09/07/about-design-model3/</id>
+    <published>2022-09-07T09:40:43.000Z</published>
+    <updated>2022-09-07T10:03:18.170Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h4><p>行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之间的交流模式并加以实现</p><h6 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h6><p>模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。</p><p>多用于归一化组件</p><p><a href="basic-model.png">basic-model</a><br><a href="inherit-model.png">inherit-model</a><br><a href="inherit-as-basic-model.png">inherit-as-basic-model</a></p><h6 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h6><p>观察者模式(Observer):又被称作发布-订阅者模式或消息机制，定义了一种依赖关系，解决了主体对象与观察者之间功能的耦合。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;行为型设计模式&quot;&gt;&lt;a href=&quot;#行为型设计模式&quot; class=&quot;headerlink&quot; title=&quot;行为型设计模式&quot;&gt;&lt;/a&gt;行为型设计模式&lt;/h4&gt;&lt;p&gt;行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript设计模式读书笔记(3)</title>
     <link href="https://sunjinkang.github.io/2022/09/06/about-design-model2/"/>
     <id>https://sunjinkang.github.io/2022/09/06/about-design-model2/</id>
     <published>2022-09-06T07:11:48.000Z</published>
-    <updated>2022-09-06T10:06:39.974Z</updated>
+    <updated>2022-09-07T09:39:26.415Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p><h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p><p>多用于兼容模式<br><a href="out-look.png">out-look</a></p><h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p><p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p><h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p><p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><a href="station-culculate.png">station-culculate</a></p><p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p><p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p><h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><a href="decorator.png">decorator</a></p><p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p><h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p><p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p><p><a href="bridge1.png">bridge1</a><br><a href="bridge2.png">bridge2</a><br><a href="bridge3.png">bridge3</a></p><p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p><h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p><h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p><p>多用于兼容模式<br><a href="out-look.png">out-look</a></p><h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p><p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p><h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p><p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><a href="station-culculate.png">station-culculate</a></p><p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p><p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p><h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><a href="decorator.png">decorator</a></p><p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p><h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p><p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p><p><a href="bridge1.png">bridge1</a><br><a href="bridge2.png">bridge2</a><br><a href="bridge3.png">bridge3</a></p><p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p><h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p><p>组合模式常用语创建表单。</p><h6 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h6><p>享元模式(Flyweight):运用共享技术有效地支持大量的细粒度的对象，避免对象间拥有相同内容造成多余的开销。</p><p>享元模式主要还是对其数据、方法共享分离，它将数据和方法分成内部数据、内部方法和外部数据、外部方法。内部方法与内部数据指的是相似或者共有的数据和方法,所以将这一部分提取出来减少开销，以提高性能。</p><p>在一些小程序中，性能与内存的消耗对程序的执行影响不大时，强行应用享元模式而引入复杂的代码逻辑,往往会收到负效应。</p>]]></content>
     
     
       
@@ -390,26 +410,6 @@
       
       
     <summary type="html">&lt;h4 id=&quot;github推送代码弹窗应该怎么输入&quot;&gt;&lt;a href=&quot;#github推送代码弹窗应该怎么输入&quot; class=&quot;headerlink&quot; title=&quot;github推送代码弹窗应该怎么输入?&quot;&gt;&lt;/a&gt;github推送代码弹窗应该怎么输入?&lt;/h4&gt;&lt;p&gt;当本地修</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>meta标签的使用</title>
-    <link href="https://sunjinkang.github.io/2022/06/28/meta%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://sunjinkang.github.io/2022/06/28/meta%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2022-06-28T14:16:30.000Z</published>
-    <updated>2022-07-21T07:48:28.630Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="meta标签的使用"><a href="#meta标签的使用" class="headerlink" title="meta标签的使用"></a>meta标签的使用</h4><h6 id="文档级元数据元素"><a href="#文档级元数据元素" class="headerlink" title="文档级元数据元素"></a><meta>文档级元数据元素</h6><p>meta标签一般放在HTML页面的head里面，<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta">MDN</a>定义：</p><blockquote><p>HTML <meta> 元素表示那些不能由其它 HTML 元相关（meta-related）元素（(&lt;base&gt;,&lt;link&gt;,&lt;script&gt;,&lt;style&gt; 或 &lt;title&gt;）之一表示的任何元数据信息。</p></blockquote><h6 id="meta定义的元数据类型"><a href="#meta定义的元数据类型" class="headerlink" title="meta定义的元数据类型"></a>meta定义的元数据类型</h6><p>(1)name属性：meta元素提供文档级别元数据，应用于整个页面<br>– name和content一起使用，name表示元数据名称，content表示元数据的值<br>—- name=”author”，表示网页作者的名字，例如某个组织或机构</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mate name=&quot;author&quot; content=&quot;xxx@mail.com&quot;&gt;</span><br></pre></td></tr></table></figure><p>—- name=”description”，是一段简短而精确的，对页面内容的描述</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//淘宝网页的meta</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;description&quot;</span> content=<span class="string">&quot;淘宝网 - 亚洲较大的网上交易平台，提供各类服饰、美容、家居、数码、话费/点卡充值… 数亿优质商品，同时提供担保交易(先收货后付款)等安全交易保障服务，并由商家提供退货承诺、破损补寄等消费者保障服务，让你安心享受网上购物乐趣！&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>—- name=”keywords”，与页面内容相关的关键词，使用逗号分隔，需要注意某些搜索引擎会用这些关键词对文档进行分类</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//淘宝网页的meta</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;keyword&quot;</span> content=<span class="string">&quot;淘宝,掏宝,网上购物,C2C,在线交易,交易市场,网上交易,交易市场,网上买,网上卖,购物网站,团购,网上贸易,安全购物,电子商务,放心买,供应,买卖信息,网店,一口价,拍卖,网上开店,网络购物,打折,免费开店,网购,频道,店铺&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>—- name=”viewport”，为viewport（视口）的初始大小提供指示，目前仅用于移动设备</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>width：用来设置viewport的宽度为设备宽度，常用值：device-width、？？？？<br>initial-scale：为设备宽度与viewport大小之间的缩放比例<br>maximum-scale：？？？？<br>minimum-scale：？？？？<br>user-scalable：？？？？<br>minimal-ui：？？？？</p><p>—- name=”robots”，表示爬虫对此页面的处理行为，或者说，应当遵守的规则，是用来做搜索引擎抓取的<br>content类型：<br>all：搜索引擎将索引此网页，并继续通过此网页的链接索引文件将被检索<br>none：搜索引擎将忽略此网页<br>index：搜索引擎索引此网页<br>follow：搜索引擎继续通过此网页的链接索引搜索其它的网页</p><p>—- name=”renderer”，用来指定双核浏览器的渲染方式，比如360浏览器，我们可以通过这个设置来指定360浏览器的渲染方式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">&quot;renderer&quot;</span> content=<span class="string">&quot;webkit&quot;</span>&gt; <span class="comment">//默认webkit内核</span></span><br><span class="line">&lt;meta name=&quot;renderer&quot; content=&quot;ie-comp&quot;&gt; //默认IE兼容模式</span><br><span class="line">&lt;meta name=&quot;renderer&quot; content=&quot;ie-stand&quot;&gt; //默认IE标准模式</span><br></pre></td></tr></table></figure><p>content类型：<br>？？？？</p><p>—- name=”spm-id”，？？？？</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;spm-id&quot;</span> content=<span class="string">&quot;a21bo&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>—- name=”aplus-xplug”，？？？？</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝网</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;aplus-xplug&quot;</span> content=<span class="string">&quot;NONE&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>(2)http-equiv属性：meta元素是编译指令，提供的信息与类似命名的http头部相同<br>– http-equiv和content一起使用，http-equiv表示元数据名称，content表示元数据的值<br>– http-equiv所有允许的值都是特定http头部的名称<br>—- http-equiv=”X-UA-Compatible”</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝网</span></span><br><span class="line">&lt;meta http-equiv=<span class="string">&quot;X-UA-Compatible&quot;</span> content=<span class="string">&quot;IE=10,chrome=1&quot;</span>&gt;<span class="comment">//IE浏览器适配</span></span><br></pre></td></tr></table></figure><p>IE=10告诉浏览器，以当前浏览器支持的最新版本来渲染。<br>chrome=1告诉浏览器，如果当前IE浏览器安装了Google Chrome Frame插件，就以chrome内核来渲染页面。<br>两者都存在的情况：如果有chrome插件，就以chrome内核渲染，如果没有，就以当前浏览器支持的最高版本渲染。<br>另外，这个属性支持的范围是IE8-IE11<br>如果在http头部中也设置了这个属性，并且和meta中设置的有冲突，开发者偏好（meta元素）优先于Web服务器设置（HTTP头）。</p><p>—- http-equiv=”content-type”，用来声明文档类型和字符集</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">&quot;content-type&quot;</span> content=<span class="string">&quot;text/html;charset=utf-8&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>—- http-equiv=”x-dns-prefetch-control”<br>一般来说，HTML页面中的a标签会自动启用DNS提前解析来提升网站性能，但是在使用https协议的网站中失效了，我们可以如下设置打开对a标签的提前解析：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">&quot;x-dns-prefetch-control&quot;</span> content=<span class="string">&quot;on&quot;</span>&gt;</span><br></pre></td></tr></table></figure><p>—- cache-control、Pragma、Expires，和缓存相关的设置，但是遗憾的是这些往往不生效，我们一般都通过http headers来设置缓存策略  ？？？？</p><p>(3)charset属性：meta元素是一个字符集声明，告诉文档使用哪种字符编码<br>(4)itemprop属性：meta元素提供用户定义的元数据</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;meta标签的使用&quot;&gt;&lt;a href=&quot;#meta标签的使用&quot; class=&quot;headerlink&quot; title=&quot;meta标签的使用&quot;&gt;&lt;/a&gt;meta标签的使用&lt;/h4&gt;&lt;h6 id=&quot;文档级元数据元素&quot;&gt;&lt;a href=&quot;#文档级元数据元素&quot; class=&quot;</summary>
       
     
     
