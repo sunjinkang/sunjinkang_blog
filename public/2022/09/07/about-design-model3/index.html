@@ -28,7 +28,7 @@
 <meta property="og:description" content="行为型设计模式行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之间的交流模式并加以实现 模板方法模式模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。 多用于归一化组件 basic-modelinherit-modelinhe">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-07T09:40:43.000Z">
-<meta property="article:modified_time" content="2022-09-07T10:03:18.170Z">
+<meta property="article:modified_time" content="2022-09-08T06:03:44.843Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -118,7 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">行为型设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">观察者模式</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">行为型设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.3.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.5.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.6.</span> <span class="nav-text">命令模式</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -212,9 +212,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-09-07 17:40:43 / Modified: 18:03:18" itemprop="dateCreated datePublished" datetime="2022-09-07T17:40:43+08:00">2022-09-07</time>
+      <time title="Created: 2022-09-07 17:40:43" itemprop="dateCreated datePublished" datetime="2022-09-07T17:40:43+08:00">2022-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-08 14:03:44" itemprop="dateModified" datetime="2022-09-08T14:03:44+08:00">2022-09-08</time>
     </span>
 
   
@@ -232,7 +238,23 @@
 <p>多用于归一化组件</p>
 <p><a href="basic-model.png">basic-model</a><br><a href="inherit-model.png">inherit-model</a><br><a href="inherit-as-basic-model.png">inherit-as-basic-model</a></p>
 <h6 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h6><p>观察者模式(Observer):又被称作发布-订阅者模式或消息机制，定义了一种依赖关系，解决了主体对象与观察者之间功能的耦合。</p>
-
+<p>观察者对象包含：一个消息容器，订阅消息方法、取消订阅的消息方法、发送订阅的消息方法</p>
+<p><a href="observer.png">observer</a><br><a href="observer-regist.png">observer-regist</a><br><a href="observer-fire.png">observer-fire</a><br><a href="observer-remove.png">observer-remove</a></p>
+<p><a href="regist-message.png">regist-message</a><br><a href="regist-change-num.png">regist-change-num</a><br><a href="add-message.png">add-message</a></p>
+<h6 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h6><p>状态模式(State):当一个对象的内部状态发生改变时，会导致其行为的改变，这看起来像是改变了对象。</p>
+<p>状态模式简化了分支判断遍历逻辑</p>
+<p><a href="vote-status.png">vote-status</a></p>
+<p>示例<br>思路：首先创建一个状态对象，内部保存状态变量，然后内部封装好每种,动作对应的状态，最后状态对象返回一个接口对象，它可以对内部的状态修改或者调用<br><a href="marry-state.png">marry-state</a><br><a href="marry-state1.png">marry-state1</a></p>
+<h6 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h6><p>策略模式(Strategy):将定义的一组算法封装起来，使其相互之间可以替换。封装的算法具有一定独立性，不会随客户端变化而变化。</p>
+<p><strong>与状态模式异同点</strong><br>相同点：结构上与状态模式很像，也是在内部封装一个对象，然后通过返回的接口对象实现对内部对象的调用<br>不同点：策略模式不需要管理状态、状态间没有依赖关系、策略之间可以相互替换、在策略对象内部保存的是相互独立的一些算法</p>
+<p><a href="price-strategy.png">price-strategy</a></p>
+<p><strong>策略模式的优点</strong><br>第一，策略模式封装了一组代码簇，并且封装的代码相互之间独立，便于对算法的重复引用，提高了算法的复用率。<br>第二，策略模式与继承相比，在类的继承中继承的方法是被封装在类中，因此当需求很多算法时，就不得不创建出多种类，这样会导致算法与算法的使用者耦合在一起,不利于算法的独立演化，并且在类的外部改变类的算法难度也是极大的。<br>第三，同状态模式一样,策略模式也是一种优化分支判断语句的模式,采用策略模式对算法封装使得算法更利于维护。</p>
+<p><strong>策略模式的缺点</strong><br>由于选择哪种算法的决定权在用户，所以对用户来说就必须了解每种算法的实现,增加了用户对策略对象的使用成本。<br>由于每种算法间相互独立，这样对于一些复杂的算法处理相同逻辑的部分无法实现共享，这就会造成一些资源的浪费</p>
+<p><strong>优化分支语句的模式</strong><br>工厂方法模式，状态模式与策略模式<br>工厂方法模式：一种创建型模式，最终目的是创建对象。<br>状态模式是行为型模式，不过在状态模式中，其核心是对状态的控制来决定表现行为，所以状态之间通常是不能相互替代的，否则将产生不同的行为结果。<br>策略模式是行为型模式，核心是算法，由于每种算法要处理的业务逻辑相同，因此他们可以相互替换，当然策略模式并不关心使用者环境，因为同一种策略模式最终产出的结果是一定的。</p>
+<h6 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h6><p>职责链模式(Chain of Responsibility):解决请求的发送者与请求的接受者之间的耦合，通过职责链上的多个对象对分解请求流程，实现请求在多个对象之间的传递，直到最后一个对象完成请求的处理。</p>
+<p>示例<br><a href="send-data.png">send-data</a><br><a href="deal-data.png">deal-data</a><br><a href="create-component.png">create-component</a></p>
+<p><strong>缺点</strong><br>职责链上的每一个对象不一定都能参与请求的传递，有时会造成一丝资源的浪费<br>多个对象参与请求的传递，在代码调试时增加了调试成本</p>
+<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6>
     </div>
 
     
