@@ -28,7 +28,7 @@
 <meta property="og:description" content="行为型设计模式行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之间的交流模式并加以实现 模板方法模式模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。 多用于归一化组件 basic-modelinherit-modelinhe">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-07T09:40:43.000Z">
-<meta property="article:modified_time" content="2022-09-08T06:03:44.843Z">
+<meta property="article:modified_time" content="2022-09-19T09:50:29.300Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -118,7 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">行为型设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.3.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.5.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.6.</span> <span class="nav-text">命令模式</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">行为型设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.3.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.5.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.6.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.7.</span> <span class="nav-text">访问者模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.8.</span> <span class="nav-text">中介者模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.9.</span> <span class="nav-text">备忘录模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.10.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.11.</span> <span class="nav-text">解释器模式</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -133,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -220,7 +220,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-08 14:03:44" itemprop="dateModified" datetime="2022-09-08T14:03:44+08:00">2022-09-08</time>
+      <time title="Modified: 2022-09-19 17:50:29" itemprop="dateModified" datetime="2022-09-19T17:50:29+08:00">2022-09-19</time>
     </span>
 
   
@@ -254,7 +254,22 @@
 <h6 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h6><p>职责链模式(Chain of Responsibility):解决请求的发送者与请求的接受者之间的耦合，通过职责链上的多个对象对分解请求流程，实现请求在多个对象之间的传递，直到最后一个对象完成请求的处理。</p>
 <p>示例<br><a href="send-data.png">send-data</a><br><a href="deal-data.png">deal-data</a><br><a href="create-component.png">create-component</a></p>
 <p><strong>缺点</strong><br>职责链上的每一个对象不一定都能参与请求的传递，有时会造成一丝资源的浪费<br>多个对象参与请求的传递，在代码调试时增加了调试成本</p>
-<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6>
+<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6><p>命令模式(Command):将请求与实现解耦并封装成独立对象，从而使不同的请求对客户端的实现参数化。<br>命令模式常用于解耦<br><a href="command-model-1.png">command-model-1</a><br><a href="command-model-2.png">command-model-2</a><br><a href="command-model-3.png">command-model-3</a></p>
+<p>命令模式的优点:<br>解决命令使用者之间的耦合。新的命令很容易加入到命令系统中，供使用者使用。<br>命令的使用具有一致性，多数的命令在一定程度上是简化操作方法的使用的。</p>
+<p>命令模式的缺点:<br>命令模式是对一些操作的封装，这就造成每执行一次操作都要调用一次命令对象，增加了系统的复杂度。</p>
+<h6 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h6><p>访问者模式(Visitor):针对于对象结构中的元素，定义在不改变该对象的前提下访问结构中元素的新方法。</p>
+<p><a href="visitor-model.png">visitor-model</a></p>
+<h6 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h6><p>中介者模式(Mediator):通过中介者对象封装一系列对象之间的交互，使对象之间不再相互引用，降低他们之间的耦合。有时中介者对象也可改变对象之间的交互。</p>
+<p>(1)观察者模式与中介者模式的区别<br>相同点<br>都是通过消息的收发机制实现的<br>差异点<br>在观察者模式中，一个对象既可以是消息的发送者也可以是消息的接收者，他们之间信息交流依托于消息系统实现的解耦,需要写一个消息系统<br>中介者模式中消息的发送方只有一个，就是中介者对象，而且中介者对象不能订阅消息，只有那些活跃对象(订阅者)才可订阅中介者的消息，当然你也可以看作是将消息系统封装在中介者对象内部，所以中介者对象只能是消息的发送者</p>
+<p><a href="mediator-model.png">mediator-model</a></p>
+<h6 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h6><p>备忘录模式(Memento):在不破坏对象的封装性的前提下，在对象之外捕获并保存该对象内部的状态以便日后对象使用或者对象恢复到以前的某个状态。</p>
+<p><a href="cache-model.png">cache-model</a></p>
+<h6 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h6><p>迭代器模式(Iterator):在不暴露对象内部结构的同时，可以顺序地访问聚合对象内部的元素。</p>
+<p><a href="iterator-model.png">iterator-model</a></p>
+<h6 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h6><p>解释器模式(Interpreter):对于一种语言，给出其文法表示形式，并定义一种解释器，通过使用这种解释器来解释语言中定义的句子。</p>
+<p><a href="explain-model-1.png">explain-model-1</a><br><a href="explain-model-2.png">explain-model-2</a><br><a href="explain-model-3.png">explain-model-3</a></p>
+<p>解释器即是对客户提出的需求，经过解析而形成的一个抽象解释程序。而是否可以应用解释器模式的一条重要准侧是<strong>能否根据需求解析出一套完成的语法规则,不论该语法规则简单或是复杂都是必须的</strong>。因为解释器要按照这套规则才能实现相应的功能。</p>
+
     </div>
 
     
@@ -272,6 +287,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/09/19/about-design-model4/" rel="next" title="JavaScript设计模式读书笔记(5)">
+                  JavaScript设计模式读书笔记(5) <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
