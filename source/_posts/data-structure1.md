@@ -55,3 +55,138 @@ const area = 3.14 * (r ** 2);
 ```
 
 [JavaScript和ECMAScript的完整功能列表](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
+
+###### TypeScript
+TypeScript有一个名为鸭子类型的概念：如果它看起来像鸭子，像鸭子一样游泳，像鸭子一样叫，那么它一定是一只鸭子.
+(1)接口
+```javascript
+// 第一种定义接口的方式
+interface Person { 
+ name: string; 
+ age: number; 
+} 
+function printName(person: Person) { 
+ console.log(person.name); 
+}
+/** 第二种定义接口的方式：Comparable 接口告诉 MyObject 类，它需要实现一个叫作 compareTo 的方法，
+并且该方法接收一个参数。在该方法内部，我们可以实现需要的逻辑。**/
+interface Comparable { 
+ compareTo(b): number; 
+} 
+class MyObject implements Comparable { 
+ age: number; 
+ compareTo(b): number { 
+  if (this.age === b.age) { 
+   return 0; 
+  } 
+  return this.age > b.age ? 1 : -1; 
+ } 
+}
+```
+
+**JavaScript中使用一些类型和错误检测功能方式：在计算机上全局安装TypeScript，使用时，只需要在JavaScript文件的第一行添加一句 // @ts-check**
+
+###### 数组
+数组是最简单的内存数据结构。JavaScript里也有数组类型，但它的第一个版本并没有支持数组
+
+(1)使用@@iterator 对象
+ES2015 为 Array 类增加了一个@@iterator 属性，需要通过 Symbol.iterator 来访问
+```javascript
+const numbers = [1,2,3,4,5,6,7,8,9];
+let iterator = numbers[Symbol.iterator](); 
+console.log(iterator.next().value); // 1 
+console.log(iterator.next().value); // 2 
+console.log(iterator.next().value); // 3 
+console.log(iterator.next().value); // 4 
+console.log(iterator.next().value); // 5 
+
+const numbers = [1,2,3,4,5,6,7,8,9];
+iterator = numbers[Symbol.iterator](); 
+for (const n of iterator) { 
+ console.log(n); 
+}
+
+// 复制已有数组
+let numbers2 = Array.from(numbers);
+let numbers3 = Array.of(...numbers);
+```
+(2)copyWithin
+copyWithin 方法复制数组中的一系列元素到同一数组指定的起始位置
+```javascript
+copyArray = [1, 2, 3, 4, 5, 6]; 
+copyArray.copyWithin(1, 3, 5);
+// copyWithin(起始位置，开始位置，结束位置)
+// [1, 4, 5, 4, 5, 6]
+```
+(3)排序
+```javascript
+// 自定义排序
+const friends = [ 
+ { name: 'John', age: 30 }, 
+ { name: 'Ana', age: 20 }, 
+ { name: 'Chris', age: 25 }, // ES2017 允许存在尾逗号
+]; 
+function comparePerson(a, b) { 
+ if (a.age < b.age) { 
+ return -1; 
+ } 
+ if (a.age > b.age) { 
+ return 1; 
+ } 
+ return 0; 
+} 
+console.log(friends.sort(comparePerson)); 
+/**
+[ 
+ { name: 'Ana', age: 20 }, 
+ { name: 'Chris', age: 25 },
+ { name: 'John', age: 30 }, 
+]
+*/
+// 忽略大小写的比较
+const names = ['Ana', 'ana', 'john', 'John']; // 重置数组的初始状态
+console.log(names.sort((a, b) => { 
+ if (a.toLowerCase() < b.toLowerCase()) { 
+ return -1; 
+ } 
+ if (a.toLowerCase() > b.toLowerCase()) { 
+ return 1; 
+ } 
+ return 0; 
+})); 
+// 希望小写字母排在前面或者对带有重音符号的字符做排序的话，那么需要使用 localeCompare 方法
+const names = ['Ana', 'ana', 'john', 'John'];
+names.sort((a, b) => a.localeCompare(b));
+// ['ana', 'Ana', 'john', 'John']
+
+const names2 = ['Maève', 'Maeve']; 
+console.log(names2.sort((a, b) => a.localeCompare(b)));
+// ["Maeve", "Maève"]
+```
+
+###### 类型数组
+| 类型数组          | 数据类型            |
+| ----------------- | ------------------- |
+| Int8Array         | 8 位二进制补码整数  |
+| Uint8Array        | 8 位无符号整数      |
+| Uint8ClampedArray | 8 位无符号整数      |
+| Int16Array        | 16 位二进制补码整数 |
+| Uint16Array       | 16 位无符号整数     |
+| Int32Array        | 32 位二进制补码整数 |
+| Uint32Array       | 32 位无符号整数     |
+| Float32Array      | 32 位 IEEE 浮点数   |
+| Float64Array      | 64 位 IEEE 浮点数   |
+
+```javascript
+let length = 5; 
+let int16 = new Int16Array(length); 
+let array16 = []; 
+array16.length = length; 
+for (let i=0; i<length; i++){ 
+ int16[i] = i+1; 
+} 
+console.log(int16); 
+```
+类型数组作用：WebGL API、位操作、处理文件和图像
+
+[类型数组文档](https://web.dev/webgl-typed-arrays/)

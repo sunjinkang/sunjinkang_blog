@@ -11,7 +11,7 @@ tags:
 外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用
 
 多用于兼容模式
-[out-look](out-look.png)
+![out-look](out-look.png)
 
 ###### 适配器模式
 适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决
@@ -30,7 +30,7 @@ tags:
 (1)img之类的标签通过src属性可以向其他域下的服务器发送请求
 缺点：请求是get请求，且是单向的，不会有响应数据
 示例：站长统计
-[station-culculate](station-culculate.png)
+![station-culculate](station-culculate.png)
 
 (2)JSONP
 通过script标签
@@ -41,7 +41,7 @@ tags:
 
 ###### 装修者模式
 装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求
-[decorator](decorator.png)
+![decorator](decorator.png)
 
 **适配器与装修者的区别**
 适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节
@@ -52,9 +52,9 @@ tags:
 
 先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用
 
-[bridge1](bridge1.png)
-[bridge2](bridge2.png)
-[bridge3](bridge3.png)
+![bridge1](bridge1.png)
+![bridge2](bridge2.png)
+![bridge3](bridge3.png)
 
 桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化
 
