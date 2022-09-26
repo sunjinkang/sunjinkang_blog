@@ -109,8 +109,3 @@ jOuery获取的元素更像一个数组，上面框架返回的更像是一个�
 ![waiter-model-7](waiter-model-7.png)
 ![waiter-model-8](waiter-model-8.png)
 
-疑问点：
-为什么要缓存Array的slice方法？
-slice = Array.prototype.slice
-
-有一些模式很像，一定需要做区分吗？
