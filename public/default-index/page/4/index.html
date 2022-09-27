@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/22/react-render/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/22/react-render/" class="post-title-link" itemprop="url">react渲染</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-06-22 22:12:37" itemprop="dateCreated datePublished" datetime="2022-06-22T22:12:37+08:00">2022-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-08-10 11:15:06" itemprop="dateModified" datetime="2022-08-10T11:15:06+08:00">2022-08-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><h4 id="React-createElement语法糖"><a href="#React-createElement语法糖" class="headerlink" title="React.createElement语法糖"></a>React.createElement语法糖</h4><p>(1)React.createElement(type, [props], […children]);<br>(2)type：元素类型<br>(3)props：属性值<br>(4)children：子元素</p>
+<h4 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h4><p>(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系<br>(2)$$typeof：标识符，使用Symbol数据结构确保唯一性</p>
+<h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/2022/06/22/react-render/fiber_tree.png" alt="filter_tree"></p>
+<h2 id="Element转化为Dom"><a href="#Element转化为Dom" class="headerlink" title="Element转化为Dom"></a>Element转化为Dom</h2><p>(1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化<br>(2)ReactDOM.render(element, container[, callback])<br>(3)ReactDOM.render三个参数，其中第一个参数便是生成的虚拟Dom，第二个参数则是一个真实Dom，此Dom相当于是一个容器，React元素将被渲染到这个容器里面去，第三个参数则是一个callback function</p>
+<h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/2022/06/22/react-render/update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/2022/06/22/react-render/force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

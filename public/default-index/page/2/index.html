@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,103 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/02/es6-object-strong/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/02/es6-object-strong/" class="post-title-link" itemprop="url">es6对象增强</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-09-02 10:42:05 / Modified: 13:49:32" itemprop="dateCreated datePublished" datetime="2022-09-02T10:42:05+08:00">2022-09-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="对象字面量语法扩展"><a href="#对象字面量语法扩展" class="headerlink" title="对象字面量语法扩展"></a>对象字面量语法扩展</h4><p>(1)属性赋值简写：给一个属性赋变量值时，如果变量和属性的名称相同，可以省略冒号、变量名，直接写属性名即可，js 引擎执行代码时，会自动查找与属性名相同的变量进行属性赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123;name: &#x27;test&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>(2)简化属性方法定义：给一个属性赋匿名函数方法时，可以使用更简洁的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">const</span> es5Obj = &#123;</span><br><span class="line">  <span class="attr">testFunction</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;es5&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es5Obj.testFunction()); <span class="comment">// es5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// es6</span></span><br><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  <span class="function"><span class="title">testFunction</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;es6&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj.testFunction()); <span class="comment">// es6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// **注意：只有赋值的是匿名函数，才可以使用简介语法**</span></span><br><span class="line"><span class="keyword">const</span> es6Obj1 = &#123;</span><br><span class="line">  <span class="attr">testFunction</span>: <span class="function"><span class="keyword">function</span> <span class="title">Hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj1.testFunction()); <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>常见给函数取名字的情况：(1)递归，自己调用自己；(2)debugger 的时候，方便问题定位</strong></p>
+<p>(3)计算属性名：属性可以动态生成，需要把动态属性用[]包括起来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  [<span class="string">&#x27;first&#x27;</span> + <span class="string">&#x27;second&#x27;</span>]: <span class="string">&#x27;hanmeimei&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj[<span class="string">&#x27;first&#x27;</span> + <span class="string">&#x27;second&#x27;</span>]); <span class="comment">// hanmeimei</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> first = <span class="string">&#x27;first&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> es6Obj1 = &#123;</span><br><span class="line">  [first + <span class="string">&#x27;second&#x27;</span>]: <span class="string">&#x27;hanmeimei&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj[first + <span class="string">&#x27;second&#x27;</span>]); <span class="comment">// hanmeimei</span></span><br></pre></td></tr></table></figure>
+
+<p>(4)重复属性名的处理：es5 中，给对象赋值，如果存在相同的属性名，会报错；es6 中，不会报错，相同属性名的最后一个，会覆盖之前的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;first&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;second&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj); <span class="comment">// &#123;name: &#x27;second&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="新方法"><a href="#新方法" class="headerlink" title="新方法"></a>新方法</h4><p>(1)Object.is()<br>作用：判断两个数是否相等，与===基本一致，不过有两点不同：+0 不等于-0；NaN 等于 NaN</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(+<span class="number">0</span> == -<span class="number">0</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(+<span class="number">0</span>, -<span class="number">0</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>(2)Object.assign()<br>作用：将所有可枚举属性从一个或多个源对象复制到目标对象，并返回目标对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object.assign(target, ...sources);  target为目标对象  sources为源对象</span></span><br><span class="line"><span class="keyword">const</span> target = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> source = &#123; <span class="attr">b</span>: <span class="number">4</span>, <span class="attr">c</span>: <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> returnedTarget = <span class="built_in">Object</span>.assign(target, source);</span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// Object &#123; a: 1, b: 4, c: 5 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(returnedTarget); <span class="comment">// Object &#123; a: 1, b: 4, c: 5 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>(3)Object.setPrototypeOf()<br>作用：设置对象的原型对象，有两个参数，一个是对象，一个是对象要链接到的原型对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object.setPrototypeOf(object, prototypeObject);</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="comment">// obj 链接到person</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// hello</span></span><br><span class="line"><span class="comment">// obj 链接到dog</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woof</span></span><br></pre></td></tr></table></figure>
+<p>当在对象上有某个方法时，会直接调用对象上的方法，不会去原型链上找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// obj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// obj</span></span><br></pre></td></tr></table></figure>
+<p>在obj 对象中定义的方法，可能使用到原型对象上的同名方法， 只要调用原型对象上面的方法再进行一下组装就可以达到要求了。ES6 提供了super 关键词，它就指向原型对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// helloobj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woofobj</span></span><br></pre></td></tr></table></figure>
+<p>对象方法的定义只能使用简洁的语法形式，否则报错:Uncaught SyntaxError: ‘super’ keyword unexpected here<br><strong>为什么？？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下写法报错：Uncaught SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line"> <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下方法可以正常运行</span></span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// helloobj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woofobj</span></span><br></pre></td></tr></table></figure>
+<p><strong>在ES6 中，如果一个对象中定义了方法，这个方法自动获取到一个内置的属性[[HomeObject]], 来指向这个对象。super 呢，就是通过Object.getPrototypeOf([[HomeObject]]) 来获取到原型对象。obj.greeting() greeting() 方法中的[[HomeObject]] 就指向了obj.  那里面的super 就是Object.getPrototypeOf(obj), 那就是person 或dog 了，super.greeting() 就相当于person.greeting()了， 更为准确的说是 person.greeting.call(this).  因为如果person中的greenting有this, 我们还要给它指定this 指向， 不能让里面的this 指向别的对象， 只能让this 指向 obj 了。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -982,107 +1079,6 @@
     
     <div class="post-body" itemprop="articleBody">
           
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/js-transform/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/19/js-transform/" class="post-title-link" itemprop="url">js-类型转换</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-19 15:59:15" itemprop="dateCreated datePublished" datetime="2022-07-19T15:59:15+08:00">2022-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:11:17" itemprop="dateModified" datetime="2022-08-10T11:11:17+08:00">2022-08-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在开始之前，先说一下为什么会说这个，之前在看一篇文章的时候，提到 == 和 === 的区别。<br>== ：比较两个数据是否相等，允许进行类型转化<br>比如：1==true、’1’==true，结果都是true<br>===：严格比较两个数据是否是否相等，包括比较类型是否相同，类型不匹配返回false<br>比如：1===true、’1’===true，结果为false</p>
-<h4 id="数学运算符中的类型转换"><a href="#数学运算符中的类型转换" class="headerlink" title="数学运算符中的类型转换"></a>数学运算符中的类型转换</h4><p>1、减、乘、除运算<br><strong>非Number类型的使用减、乘、除(-、*、/)运算符时，会先将非Number类型转换为Number类型</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0, true先转换乘1，然后执行 1 - 1</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">false</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">undefined</span> <span class="comment">// NaN, undefined转换为数字为 NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">&#x27;5&#x27;</span>] <span class="comment">// 10, [&#x27;5&#x27;]先变成&#x27;5&#x27;（这一步涉及拆箱操作）,然后变成数字5</span></span><br></pre></td></tr></table></figure>
-<a class="btn" href="/2022/08/09/devan-operation/">拆箱操作</a>
-
-<p>2、加运算<br><strong>js中的加法运算，还可以用来拼接字符串</strong></p>
-<ul>
-<li>加号一侧为String类型，则加法运算被识别为拼接字符串操作，并会优先将另一侧转换为字符串类型</li>
-<li>加号一侧为Number类型，另一侧为原始类型，则将原始类型转换为Number类型</li>
-<li>加号一侧为Number类型，另一侧为引用类型，将引用类型和Number类型转换成字符串后进行拼接</li>
-<li><em>以上三点，优先级从高到低</em>*</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">&#x27;123&#x27;</span> <span class="comment">// &#x27;123123&#x27; (规则1)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">null</span> <span class="comment">//  123 (规则2)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">true</span> <span class="comment">//  124 (规则2)</span></span><br><span class="line"><span class="number">123</span> + &#123;&#125;   <span class="comment">//  &#x27;123[object Object]&#x27; (规则3)</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="逻辑运算中的类型转换"><a href="#逻辑运算中的类型转换" class="headerlink" title="逻辑运算中的类型转换"></a>逻辑运算中的类型转换</h4><p>1、单个变量<br>先将变量转换为Boolean值<br><strong>只有null、undefined、’’、NaN、0、false的boolean值是false，其他情况都是true，比如：{}、[]</strong></p>
-<p>2、使用 == 比较中的5条规则<br><strong>建议使用 ===</strong></p>
-<ul>
-<li>规则1：NaN和其他任何类型比较永远返回false(包括和他自己)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
-<li>规则2：boolean和其他任何类型比较，Boolean首先被转换成Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// false,先将true转换为1，而不是把&#x27;2&#x27;变成true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;1&#x27;</span>] <span class="comment">// true, 先将true转换为1，[&#x27;1&#x27;]拆箱成&#x27;1&#x27;,在参考规则3</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;2&#x27;</span>] <span class="comment">// false, 同上</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false, 首先false变成0，然后参考规则4</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure></li>
-<li>String和Number比较，先将String转换为Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="string">&#x27;123&#x27;</span> <span class="comment">// true, &#x27;123&#x27;会变成123</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="number">0</span> <span class="comment">// true，&#x27;&#x27;会变成 0</span></span><br></pre></td></tr></table></figure></li>
-<li>null == undefined 比较结果是true，除此之外，null、undefined和其他任何结果的比较值都为false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>  <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
-<li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换为原始类型</li>
-<li><em>ToPrimitive规则是引用类型向原始类型转变的规则，它遵循先 valueOf后 toString的模式期望得到一个原始类型，如果无法得到一个原始类型，就会抛出TypeError</em>*<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; <span class="comment">// true, 对象和字符串比较，对象通过toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// true, [1,2,3]通过toString得到一个基本类型</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/js-transform/convert-table.png" alt="类型转换对照表"></p>
-<h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
-<a class="btn" href="/"><i class="fa fa-home"></i></a>
       
     </div>
 
