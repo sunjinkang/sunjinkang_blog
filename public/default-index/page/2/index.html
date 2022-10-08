@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,258 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/05/get-and-set-prototypeof/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/05/get-and-set-prototypeof/" class="post-title-link" itemprop="url">Object获取及设置原型对象</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-09-05 13:54:58 / Modified: 14:42:22" itemprop="dateCreated datePublished" datetime="2022-09-05T13:54:58+08:00">2022-09-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="Object获取原型对象：Object-getPrototypeOf"><a href="#Object获取原型对象：Object-getPrototypeOf" class="headerlink" title="Object获取原型对象：Object.getPrototypeOf"></a>Object获取原型对象：Object.getPrototypeOf</h6><p>Object.getPrototypeOf用于获取指定对象的原型对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(obj);</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong><br>obj: 参数为要获取原型对象的对象<br><strong>返回值</strong><br>返回指定对象的原型对象或null<br>注意：<br>es5中，如果参数不是对象，会抛出TypeError错误<br>es6中，如果参数不是对象，会强制类型转换为对象<br><strong>示例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="string">&#x27;12&#x27;</span>) === <span class="built_in">String</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="number">12</span>) === <span class="built_in">Number</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(&#123;&#125;) === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="literal">true</span>) === <span class="built_in">Boolean</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Symbol</span>(<span class="string">&#x27;test&#x27;</span>)) === <span class="built_in">Symbol</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="literal">null</span>)); <span class="comment">// Uncaught TypeError: Cannot convert undefined or null to object</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(<span class="literal">undefined</span>)); <span class="comment">// Uncaught TypeError: Cannot convert undefined or null to object</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对没有原型对象的对象进行操作</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(obj)); <span class="comment">// null</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(<span class="literal">undefined</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(obj)); <span class="comment">// Uncaught TypeError: Object prototype may only be an Object or null: undefined</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Object修改原型对象-Object-setPrototypeOf"><a href="#Object修改原型对象-Object-setPrototypeOf" class="headerlink" title="Object修改原型对象: Object.setPrototypeOf"></a>Object修改原型对象: Object.setPrototypeOf</h6><p>Object.setPrototypeOf用于将指定对象的原型对象设置到一个新的对象或null上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, proto);</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong><br>obj: 要设置原型对象的对象<br>proto: 要设置的新原型对象或null，未设置时抛出TypeError错误</p>
+<p><strong>返回值</strong><br>设置了新原型对象的对象</p>
+<p>注意：该操作实际上是个很耗时的操作，如果对性能有更高的要求，不建议直接修改已有对象的原型，而应该通过Object.create()方法来创建一个新的对象</p>
+<p><strong>示例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">&#x27;test&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> newObj = <span class="built_in">Object</span>.create(obj);</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(newObj, obj);</span><br><span class="line"><span class="built_in">console</span>.log(newObj.name); <span class="comment">// &#x27;test&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> otherObj = &#123; <span class="attr">age</span>: <span class="number">12</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(newObj) === obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(newObj, otherObj);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(newObj) === obj); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(newObj) === otherObj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj.name); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj.age); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/05/some-convenient-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/05/some-convenient-code/" class="post-title-link" itemprop="url">开发中使用的便捷代码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-09-05 13:24:10 / Modified: 13:42:03" itemprop="dateCreated datePublished" datetime="2022-09-05T13:24:10+08:00">2022-09-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="基于条件设置对象属性"><a href="#基于条件设置对象属性" class="headerlink" title="基于条件设置对象属性"></a>基于条件设置对象属性</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="comment">// 非空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;test_name&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; name: &#x27;test_name&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="无中间变量交换变量值"><a href="#无中间变量交换变量值" class="headerlink" title="无中间变量交换变量值"></a>无中间变量交换变量值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> one = <span class="string">&#x27;12&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> two = <span class="string">&#x27;34&#x27;</span>;</span><br><span class="line">[one, two] = [two, one];</span><br><span class="line"><span class="built_in">console</span>.log(one); <span class="comment">// &#x27;34&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(two); <span class="comment">// &#x27;12&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="过滤Boolean值为false的值"><a href="#过滤Boolean值为false的值" class="headerlink" title="过滤Boolean值为false的值"></a>过滤Boolean值为false的值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">0</span>, <span class="literal">false</span>, <span class="number">12</span>, <span class="literal">true</span>, <span class="string">&#x27;12&#x27;</span>, <span class="literal">undefined</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">8</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="keyword">const</span> result = array.filter(<span class="built_in">Boolean</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [12, true, &#x27;12&#x27;, 8]</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="转换元素类型"><a href="#转换元素类型" class="headerlink" title="转换元素类型"></a>转换元素类型</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将Number类型转换为String</span></span><br><span class="line"><span class="keyword">const</span> string = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">12</span>].map(<span class="built_in">String</span>);</span><br><span class="line"><span class="built_in">console</span>.log(string); <span class="comment">// [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;12&#x27;]</span></span><br><span class="line"><span class="comment">// 将String类型转换为Number</span></span><br><span class="line"><span class="keyword">const</span> string = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;12&#x27;</span>].map(<span class="built_in">Number</span>);</span><br><span class="line"><span class="built_in">console</span>.log(string); <span class="comment">// [1, 2, 3, 12]</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> repeatArray = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">23</span>,<span class="number">45</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> result = [...new <span class="built_in">Set</span>(repeatArray)];</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [1, 3, 5, 6, 7, 8, 9, 23, 45, 2]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/04/about-design-model1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/04/about-design-model1/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(2)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-04 21:29:09" itemprop="dateCreated datePublished" datetime="2022-09-04T21:29:09+08:00">2022-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-22 17:16:30" itemprop="dateModified" datetime="2022-09-22T17:16:30+08:00">2022-09-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h4><p>创建型设计模式是一类处理对象创建的设计模式，通过某种方式控制对象的创建来避免基本对象创建时可能导致设计上的问题或增加设计上的复杂度</p>
+<h6 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h6><p>(1)简单工厂模式(Simple Factory):又叫静态工厂方法，由一个工厂对象决定创建某一种产品对象类的实例。主要用来创建同一类对象。<br><img src="/2022/09/04/about-design-model1/simple-factory1.png" alt="simple-factory1"><br><img src="/2022/09/04/about-design-model1/simple-factory2.png" alt="simple-factory2"></p>
+<p>(2)一个对象有时也可代替许多类<br><img src="/2022/09/04/about-design-model1/create-pop.png" alt="create-pop"></p>
+<p>第一种是通过类实例化对象创建的，第二种是通过创建一个新对象然后包装增强其属性和功能来实现的。他们之间的差异性也造成前面通过类创建的对象,如果这些类继承同一父类，那么他们的父类原型上的方法是可以共用的。而后面寄生方式创建的对象都是一个新的个体，所以他们的方法就不能共用了</p>
+<h6 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h6><p>安全模式类：可以屏蔽使用这对类的错误使用造成的错误<br><img src="/2022/09/04/about-design-model1/safe-model-class.png" alt="safe-model-class"><br><img src="/2022/09/04/about-design-model1/safe-factory-model.png" alt="safe-factory-model"></p>
+<h6 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h6><p>抽象工厂模式(Abstract Factory):通过对类的工厂抽象使其业务用于对产品类簇的创建，而不负责创建某一类产品的实例</p>
+<p>(1)抽象类<br>抽象类是一种声明但不能使用的类<br><img src="/2022/09/04/about-design-model1/abstract-car.png" alt="abstract-car"><br>创建的这个car类其实什么都不能做，创建时没有任何属性，然而原型prototype上的方法也不能使用，否则会报错。但在继承上却是很有用的，因为定义了一种类,并定义了该类所必备的方法，如果在子类中没有重写这些方法，那么当调用时能找到这些方法便会报错。这一特点是很有必要的，因为在一些大型应用中，总会有一些子类去继承另一些父类，这些父类经常会定义一些必要的方法，却没有具体的实现，如 car类中的 getPrice()和getSpeed()方法，那么一旦用子类创建了一个对象，该对象总是应该具备一些必要的方法，但如果这些必要的方法从父类中继承过来而没有具体去重写实现,那么实例化对象便会调用父类<br>中的这些方法，如果父类能有一个友好提示，那么对于忘记重写子类的这些错误遗漏的避免是很有帮助的。这也是抽象类的一个作用，即定义一个产品簇，并声明一些必备的方法，如果子类中没有去重写就会抛出错误。</p>
+<p>(2)抽象工厂模式：一般用它来作为父类创建一些子类<br><img src="/2022/09/04/about-design-model1/abstract-factory1.png" alt="abstract-factory1"><br><img src="/2022/09/04/about-design-model1/abstract-factory2.png" alt="abstract-factory2"><br>抽象工厂其实是一个实现子类继承父类的方法，在这个方法中需要通过传递子类以及要继承父类(抽象类)的名称，并且在抽象工厂方法中又增加了一次对抽象类存在性的一次判断，如果存在，则将子类继承父类的方法。然后子类通过寄生式继承。继承父类过程中有一个地方需要注意，就是在对过渡类的原型继承时，不是继承父类的原型，而是通过new关键字复制的父类的一个实例，这么做是因为过渡类不应仅仅继承父类的原型方法，还要继承父类的对象属性，所以要通过new关键字将父类的构造函数执行一遍来复制构造函数中的属性和方法。对抽象工厂添加抽象类也很特殊,因为抽象工厂是个方法不需要实例化对象，故只需要一份，因此直接为抽象工厂添加类的属性即可，于是就可以通过点语法在抽象工厂上添加需要的三个汽车簇抽象类Car、Bus、Truck<br><img src="/2022/09/04/about-design-model1/abstract-factory3.png" alt="abstract-factory3"></p>
+<h6 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h6><p>建造者模式(Builder):将一个复杂对象的构建层与其表示层相互分离，同样的构建过程可采用不同的表示</p>
+<p>工厂模式主要是为了创建对象实例或者类簇(抽象工厂)，关心的是最终产出(创建)的是什么。不关心你创建的整个过程，仅仅需要知道你最终创建的结果。所以通过工厂模式我们得到的都是对象实例或者类簇。<br>建造者模式在创建对象时要更为复杂一些，虽然其目的也是为了创建对象，但是它更多关心的是创建这个对象的整个过程，甚至于创建对象的每一个细节<br><img src="/2022/09/04/about-design-model1/human.png" alt="human"><br><img src="/2022/09/04/about-design-model1/name.png" alt="name"><br><img src="/2022/09/04/about-design-model1/work.png" alt="work"><br><img src="/2022/09/04/about-design-model1/person.png" alt="person"></p>
+<p>工厂模式创建出来的是一个对象，它追求的是创建的结果<br>建造者模式不仅仅可得到创建的结果，也参与了创建的具体过程，对于创建的具体实现的细节也参与了干涉，这种模式创建的对象是一个复合对象</p>
+<p><strong>注意：这种方式对于整体对象类的拆分无形中增加了结构的复杂性，因此如果对象粒度很小，或者模块间的复用率很低并且变动不大，最好还是创建整体对象</strong></p>
+<h6 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h6><p>原型模式(Prototype):用原型实例指向创建对象的类，使用于创建新的对象的类共享原型对象的属性以及方法</p>
+<p>原型模式就是将可复用的、可共享的、耗时大的从基类中提出来然后放在其原型中，然后子类通过组合继承或者寄生组合式继承而将方法和属性继承下来，对于子类中那些需要重写的方法进行重写,这样子类创建的对象既具有子类的属性和方法也共享了基类的原型方法<br><img src="/2022/09/04/about-design-model1/prototype-model.png" alt="prototype-model"><br>原型模式有一个特点就是在任何时候都可以对基类或者子类进行方法的拓展，而且所有被实例化的对象或者类都能获取这些方法</p>
+<p>(1)原型继承<br>原型模式更多的是用在对对象的创建上。比如创建一个实例对象的构造函数比较复杂，或者耗时比较长，或者通过创建多个对象来实现。此时最好不要用new关键字去复制这些基类，但可以通过对这些对象属性或者方法进行复制来实现创建，这是原型模式的最初思想。如果涉及多个对象，也可以通过原型模式来实现对新对象的创建。那么首先要有一个原型模式的对象复制方法<br><img src="/2022/09/04/about-design-model1/prototype-inherit1.png" alt="prototype-inherit1"><br><img src="/2022/09/04/about-design-model1/prototype-inherit2.png" alt="prototype-inherit2"></p>
+<p><strong>原型对象更适合在创建复杂的对象时，对于那些需求一直在变化而导致对象结构不停地改变时，将那些比较稳定的属性与方法共用而提取的继承的实现</strong></p>
+<h6 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h6><p>单例模式(Singleton):又被称为单体模式，是只允许实例化一次的对象类。有时我们也用一个对象来规划一个命名空间，井井有条地管理对象上的属性与方法</p>
+<p>(1)命名空间<br>命名空间就是人们所说的namespace，有人也叫它名称空间。<br>它解决这么一类问题:为了让代码更易懂，人们常常用单词或者拼音定义变量或者方法，但由于人们可用的单词或者汉字拼音是有限的，所以不同的人定义的变量使用的单词名称很有可能重复，此时就需要用命名空间来约束每个人定义的变量来解决这类问题</p>
+<p>(2)静态变量<br><img src="/2022/09/04/about-design-model1/static-param.png" alt="static-param"></p>
+<p>(3)惰性单例<br><img src="/2022/09/04/about-design-model1/lazy-single-instance.png" alt="lazy-single-instance"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -815,270 +1067,6 @@
 <h4 id="map的遍历方法"><a href="#map的遍历方法" class="headerlink" title="map的遍历方法"></a>map的遍历方法</h4><p>1、keys()<br>2、values()<br>3、entries()<br>4、forEach()</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/93b5a5940de8">https://www.jianshu.com/p/93b5a5940de8</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/04/fake-array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/04/fake-array/" class="post-title-link" itemprop="url">伪数组</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-04 10:57:14 / Modified: 15:17:36" itemprop="dateCreated datePublished" datetime="2022-08-04T10:57:14+08:00">2022-08-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/2022/08/04/fake-array/document.png" alt="document获取的伪数组"></p>
-<h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
-<h4 id="判断一个数组是不是伪数组的方法"><a href="#判断一个数组是不是伪数组的方法" class="headerlink" title="判断一个数组是不是伪数组的方法"></a>判断一个数组是不是伪数组的方法</h4><p>1、Array.isArray</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(fakeArray); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(array); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>2、instanceof</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/2022/08/04/fake-array/prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/2022/08/04/fake-array/slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/2022/08/04/fake-array/array_from.png" alt="array.from转换"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/31/about-dom/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/31/about-dom/" class="post-title-link" itemprop="url">javascript DOM编程艺术阅读笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-31 13:42:45" itemprop="dateCreated datePublished" datetime="2022-07-31T13:42:45+08:00">2022-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-30 18:54:33" itemprop="dateModified" datetime="2022-08-30T18:54:33+08:00">2022-08-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h4><p>1、DOM<br>DOM是一套对文档的内容进行抽象和概念化的方法。</p>
-<p>第0级DOM(DOM Level 0)<br>试验性质的初级DOM，在还未形成统一标准的初期阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。</p>
-<p>第1级DMO(DOM Level 1)<br>Netscape、微软和其他一些浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第1级DOM”(DOM Level 1) 。</p>
-<p>2、浏览器战争<br>2.1 DHTML<br>DHTML是“Dynamic HTML”(动态HTML)的简称。DHTML并不是一项新技术，而是描述HTML、CSS和.JavaScript技术组合的术语。背后含义:<br>(1)利用HTML把网页标记为各种元素;<br>(2)利用CSS设置元素样式和它们的显示位置;<br>(3)利用JavaScript实时地操控页面和改变样式。</p>
-<h4 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h4><p>循环语句<br>1、while循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>do…while循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure>
-<p>  2、for循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (initial condition; test condition; alter condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>函数<br>1、变量的作用域<br>全局变量(global variable)可以在脚本中的任何位置被引用。一旦你在某个脚本里声明了一个全局变量，就可以从这个脚本中的任何位置―一包括函数内部—―引用它。全局变量的作用域是整个脚本。<br>局部变量(local variable）只存在于声明它的那个函数的内部，在那个函数的外部是无法引用它的。局部变量的作用域仅限于某个特定的函数。</p>
-<p>对象<br>对象（object）是一种非常重要的数据类型，但此前我们还没有认真对待它。对象是自包含的数据集合，包含在对象里的数据可以通过两种形式访问——属性（property)和方法(method) :<br>-属性是隶属于某个特定对象的变量<br>-方法是只有某个特定对象才能调用的函数<br>对象就是由一些属性和方法组合在一起而构成的一个数据实体</p>
-<p>1、用户定义对象(user-defined object)<br>由程序员自行创建的对象</p>
-<p>2、内建对象(native object)<br>JavaScript提供了一系列预先定义好的对象，这些可以拿来就用的对象称为内建对象( native object)<br>Array、Math、Date等</p>
-<p>3、宿主对象(host object)<br>由浏览器提供的预定义对象被称为宿主对象(host object )<br>宿主对象包括document、Form、Image和Element等。我们可以通过这些对象获得关于网页上表单、图像和各种表单元素等信息</p>
-<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>1、文档:DOM中的’D’<br>如果没有document(文档），DOM也就无从谈起。当创建了一个网页并把它加载到Web浏览器中时，DOM就在幕后悄然而生。它把你编写的网页文档转换为一个文档对象</p>
-<p>2、对象:DOM中的’O’<br>如上对象</p>
-<p>3、模型:DOM中的’M’<br>DOM中的“M”代表着“Model”(模型)，但说它代表着“Map”(地图）也未尝不可。模型也好，地图也罢，它们的含义都是某种事物的表现形式。就像一个模型火车代表着一列真正的火车、一张城市街道图代表着一个实际存在的城市那样，DOM代表着加载到浏览器窗口的当前网页。浏览器提供了网页的地图（或者说模型)，可以通过JavaScript去读取这张地图</p>
-<p>4、节点<br>(1)元素节点<br>(2)文本节点<br>(3)属性节点<br>(4)CSS<br>(5)获取元素<br>-getElementById 返回一个对象<br>-getElementsByTagName 返回一个对象数组，使用通配符（*）获取文档中总共有多少元素节点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>) ;</span><br><span class="line"><span class="keyword">var</span> items = shopping.getElementsByTagName(<span class="string">&quot;*&quot;</span>) ;</span><br></pre></td></tr></table></figure>
-<p>-getElementsByClassName 返回一个对象数组<br>使用这个方法还可以查找那些带有多个类名的元素。要指定多个类名，只要在字符串参数中用空格分隔类名即可<br>注意，即使在元素的class属性中，类名的顺序和参数中指定的不一样，也照样会匹配该元素。不仅类名的实际顺序不重要，就算元素还带有更多类名也没有关系。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> sales = shopping.getElementsByClassName(<span class="string">&quot;sale&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>5、获取和设置属性<br>(1)getAttribute 只能通过元素节点调用<br>(2)setAttribute 只能通过元素节点调用，修改属性值<br>细节:通过setAttribute对文档做出修改后，在通过浏览器的viewsource(查看源代码）选项去查看文档的源代码时看到的仍将是改变前的属性值，也就是说，setAttribute做出的修改不会反映在文档本身的源代码里。这种“表里不一”的现象源自DOM的工作模式:先加载文档的静态内容，再动态刷新，动态刷新不影响文档的静态内容。这正是DOM的真正威力:对页面内容进行刷新却不需要在浏览器里刷新页面。</p>
-<h4 id="案例研究：JavaScript图片库"><a href="#案例研究：JavaScript图片库" class="headerlink" title="案例研究：JavaScript图片库"></a>案例研究：JavaScript图片库</h4><p>DOM是一种适用于多种环境和多种程序设计语言的通用型API。如果想把DOM技巧运用在Web浏览器以外的应用环境里，严格遵守“第1级DOM”能够避免与兼容性有关的任何问题。<br>1、childNodes属性 用来获取任何一个元素的所有子元素<br>2、nodeType属性 共有12中可取值<br>以下3种具有实用价值：<br>-元素节点的nodeType属性值是1<br>-属性节点的nodeType属性值是2<br>-文本节点的nodeType属性值是3<br>3、nodeValue属性 得到和设置节点的值<br>4、firstChild和lastChild</p>
-<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>1、平稳退化<br>平稳退化(graceful degradation)，虽然某些功能无法使用，但最基本的操作仍能顺利完成<br>2、“javascript:”伪协议<br>“真”协议用来在因特网上的计算机之间传输数据包，如HTTP协议(http://) 、FTP协议（ftp://)等，伪协议则是一种非标准化的协议<br>“javascript:”伪协议让我们通过一个链接来调用JavaScript函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;javascript:popUp(&#x27;http://www.example.com/&#x27;);&quot;</span>&gt;Example&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p>3、CSS<br>结构与样式分离<br>渐进增强，用一些额外的信息层去包裹原始数据<br>4、分离javascript<br>5、向后兼容<br>(1)对象检测：检测浏览器对JavaScript的支持程度<br>(2)浏览器嗅探技术<br>通过提取浏览器供应商提供的信息来解决向后兼容问题。从理论上讲，可以通过JavaScript代码检索关于浏览器品牌和版本的信息，这些信息可以用来改善JavaScript脚本代码的向后兼容性，但这是一种风险非常大的技术。<br>首先，浏览器有时会“撒谎”。因为历史原因，有些浏览器会把自己报告为另外一种浏览器，还有一些浏览器允许用户任意修改这些信息<br>其次，为了适用于多种不同的浏览器，浏览器嗅探脚本会变得越来越复杂。如果想让浏览器嗅探脚本能够跨平台工作，就必须测试所有可能出现的供应商和版本号组合。这是一个无穷尽的任务，测试的组合情况越多，代码就越复杂和冗长<br>最后，许多浏览器嗅探脚本在进行这类测试时要求浏览器的版本号必须得到精确的匹配。因此，每当市场上出现新版本时，就不得不修改这些脚本<br>6、性能考虑<br>(1)尽量少访问DOM和尽量减少标记<br>(2)合并和放置脚本<br>多个脚本合并，减少请求次数<br>把所有/<script>标签都放到文档的末尾，/&lt;/body/&gt;标记之前，就可以让页面变得更快<br>(3)压缩脚本<br>压缩工具：<br>-Douglas Crockford的JSMin (<a target="_blank" rel="noopener" href="http://www.crockford.com/javascript/jsmin.html">http://www.crockford.com/javascript/jsmin.html</a>)<br>-雅虎的YUI Compressor (<a target="_blank" rel="noopener" href="http://developer.yahoo.com/yui/compressor">http://developer.yahoo.com/yui/compressor</a>)<br>-谷歌的Closure Compiler (<a target="_blank" rel="noopener" href="http://closure-compiler.appspot.com/home">http://closure-compiler.appspot.com/home</a>)</p>
-<h4 id="动态创建标记"><a href="#动态创建标记" class="headerlink" title="动态创建标记"></a>动态创建标记</h4><p>1、document.write &amp; innerHTML属性<br>2、DOM方法<br>(1)createElement<br>(1)appendChild<br>(1)createTextNode<br>(1)insertBefore<br>3、Ajax<br>(1)XMLHttpRequest对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHTTPObject</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest == <span class="string">&quot;undefined&quot;</span>) xMLHttpRequest =<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> Activexobject ( <span class="string">&quot;Msxm12.XMLHTTP.6.0&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject (<span class="string">&quot;Msxm12.XMLHTTP.3.0&quot;</span>);)<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject ( <span class="string">&quot;Msxm12.XMLHTTP&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest ( ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>XHTML5<br>本质上是使用严格的XML规则编写的HTML5。从技术角度说，Web浏览器应该将任何XHTML5文档都视为XML文档，而不是HTML文档。而在现实中，你还得在文档的头部发送正确的MIME类型，即application/xhtml+xml。有些浏览器不认识这个MIME类型，因而一般要在服务器端对浏览器进行探查后再发送。否则最坏的情况，页面很可能根本不会在浏览器中呈现。因此，绝大多数XHTML页面仍然是以HTML类型发送的。</p>
-<h4 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h4><p>1、三位一体的网页<br>(1)结构层<br>网页的结构层(structural layer)由HTML或XHTML之类的标记语言负责创建<br>(2)表示层<br>表示层(presentation layer)由CSS负责完成。CSS描述页面内容应该如何呈现<br>(3)行为层<br>行为层(behavior layer)负责内容应该如何响应事件这一问题。这是JavaScript语言和DOM主宰的领域<br>(4)分离<br>-使用(X)HTML去搭建文档的结构<br>-使用CSS去设置文档的呈现效果<br>-使用DOM脚本去实现文档的行为<br>2、style属性<br>在外部样式表里声明的样式不会进入style对象，在文档的<head>部分里声明的样式也是如此<br>style对象只包含在HTML代码里用style属性声明的样式<br>3、何时该使用DOM脚本设置样式<br>(1)根据元素在节点树里的位置来设置样式<br>(2)根据某种条件反复设置某种样式<br>(3)响应事件<br>4、className属性</p>
-<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><p>1、canvas<br>2、video和audio</p>
-<p>疑问点：<br>1、遇到的知识点觉得掌握了，没有记录，后面又忘了<br>重要的知识点都记录，不管有没有掌握<br>2、任务拆分评估时间不准<br>更深入的了解项目代码和业务逻辑<br>3、看书遇到问题的时候，先记录继续阅读，还是先解决问题在阅读？<br>先记录继续阅读，看后面是否有解答<br>4、原型链<br>不建议研究__proto__这种知识点，可以看看es6中新的关于原型链的继承<br>理解知识的时候，不要添加太多概念，避免混乱</p>
-</script></p>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/origin-type-and-reference-type/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/19/origin-type-and-reference-type/" class="post-title-link" itemprop="url">js-基本类型与引用类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-19 16:23:28" itemprop="dateCreated datePublished" datetime="2022-07-19T16:23:28+08:00">2022-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:14:27" itemprop="dateModified" datetime="2022-08-10T11:14:27+08:00">2022-08-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 
