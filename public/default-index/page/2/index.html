@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,212 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/07/about-design-model3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/07/about-design-model3/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(4)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-07 17:40:43" itemprop="dateCreated datePublished" datetime="2022-09-07T17:40:43+08:00">2022-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-22 17:17:06" itemprop="dateModified" datetime="2022-09-22T17:17:06+08:00">2022-09-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h4><p>行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之间的交流模式并加以实现</p>
+<h6 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h6><p>模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。</p>
+<p>多用于归一化组件</p>
+<p><img src="/2022/09/07/about-design-model3/basic-model.png" alt="basic-model"><br><img src="/2022/09/07/about-design-model3/inherit-model.png" alt="inherit-model"><br><img src="/2022/09/07/about-design-model3/inherit-as-basic-model.png" alt="inherit-as-basic-model"></p>
+<h6 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h6><p>观察者模式(Observer):又被称作发布-订阅者模式或消息机制，定义了一种依赖关系，解决了主体对象与观察者之间功能的耦合。</p>
+<p>观察者对象包含：一个消息容器，订阅消息方法、取消订阅的消息方法、发送订阅的消息方法</p>
+<p><img src="/2022/09/07/about-design-model3/observer.png" alt="observer"><br><img src="/2022/09/07/about-design-model3/observer-regist.png" alt="observer-regist"><br><img src="/2022/09/07/about-design-model3/observer-fire.png" alt="observer-fire"><br><img src="/2022/09/07/about-design-model3/observer-remove.png" alt="observer-remove"></p>
+<p><img src="/2022/09/07/about-design-model3/regist-message.png" alt="regist-message"><br><img src="/2022/09/07/about-design-model3/regist-change-num.png" alt="regist-change-num"><br><img src="/2022/09/07/about-design-model3/add-message.png" alt="add-message"></p>
+<h6 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h6><p>状态模式(State):当一个对象的内部状态发生改变时，会导致其行为的改变，这看起来像是改变了对象。</p>
+<p>状态模式简化了分支判断遍历逻辑</p>
+<p><img src="/2022/09/07/about-design-model3/vote-status.png" alt="vote-status"></p>
+<p>示例<br>思路：首先创建一个状态对象，内部保存状态变量，然后内部封装好每种,动作对应的状态，最后状态对象返回一个接口对象，它可以对内部的状态修改或者调用<br><img src="/2022/09/07/about-design-model3/marry-state.png" alt="marry-state"><br><img src="/2022/09/07/about-design-model3/marry-state1.png" alt="marry-state1"></p>
+<h6 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h6><p>策略模式(Strategy):将定义的一组算法封装起来，使其相互之间可以替换。封装的算法具有一定独立性，不会随客户端变化而变化。</p>
+<p><strong>与状态模式异同点</strong><br>相同点：结构上与状态模式很像，也是在内部封装一个对象，然后通过返回的接口对象实现对内部对象的调用<br>不同点：策略模式不需要管理状态、状态间没有依赖关系、策略之间可以相互替换、在策略对象内部保存的是相互独立的一些算法</p>
+<p><img src="/2022/09/07/about-design-model3/price-strategy.png" alt="price-strategy"></p>
+<p><strong>策略模式的优点</strong><br>第一，策略模式封装了一组代码簇，并且封装的代码相互之间独立，便于对算法的重复引用，提高了算法的复用率。<br>第二，策略模式与继承相比，在类的继承中继承的方法是被封装在类中，因此当需求很多算法时，就不得不创建出多种类，这样会导致算法与算法的使用者耦合在一起,不利于算法的独立演化，并且在类的外部改变类的算法难度也是极大的。<br>第三，同状态模式一样,策略模式也是一种优化分支判断语句的模式,采用策略模式对算法封装使得算法更利于维护。</p>
+<p><strong>策略模式的缺点</strong><br>由于选择哪种算法的决定权在用户，所以对用户来说就必须了解每种算法的实现,增加了用户对策略对象的使用成本。<br>由于每种算法间相互独立，这样对于一些复杂的算法处理相同逻辑的部分无法实现共享，这就会造成一些资源的浪费</p>
+<p><strong>优化分支语句的模式</strong><br>工厂方法模式，状态模式与策略模式<br>工厂方法模式：一种创建型模式，最终目的是创建对象。<br>状态模式是行为型模式，不过在状态模式中，其核心是对状态的控制来决定表现行为，所以状态之间通常是不能相互替代的，否则将产生不同的行为结果。<br>策略模式是行为型模式，核心是算法，由于每种算法要处理的业务逻辑相同，因此他们可以相互替换，当然策略模式并不关心使用者环境，因为同一种策略模式最终产出的结果是一定的。</p>
+<h6 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h6><p>职责链模式(Chain of Responsibility):解决请求的发送者与请求的接受者之间的耦合，通过职责链上的多个对象对分解请求流程，实现请求在多个对象之间的传递，直到最后一个对象完成请求的处理。</p>
+<p>示例<br><img src="/2022/09/07/about-design-model3/send-data.png" alt="send-data"><br><img src="/2022/09/07/about-design-model3/deal-data.png" alt="deal-data"><br><img src="/2022/09/07/about-design-model3/create-component.png" alt="create-component"></p>
+<p><strong>缺点</strong><br>职责链上的每一个对象不一定都能参与请求的传递，有时会造成一丝资源的浪费<br>多个对象参与请求的传递，在代码调试时增加了调试成本</p>
+<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6><p>命令模式(Command):将请求与实现解耦并封装成独立对象，从而使不同的请求对客户端的实现参数化。<br>命令模式常用于解耦<br><img src="/2022/09/07/about-design-model3/command-model-1.png" alt="command-model-1"><br><img src="/2022/09/07/about-design-model3/command-model-2.png" alt="command-model-2"><br><img src="/2022/09/07/about-design-model3/command-model-3.png" alt="command-model-3"></p>
+<p>命令模式的优点:<br>解决命令使用者之间的耦合。新的命令很容易加入到命令系统中，供使用者使用。<br>命令的使用具有一致性，多数的命令在一定程度上是简化操作方法的使用的。</p>
+<p>命令模式的缺点:<br>命令模式是对一些操作的封装，这就造成每执行一次操作都要调用一次命令对象，增加了系统的复杂度。</p>
+<h6 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h6><p>访问者模式(Visitor):针对于对象结构中的元素，定义在不改变该对象的前提下访问结构中元素的新方法。</p>
+<p><img src="/2022/09/07/about-design-model3/visitor-model.png" alt="visitor-model"></p>
+<h6 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h6><p>中介者模式(Mediator):通过中介者对象封装一系列对象之间的交互，使对象之间不再相互引用，降低他们之间的耦合。有时中介者对象也可改变对象之间的交互。</p>
+<p>(1)观察者模式与中介者模式的区别<br>相同点<br>都是通过消息的收发机制实现的<br>差异点<br>在观察者模式中，一个对象既可以是消息的发送者也可以是消息的接收者，他们之间信息交流依托于消息系统实现的解耦,需要写一个消息系统<br>中介者模式中消息的发送方只有一个，就是中介者对象，而且中介者对象不能订阅消息，只有那些活跃对象(订阅者)才可订阅中介者的消息，当然你也可以看作是将消息系统封装在中介者对象内部，所以中介者对象只能是消息的发送者</p>
+<p><img src="/2022/09/07/about-design-model3/mediator-model.png" alt="mediator-model"></p>
+<h6 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h6><p>备忘录模式(Memento):在不破坏对象的封装性的前提下，在对象之外捕获并保存该对象内部的状态以便日后对象使用或者对象恢复到以前的某个状态。</p>
+<p><img src="/2022/09/07/about-design-model3/cache-model.png" alt="cache-model"></p>
+<h6 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h6><p>迭代器模式(Iterator):在不暴露对象内部结构的同时，可以顺序地访问聚合对象内部的元素。</p>
+<p><img src="/2022/09/07/about-design-model3/iterator-model.png" alt="iterator-model"></p>
+<h6 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h6><p>解释器模式(Interpreter):对于一种语言，给出其文法表示形式，并定义一种解释器，通过使用这种解释器来解释语言中定义的句子。</p>
+<p><img src="/2022/09/07/about-design-model3/explain-model-1.png" alt="explain-model-1"><br><img src="/2022/09/07/about-design-model3/explain-model-2.png" alt="explain-model-2"><br><img src="/2022/09/07/about-design-model3/explain-model-3.png" alt="explain-model-3"></p>
+<p>解释器即是对客户提出的需求，经过解析而形成的一个抽象解释程序。而是否可以应用解释器模式的一条重要准侧是<strong>能否根据需求解析出一套完成的语法规则,不论该语法规则简单或是复杂都是必须的</strong>。因为解释器要按照这套规则才能实现相应的功能。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/06/about-design-model2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/06/about-design-model2/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(3)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-06 15:11:48" itemprop="dateCreated datePublished" datetime="2022-09-06T15:11:48+08:00">2022-09-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-22 17:16:44" itemprop="dateModified" datetime="2022-09-22T17:16:44+08:00">2022-09-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p>
+<h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p>
+<p>多用于兼容模式<br><img src="/2022/09/06/about-design-model2/out-look.png" alt="out-look"></p>
+<h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p>
+<p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p>
+<h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p>
+<p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><img src="/2022/09/06/about-design-model2/station-culculate.png" alt="station-culculate"></p>
+<p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p>
+<p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p>
+<h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><img src="/2022/09/06/about-design-model2/decorator.png" alt="decorator"></p>
+<p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p>
+<h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p>
+<p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p>
+<p><img src="/2022/09/06/about-design-model2/bridge1.png" alt="bridge1"><br><img src="/2022/09/06/about-design-model2/bridge2.png" alt="bridge2"><br><img src="/2022/09/06/about-design-model2/bridge3.png" alt="bridge3"></p>
+<p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p>
+<h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
+<p>组合模式常用语创建表单。</p>
+<h6 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h6><p>享元模式(Flyweight):运用共享技术有效地支持大量的细粒度的对象，避免对象间拥有相同内容造成多余的开销。</p>
+<p>享元模式主要还是对其数据、方法共享分离，它将数据和方法分成内部数据、内部方法和外部数据、外部方法。内部方法与内部数据指的是相似或者共有的数据和方法,所以将这一部分提取出来减少开销，以提高性能。</p>
+<p>在一些小程序中，性能与内存的消耗对程序的执行影响不大时，强行应用享元模式而引入复杂的代码逻辑,往往会收到负效应。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -895,178 +1101,6 @@
 <p>注意：<br>hint 取值为：<br>‘number’:该场合需要转成数值，<br>‘string’:该场合需要转成字符串，<br>‘default’:该场合可以转成数值，也可以转成字符串。</p>
 <h4 id="对象转换成原始值的方法及执行顺序"><a href="#对象转换成原始值的方法及执行顺序" class="headerlink" title="对象转换成原始值的方法及执行顺序"></a>对象转换成原始值的方法及执行顺序</h4><p>以下优先级从上到下依次降低<br>1、先判断对象中是否有/[Symbol.toPrimitive/]/(hint/)方法，如果有的话，优先执行该方法<br>2、如果预期被转化成字符串类型时，则优先执行toString()方法<br>3、如果预期被转化成默认类型或数字类型时，则优先执行valueOf()方法<br>注意：若没有valueOf()方法，但是定义了toString()方法，则会执行toString()方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](hint) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(hint);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;symbol&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj)); <span class="comment">// string symbol</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj)); <span class="comment">// number NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj1)); <span class="comment">// string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj1)); <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj2)); <span class="comment">// &#x27;1&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj2)); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj3)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj3)); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/05/create-vscode-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/05/create-vscode-plugin/" class="post-title-link" itemprop="url">开发一个vscode插件的流程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-05 10:33:23 / Modified: 14:08:56" itemprop="dateCreated datePublished" datetime="2022-08-05T10:33:23+08:00">2022-08-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="vscode中文手册"><a href="#vscode中文手册" class="headerlink" title="vscode中文手册"></a>vscode中文手册</h4><p><a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/CN-VScode-Docs/README.md">https://www.bookstack.cn/read/CN-VScode-Docs/README.md</a></p>
-<h4 id="vscode插件脚手架"><a href="#vscode插件脚手架" class="headerlink" title="vscode插件脚手架"></a>vscode插件脚手架</h4><p>安装脚手架和代码生成器</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yo generator-code</span><br></pre></td></tr></table></figure>
-<p>生成vscode脚手架项目</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo code</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/04/about-map/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/04/about-map/" class="post-title-link" itemprop="url">Map 结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-04 14:07:12 / Modified: 15:31:23" itemprop="dateCreated datePublished" datetime="2022-08-04T14:07:12+08:00">2022-08-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="什么是Map"><a href="#什么是Map" class="headerlink" title="什么是Map?"></a>什么是Map?</h4><p>由ES6提供的一种数据结构。它类似于对象，也是键值对的集合，但和对象不同的是，对象的键只能是字符串，map的键可以是各种类型的值（包括对象）。即，Object提供了 字符串-值 的对应，map提供了 值-值 的对应，是一种更完善的Hash结构实现。</p>
-<h4 id="怎么创建map？"><a href="#怎么创建map？" class="headerlink" title="怎么创建map？"></a>怎么创建map？</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
-<p>map可以使用一个对象作为键</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">const</span> o = &#123; <span class="attr">p</span>: <span class="string">&#x27;string&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line">map.set(o, <span class="string">&#x27;text&#x27;</span>);</span><br><span class="line">map.get(o); <span class="comment">// text</span></span><br><span class="line"></span><br><span class="line">map.has(o); <span class="comment">// true</span></span><br><span class="line">map.delete(o);</span><br></pre></td></tr></table></figure>
-<p>map还可以接受一个数组作为参数，该数组成员是一个个表示键值对的数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;Tom&#x27;</span>], [<span class="string">&#x27;age&#x27;</span>, <span class="number">12</span>]]);</span><br><span class="line">map.size; <span class="comment">// 2</span></span><br><span class="line">map.has(<span class="string">&#x27;name&#x27;</span>); <span class="comment">// true</span></span><br><span class="line">map.get(<span class="string">&#x27;age&#x27;</span>); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><p>如果对同一个键多次赋值，后面的值将覆盖前面的值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.set(<span class="number">1</span>, <span class="string">&#x27;qw&#x27;</span>).set(<span class="number">1</span>, <span class="string">&#x27;sdf&#x27;</span>);</span><br><span class="line">map.get(<span class="number">1</span>); <span class="comment">// sdf</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="map的实例属性和方法"><a href="#map的实例属性和方法" class="headerlink" title="map的实例属性和方法"></a>map的实例属性和方法</h4><p>1、size<br>用法：map.size<br>作用：获取map结构的大小<br>返回：map结构的长度大小</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.size; <span class="comment">// 0</span></span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.size; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>2、set()<br>用法：map.set(key, value)<br>作用：向map中添加或修改map的数据<br>返回：修改后的map</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br></pre></td></tr></table></figure>
-
-<p>3、get()<br>用法：map.get(key)<br>作用：获取对应key的value值<br>返回：map结构中key对应的值，不存在对应key时，返回undefined</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.get(<span class="number">1</span>); <span class="comment">// 12</span></span><br><span class="line">map.get(<span class="number">2</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-<p>4、has()<br>用法：map.has(key)<br>作用：判断map中是否有对应的key<br>返回：true/false，依据map中是否有对应的key，返回true或false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.has(<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">map.has(<span class="number">2</span>); <span class="comment">// has</span></span><br></pre></td></tr></table></figure>
-
-<p>5、delete()<br>用法：map.delete(key)<br>作用：删除map中对应的key及value<br>返回：true/false，删除成功返回true，删除失败返回false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.delete(<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">map.delete(<span class="number">2</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<p>6、clear()<br>用法：map.clear()<br>作用：清空map中的数据<br>返回：undefined</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.clear(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="map的遍历方法"><a href="#map的遍历方法" class="headerlink" title="map的遍历方法"></a>map的遍历方法</h4><p>1、keys()<br>2、values()<br>3、entries()<br>4、forEach()</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/93b5a5940de8">https://www.jianshu.com/p/93b5a5940de8</a></p>
-
       
     </div>
 

@@ -572,9 +572,9 @@ JavaScript 函数式编程：https://www.packtpub.com/web-development/functional
 | O(log(n))    | 对数的       |
 | O((log(n))c) | 对数多项式的 |
 | O(n)         | 线性的       |
-| O(n2)        | 二次的       |
-| O(nc)        | 多项式的     |
-| O(cn)        | 指数的       |
+| O(n^2)       | 二次的       |
+| O(n^c)       | 多项式的     |
+| O(c^n)       | 指数的       |
 
 **理解大 O 表示法**
 
@@ -592,7 +592,10 @@ function increment(num) {
 
 2. O(n)
 
+函数执行的总开销取决于数组元素的个数（数组大小），而且也和搜索的值有关。如果是查找数组中存在的值，查找运算执行次数由值的位置决定。如果查找的是数组中不存在的值，查找运算就会执行和数组大小一样多次，这就是通常所说的最坏情况。最坏情况下，如果数组大小是 10，开销就是 10；如果数组大小是 1000，开销就是 1000。可以得出 sequentialSearch 函数的时间复杂度是 O(n)，n 是（输入）数组的大小。
+
 以顺序搜索算法为例
+
 ```javascript
 function sequentialSearch(array, value, equalsFn = defaultEquals) {
   for (let i = 0; i < array.length; i++) {
@@ -618,3 +621,126 @@ function sequentialSearch(array, value, equalsFn = defaultEquals) {
   return -1;
 }
 ```
+
+3. O(n^2)
+
+以冒泡排序为例
+
+```javascript
+function bubbleSort(array, compareFn = defaultCompare) {
+  const { length } = array;
+  for (let i = 0; i < length; i++) {
+    // {1}
+    for (let j = 0; j < length - 1; j++) {
+      // {2}
+      if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) {
+        swap(array, j, j + 1);
+      }
+    }
+  }
+  return array;
+}
+
+// 假设行{1}和行{2}的开销分别是 1。修改算法的实现使之计算开销。
+function bubbleSort(array, compareFn = defaultCompare) {
+  const { length } = array;
+  let cost = 0;
+  for (let i = 0; i < length; i++) {
+    // {1}
+    cost++;
+    for (let j = 0; j < length - 1; j++) {
+      // {2}
+      cost++;
+      if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) {
+        swap(array, j, j + 1);
+      }
+    }
+  }
+  console.log(`cost for bubbleSort with input size ${length} is ${cost}`);
+  return array;
+}
+```
+
+如果用大小为 10 的数组执行 bubbleSort，开销是 100（10^2）。如果用大小为 100 的数组执行bubbleSort，开销就是 10 000（100^2）。需要注意，我们每次增加输入的大小，执行都会越来越久
+
+*时间复杂度 O(n)的代码只有一层循环，而 O(n^2)的代码有双层嵌套循环。如果算法有三层迭代数组的嵌套循环，它的时间复杂度很可能就是 O(n^3)*
+
+**时间复杂度比较**
+
+| 输入大小（n） | O(1) | O(log(n)) | O(n)   | O(nlog(n)) | O(n^2)      | O(2^n)    |
+| ------------- | ---- | --------- | ------ | ---------- | ----------- | --------- |
+| 10            | 1    | 1         | 10     | 10         | 100         | 1024      |
+| 20            | 1    | 1.30      | 20     | 26.02      | 400         | 1 048 576 |
+| 50            | 1    | 1.69      | 50     | 84.94      | 2500        | 非常大    |
+| 100           | 1    | 2         | 100    | 200        | 10 000      | 非常大    |
+| 500           | 1    | 2.69      | 500    | 1349.48    | 250 000     | 非常大    |
+| 1000          | 1    | 3         | 1000   | 3000       | 1 000 000   | 非常大    |
+| 10 000        | 1    | 4         | 10 000 | 40 000     | 100 000 000 | 非常大    |
+
+不同的大 O 表示法的消耗
+
+![big-o-1](big-o-1.png)
+
+*常用数据结构的时间复杂度*
+![big-o-2](big-o-2.png)
+
+*图的时间复杂度*
+![big-o-3](big-o-3.png)
+
+*排序算法的时间复杂度*
+![big-o-4](big-o-4.png)
+
+*搜索算法的时间复杂度*
+![big-o-5](big-o-5.png)
+
+**NP 完全理论概述**
+一般来说，如果一个算法的复杂度为 O(n^k)，其中 k 是常数，我们就认为这个算法是高效的，这就是多项式算法.
+
+对于给定的问题，如果存在多项式算法，则计为 P（polynomial，多项式）
+
+NP（nondeterministic polynomial，非确定性多项式）算法。如果一个问题可以在多项式时间内验证解是否正确，则计为 NP
+
+如果一个问题存在多项式算法，自然可以在多项式时间内验证其解。因此，所有的 P 都是NP。然而，P = NP 是否成立，仍然不得而知。
+
+NP 问题中最难的是 NP 完全问题。如果满足以下两个条件，则称决策问题 L 是 NP 完全的：
+(1) L 是 NP 问题，也就是说，可以在多项式时间内验证解，但还没有找到多项式算法；
+(2) 所有的 NP 问题都能在多项式时间内归约为 L。
+
+为了理解问题的归约，考虑两个决策问题 L和 M。假设算法 A可以解决问题 L，算法 B可以验证输入 y是否为 M的解。目标是找到一个把 L转化为 M的方法，使得算法 B可以用于构造算法 A。
+
+还有一类问题，只需满足 NP 完全问题的第二个条件，称为 NP 困难问题。因此，NP 完全问题也是 NP 困难问题的子集。
+
+下面是满足 P<>NP 时，P、NP、NP 完全和 NP 困难问题的欧拉图。
+![big-o-6](big-o-6.png)
+
+非 NP 完全的 NP 困难问题的例子有停机问题和布尔可满足性问题（SAT）。
+
+NP 完全问题的例子有子集和问题、旅行商问题、顶点覆盖问题，等等。
+
+以上问题，具体可查看：https://en.wikipedia.org/wiki/NP-completeness
+
+*不可解问题与启发式算法*
+有些问题是不可解的。然而，仍然有办法在符合要求的时间内找到一个近似解。
+启发式算法就是其中之一。启发式算法得到的未必是最优解，但足够解决问题了。
+启发式算法的例子有局部搜索、遗传算法、启发式导航、机器学习等。
+详情请查阅 https://en.wikipedia.org/wiki/Heuristic_(computer_science)
+
+UVa Online Judge（http://uva.onlinejudge.org/）
+Sphere Online Judge（http://www.spoj.com/）
+Coderbyte（http://coderbyte.com/）
+Project Euler（https://projecteuler.net/）
+HackerRank（https://www.hackerrank.com）
+CodeChef（http://www.codechef.com/）
+Top Coder（http://www.topcoder.com/）
+
+
+#### 疑问点
+尾调用优化
+Floyd-Warshall 算法
+Kruskal 算法
+背包问题
+最长公共子序列
+矩阵链相乘
+NP 完全理论
+- 多项式时间
+- 归约
