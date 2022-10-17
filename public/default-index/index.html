@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,100 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/17/tail-call/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/17/tail-call/" class="post-title-link" itemprop="url">尾调用与尾递归</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-10-17 10:26:13 / Modified: 14:06:31" itemprop="dateCreated datePublished" datetime="2022-10-17T10:26:13+08:00">2022-10-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="什么是尾调用？"><a href="#什么是尾调用？" class="headerlink" title="什么是尾调用？"></a>什么是尾调用？</h6><p><strong>某个函数的最后一步调用另一个函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> call2(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下三种情况不属于尾调用！！！</span></span><br><span class="line"><span class="comment">// 函数调用后还有其他操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> x = call2(a);</span><br><span class="line"> <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> call2(a) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"> call2(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下属于尾调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (!!a) &#123;</span><br><span class="line">  <span class="keyword">return</span> call2(a);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> call3(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h6><p><em>注意：尾调用优化是否方便可行取决于运行环境对此类优化的支持度</em></p>
+<p>函数调用会在内存中形成一个‘调用记录’，又称为‘调用帧’。用来保存调用位置和内存变量等信息。如果A函数内部调用B函数，在A的调用记录上，会生成一个B的调用记录，等到B运行结束，将结果返回给A，B的调用记录才会消失。如果B的内部还调用C，那么在B上面会形成一个C的调用记录，以此类推。所有的调用记录，形成了一个‘调用栈’(call stack)。</p>
+<p><img src="/2022/10/17/tail-call/call-stack.png" alt="call-stack"></p>
+<p>但是，尾调用由于是函数调用的最后一步操作，所以不需要保存外部函数的调用记录，因为调用位置、内部变量等信息都不会再用到，只要直接用内层函数的调用记录，取代外层函数调用记录就可以了。所以，如果所有函数都是尾调用，那么每次执行的时候，只需要记录一项调用记录，从而节省大量内存，即‘尾调用优化’。</p>
+<p><em>注意：只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行‘尾调用优化’</em></p>
+<h6 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h6><p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>
+<p>递归非常耗费内存，因为需要同时保存许多调用记录，很容易发生‘栈溢出’错误(stack overflow)。但对于尾递归来说，由于只存在一个调用记录，所以永远不会发生‘栈溢出’错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 阶乘计算</span></span><br><span class="line"><span class="comment">// 复杂度 O(n)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 复杂度O(1)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line"> <span class="keyword">return</span> factorial(n -<span class="number">1</span>, n* total);</span><br><span class="line">&#125;</span><br><span class="line">factorial(<span class="number">5</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// factorial(5, 1);</span></span><br><span class="line"><span class="comment">// factorial(4, 5);</span></span><br><span class="line"><span class="comment">// factorial(3, 20);</span></span><br><span class="line"><span class="comment">// factorial(2, 60);</span></span><br><span class="line"><span class="comment">// factorial(1, 120);</span></span><br><span class="line"><span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="递归函数的改写优化"><a href="#递归函数的改写优化" class="headerlink" title="递归函数的改写优化"></a>递归函数的改写优化</h6><p>尾递归的实现，需要将所有用到的内部参数变量改写成函数的参数，不过直接修改的函数往往不太直观，一般采用以下两种方法解决：</p>
+<p>(1) 除尾递归函数外，在提供一个正常形式的函数，通过正常表现的函数调用递归函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailCall</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line"> <span class="keyword">return</span> tailCall(n -<span class="number">1</span>, n*total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> tailCall(n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">call(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>(2) 使用柯理化，将多参数的函数转化为单参数形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn, n</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> fn.call(<span class="built_in">this</span>, m, n);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailCall</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line"> <span class="keyword">return</span> tailCall(n -<span class="number">1</span>, n*total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> factorial = currying(tailCall, <span class="number">1</span>);</span><br><span class="line">factorial(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者使用ES6函数默认值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line"> <span class="keyword">return</span> tailCall(n -<span class="number">1</span>, n*total);</span><br><span class="line">&#125;</span><br><span class="line">factorial(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p><em>ES6的尾调用优化只在严格模式下开启，正常模式无效</em><br>正常模式下，函数内部有两个变量，可以跟踪函数的调用栈</p>
+<ul>
+<li>arguments 返回调用时函数的参数</li>
+<li>func.caller 返回调用当前函数的那个函数<br>尾调用优化发生时，函数调用栈会改写，上面两个变量会失真。严格模式禁用这两个变量，所以尾调用仅在严格模式下生效。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8">尾调用-维基百科</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1425,111 +1519,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/19/about-design-model4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/19/about-design-model4/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(5)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-19 17:51:10" itemprop="dateCreated datePublished" datetime="2022-09-19T17:51:10+08:00">2022-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-23 14:51:25" itemprop="dateModified" datetime="2022-09-23T14:51:25+08:00">2022-09-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="技巧型设计模式"><a href="#技巧型设计模式" class="headerlink" title="技巧型设计模式"></a>技巧型设计模式</h4><p>技巧型设计模式是通过一些特定技巧来解决组件的某些方面的问题，这类技巧一般通过实践经验总结得到。</p>
-<h6 id="链模式"><a href="#链模式" class="headerlink" title="链模式"></a>链模式</h6><p>链模式(Operate of Responsibility):通过在对象方法中将当前对象返回，实现对同一个对象多个方法的链式调用。从而简化对该对象的多个方法的多次调用时，对该对象的多次引用。</p>
-<p><img src="/2022/09/19/about-design-model4/chain-model-1.png" alt="chain-model-1"><br><img src="/2022/09/19/about-design-model4/chain-model-2.png" alt="chain-model-2"><br><img src="/2022/09/19/about-design-model4/chain-model-3.png" alt="chain-model-3"></p>
-<p>jOuery获取的元素更像一个数组，上面框架返回的更像是一个对象<br>原因：由于JavaScript 的弱类型语言，并且数组、对象、函数都被看成是对象的实例，所以JavaScript中并没有一个纯粹的数组类型。而且JavaScript引擎的实现也没有做严格的校验，也是基于对象实现的。一些浏览器解析引擎在判断对象是否是数组的时候不仅仅判断其有没有length 属性，可否通过‘![索引值]’方式访问元素，还会判断其是否具有数组方法来确定是否要用数组的形式展现，所以只需要在 A.fn中添加几个数组常用的方法来增强数组特性就可以解决问题了<br><img src="/2022/09/19/about-design-model4/chain-model-4.png" alt="chain-model-4"></p>
-<p><img src="/2022/09/19/about-design-model4/chain-model-5.png" alt="chain-model-5"><br><img src="/2022/09/19/about-design-model4/chain-model-6.png" alt="chain-model-6"></p>
-<h6 id="委托模式"><a href="#委托模式" class="headerlink" title="委托模式"></a>委托模式</h6><p>委托模式(Entrust):多个对象接收并处理同一请求，他们将请求委托给另一个对象统一处理请求。</p>
-<p>委托模式可以优化页面中事件的数量。</p>
-<p>事件委托是将子元素的事件委托给父元素，然后通过事件冒泡传递的，再通过判断事件源的某种特性来执行某一业务逻辑</p>
-<p><img src="/2022/09/19/about-design-model4/entrust-model-1.png" alt="entrust-model-1"><br><img src="/2022/09/19/about-design-model4/entrust-model-2.png" alt="entrust-model-2"></p>
-<h6 id="数据访问对象模式"><a href="#数据访问对象模式" class="headerlink" title="数据访问对象模式"></a>数据访问对象模式</h6><p>数据访问对象模式(Data access object-DAO):抽象和封装对数据源的访问与存储，DAO通过对数据源链接的管理方便对数据的访问与存储。</p>
-<p><img src="/2022/09/19/about-design-model4/localstorage-model-1.png" alt="localstorage-model-1"><br><img src="/2022/09/19/about-design-model4/localstorage-model-2.png" alt="localstorage-model-2"><br><img src="/2022/09/19/about-design-model4/localstorage-model-3.png" alt="localstorage-model-3"><br><img src="/2022/09/19/about-design-model4/localstorage-model-4.png" alt="localstorage-model-4"><br><img src="/2022/09/19/about-design-model4/localstorage-model-5.png" alt="localstorage-model-5"><br><img src="/2022/09/19/about-design-model4/localstorage-model-6.png" alt="localstorage-model-6"></p>
-<h6 id="节流模式"><a href="#节流模式" class="headerlink" title="节流模式"></a>节流模式</h6><p>节流模式(Throttler):对重复的业务逻辑进行节流控制，执行最后一次操作并取消其他操作，以提高性能。</p>
-<p><img src="/2022/09/19/about-design-model4/throttle-model-1.png" alt="throttle-model-1"><br><img src="/2022/09/19/about-design-model4/throttle-model-2.png" alt="throttle-model-2"><br><img src="/2022/09/19/about-design-model4/throttle-model-3.png" alt="throttle-model-3"></p>
-<p>节流模式的核心思想是创建计时器，延迟程序的执行。这也使得计时器中回调函数的操作异步执行(这里的异步执行并不是说JavaScript是多线程语言，JavaScript 从设计之初就是单线程语言，异步只是说脱离原来程序执行的顺序,看上去，异步程序像是在同时执行。但是某一时刻，当前执行的程序一定是所有异步程序(包括原程序)中的某一个)。</p>
-<p>节流模式优势<br>(1)第一，程序能否执行是可控的。执行前的某一时刻是否清除计时器来决定程序是否可以继续执行<br>(2)第二，程序是异步的。由于计时器机制，使得程序脱离原程序而异步执行(当然随着worker技术的兴起，也可开启多线程模式实现)，因此不会影响后面的程序的正常执行。在其他方面，比如对异步请求(ajax)应用节流，此时可以优化请求次数来节省资源。</p>
-<h6 id="简单模板模式"><a href="#简单模板模式" class="headerlink" title="简单模板模式"></a>简单模板模式</h6><p>简单模板模式(Simple template):通过格式化字符串拼凑出视图避免创建视图时大量节点操作。优化内存开销。</p>
-<p><img src="/2022/09/19/about-design-model4/template-model-1.png" alt="template-model-1"><br><img src="/2022/09/19/about-design-model4/template-model-2.png" alt="template-model-2"><br><img src="/2022/09/19/about-design-model4/template-model-3.png" alt="template-model-3"><br><img src="/2022/09/19/about-design-model4/template-model-4.png" alt="template-model-4"><br><img src="/2022/09/19/about-design-model4/template-model-5.png" alt="template-model-5"><br><img src="/2022/09/19/about-design-model4/template-model-6.png" alt="template-model-6"></p>
-<h6 id="惰性模式"><a href="#惰性模式" class="headerlink" title="惰性模式"></a>惰性模式</h6><p>惰性模式(layier):减少每次代码执行时的重复性的分支判断，通过对对象重定义来屏蔽原对象中的分支判断。</p>
-<p>两种实现方式<br>(1)第一种就是在文件加载进来时通过闭包执行该方法对其重新定义。不过这样会使页面加载时占用一定资源。<br>(2)第二种方式是在第一种方式基础上做一次延迟执行，在函数第一次调用的时候对其重定义。这么做的好处就是减少文件加载时的资源消耗，但是却在第一次执行时有一定的资源消耗</p>
-<p><img src="/2022/09/19/about-design-model4/lazy-model-1.png" alt="lazy-model-1"><br><img src="/2022/09/19/about-design-model4/lazy-model-2.png" alt="lazy-model-2"><br><img src="/2022/09/19/about-design-model4/lazy-model-3.png" alt="lazy-model-3"><br><img src="/2022/09/19/about-design-model4/lazy-model-4.png" alt="lazy-model-4"><br><img src="/2022/09/19/about-design-model4/lazy-model-5.png" alt="lazy-model-5"><br><img src="/2022/09/19/about-design-model4/lazy-model-6.png" alt="lazy-model-6"></p>
-<h6 id="参与者模式"><a href="#参与者模式" class="headerlink" title="参与者模式"></a>参与者模式</h6><p>参与者(participator):在特定的作用域中执行给定的函数，并将参数原封不动地传递。</p>
-<p><img src="/2022/09/19/about-design-model4/participate-model-1.png" alt="participate-model-1"><br><img src="/2022/09/19/about-design-model4/participate-model-2.png" alt="participate-model-2"></p>
-<p>函数柯里化的思想是对函数的参数分割，这有点像其他面向语言中的类的多态，就是根据传递的参数不同，可以让一个函数存在多种状态，只不过函数柯里化处理的是函数，因此要实现函数的柯里化是要以函数为基础的，借助柯里化器伪造其他函数，让这些伪造的函数在执行时调用这个基函数完成不同的功能</p>
-<p><img src="/2022/09/19/about-design-model4/participate-model-3.png" alt="participate-model-3"><br><img src="/2022/09/19/about-design-model4/participate-model-4.png" alt="participate-model-4"><br><img src="/2022/09/19/about-design-model4/participate-model-5.png" alt="participate-model-5"></p>
-<p>参与者模式实质上是两种技术的结晶，函数绑定和函数柯里化<br>(1)对于函数绑定，它将函数以函数指针(函数名)的形式传递，使函数在被绑定的对象作用域中执行，因此函数的执行中可以顺利地访问到对象内部的数据，由于函数绑定构造复杂，执行时需消耗更多的内存，因此执行速度上要稍慢一些。不过相对于解决的问题来说这种消耗还是值得的，因此它常用于事件，setTimeout或setInterval等异步逻辑中的回调函数。<br>(2)对于函数柯里化即是将接受多个参数的函数转化为接受一部分参数的新函数,余下的参数保存下来，当函数调用时，返回传入的参数与保存的参数共同执行的结果。通常保存下来的参数保存于闭包内,因此函数柯里化的实现要消耗一定的资源。函数的柯里化有点类似类的重载,不同点是类的重载是同一个类对象,函数的柯里化是两个不同的函数。</p>
-<p>随着函数柯里化的发展，现在又衍生出一种反柯里化的函数，其目的是方便我们对方法的调用<br><img src="/2022/09/19/about-design-model4/participate-model-6.png" alt="participate-model-6"></p>
-<h6 id="等待者模式"><a href="#等待者模式" class="headerlink" title="等待者模式"></a>等待者模式</h6><p>等待者模式(waiter):通过对多个异步进程监听，来触发未来发生的动作。</p>
-<p><img src="/2022/09/19/about-design-model4/waiter-model-1.png" alt="waiter-model-1"><br><img src="/2022/09/19/about-design-model4/waiter-model-2.png" alt="waiter-model-2"><br><img src="/2022/09/19/about-design-model4/waiter-model-3.png" alt="waiter-model-3"><br><img src="/2022/09/19/about-design-model4/waiter-model-4.png" alt="waiter-model-4"><br><img src="/2022/09/19/about-design-model4/waiter-model-5.png" alt="waiter-model-5"><br><img src="/2022/09/19/about-design-model4/waiter-model-6.png" alt="waiter-model-6"><br><img src="/2022/09/19/about-design-model4/waiter-model-7.png" alt="waiter-model-7"><br><img src="/2022/09/19/about-design-model4/waiter-model-8.png" alt="waiter-model-8"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/default-index/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/4/">4</a><a class="extend next" rel="next" href="/default-index/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/default-index/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/5/">5</a><a class="extend next" rel="next" href="/default-index/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

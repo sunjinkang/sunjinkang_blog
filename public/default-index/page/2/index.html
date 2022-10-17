@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,109 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/19/about-design-model4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/19/about-design-model4/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(5)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-19 17:51:10" itemprop="dateCreated datePublished" datetime="2022-09-19T17:51:10+08:00">2022-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-23 14:51:25" itemprop="dateModified" datetime="2022-09-23T14:51:25+08:00">2022-09-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="技巧型设计模式"><a href="#技巧型设计模式" class="headerlink" title="技巧型设计模式"></a>技巧型设计模式</h4><p>技巧型设计模式是通过一些特定技巧来解决组件的某些方面的问题，这类技巧一般通过实践经验总结得到。</p>
+<h6 id="链模式"><a href="#链模式" class="headerlink" title="链模式"></a>链模式</h6><p>链模式(Operate of Responsibility):通过在对象方法中将当前对象返回，实现对同一个对象多个方法的链式调用。从而简化对该对象的多个方法的多次调用时，对该对象的多次引用。</p>
+<p><img src="/2022/09/19/about-design-model4/chain-model-1.png" alt="chain-model-1"><br><img src="/2022/09/19/about-design-model4/chain-model-2.png" alt="chain-model-2"><br><img src="/2022/09/19/about-design-model4/chain-model-3.png" alt="chain-model-3"></p>
+<p>jOuery获取的元素更像一个数组，上面框架返回的更像是一个对象<br>原因：由于JavaScript 的弱类型语言，并且数组、对象、函数都被看成是对象的实例，所以JavaScript中并没有一个纯粹的数组类型。而且JavaScript引擎的实现也没有做严格的校验，也是基于对象实现的。一些浏览器解析引擎在判断对象是否是数组的时候不仅仅判断其有没有length 属性，可否通过‘![索引值]’方式访问元素，还会判断其是否具有数组方法来确定是否要用数组的形式展现，所以只需要在 A.fn中添加几个数组常用的方法来增强数组特性就可以解决问题了<br><img src="/2022/09/19/about-design-model4/chain-model-4.png" alt="chain-model-4"></p>
+<p><img src="/2022/09/19/about-design-model4/chain-model-5.png" alt="chain-model-5"><br><img src="/2022/09/19/about-design-model4/chain-model-6.png" alt="chain-model-6"></p>
+<h6 id="委托模式"><a href="#委托模式" class="headerlink" title="委托模式"></a>委托模式</h6><p>委托模式(Entrust):多个对象接收并处理同一请求，他们将请求委托给另一个对象统一处理请求。</p>
+<p>委托模式可以优化页面中事件的数量。</p>
+<p>事件委托是将子元素的事件委托给父元素，然后通过事件冒泡传递的，再通过判断事件源的某种特性来执行某一业务逻辑</p>
+<p><img src="/2022/09/19/about-design-model4/entrust-model-1.png" alt="entrust-model-1"><br><img src="/2022/09/19/about-design-model4/entrust-model-2.png" alt="entrust-model-2"></p>
+<h6 id="数据访问对象模式"><a href="#数据访问对象模式" class="headerlink" title="数据访问对象模式"></a>数据访问对象模式</h6><p>数据访问对象模式(Data access object-DAO):抽象和封装对数据源的访问与存储，DAO通过对数据源链接的管理方便对数据的访问与存储。</p>
+<p><img src="/2022/09/19/about-design-model4/localstorage-model-1.png" alt="localstorage-model-1"><br><img src="/2022/09/19/about-design-model4/localstorage-model-2.png" alt="localstorage-model-2"><br><img src="/2022/09/19/about-design-model4/localstorage-model-3.png" alt="localstorage-model-3"><br><img src="/2022/09/19/about-design-model4/localstorage-model-4.png" alt="localstorage-model-4"><br><img src="/2022/09/19/about-design-model4/localstorage-model-5.png" alt="localstorage-model-5"><br><img src="/2022/09/19/about-design-model4/localstorage-model-6.png" alt="localstorage-model-6"></p>
+<h6 id="节流模式"><a href="#节流模式" class="headerlink" title="节流模式"></a>节流模式</h6><p>节流模式(Throttler):对重复的业务逻辑进行节流控制，执行最后一次操作并取消其他操作，以提高性能。</p>
+<p><img src="/2022/09/19/about-design-model4/throttle-model-1.png" alt="throttle-model-1"><br><img src="/2022/09/19/about-design-model4/throttle-model-2.png" alt="throttle-model-2"><br><img src="/2022/09/19/about-design-model4/throttle-model-3.png" alt="throttle-model-3"></p>
+<p>节流模式的核心思想是创建计时器，延迟程序的执行。这也使得计时器中回调函数的操作异步执行(这里的异步执行并不是说JavaScript是多线程语言，JavaScript 从设计之初就是单线程语言，异步只是说脱离原来程序执行的顺序,看上去，异步程序像是在同时执行。但是某一时刻，当前执行的程序一定是所有异步程序(包括原程序)中的某一个)。</p>
+<p>节流模式优势<br>(1)第一，程序能否执行是可控的。执行前的某一时刻是否清除计时器来决定程序是否可以继续执行<br>(2)第二，程序是异步的。由于计时器机制，使得程序脱离原程序而异步执行(当然随着worker技术的兴起，也可开启多线程模式实现)，因此不会影响后面的程序的正常执行。在其他方面，比如对异步请求(ajax)应用节流，此时可以优化请求次数来节省资源。</p>
+<h6 id="简单模板模式"><a href="#简单模板模式" class="headerlink" title="简单模板模式"></a>简单模板模式</h6><p>简单模板模式(Simple template):通过格式化字符串拼凑出视图避免创建视图时大量节点操作。优化内存开销。</p>
+<p><img src="/2022/09/19/about-design-model4/template-model-1.png" alt="template-model-1"><br><img src="/2022/09/19/about-design-model4/template-model-2.png" alt="template-model-2"><br><img src="/2022/09/19/about-design-model4/template-model-3.png" alt="template-model-3"><br><img src="/2022/09/19/about-design-model4/template-model-4.png" alt="template-model-4"><br><img src="/2022/09/19/about-design-model4/template-model-5.png" alt="template-model-5"><br><img src="/2022/09/19/about-design-model4/template-model-6.png" alt="template-model-6"></p>
+<h6 id="惰性模式"><a href="#惰性模式" class="headerlink" title="惰性模式"></a>惰性模式</h6><p>惰性模式(layier):减少每次代码执行时的重复性的分支判断，通过对对象重定义来屏蔽原对象中的分支判断。</p>
+<p>两种实现方式<br>(1)第一种就是在文件加载进来时通过闭包执行该方法对其重新定义。不过这样会使页面加载时占用一定资源。<br>(2)第二种方式是在第一种方式基础上做一次延迟执行，在函数第一次调用的时候对其重定义。这么做的好处就是减少文件加载时的资源消耗，但是却在第一次执行时有一定的资源消耗</p>
+<p><img src="/2022/09/19/about-design-model4/lazy-model-1.png" alt="lazy-model-1"><br><img src="/2022/09/19/about-design-model4/lazy-model-2.png" alt="lazy-model-2"><br><img src="/2022/09/19/about-design-model4/lazy-model-3.png" alt="lazy-model-3"><br><img src="/2022/09/19/about-design-model4/lazy-model-4.png" alt="lazy-model-4"><br><img src="/2022/09/19/about-design-model4/lazy-model-5.png" alt="lazy-model-5"><br><img src="/2022/09/19/about-design-model4/lazy-model-6.png" alt="lazy-model-6"></p>
+<h6 id="参与者模式"><a href="#参与者模式" class="headerlink" title="参与者模式"></a>参与者模式</h6><p>参与者(participator):在特定的作用域中执行给定的函数，并将参数原封不动地传递。</p>
+<p><img src="/2022/09/19/about-design-model4/participate-model-1.png" alt="participate-model-1"><br><img src="/2022/09/19/about-design-model4/participate-model-2.png" alt="participate-model-2"></p>
+<p>函数柯里化的思想是对函数的参数分割，这有点像其他面向语言中的类的多态，就是根据传递的参数不同，可以让一个函数存在多种状态，只不过函数柯里化处理的是函数，因此要实现函数的柯里化是要以函数为基础的，借助柯里化器伪造其他函数，让这些伪造的函数在执行时调用这个基函数完成不同的功能</p>
+<p><img src="/2022/09/19/about-design-model4/participate-model-3.png" alt="participate-model-3"><br><img src="/2022/09/19/about-design-model4/participate-model-4.png" alt="participate-model-4"><br><img src="/2022/09/19/about-design-model4/participate-model-5.png" alt="participate-model-5"></p>
+<p>参与者模式实质上是两种技术的结晶，函数绑定和函数柯里化<br>(1)对于函数绑定，它将函数以函数指针(函数名)的形式传递，使函数在被绑定的对象作用域中执行，因此函数的执行中可以顺利地访问到对象内部的数据，由于函数绑定构造复杂，执行时需消耗更多的内存，因此执行速度上要稍慢一些。不过相对于解决的问题来说这种消耗还是值得的，因此它常用于事件，setTimeout或setInterval等异步逻辑中的回调函数。<br>(2)对于函数柯里化即是将接受多个参数的函数转化为接受一部分参数的新函数,余下的参数保存下来，当函数调用时，返回传入的参数与保存的参数共同执行的结果。通常保存下来的参数保存于闭包内,因此函数柯里化的实现要消耗一定的资源。函数的柯里化有点类似类的重载,不同点是类的重载是同一个类对象,函数的柯里化是两个不同的函数。</p>
+<p>随着函数柯里化的发展，现在又衍生出一种反柯里化的函数，其目的是方便我们对方法的调用<br><img src="/2022/09/19/about-design-model4/participate-model-6.png" alt="participate-model-6"></p>
+<h6 id="等待者模式"><a href="#等待者模式" class="headerlink" title="等待者模式"></a>等待者模式</h6><p>等待者模式(waiter):通过对多个异步进程监听，来触发未来发生的动作。</p>
+<p><img src="/2022/09/19/about-design-model4/waiter-model-1.png" alt="waiter-model-1"><br><img src="/2022/09/19/about-design-model4/waiter-model-2.png" alt="waiter-model-2"><br><img src="/2022/09/19/about-design-model4/waiter-model-3.png" alt="waiter-model-3"><br><img src="/2022/09/19/about-design-model4/waiter-model-4.png" alt="waiter-model-4"><br><img src="/2022/09/19/about-design-model4/waiter-model-5.png" alt="waiter-model-5"><br><img src="/2022/09/19/about-design-model4/waiter-model-6.png" alt="waiter-model-6"><br><img src="/2022/09/19/about-design-model4/waiter-model-7.png" alt="waiter-model-7"><br><img src="/2022/09/19/about-design-model4/waiter-model-8.png" alt="waiter-model-8"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1011,115 +1114,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/09/devan-operation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/09/devan-operation/" class="post-title-link" itemprop="url">装箱拆箱操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-09 13:43:57" itemprop="dateCreated datePublished" datetime="2022-08-09T13:43:57+08:00">2022-08-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-18 15:29:53" itemprop="dateModified" datetime="2022-08-18T15:29:53+08:00">2022-08-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。</p>
-<h4 id="什么是装箱拆箱？"><a href="#什么是装箱拆箱？" class="headerlink" title="什么是装箱拆箱？"></a>什么是装箱拆箱？</h4><p>装箱：把基本数据类型转化为对应的引用类型的操作<br>拆箱：把引用类型转化为基本数据类型的操作</p>
-<p>基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symbol<br>引用数据类型：对象(Object)、数组(Array)、函数(Function)<br>四个基本的包装类型 String、Number、Boolean、Symbol</p>
-<p>什么是包装类型？<br>在 JavaScript 中的字符串、数值、布尔具有对象的使用特征，如具有属性和方法，之所以具有对象特征的原因是字符串、数值、布尔类型数据是JavaScript 底层使用 Object 构造函数“包装”来的，被称为包装类型</p>
-<h4 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h4><p>装箱分为显式装箱和隐式装箱</p>
-<h6 id="显式装箱"><a href="#显式装箱" class="headerlink" title="显式装箱"></a>显式装箱</h6><p>通过基本包装类型对象对基本类型进行显式装箱，即通过new的方式声明数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> number = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>显式装箱可以对声明的对象进行属性和方法的添加，这是因为通过new创建的实例，在执行流离开当前作用域之前一直保留在内存中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line">string.name = <span class="string">&#x27;for test&#x27;</span>;</span><br><span class="line">string.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this is test string&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(string.name); <span class="comment">// for test</span></span><br><span class="line">string.sayHi(); <span class="comment">// this is test string</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="隐式装箱"><a href="#隐式装箱" class="headerlink" title="隐式装箱"></a>隐式装箱</h6><p>隐式装箱是引擎自动执行的<br>基本类型不能添加属性和方法，添加会报错。但是常常在使用的时候，可以直接调用方法，比如：’test_string’.substring()、’test_string’.indexOf()等，这是由于浏览器在内部做了隐式装箱。</p>
-<p>下面以一个例子进行说明：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一步</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 第二步</span></span><br><span class="line"><span class="keyword">var</span> result = string.substring(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// _string</span></span><br></pre></td></tr></table></figure>
-<p>在上面这段代码里面实际的执行步骤是：<br>1、先创建一个String类型的一个实例<br>2、在实例中调用方法<br>3、销毁这个实例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> newString = <span class="keyword">new</span> <span class="built_in">String</span>(string);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> result = newString.substring(<span class="number">4</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">newString = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>基于以上的隐式装箱操作，我们可以在基本类型上使用方法<br>隐式装箱当读取一个基本类型值时，后台会创建一个该基本类型所对应的基本包装类型对象。在这个基本类型的对象上调用方法，其实就是在这个基本类型对象上调用方法。这个基本包装类型的对象是临时的，它只存在于方法调用那一行代码执行的瞬间，执行方法后立即被销毁。这也是在基本类型上添加属性和方法会不识别或报错的原因了</p>
-<p>显式装箱可以添加属性和方法，隐式装箱不能添加属性和方法</p>
-<p>引用类型与基本包装类型的主要区别就是对象的生存期，使用new创建的引用类型实例当执行流离开当前作用域之前，都一直保存在内存中，而自动创建的基本包装类型的对象，则只存在于一行代码执行的瞬间，然后就被销毁。这就意味着我们不能给基本包装类型添加属性和方法。</p>
-<h4 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h4><p>拆箱是和装箱相反的操作，即把引用类型转换成基本的数据类型。通常通过引用类型的valueOf()和toString()方法来实现，toString()返回字符串，valueOf()返回对象本身。<br>需要注意的是，toString() 和 valueOf() 返回的值有一定差别</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberObj = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">64</span>);</span><br><span class="line"><span class="keyword">var</span> stringObj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;64&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj); <span class="comment">// object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj); <span class="comment">// object</span></span><br><span class="line"><span class="comment">// 拆箱</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObj.valueOf()); <span class="comment">// 64</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj.valueOf()); <span class="comment">// number 基本的数字类型</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObj.toString()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj.toString()); <span class="comment">// string 基本的字符类型</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(stringObj.valueOf()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj.valueOf()); <span class="comment">// string 基本的数据类型</span></span><br><span class="line"><span class="built_in">console</span>.log(stringObj.toString()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj.toString()); <span class="comment">// string 基本的数据类型</span></span><br></pre></td></tr></table></figure>
-<p>在进行拆箱操作的时候，toString()和valueOf()先执行哪个？在回答这个问题之前，我们先暂停一下，看一下包装类型中的symbol。</p>
-<p>这里简单介绍一下Symbol，感兴趣的可以自己去学习。</p>
-<h6 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h6><p>Symbol 是 ECMAScript 2015 中新添加的特性，生成一个唯一标识符，可用于属性名称、也可用于属性值。目的是消除属性名称冲突<br>创建Symbol</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>注意：<br>1、每次调用Symbol都会创建新的symbol<br>2、不可以用new 创建Symbol（围绕原始数据类型创建一个显式包装器对象从 ECMAScript 6 开始不再被支持。 然而，现有的原始包装器对象，如 new Boolean、new String以及new Number，因为遗留原因仍可被创建。）<br>3、symbol的参数可以不传，这个参数是用于描述symbol，可以用于调试但不是用于访问symbol本身<br>4、创建Symbol包装器对象，可以使用Object()函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>) === <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>); <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> sym = <span class="keyword">new</span> <span class="built_in">Symbol</span>(); <span class="comment">// TypeError: Symbol is not a constructor</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br><span class="line"><span class="keyword">typeof</span> sym2; <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">let</span> sym2Obj = <span class="built_in">Object</span>(sym2);</span><br><span class="line"><span class="keyword">typeof</span> sym2Obj; <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol的文档</a>中，有一个属性<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">Symbol.toPrimitive</a>。文档中关于它的介绍是：</p>
-<p>Symbol.toPrimitive 是一个内置的 Symbol 值，它是作为对象的函数值属性存在的，当一个对象转换为对应的原始值时，会调用此函数。该函数被调用时，会被传递一个字符串参数 hint ，表示要转换到的原始值的预期类型。 hint 参数的取值是 “number”、”string” 和 “default” 中的任意一个。</p>
-<p>我们看一下这个属性是怎么干扰一个对象转换为原始值的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个没有提供 Symbol.toPrimitive 属性的对象，参与运算时的输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(+obj1);     <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj1&#125;</span>`</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 接下面声明一个对象，手动赋予了 Symbol.toPrimitive 属性，再来查看输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](hint) &#123;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(+obj2);     <span class="comment">// 10      -- hint 参数值是 &quot;number&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj2&#125;</span>`</span>); <span class="comment">// &quot;hello&quot; -- hint 参数值是 &quot;string&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;true&quot;  -- hint 参数值是 &quot;default&quot;</span></span><br></pre></td></tr></table></figure>
-<p>注意：<br>hint 取值为：<br>‘number’:该场合需要转成数值，<br>‘string’:该场合需要转成字符串，<br>‘default’:该场合可以转成数值，也可以转成字符串。</p>
-<h4 id="对象转换成原始值的方法及执行顺序"><a href="#对象转换成原始值的方法及执行顺序" class="headerlink" title="对象转换成原始值的方法及执行顺序"></a>对象转换成原始值的方法及执行顺序</h4><p>以下优先级从上到下依次降低<br>1、先判断对象中是否有/[Symbol.toPrimitive/]/(hint/)方法，如果有的话，优先执行该方法<br>2、如果预期被转化成字符串类型时，则优先执行toString()方法<br>3、如果预期被转化成默认类型或数字类型时，则优先执行valueOf()方法<br>注意：若没有valueOf()方法，但是定义了toString()方法，则会执行toString()方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](hint) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(hint);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;symbol&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj)); <span class="comment">// string symbol</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj)); <span class="comment">// number NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj1)); <span class="comment">// string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj1)); <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj2)); <span class="comment">// &#x27;1&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj2)); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj3)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj3)); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><span class="page-number current">2</span><a class="page-number" href="/default-index/page/3/">3</a><a class="page-number" href="/default-index/page/4/">4</a><a class="extend next" rel="next" href="/default-index/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><span class="page-number current">2</span><a class="page-number" href="/default-index/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/5/">5</a><a class="extend next" rel="next" href="/default-index/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

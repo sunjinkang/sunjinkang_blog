@@ -20,32 +20,23 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="概念ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。 特征1、具有length属性2、按照索引方式存储数据3、不具有数组的方法，如push、pop等 有哪些常见的伪数组1、function的arguments对象2、document.getElementsByTagName、document.getElementsByClassName等document方法获">
-<meta property="og:type" content="article">
-<meta property="og:title" content="伪数组">
-<meta property="og:url" content="https://sunjinkang.github.io/2022/08/04/fake-array/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Sun ...something">
+<meta property="og:url" content="https://sunjinkang.github.io/default-index/page/5/index.html">
 <meta property="og:site_name" content="Sun ...something">
-<meta property="og:description" content="概念ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。 特征1、具有length属性2、按照索引方式存储数据3、不具有数组的方法，如push、pop等 有哪些常见的伪数组1、function的arguments对象2、document.getElementsByTagName、document.getElementsByClassName等document方法获">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/fake-array/document.png">
-<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/fake-array/prototype_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/fake-array/slice_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/fake-array/array_from.png">
-<meta property="article:published_time" content="2022-08-04T02:57:14.000Z">
-<meta property="article:modified_time" content="2022-08-04T07:17:36.091Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/2022/08/04/fake-array/document.png">
 
 
-<link rel="canonical" href="https://sunjinkang.github.io/2022/08/04/fake-array/">
+<link rel="canonical" href="https://sunjinkang.github.io/default-index/page/5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/08/04/fake-array/","path":"2022/08/04/fake-array/","title":"伪数组"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"default-index/page/5/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>伪数组 | Sun ...something</title>
+<title>Sun ...something - about what I have learned and some interesting things</title>
   
 
 
@@ -76,7 +67,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Sun ...something</p>
+      <h1 class="site-title">Sun ...something</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
@@ -110,7 +101,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -123,7 +114,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%BE%81"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BC%AA%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">有哪些常见的伪数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%8D%E6%98%AF%E4%BC%AA%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">判断一个数组是不是伪数组的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E4%B8%BA%E7%9C%9F%E6%AD%A3%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">将数组转为真正数组的方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,18 +168,17 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/04/fake-array/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/01/05/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -202,13 +191,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="伪数组 | Sun ...something">
+      <meta itemprop="name" content="undefined | Sun ...something">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          伪数组
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/05/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -217,9 +206,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-08-04 10:57:14 / Modified: 15:17:36" itemprop="dateCreated datePublished" datetime="2022-08-04T10:57:14+08:00">2022-08-04</time>
+      <time title="Created: 2022-01-05 17:20:43" itemprop="dateCreated datePublished" datetime="2022-01-05T17:20:43+08:00">2022-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-23 09:58:33" itemprop="dateModified" datetime="2022-06-23T09:58:33+08:00">2022-06-23</time>
     </span>
 
   
@@ -232,16 +227,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/2022/08/04/fake-array/document.png" alt="document获取的伪数组"></p>
-<h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
-<h4 id="判断一个数组是不是伪数组的方法"><a href="#判断一个数组是不是伪数组的方法" class="headerlink" title="判断一个数组是不是伪数组的方法"></a>判断一个数组是不是伪数组的方法</h4><p>1、Array.isArray</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(fakeArray); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(array); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>2、instanceof</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/2022/08/04/fake-array/prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/2022/08/04/fake-array/slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/2022/08/04/fake-array/array_from.png" alt="array.from转换"></p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="deploy产生如下错误的解决方法"><a href="#deploy产生如下错误的解决方法" class="headerlink" title="deploy产生如下错误的解决方法"></a>deploy产生如下错误的解决方法</h3><p>(1)使用hexo部署报错Error: Spawn failed<br>解决办法：删除.deploy_git文件夹 -&gt; 修改_config.yml文件中deploy的repository地址，修改为SSH方式 -&gt; 按顺序执行命令hexo clean、hexo generate、hexo deploy</p>
+
+      
     </div>
 
     
@@ -249,21 +250,8 @@
     
 
     <footer class="post-footer">
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/07/31/about-dom/" rel="prev" title="javascript DOM编程艺术阅读笔记">
-                  <i class="fa fa-chevron-left"></i> javascript DOM编程艺术阅读笔记
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/08/04/about-map/" rel="next" title="Map 结构">
-                  Map 结构 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -271,7 +259,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/default-index/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
 
 </div>
   </main>
