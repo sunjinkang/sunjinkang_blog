@@ -51,4 +51,16 @@ tags:
 如果value为真，则抛出value，即value为错误信息
 
 *assert.notDeepEqual(actual, expected[, message])*
-测试不深度相等
+测试不深度相等，与assert.deepEqual()相反
+
+*assert.notDeepStrictEqual(actual, expected[, message])*
+测试是否不深度全等，与assert.deepStrictEqual()相反
+
+*assert.notEqual(actual, expected[, message])*
+使用 != 不等运算符测试参数是否不相等
+
+*assert.notStrictEqual(actual, expected[, message])*
+使用不全等运算符（!==）测试参数是否不全等
+
+*assert.ok(value[, message])*
+测试 value 是否为真值。 相当于 assert.equal(!!value, true, message)
