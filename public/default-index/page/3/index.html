@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
   </ul>
 </nav>
 
@@ -618,14 +618,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/2022/08/04/18-fake-array/document.png" alt="document获取的伪数组"></p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/.io//document.png" alt="document获取的伪数组"></p>
 <h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
 <h4 id="判断一个数组是不是伪数组的方法"><a href="#判断一个数组是不是伪数组的方法" class="headerlink" title="判断一个数组是不是伪数组的方法"></a>判断一个数组是不是伪数组的方法</h4><p>1、Array.isArray</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(fakeArray); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(array); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>2、instanceof</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/2022/08/04/18-fake-array/prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/2022/08/04/18-fake-array/slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/2022/08/04/18-fake-array/array_from.png" alt="array.from转换"></p>
+<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/.io//prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/.io//slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/.io//array_from.png" alt="array.from转换"></p>
 
       
     </div>
@@ -911,7 +911,7 @@
 <li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换为原始类型</li>
 <li><em>ToPrimitive规则是引用类型向原始类型转变的规则，它遵循先 valueOf后 toString的模式期望得到一个原始类型，如果无法得到一个原始类型，就会抛出TypeError</em>*<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; <span class="comment">// true, 对象和字符串比较，对象通过toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// true, [1,2,3]通过toString得到一个基本类型</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/15-js-transform/convert-table.png" alt="类型转换对照表"></p>
+<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/.io//convert-table.png" alt="类型转换对照表"></p>
 <h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
 <a class="btn" href="/"><i class="fa fa-home"></i></a>
       
@@ -1060,7 +1060,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-16 11:06:06" itemprop="dateModified" datetime="2022-08-16T11:06:06+08:00">2022-08-16</time>
+      <time title="Modified: 2022-10-25 15:04:14" itemprop="dateModified" datetime="2022-10-25T15:04:14+08:00">2022-10-25</time>
     </span>
 
   
@@ -1082,6 +1082,9 @@
 <h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><p><a target="_blank" rel="noopener" href="https://vuejs.org/">官方文档</a></p>
 <h4 id="VueUse–vue使用的hooks库"><a href="#VueUse–vue使用的hooks库" class="headerlink" title="VueUse–vue使用的hooks库"></a>VueUse–vue使用的hooks库</h4><p><a target="_blank" rel="noopener" href="https://vueuse.org/">官方文档</a></p>
 <h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/">官方文档</a></p>
+<h4 id="testing-library-react"><a href="#testing-library-react" class="headerlink" title="testing-library/react"></a>testing-library/react</h4><p><a target="_blank" rel="noopener" href="https://testing-library.com/">官方文档</a></p>
+<h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h4><p><a target="_blank" rel="noopener" href="https://nodejs.org/dist/latest-v16.x/docs/api/documentation.html">官方文档-英文版</a><br><a target="_blank" rel="noopener" href="https://www.nodeapp.cn/assert.html">中文文档</a></p>
+<h4 id="ahooks"><a href="#ahooks" class="headerlink" title="ahooks"></a>ahooks</h4><p><a target="_blank" rel="noopener" href="https://ahooks.js.org/">官方文档</a></p>
 
       
     </div>
