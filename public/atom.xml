@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2022-10-26T09:26:49.205Z</updated>
+  <updated>2022-11-10T03:09:05.623Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>scrollIntoView参数项说明</title>
+    <link href="https://sunjinkang.github.io/2022/11/10/42-scrollInToView-params/"/>
+    <id>https://sunjinkang.github.io/2022/11/10/42-scrollInToView-params/</id>
+    <published>2022-11-10T02:39:52.000Z</published>
+    <updated>2022-11-10T03:09:05.623Z</updated>
+    
+    <content type="html"><![CDATA[<h6 id="scrollIntoView作用"><a href="#scrollIntoView作用" class="headerlink" title="scrollIntoView作用"></a>scrollIntoView作用</h6><p><em>element.scrollIntoView</em><br>滚动元素的父容器，使被调用scrollIntoView的元素对用户可见2，即滚动到可视区域</p><h6 id="scrollIntoView用法"><a href="#scrollIntoView用法" class="headerlink" title="scrollIntoView用法"></a>scrollIntoView用法</h6><p><em>element.scrollIntoView()</em><br>等同于element.scrollIntoView(true)</p><p><em>element.scrollIntoView(boolean)</em></p><ul><li>boolean为true<ul><li>元素的顶端将和其所在滚动区域的可视区域的顶端对齐</li><li>与element.scrollIntoView({ block: “start”, inline: ‘nearest’})等价</li></ul></li><li>boolean为false<ul><li>元素的底端将和其所在滚定区域的可视区域的底端对齐</li><li>与element.scrollIntoView({ block: “end”, inline: ‘nearest’})等价</li></ul></li></ul><p><em>element.scrollIntoView(options)</em><br>options为一个对象，属性如下：</p><ul><li>behavior<ul><li>定义动画过渡效果</li><li>值为：<ul><li>auto(默认值)，无平滑滚动效果</li><li>smooth，有平滑的滚动效果</li></ul></li></ul></li><li>block<ul><li>定义垂直方向的对齐</li><li>值为：<ul><li>start: 默认值，顶端对齐</li><li>center：中间对齐</li><li>end：底端对齐</li><li>nearest：如果元素完全在可视区域内，则垂直方向不发生滚动。如果元素未能完全在可视区域内，则根据最短滚动距离原则，垂直方向滚动父级容器，使元素完全在可视区域内。</li></ul></li></ul></li><li>inline<ul><li>定义水平方向的对齐</li><li>值为：<ul><li>start：左端对齐</li><li>center：中间对齐</li><li>end：右端对齐</li><li>nearest: 默认值，如果元素完全在可视区域内，则水平方向不发生滚动。如果元素未能完全在可视区域内，则根据最短滚动距离原则，水平方向滚动父级容器，使元素完全在可视区域内。</li></ul></li></ul></li></ul><p><strong>注意：取决于其他元素的布局情况，此元素可能不会完全滚动到顶端或底端</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h6 id=&quot;scrollIntoView作用&quot;&gt;&lt;a href=&quot;#scrollIntoView作用&quot; class=&quot;headerlink&quot; title=&quot;scrollIntoView作用&quot;&gt;&lt;/a&gt;scrollIntoView作用&lt;/h6&gt;&lt;p&gt;&lt;em&gt;element.sc</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>42-js-equal-type</title>
@@ -394,26 +414,6 @@
       
       
     <summary type="html">&lt;h4 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h4&gt;&lt;p&gt;一、面向过程与面向对象&lt;br&gt;面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基本数据类型-Symbol</title>
-    <link href="https://sunjinkang.github.io/2022/08/19/22-about-symbol/"/>
-    <id>https://sunjinkang.github.io/2022/08/19/22-about-symbol/</id>
-    <published>2022-08-19T05:37:24.000Z</published>
-    <updated>2022-08-19T05:42:42.437Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="什么是Symbol"><a href="#什么是Symbol" class="headerlink" title="什么是Symbol?"></a>什么是Symbol?</h4><h4 id="有什么用处？"><a href="#有什么用处？" class="headerlink" title="有什么用处？"></a>有什么用处？</h4><h4 id="Symbol的属性"><a href="#Symbol的属性" class="headerlink" title="Symbol的属性"></a>Symbol的属性</h4><h4 id="Symbol的方法"><a href="#Symbol的方法" class="headerlink" title="Symbol的方法"></a>Symbol的方法</h4>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;什么是Symbol&quot;&gt;&lt;a href=&quot;#什么是Symbol&quot; class=&quot;headerlink&quot; title=&quot;什么是Symbol?&quot;&gt;&lt;/a&gt;什么是Symbol?&lt;/h4&gt;&lt;h4 id=&quot;有什么用处？&quot;&gt;&lt;a href=&quot;#有什么用处？&quot; class=&quot;he</summary>
       
     
     

@@ -81,3 +81,44 @@ nodejs目前支持的字符编码
 **注意**：现代浏览器遵循 WHATWG 编码标准 将 'latin1' 和 ISO-8859-1 别名为 win-1252。 这意味着当进行例如 http.get() 这样的操作时，如果返回的字符编码是 WHATWG 规范列表中的，则有可能服务器真的返回 win-1252 编码的数据，此时使用 'latin1' 字符编码可能会错误地解码数据
 
 *Buffer 与 TypedArray*
+Buffer 实例也是 Uint8Array 实例
+从一个 Buffer 创建一个新的 TypedArray 实例需要遵循的注意事项：
+- Buffer 对象的内存是拷贝到 TypedArray 的，而不是共享的。
+- Buffer 对象的内存是被解析为一个明确元素的数组，而不是一个目标类型的字节数组。 也就是说，new Uint32Array(Buffer.from([1, 2, 3, 4])) 会创建一个包含 [1, 2, 3, 4] 四个元素的 Uint32Array，而不是一个只包含一个元素 [0x1020304] 或 [0x4030201] 的 Uint32Array 
+```javascript
+const arr = new Uint16Array(2);
+
+arr[0] = 5000;
+arr[1] = 4000;
+
+// 拷贝 `arr` 的内容
+const buf1 = Buffer.from(arr);
+
+// 与 `arr` 共享内存
+const buf2 = Buffer.from(arr.buffer);
+
+// 输出: <Buffer 88 a0>
+console.log(buf1);
+
+// 输出: <Buffer 88 13 a0 0f>
+console.log(buf2);
+
+arr[1] = 6000;
+
+// 输出: <Buffer 88 a0>
+console.log(buf1);
+
+// 输出: <Buffer 88 13 70 17>
+console.log(buf2);
+```
+*注意，当使用 TypedArray 的 .buffer 创建 Buffer 时，也可以通过传入 byteOffset 和 length 参数只使用 ArrayBuffer 的一部分*
+```javascript
+const arr = new Uint16Array(20);
+const buf = Buffer.from(arr.buffer, 0, 16);
+
+// 输出: 16
+console.log(buf.length);
+```
+
+Buffer 实例可以使用 ECMAScript 2015 (ES6) 的 for..of 语法进行遍历
+
