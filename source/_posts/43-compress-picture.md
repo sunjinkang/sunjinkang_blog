@@ -1,5 +1,5 @@
 ---
-title: 前端压缩图片方法
+title: 前端压缩图片方法-canvas.toDataURL & canvas.toBlob
 date: 2022-12-08 16:48:13
 tags:
 ---
@@ -8,101 +8,54 @@ tags:
 浏览器在加载页面的时候，图片也是影响请求前端用户体验的一环：如果图片较大，请求耗时越长，那页面会长时间处于加载中或者白屏状态，导致用户体验较差。所以压缩图片就成了一种比较常用的优化前端性能的手段。
 
 ###### 压缩图片方法
-* 第一种：根据宽、高、画质压缩图片
-```javascript
-    compressUpload(file, config) {
-      let read = new FileReader();
-      read.readAsDataURL(file);
-      const fileName = file.name;
-      return new Promise((resolve, reject) => {
-        // 生成canvas
-        let canvas = document.createElement("canvas");
-        let ctx = canvas.getContext("2d");
-        let _this = this;
-        read.onload = function (e) {
-          let img = new Image();
-          img.src = e.target.result;
-          img.onload = function () {
-            let w = this.width;
-            let h = this.height;
-            let scale = w / h;
-            w = config.width || config.height * scale || w;
-            h = config.height || config.width / scale || h;
-            // 最大宽高如有限制时的处理
-            w = config.maxWidth && w > config.maxWidth ? config.maxWidth : w;
-            h = config.maxHeight && h > config.maxHeight ? config.maxHeight : h;
-            w = Math.min(w, h * scale) || w;
-            h = Math.min(h, w / scale) || h;
+* 第一种：将图片传给后端，后端进行压缩
+* 第二种：使用canvas压缩图片
+思路：
+- 通过<input type="file"/>获取二进制图片
+- 使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象
+- 把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）
+- 将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）
 
-            let quality = 0.7; // 默认图片质量
-            // 创建属性节点
-            let anw = document.createAttribute("width");
-            anw.nodeValue = w;
-            let anh = document.createAttribute("height");
-            anh.nodeValue = h;
-            canvas.setAttributeNode(anw);
-            canvas.setAttributeNode(anh);
-            ctx.drawImage(this, 0, 0, w, h);
-            if (config.quality && config.quality <= 1 && config.quality > 0) {
-              quality = config.quality;
-            }
-            let base64 = canvas.toDataURL("image/jpeg", quality);
-            // 回调函数返回base64的值，也可根据自己的需求转换
-            resolve(base64);
-            canvas = null;
-          };
-        };
-      });
-    },
-```
-* 第二种：根据画质压缩图片
-```javascript
-compressUpload(image, file, quality) {
-  let canvas = document.createElement("canvas");
-  let ctx = canvas.getContext("2d");
-  let { width } = image,
-    { height } = image;
-  canvas.width = width;
-  canvas.height = height;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(image, 0, 0, width, height);
-  let base64 = canvas.toDataURL(file.type || "image/jpeg", quality);
-  // 压缩后调用方法进行base64转Blob，方法写在下边
-  return  base64;
-  canvas = null;
-},
-```
-###### 调用方法
-```javascript
-beforeUpload(file) {
-      console.log("压缩前：", file);
-      let _this = this;
-      const isIMG = file.type == "image/jpeg" || file.type == "image/png" || file.type == "image/jpg";
-      const isLt2M = file.size / 1024 / 1024 < 5;
-      if (!isIMG) {
-        this.$message.error("上传图片只能是 .jpg/.png/.jpeg 格式!");
-      }
-      if (!isLt2M) {
-        this.$message.error("上传文件大小不能超过 5MB!");
-      }
-      return new Promise((resolve, reject) => {
-        let isLt2M = file.size / 1024 / 1024 < 10; // 判定图片大小是否小于10MB
-        if (!(isLt2M && isIMG)) {
-          reject();
-        }
-        let image = new Image(),
-          resultBlob = "";
-        image.src = URL.createObjectURL(file);
+###### toDataURL
+* canvas对象的一种方法，用于将canvas对象转换为base64位编码.
+* 转化实现：将图片绘制到canvas中，然后将canvas对象转换为base64编码，从而实现图片转为base64编码；
+* 转换为base64位编码的好处：
+  - 将图片转换为base64位编码后，图片会跟随代码（html、css、js）一起请求加载，不会再单独进行请求加载；
+  - 可以防止由于图片路径错误导致图片加载失败的问题；
+* 注意事项：
+  - 如果画布的高度或宽度是 0，那么会返回字符串“data:,”
+* 参数：toDataURL(type, encoderOptions)
+  - type指定转换为base64编码后图片的格式，如：image/png、image/jpeg、image/webp等等，默认为image/png格式；
+  - encoderOptions用于设置转换为base64编码后图片的质量，在指定图片格式为 image/jpeg 或 image/webp 的情况下，取值范围为0-1，超出取值范围用默认值0.92代替；
+[MDN HTMLCanvasElement.toDataURL()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL)
 
-        image.onload = () => {
-          // 调用方法获取blob格式，方法写在下边   以下方法二选一：
-          resultBlob = _this.compressUpload(file, this.form);
-          resultBlob = _this.compressUpload(image, file, this.form.quality);
-          resolve(resultBlob);
-        };
-        image.onerror = () => {
-          reject();
-        };
-      });
-},
+###### toBlob
+* 创造 Blob 对象，用以展示 canvas 上的图片
+* 参数：toBlob(callback, type, quality)
+  - callback：回调函数，可获得一个单独的 Blob 对象参数。如果图像未被成功创建，可能会获得 null 值
+  - type(可选): DOMString 类型，指定图片格式，默认格式（未指定或不支持）为 image/png
+  - quality(可选): Number 类型，值在 0 与 1 之间，当请求图片格式为 image/jpeg 或者 image/webp 时用来指定图片展示质量。如果这个参数的值不在指定类型与范围之内，则使用默认值，其余参数将被忽略
+[MDN HTMLCanvasElement.toBlob()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob)
+
+```javascript
+// toBlob
+canvas.toBlob(
+  function (b) {
+    let compressUrl = URL.createObjectURL(b); //压缩后的文件url
+    let fileName =
+      imgFile.name.substring(0, imgFile.name.lastIndexOf('.')) +
+      '.' +
+      imgType.split('/')[1]; //重构文件名
+    let file = blobToFile(b, fileName, imgType); //Blob实例转成File实例
+    resolve({
+      url: compressUrl,
+      file: file,
+    });
+    imgCanvas = null; //释放内存
+  },
+  imgType,
+  quality
+);
+// toDataURL
+canvas.toDataURL(imgType, quality);
 ```
