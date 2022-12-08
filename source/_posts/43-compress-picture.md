@@ -37,6 +37,22 @@ tags:
   - quality(可选): Number 类型，值在 0 与 1 之间，当请求图片格式为 image/jpeg 或者 image/webp 时用来指定图片展示质量。如果这个参数的值不在指定类型与范围之内，则使用默认值，其余参数将被忽略
 [MDN HTMLCanvasElement.toBlob()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob)
 
+###### toDataURL和toBlob的差异与共同点
+* 差异
+  - 绘制处理图片的过程不同：
+    - toBlob是直接将canvas中绘制的图形转换成Blob实例对象，再将Blob实例对象转成File实例对象即可
+    - toDataURL则是将canvas中绘制的图形转成base64编码的字符串，然后再将base64编码的字符串转成File的实例对象
+  - 结果不同：
+    - toBlob无返回值，通过传参中的回调函数，可获得一个单独的 Blob 对象参数
+    - toDataURL返回一个包含 data URI 的DOMString
+  - 执行不同：
+    - toDataURL是同步执行的，执行操作的时候会阻止UI
+    - toBlob通过回调函数获取返回值，非阻塞方式进行图像格式转换
+  - toDataURL结果比toBlob占用更多的内存，toDataURL包含在base64中压缩的完整二进制数据，base64编码本身意味着二进制数据比现在大37％
+
+* 共同点
+  - canvas方法，在指定图片格式为 image/jpeg 或 image/webp 的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92
+
 ```javascript
 // toBlob
 canvas.toBlob(

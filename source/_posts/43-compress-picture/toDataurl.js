@@ -10,8 +10,8 @@ function compressPicture(imgFile, imgType, quality) {
       try {
         orginImg.src = src;
         URL.revokeObjectURL(src); //释放内存
-        let width = this.width;
-        let height = this.height;
+        let width = Math.floor(this.width / 2);
+        let height = Math.floor(this.height / 2);
         let imgCanvas = document.createElement('canvas'); //创建canvas元素
         imgCanvas.width = width;
         imgCanvas.height = height;
