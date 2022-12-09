@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/12/14-about-fe-theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/14-about-fe-theory/" class="post-title-link" itemprop="url">前端概念相关-渐进增强与优雅降级</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-12 10:37:56" itemprop="dateCreated datePublished" datetime="2022-07-12T10:37:56+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-18 13:47:25" itemprop="dateModified" datetime="2022-07-18T13:47:25+08:00">2022-07-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="渐进增强-Progressive-Enhancement-相当于向上兼容"><a href="#渐进增强-Progressive-Enhancement-相当于向上兼容" class="headerlink" title="渐进增强(Progressive Enhancement)(相当于向上兼容)"></a>渐进增强(Progressive Enhancement)(相当于向上兼容)</h4><p>一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验</p>
+<h4 id="优雅降级-Graceful-Degradation-相当于向下兼容"><a href="#优雅降级-Graceful-Degradation-相当于向下兼容" class="headerlink" title="优雅降级(Graceful Degradation)(相当于向下兼容)"></a>优雅降级(Graceful Degradation)(相当于向下兼容)</h4><p>一开始就构建站点的完整功能，然后针对浏览器测试和修复。比如一开始使用 CSS3 的特性构建了一个应用，然后逐步针对各大浏览器进行 hack 使其可以在低版本浏览器上正常浏览</p>
+<p>向下兼容指的是高版本支持低版本的或者说后期开发的版本支持和兼容早期开发的版本，向上兼容的很少<br>大多数软件都是向下兼容的</p>
+<h4 id="渐进增强与优雅降级的区别"><a href="#渐进增强与优雅降级的区别" class="headerlink" title="渐进增强与优雅降级的区别"></a>渐进增强与优雅降级的区别</h4><p>优雅降级和渐进增强都关注于同一网站在不同设备以及不同浏览器下的表现程度<br>关键的区别则在于它们各自关注于何处，以及这种关注如何影响工作的流程</p>
+<p>优雅降级观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨 (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。</p>
+<p>渐进增强观点则认为应关注于内容本身。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.transition &#123; <span class="comment">/*渐进增强写法*/</span></span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">          transition: all .5s;</span><br><span class="line">&#125;</span><br><span class="line">.transition &#123; <span class="comment">/*优雅降级写法*/</span></span><br><span class="line">          <span class="attr">transition</span>: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前缀CSS3（-webkit-* / -moz-* / -o-*）和正常CSS3在浏览器中的支持情况是这样的：</p>
+<p>1、很久以前：浏览器前缀CSS3和正常CSS3都不支持；<br>2、不久之前：浏览器只支持前缀CSS3，不支持正常CSS3；<br>3、现在：浏览器既支持前缀CSS3，又支持正常CSS3；<br>4、未来：浏览器不支持前缀CSS3，仅支持正常CSS3.</p>
+<p>渐进增强的写法，优先考虑老版本浏览器的可用性，最后才考虑新版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，正常CSS3会覆盖前缀CSS3。优雅降级的写法，优先考虑新版本浏览器的可用性，最后才考虑老版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，前缀CSS3会覆盖正常的CSS3。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1003,93 +1088,6 @@
 <h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/.io//fiber_tree.png" alt="filter_tree"></p>
 <h2 id="Element转化为Dom"><a href="#Element转化为Dom" class="headerlink" title="Element转化为Dom"></a>Element转化为Dom</h2><p>(1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化<br>(2)ReactDOM.render(element, container[, callback])<br>(3)ReactDOM.render三个参数，其中第一个参数便是生成的虚拟Dom，第二个参数则是一个真实Dom，此Dom相当于是一个容器，React元素将被渲染到这个容器里面去，第三个参数则是一个callback function</p>
 <h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/.io//update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/.io//force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/05/23/4-browser-render/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/23/4-browser-render/" class="post-title-link" itemprop="url">浏览器渲染</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-05-23 14:13:56" itemprop="dateCreated datePublished" datetime="2022-05-23T14:13:56+08:00">2022-05-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-25 11:20:16" itemprop="dateModified" datetime="2022-10-25T11:20:16+08:00">2022-10-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p>(1)深度遍历解析HTML建立DOM树<br>(2)解析CSS建立CSSOM树<br>(3)依据DOM树和CSSOM树构造Render树<br>(4)计算各元素尺寸、位置<br>(5)绘制页面像素信息<br>(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<br>(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完某一部分（整体大块的）内容就显示一部分内容，同时，可能还在通过网络下载其余内容。)</p>
-<h2 id="GUI渲染线程"><a href="#GUI渲染线程" class="headerlink" title="GUI渲染线程"></a>GUI渲染线程</h2><p>(1)解析HTML，CSS，构建DOM树和Render树，布局和绘制等<br>(2)重排/重绘<br>–1、重排又称重构、回流，当我们通过JavaScript或者CSS修改了元素的几何位置属性，例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段。重排需要更新完整的渲染流水线，所以开销也是最大的。每个页面至少需要一次reflow，就是在页面第一次加载的时候。<br>–2、任何页面布局和几何属性的改变都会触发重排，比如：<br>页面渲染初始化；(无法避免)<br>添加或删除可见的DOM元素；<br>元素位置的改变；<br>改变元素尺寸（宽、高、内外边距、边框等）；<br>浏览器窗口尺寸的变化（resize事件发生时）；<br>填充内容的改变，比如文本的改变或图片大小改变而引起的计算值宽度和高度的改变；<br>读取某些元素属性：（offsetLeft/Top/Height/Width,　clientTop/Left/Width/Height,　scrollTop/Left/Width/Height,　width/height,　getComputedStyle(),　currentStyle(IE)　)<br>–3、重绘是指一个元素外观的改变所触发的浏览器行为，浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。比如通过 JavaScript 更改某些元素的背景颜色，没有改变元素的几何属性，那么布局阶段不会执行，而是直接进入绘制阶段。<br>–4、重绘省去了布局和分层阶段，效率会高于重排。重排必定会引发重绘，但重绘不一定会引发重排。</p>
-<h2 id="JS引擎线程"><a href="#JS引擎线程" class="headerlink" title="JS引擎线程"></a>JS引擎线程</h2><p>(1)解析Javascript脚本，单线程执行<br>(2)与GUI互斥，GUI ON then JS Suspend.等待着任务队列中任务的到来，然后加以处理，JS执行的时间过长会导致页面渲染加载阻塞</p>
-<h2 id="事件触发线程"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h2><p>(1)归属于浏览器而不是JS引擎，用来控制事件循环<br>(2)当JS引擎执行代码块如click事件时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件待处理队列的队尾，等待JS引擎的处理</p>
-<h2 id="定时触发器线程"><a href="#定时触发器线程" class="headerlink" title="定时触发器线程"></a>定时触发器线程</h2><p>(1)setInterval与setTimeout所在线程<br>(2)浏览器定时计数器并不是由JS引擎计数的,因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确<br>(3)计时完毕后，将事件添加到事件队列中，等待JS引擎空闲后执行</p>
-<h2 id="异步http请求线程"><a href="#异步http请求线程" class="headerlink" title="异步http请求线程"></a>异步http请求线程</h2><p>(1)在XMLHttpRequest在连接后是通过浏览器新开一个线程请求<br>(2)将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</p>
-<h2 id="实现hover等鼠标操作"><a href="#实现hover等鼠标操作" class="headerlink" title="实现hover等鼠标操作"></a>实现hover等鼠标操作</h2><p><img src="/.io//hover.png" alt="hover"></p>
-<h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/.io//performance.png" alt="performance"></p>
-<h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/.io//network.png" alt="network"></p>
-<ul>
-<li>preserve log 保留之前的请求</li>
-</ul>
 
       
     </div>

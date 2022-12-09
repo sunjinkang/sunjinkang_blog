@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,6 +169,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/21/32-apply-array-to-params/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/21/32-apply-array-to-params/" class="post-title-link" itemprop="url">js中apply怎么把数组转化为参数？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-21 17:07:53" itemprop="dateCreated datePublished" datetime="2022-09-21T17:07:53+08:00">2022-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-10-25 14:46:40" itemprop="dateModified" datetime="2022-10-25T14:46:40+08:00">2022-10-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"><a href="#apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组" class="headerlink" title="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"></a>apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(a);</span><br><span class="line"> <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">test.apply(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = &#123;</span><br><span class="line"> <span class="attr">func</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test.func(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line">test.func.apply(test.func, array);</span><br><span class="line">test.func.apply(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(array);</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="ES6中的扩展符"><a href="#ES6中的扩展符" class="headerlink" title="ES6中的扩展符"></a>ES6中的扩展符</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(a);</span><br><span class="line"> <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test(...array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = &#123;</span><br><span class="line"> <span class="attr">func</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test.func(...array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(...array);</span><br><span class="line"><span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="使用arguments对象（不建议使用）"><a href="#使用arguments对象（不建议使用）" class="headerlink" title="使用arguments对象（不建议使用）"></a>使用arguments对象（不建议使用）</h6><p>函数内的arguments对象，其本身是由给函数传入的参数，以类似数组的形式组合而成的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[i]);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">1</span>,<span class="number">12</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 1 12 5</span></span><br><span class="line">test(<span class="number">1</span>,<span class="number">12</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 1 12 3 4 5</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1088,106 +1168,6 @@
 <p>对象方法的定义只能使用简洁的语法形式，否则报错:Uncaught SyntaxError: ‘super’ keyword unexpected here<br><strong>为什么？？</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下写法报错：Uncaught SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line"> <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下方法可以正常运行</span></span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// helloobj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woofobj</span></span><br></pre></td></tr></table></figure>
 <p><strong>在ES6 中，如果一个对象中定义了方法，这个方法自动获取到一个内置的属性[[HomeObject]], 来指向这个对象。super 呢，就是通过Object.getPrototypeOf([[HomeObject]]) 来获取到原型对象。obj.greeting() greeting() 方法中的[[HomeObject]] 就指向了obj.  那里面的super 就是Object.getPrototypeOf(obj), 那就是person 或dog 了，super.greeting() 就相当于person.greeting()了， 更为准确的说是 person.greeting.call(this).  因为如果person中的greenting有this, 我们还要给它指定this 指向， 不能让里面的this 指向别的对象， 只能让this 指向 obj 了。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/20/23-about-design-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/20/23-about-design-model/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(1)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-20 14:47:46" itemprop="dateCreated datePublished" datetime="2022-08-20T14:47:46+08:00">2022-08-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-22 17:15:58" itemprop="dateModified" datetime="2022-09-22T17:15:58+08:00">2022-09-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>一、面向过程与面向对象<br>面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里<br>二、封装<br>1、使用原型(prototype)为类添加属性和方法的两种方式(<strong>注意两种不能混用</strong>)：<br>(1)为原型对象属性赋值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype.display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(2)将一个对象赋值给类的原型对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype = &#123;</span><br><span class="line">  display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、使用this和原型(prototype)为类添加属性和方法的区别：<br>(1)使用this添加的属性和方法是在当前对象上添加的，每次通过类创建新对象时，this指向的属性和方法都会得到相应的创建<br>(2)通过prototype继承的属性和方法是每个对象通过prototype访问到的，新创建对象时，不会再新创建属性和方法</p>
-<p>3、constructor是什么？<br>constructor是一个属性，当创建一个函数或者对象时都会为其创建一个原型对象prototype，在 prototype对象中又会像函数中创建 this一样创建一个constructor属性，那么constructor属性指向的就是拥有整个原型对象的函数或对象。<br><img src="/.io//prototype.png" alt="prototype"></p>
-<p>4、属性与方法的封装<br>(1)私有属性与私有方法<br>由于JavaScript的函数级作用域，声明在函数内部的变量以及方法在外界是访问不到的,通过此特性创建类的私有变量以及私有方法<br>(2)共有属性和共有方法<br>在函数内部通过 this创建的属性和方法，在类创建对象时，每个对象自身都拥有一份并且可以在外部访问到。因此通过this创建的属性可看作是对象共有属性和对象共有方法<br>(3)特权方法(类的构造器)<br>通过this创建的方法，不但可以访问这些对象的共有属性与共有方法，而且还能访问到类（创建时）或对象自身的私有属性和私有方法，由于这些方法权利比较大，所以我们又将它看作特权方法。在对象创建时通过使用这些特权方法我们可以初始化实例对象的一些属性,因此这些在创建对象时调用的特权方法还可以看作是类的构造器<br><img src="/.io//public-and-private.png" alt="public-and-private"></p>
-<p>5、在类的外部通过点语法定义的属性和方法以及在外部通过 prototype定义的属性和方法作用<br>(1)类的外部通过点语法定义的属性和方法：通过new关键字创建新对象时，由于类外面通过点语法添加的属性和方法没有执行到,所以新创建的对象中无法获取他们，但是可以通过类来使用。因此在类外面通过点语法定义的属性以及方法被称为类的静态共有属性和类的静态共有方法<br>(2)外部通过 prototype定义的属性和方法: 类通过prototype创建的属性或者方法在类实例的对象中是可以通过 this访问到的，所以我们将prototype对象中的属性和方法称为共有属性和共有方法<br><img src="/.io//static-and-public.png" alt="static-and-public"><br>通过new关键字创建的对象实质是对新对象 this 的不断赋值，并将prototype指向类的prototype所指向的对象，而类的构造函数外面通过点语法定义的属性方法是不会添加到新创建的对象上去的。因此要想在新创建的对象中使用 isChinese就得通过Book类使用而不能通过this，如 Book.isChinese，而类的原型 prototype 上定义的属性在新对象里就可以直接使用，这是因为新对象的prototype和类的prototype指向的是同一个对象。</p>
-<p>6、闭包<br>闭包是有权访问另外一个函数作用域中变量的函数，即在一个函数内部创建另外一个函数。我们将这个闭包作为创建对象的构造函数，这样它既是闭包又是可实例对象的函数，即可访问到类函数作用域中的变量</p>
-<p>7、创建对象的安全模式<br>new关键字的作用可以看作是对当前对象的this不停地赋值,没有用new，所以就会直接执行函数，而函数在全局作用域中执行所以在全局作用域中 this指向的当前对象自然就是全局变量<br><img src="/.io//safe-model.png" alt="safe-model"></p>
-<p>三、继承<br>1、子类的原型对象 - 类式继承<br><img src="/.io//class-inherit.png" alt="class-inherit"><br>声明2个类而已，类式继承需要将第一个类的实例赋值给第二个类的原型<br>类的原型对象的作用就是为类的原型添加共有方法,但类不能直接访问这些属性和方法,必须通过原型prototype来访问。而我们实例化一个父类的时候，新创建的对象复制了父类的构造函数内的属性与方法并且将原型_proto_指向了父类的原型对象，这样就拥有了父类的原型对象上的属性与方法，并且这个新创建的对象可直接访问到父类原型对象上的属性与方法。如果我们将这个新创建的对象赋值给子类的原型，那么子类的原型就可以访问到父类的原型属性和方法。<br>新创建的对象不仅仅可以访问父类原型上的属性和方法，同样也可访问从父类构造函数中复制的属性和方法。将这个对象赋值给子类的原型,那么这个子类的原型同样可以访问父类原型上的属性和方法与从父类构造函数中复制的属性和方法。这是类式继承的原理</p>
-<p>(1)可以使用instanceof来检测某个对象是否是某个类的实例，或者说某个对象是否继承了某个类<br>注意：instanceof是通过判断对象的 prototype链来确定这个对象是否是某个类的实例，而不关心对象与类的自身结构<br><strong>instanceof是判断前面的对象是否是后面类(对象)的实例，它并不表示两者的继承，在实现上面的 subClass 继承superClass时是通过将 superClass的实例赋值给subClass 的原型prototype，所以说SubClass.prototype继承了superClass</strong></p>
-<p>(2)类式继承的缺点<br>其一：由于子类通过其原型prototype对父类实例化，继承了父类。所以说父类中的共有属性要是引用类型，就会在子类中被所有实例共用,因此一个子类的实例更改子类原型从父类构造函数中继承来的共有属性就会直接影响到其他子类<br>其二：由于子类实现的继承是靠其原型prototype对父类的实例化实现的，因此在创建父类的时候，是无法向父类传递参数的,因而在实例化父类的时候也无法对父类构造函数内的属性进行初始化</p>
-<p>2、创建即继承 - 构造函数继承<br><img src="/.io//constructor-inherit.png" alt="constructor-inherit"><br>SuperClass.call(this，id);这条语句是构造函数式继承的精华，由于 call这个方法可以更改函数的作用环境，因此在子类中，对superClass调用这个方法就是将子类中的变量在父类中执行一遍，由于父类中是给this绑定属性的，因此子类自然也就继承了父类的共有属性。由于这种类型的继承没有涉及原型prototype，所以父类的原型方法自然不会被子类继承，而如果要想被子类继承就必须要放在构造函数中，这样创建出来的每个实例都会单独拥有一份而不能共用，这样就违背了代码复用的原则</p>
-<p>3、将优点为我所用 - 组合继承<br>(1)类式继承是通过子类的原型prototype对父类实例化来实现的,构造函数式继承是通过在子类的构造函数作用环境中执行一次父类的构造函数来实现的<br><img src="/.io//combination-inherit.png" alt="combination-inherit"><br>在子类构造函数中执行父类构造函数，在子类原型上实例化父类就是组合模式<br>(2)缺点<br>在使用构造函数继承时执行了一遍父类的构造函数，而在实现子类原型的类式继承时又调用了一遍父类构造函数。因此父类构造函数调用了两遍</p>
-<p>4、洁净的继承者 - 原型式继承<br><img src="/.io//prototype-inherit.png" alt="prototype-inherit"><br>对类式继承的一个封装，其实其中的过渡对象就相当于类式继承中的子类，只不过在原型式中作为一个过渡对象出现的，目的是为了创建要返回的新的实例化对象<br><img src="/.io//test-prototype-inherit.png" alt="test-prototype-inherit"></p>
-<p>5、如虎添翼 - 寄生式继承<br><img src="/.io//parasitic-inherit.png" alt="parasitic-inherit"><br>寄生式继承就是对原型继承的第二次封装，并且在这第二次封装过程中对继承的对象进行了拓展,这样新创建的对象不仅仅有父类中的属性和方法而且还添加新的属性和方法</p>
-<p>6、终极继承者 - 寄生组合式继承<br>寄生式继承和构造函数继承</p>
-<p>寄生式继承的改造<br><img src="/.io//parasitic-inherit-change.png" alt="parasitic-inherit-change"></p>
-<p><img src="/.io//parasitic-combination-inherit.png" alt="parasitic-combination-inherit"></p>
-<p><img src="/.io//how-to-inherit.png" alt="how-to-inherit"></p>
-<p><strong>子类再想添加原型方法必须通过 prototype.对象，通过点语法的形式一个一个添加方法了，否则直接赋予对象就会覆盖掉从父类原型继承的对象</strong></p>
-<p>四、多继承<br>单继承(extend)：对对象中的属性的一个浅复制过程，只能复制值类型的属性，无法复制引用类型属性<br><img src="/.io//multiple-inherit.png" alt="multiple-inherit"></p>
-<p>五、多态<br>同一个方法多种调用方式<br><img src="/.io//multiple-status.png" alt="multiple-status"></p>
 
       
     </div>

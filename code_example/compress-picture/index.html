@@ -11,30 +11,30 @@
     <img src="" alt="" id="orginImg" />
     <img src="" alt="" id="compressImg" />
   </body>
-  <script src="./toDataurl.js"></script>
-  <!-- <script src="./toBlob.js"></script> -->
+  <!-- <script src="./toDataurl.js"></script> -->
+  <script src="./toBlob.js"></script>
   <script>
     window.onload = function () {
       const upload = document.getElementById('upload');
       const orginImg = document.getElementById('orginImg');
       const compressImg = document.getElementById('compressImg');
-      upload.addEventListener('change', function (e) {
-        const file = e.target.files[0];
+      upload?.addEventListener('change', function (e) {
+        const file = e.target?.files?.[0];
         console.log(file);
-        const isIMG =
-          file.type == 'image/jpeg' ||
-          file.type == 'image/png' ||
-          file.type == 'image/jpg';
-        const isLt2M = file.size / 1024 / 1024 < 5;
-        if (!isIMG) {
-          this.$message.error('上传图片只能是 .jpg/.png/.jpeg 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传文件大小不能超过 5MB!');
-        }
-        compressPicture(file, 'image/webp', 0.1)
+        // const isIMG =
+        //   file.type == 'image/jpeg' ||
+        //   file.type == 'image/png' ||
+        //   file.type == 'image/jpg';
+        // const isLt2M = (file.size / 1024 / 1024) < 5;
+        // if (!isIMG) {
+        //   console.log('上传图片只能是 .jpg/.png/.jpeg 格式!');
+        // }
+        // if (!isLt2M) {
+        //   console.log('上传文件大小不能超过 5MB!');
+        // }
+        compressPicture(file, 'image/png', 0.5)
           .then((res) => {
-            compressImg.src = res.url;
+            compressImg?.setAttribute('src', res.url);
             console.log(res.file);
           })
           .catch((e) => {

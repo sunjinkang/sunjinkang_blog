@@ -27,12 +27,16 @@
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="nodejs是什么脚本语言需要一个解析器才能运行，JavaScript是脚本语言，在不同的位置有不一样的解析器，如写入html的js语言，浏览器是它的解析器角色。而对于需要独立运行的JS，nodejs就是一个解析器。 每一种解析器都是一个运行环境，不但允许js定义各种数据结构，进行各种计算，还允许js使用允许环境提供的内置对象和方法做一些事情。如运行在浏览器中的js的用途是操作DOM，浏览器就提供">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/async-call.png">
+<meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/cross-platform.png">
+<meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/commonjs-node-relation.png">
 <meta property="article:published_time" content="2022-10-19T11:12:12.000Z">
-<meta property="article:modified_time" content="2022-11-01T03:28:51.486Z">
+<meta property="article:modified_time" content="2022-11-14T07:48:57.991Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta property="article:tag" content="node">
 <meta property="article:tag" content="docs">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/nodejs/images/async-call.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/nodejs/nodejs-note-1">
@@ -121,7 +125,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#nodejs%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">nodejs是什么</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nodejs%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">nodejs的安装</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#nodejs%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">nodejs是什么</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nodejs%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">nodejs的安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#node%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">node的特点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Node-%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">Node 的应用场景</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Node-%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85"><span class="nav-number">5.</span> <span class="nav-text">Node 的使用者</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6"><span class="nav-number"></span> <span class="nav-text">模块机制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#CommonJS"><span class="nav-number">1.</span> <span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CommonJS%E7%9A%84%E6%A8%A1%E5%9D%97%E8%A7%84%E8%8C%83"><span class="nav-number">2.</span> <span class="nav-text">CommonJS的模块规范</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Node-%E7%9A%84%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">Node 的模块实现</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">核心模块</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#C-C-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97"><span class="nav-number">5.</span> <span class="nav-text">C&#x2F;C++扩展模块</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -136,7 +140,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -202,6 +206,137 @@
 <p><strong>注意</strong><br>1、不同nodejs版本在使用上可能存在差异，需要根据自己实际情况，选择对应的版本安装（如果没有特别要求，一般使用标注的推荐版本进行安装即可）<br>2、安装时如无特殊需要，直接选择下一步，使用默认设置即可，环境变量会默认进行设置<br>3、新版的nodejs集成了npm，安装nodejs之后，可直接使用npm，打开dos，输入 <em>npm -v</em>，查看npm版本</p>
 <p>根据不同的前端框架，使用不同的命令，安装对应的依赖、脚手架等，即可进行开发</p>
 <p><strong>nodejs官网地址：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/">https://nodejs.org/zh-cn/docs/</a></strong><br><strong>nodejs中文文档地址：<a target="_blank" rel="noopener" href="https://www.nodeapp.cn/documentation.html">https://www.nodeapp.cn/documentation.html</a></strong></p>
+<h6 id="node的特点"><a href="#node的特点" class="headerlink" title="node的特点"></a>node的特点</h6><p>(1)异步I/O<br><img src="./images/async-call.png" alt="异步调用"><br>在Node中，绝大多数的操作都以异步的方式进行调用<br>(2)事件与回调函数<br>(3)单线程<br>在Node中，JavaScript与其余线程是无法共享任何状态的。<br>单线程的最大好处是不用像多线程编程那样处处在意状态的同步问题，这里没有死锁的存在，也没有线程上下文交换所带来的性能上的开销。<br><em>单线程弱点</em></p>
+<ul>
+<li>无法利用多核CPU</li>
+<li>错误会引起整个应用退出，应用的健壮性值得考验</li>
+<li>大量计算占用CPU导致无法继续调用异步I/O</li>
+</ul>
+<p>node使用子进程的方式解决以上问题<br>(4)跨平台<br>Node基于libuv实现跨平台<br><img src="./images/cross-platform.png" alt="跨平台"></p>
+<h6 id="Node-的应用场景"><a href="#Node-的应用场景" class="headerlink" title="Node 的应用场景"></a>Node 的应用场景</h6><p>(1)I/O密集型<br>Node面向网络且擅长并行I/O，能够有效地组织起更多的硬件资源，从而提供更多好的服务。<br>I/O密集的优势主要在于Node利用事件循环的处理能力，而不是启动每一个线程为每一个请求服务，资源占用极少。<br>(2)是否不擅长CPU密集型业务<br>node优秀的运算能力主要来自V8的深度性能优化<br><em>CPU密集型应用给Node带来的挑战主要是：由于JavaScript单线程的原因，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起。但是适当调整和分解大型运算任务为多个小任务，使得运算能够适时释放，不阻塞I/O调用的发起，这样既可同时享受到并行异步I/O的好处，又能充分利用CPU。</em></p>
+<p>node充分利用CPU的方式：</p>
+<ul>
+<li>Node可以通过编写C/C++扩展的方式更高效地利用CPU，将一些V8不能做到性能极致的地方通过C/C++来实现。由上面的测试结果可以看到，通过C/C++扩展的方式实现斐波那契数列计算，速度比Java还快。</li>
+<li>如果单线程的Node不能满足需求，甚至用了C/C++扩展后还觉得不够，那么通过子进程的方式，将一部分Node进程当做常驻服务进程用于计算，然后利用进程间的消息来传递结果，将计算与I/O分离，这样还能充分利用多CPU。<br>(3)与遗留系统和平共处<br>(4)分布式应用</li>
+</ul>
+<h6 id="Node-的使用者"><a href="#Node-的使用者" class="headerlink" title="Node 的使用者"></a>Node 的使用者</h6><ul>
+<li>前后端编程语言环境统一</li>
+<li>Node带来的高性能I/O用于实时应用</li>
+<li>并行I/O使得使用者可以更高效地利用分布式环境</li>
+<li>并行I/O，有效利用稳定接口提升Web渲染能力</li>
+<li>云计算平台提供Node支持</li>
+<li>游戏开发领域</li>
+<li>工具类应用</li>
+</ul>
+<h4 id="模块机制"><a href="#模块机制" class="headerlink" title="模块机制"></a>模块机制</h4><h6 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h6><p>CommonJS规范为JavaScript制定了一个美好的愿景——希望JavaScript能够在任何地方运行。</p>
+<p>过去javascript缺陷：</p>
+<ul>
+<li>没有模块系统。</li>
+<li>标准库较少。ECMAScript仅定义了部分核心库，对于文件系统，I/O流等常见需求却没有标准的API。就HTML5的发展状况而言，W3C标准化在一定意义上是在推进这个过程，但是它仅限于浏览器端。</li>
+<li>没有标准接口。在JavaScript中，几乎没有定义过如Web服务器或者数据库之类的标准统一接口。</li>
+<li>缺乏包管理系统。这导致JavaScript应用中基本没有自动加载和安装依赖的能力。</li>
+</ul>
+<p><img src="./images/commonjs-node-relation.png" alt="commonjs与node、浏览器的生态系统"></p>
+<h6 id="CommonJS的模块规范"><a href="#CommonJS的模块规范" class="headerlink" title="CommonJS的模块规范"></a>CommonJS的模块规范</h6><p>分为模块引用、模块定义和模块标识</p>
+<ol>
+<li><p>模块引用<br>在CommonJS规范中，存在require()方法，这个方法接受模块标识，以此引入一个模块的API到当前上下文中</p>
+</li>
+<li><p>模块定义<br>在模块中，上下文提供require()方法来引入外部模块。对应引入的功能，上下文提供了exports对象用于导出当前模块的方法或者变量，并且它是唯一导出的出口。在模块中，还存在一个module对象，它代表模块自身，而exports是module的属性。在Node中，一个文件就是一个模块，将方法挂载在exports对象上作为属性即可定义导出的方式</p>
+</li>
+<li><p>模块标识<br>模块标识其实就是传递给require()方法的参数，它必须是符合小驼峰命名的字符串，或者以.、..开头的相对路径，或者绝对路径。它可以没有文件名后缀.js。</p>
+</li>
+</ol>
+<h6 id="Node-的模块实现"><a href="#Node-的模块实现" class="headerlink" title="Node 的模块实现"></a>Node 的模块实现</h6><p>在Node中引入模块，需要经历如下3个步骤。<br>(1) 路径分析<br>(2) 文件定位<br>(3) 编译执行</p>
+<p>在Node中，模块分为两类：一类是Node提供的模块，称为核心模块；另一类是用户编写的模块，称为文件模块。</p>
+<ul>
+<li>核心模块部分在Node源代码的编译过程中，编译进了二进制执行文件。在Node进程启动时，部分核心模块就被直接加载进内存中，所以这部分核心模块引入时，文件定位和编译执行这两个步骤可以省略掉，并且在路径分析中优先判断，所以它的加载速度是最快的</li>
+<li>文件模块则是在运行时动态加载，需要完整的路径分析、文件定位、编译执行过程，速度比核心模块慢</li>
+</ul>
+<p><em>Node缓存编译和执行之后的对象</em><br>不论是核心模块还是文件模块，require()方法对相同模块的二次加载都一律采用缓存优先的方式，这是第一优先级的。不同之处在于核心模块的缓存检查先于文件模块的缓存检查</p>
+<p><em>路径分析和文件定位</em></p>
+<ol>
+<li>模块标识符分析</li>
+</ol>
+<ul>
+<li>核心模块，如http、fs、path等。<ul>
+<li>核心模块的优先级仅次于缓存加载，它在Node的源代码编译过程中已经编译为二进制代码，其加载过程最快。</li>
+<li>如果试图加载一个与核心模块标识符相同的自定义模块，那是不会成功的。如果自己编写了一个http用户模块，想要加载成功，必须选择一个不同的标识符或者换用路径的方式。</li>
+</ul>
+</li>
+<li>.或..开始的相对路径文件模块。<ul>
+<li>由于文件模块给Node指明了确切的文件位置，所以在查找过程中可以节约大量时间，其加载速度慢于核心模块</li>
+</ul>
+</li>
+<li>以/开始的绝对路径文件模块。</li>
+<li>非路径形式的文件模块，如自定义的connect模块。<ul>
+<li>自定义模块指的是非核心模块，也不是路径形式的标识符。它是一种特殊的文件模块，可能是一个文件或者包的形式。这类模块的查找是最费时的，也是所有方式中最慢的一种。</li>
+</ul>
+</li>
+</ul>
+<p><em>模块路径</em><br>模块路径是Node在定位文件模块的具体文件时制定的查找策略，具体表现为一个路径组成的数组<br>模块路径的生成规则：</p>
+<ul>
+<li>当前文件目录下的node_modules目录。</li>
+<li>父目录下的node_modules目录。</li>
+<li>父目录的父目录下的node_modules目录。</li>
+<li>沿路径向上逐级递归，直到根目录下的node_modules目录。<br>它的生成方式与JavaScript的原型链或作用域链的查找方式十分类似。在加载的过程中，Node会逐个尝试模块路径中的路径，直到找到目标文件为止。可以看出，当前文件的路径越深，模块查找耗时会越多，这是自定义模块的加载速度是最慢的原因。</li>
+</ul>
+<ol start="2">
+<li>文件定位</li>
+</ol>
+<ul>
+<li>文件扩展名分析<br>require()在分析标识符的过程中，会出现标识符中不包含文件扩展名的情况。CommonJS模块规范也允许在标识符中不包含文件扩展名，这种情况下，Node会按.js、.json、.node的次序补足扩展名，依次尝试。<br>小诀窍是：如果是.node和.json文件，在传递给require()的标识符中带上扩展名<br>另一个诀窍是：同步配合缓存，可以大幅度缓解Node单线程中阻塞式调用的缺陷。</li>
+<li>目录分析和包<br>在分析标识符的过程中，require()通过分析文件扩展名之后，可能没有查找到对应文件，但却得到一个目录，这在引入自定义模块和逐个模块路径进行查找时经常会出现，此时Node会将目录当做一个包来处理。<br>在这个过程中，Node对CommonJS包规范进行了一定程度的支持。首先，Node在当前目录下查找package.json（CommonJS包规范定义的包描述文件），通过JSON.parse()解析出包描述对象，从中取出main属性指定的文件名进行定位。如果文件名缺少扩展名，将会进入扩展名分析的步骤。而如果main属性指定的文件名错误，或者压根没有package.json文件，Node会将index当做默认文件名，然后依次查找index.js、index.json、index.node。<br>如果在目录分析的过程中没有定位成功任何文件，则自定义模块进入下一个模块路径进行查找。如果模块路径数组都被遍历完毕，依然没有查找到目标文件，则会抛出查找失败的异常。</li>
+</ul>
+<p><em>模块编译</em><br>编译和执行是引入文件模块的最后一个阶段。定位到具体的文件后，Node会新建一个模块对象，然后根据路径载入并编译。<br>对于不同的文件扩展名，其载入方法也有所不同：</p>
+<ul>
+<li>.js文件。通过fs模块同步读取文件后编译执行</li>
+<li>.node文件。这是用C/C++编写的扩展文件，通过dlopen()方法加载最后编译生成的文件</li>
+<li>.json文件。通过fs模块同步读取文件后，用JSON.parse()解析返回结果</li>
+<li>其余扩展名文件。它们都被当做.js文件载入</li>
+</ul>
+<p>每一个编译成功的模块都会将其文件路径作为索引缓存在Module._cache对象上，以提高二次引入的性能</p>
+<ol>
+<li>JavaScript模块的编译<br>在编译的过程中，Node对获取的JavaScript文件内容进行了头尾包装。在头部添加了(function (exports, require, module, __filename, __dirname) {\n，在尾部添加了\n});<br>exports对象是通过形参的方式传入的，直接赋值形参会改变形参的引用，但并不能改变作用域外的值<br>如果要达到require引入一个类的效果，请赋值给module.exports对象。</li>
+<li>C/C++模块的编译<br>.node的模块文件并不需要编译，因为它是编写C/C++模块之后编译生成的，所以这里只有加载和执行的过程</li>
+<li>JSON文件的编译<br>.json文件的编译是3种编译方式中最简单的。Node利用fs模块同步读取JSON文件的内容之后，调用JSON.parse()方法得到对象，然后将它赋给模块对象的exports，以供外部调用</li>
+</ol>
+<h6 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h6><p>(1)JavaScript核心模块的编译过程</p>
+<ol>
+<li>转存为C/C++代码</li>
+<li>编译JavaScript核心模块<br>与文件模块有区别的地方在于：获取源代码的方式（核心模块是从内存中加载的）以及缓存执行结果的位置<br>JavaScript核心模块，编译成功的模块缓存到NativeModule._cache对象上，文件模块则缓存到Module._cache对象上<br>(2)C/C++核心模块的编译过程<br>将那些由纯C/C++编写的部分统一称为内建模块，因为它们通常不被用户直接调用。Node的buffer、crypto、evals、fs、os等模块都是部分通过C/C++编写的</li>
+<li>内建模块的组织形式<br>每一个内建模块在定义之后，都通过NODE_MODULE宏将模块定义到node命名空间中，模块的具体初始化方法挂载为结构的register_func成员<br>node_extensions.h文件将这些散列的内建模块统一放进了一个叫node_module_list的数组中，这些模块有：</li>
+</ol>
+<ul>
+<li>node_buffer </li>
+<li>node_crypto </li>
+<li>node_evals </li>
+<li>node_fs </li>
+<li>node_http_parser </li>
+<li>node_os </li>
+<li>node_zlib </li>
+<li>node_timer_wrap </li>
+<li>node_tcp_wrap </li>
+<li>node_udp_wrap</li>
+<li>node_pipe_wrap </li>
+<li>node_cares_wrap </li>
+<li>node_tty_wrap </li>
+<li>node_process_wrap </li>
+<li>node_fs_event_wrap </li>
+<li>node_signal_watcher<br>内建模块的优势在于：</li>
+<li>首先，它们本身由C/C++编写，性能上优于脚本语言；</li>
+<li>其次，在进行文件编译时，它们被编译进二进制文件。一旦Node开始执行，它们被直接加载进内存中，无须再次做标识符定位、文件定位、编译等过程，直接就可执行。</li>
+</ul>
+<ol start="2">
+<li>内建模块的导出<br>在Node的所有模块类型中，存在着一种依赖层级关系，即文件模块可能会依赖核心模块(javascript)，核心模块可能会依赖内建模块(C/C++)<br>通常，不推荐文件模块直接调用内建模块。如需调用，直接调用核心模块即可，因为核心模块中基本都封装了内建模块<br>在加载内建模块时，我们先创建一个exports空对象，然后调用get_builtin_module()方法取出内建模块对象，通过执行register_func()填充exports对象，最后将exports对象按模块名缓存，并返回给调用方完成导出<br>(3)核心模块的引入流程</li>
+</ol>
+<h6 id="C-C-扩展模块"><a href="#C-C-扩展模块" class="headerlink" title="C/C++扩展模块"></a>C/C++扩展模块</h6><p>(1)前提条件</p>
+<ul>
+<li>GYP项目生成工具</li>
+<li>V8引擎C++库</li>
+<li>libuv库</li>
+<li>Node内部库</li>
+<li>其他库</li>
+</ul>
 
       </div>
       
