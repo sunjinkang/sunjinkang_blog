@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="主要步骤React.createElement语法糖(1)React.createElement(type, [props], […children]);(2)type：元素类型(3)props：属性值(4)children：子元素 虚拟DOM(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系(2)$$typeof：标识符，使用Symbol数据结构确保唯一性 协调算法filter图示 El">
 <meta property="og:type" content="article">
@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="主要步骤React.createElement语法糖(1)React.createElement(type, [props], […children]);(2)type：元素类型(3)props：属性值(4)children：子元素 虚拟DOM(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系(2)$$typeof：标识符，使用Symbol数据结构确保唯一性 协调算法filter图示 El">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//fiber_tree.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//update_class.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//force_update.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/5-react-render/fiber_tree.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/5-react-render/update_class.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/5-react-render/force_update.png">
 <meta property="article:published_time" content="2022-06-22T14:12:37.000Z">
 <meta property="article:modified_time" content="2022-08-10T03:15:06.301Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//fiber_tree.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/06/22/5-react-render/fiber_tree.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/06/22/5-react-render/">
@@ -239,9 +239,9 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><h4 id="React-createElement语法糖"><a href="#React-createElement语法糖" class="headerlink" title="React.createElement语法糖"></a>React.createElement语法糖</h4><p>(1)React.createElement(type, [props], […children]);<br>(2)type：元素类型<br>(3)props：属性值<br>(4)children：子元素</p>
 <h4 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h4><p>(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系<br>(2)$$typeof：标识符，使用Symbol数据结构确保唯一性</p>
-<h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/.io//fiber_tree.png" alt="filter_tree"></p>
+<h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/2022/06/22/5-react-render/fiber_tree.png" alt="filter_tree"></p>
 <h2 id="Element转化为Dom"><a href="#Element转化为Dom" class="headerlink" title="Element转化为Dom"></a>Element转化为Dom</h2><p>(1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化<br>(2)ReactDOM.render(element, container[, callback])<br>(3)ReactDOM.render三个参数，其中第一个参数便是生成的虚拟Dom，第二个参数则是一个真实Dom，此Dom相当于是一个容器，React元素将被渲染到这个容器里面去，第三个参数则是一个callback function</p>
-<h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/.io//update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/.io//force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>
+<h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/2022/06/22/5-react-render/update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/2022/06/22/5-react-render/force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>
 
     </div>
 

@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="概念ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。 特征1、具有length属性2、按照索引方式存储数据3、不具有数组的方法，如push、pop等 有哪些常见的伪数组1、function的arguments对象2、document.getElementsByTagName、document.getElementsByClassName等document方法获">
 <meta property="og:type" content="article">
@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="概念ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。 特征1、具有length属性2、按照索引方式存储数据3、不具有数组的方法，如push、pop等 有哪些常见的伪数组1、function的arguments对象2、document.getElementsByTagName、document.getElementsByClassName等document方法获">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//document.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//prototype_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//slice_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//array_from.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/document.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/prototype_call.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/slice_call.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/array_from.png">
 <meta property="article:published_time" content="2022-08-04T02:57:14.000Z">
 <meta property="article:modified_time" content="2022-08-04T07:17:36.091Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//document.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/document.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/08/04/18-fake-array/">
@@ -233,14 +233,14 @@
     
     <div class="post-body" itemprop="articleBody">
         <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/.io//document.png" alt="document获取的伪数组"></p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/2022/08/04/18-fake-array/document.png" alt="document获取的伪数组"></p>
 <h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
 <h4 id="判断一个数组是不是伪数组的方法"><a href="#判断一个数组是不是伪数组的方法" class="headerlink" title="判断一个数组是不是伪数组的方法"></a>判断一个数组是不是伪数组的方法</h4><p>1、Array.isArray</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(fakeArray); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(array); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>2、instanceof</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/.io//prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/.io//slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/.io//array_from.png" alt="array.from转换"></p>
+<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/2022/08/04/18-fake-array/prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/2022/08/04/18-fake-array/slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/2022/08/04/18-fake-array/array_from.png" alt="array.from转换"></p>
 
     </div>
 

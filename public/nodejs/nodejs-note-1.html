@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="nodejs是什么脚本语言需要一个解析器才能运行，JavaScript是脚本语言，在不同的位置有不一样的解析器，如写入html的js语言，浏览器是它的解析器角色。而对于需要独立运行的JS，nodejs就是一个解析器。 每一种解析器都是一个运行环境，不但允许js定义各种数据结构，进行各种计算，还允许js使用允许环境提供的内置对象和方法做一些事情。如运行在浏览器中的js的用途是操作DOM，浏览器就提供">
 <meta property="og:type" content="website">
@@ -206,13 +206,13 @@
 <p><strong>注意</strong><br>1、不同nodejs版本在使用上可能存在差异，需要根据自己实际情况，选择对应的版本安装（如果没有特别要求，一般使用标注的推荐版本进行安装即可）<br>2、安装时如无特殊需要，直接选择下一步，使用默认设置即可，环境变量会默认进行设置<br>3、新版的nodejs集成了npm，安装nodejs之后，可直接使用npm，打开dos，输入 <em>npm -v</em>，查看npm版本</p>
 <p>根据不同的前端框架，使用不同的命令，安装对应的依赖、脚手架等，即可进行开发</p>
 <p><strong>nodejs官网地址：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/">https://nodejs.org/zh-cn/docs/</a></strong><br><strong>nodejs中文文档地址：<a target="_blank" rel="noopener" href="https://www.nodeapp.cn/documentation.html">https://www.nodeapp.cn/documentation.html</a></strong></p>
-<h6 id="node的特点"><a href="#node的特点" class="headerlink" title="node的特点"></a>node的特点</h6><p>(1)异步I/O<br><img src="./images/async-call.png" alt="异步调用"><br>在Node中，绝大多数的操作都以异步的方式进行调用<br>(2)事件与回调函数<br>(3)单线程<br>在Node中，JavaScript与其余线程是无法共享任何状态的。<br>单线程的最大好处是不用像多线程编程那样处处在意状态的同步问题，这里没有死锁的存在，也没有线程上下文交换所带来的性能上的开销。<br><em>单线程弱点</em></p>
+<h6 id="node的特点"><a href="#node的特点" class="headerlink" title="node的特点"></a>node的特点</h6><p>(1)异步I/O<br><img src="/nodejs/images/async-call.png" alt="异步调用"><br>在Node中，绝大多数的操作都以异步的方式进行调用<br>(2)事件与回调函数<br>(3)单线程<br>在Node中，JavaScript与其余线程是无法共享任何状态的。<br>单线程的最大好处是不用像多线程编程那样处处在意状态的同步问题，这里没有死锁的存在，也没有线程上下文交换所带来的性能上的开销。<br><em>单线程弱点</em></p>
 <ul>
 <li>无法利用多核CPU</li>
 <li>错误会引起整个应用退出，应用的健壮性值得考验</li>
 <li>大量计算占用CPU导致无法继续调用异步I/O</li>
 </ul>
-<p>node使用子进程的方式解决以上问题<br>(4)跨平台<br>Node基于libuv实现跨平台<br><img src="./images/cross-platform.png" alt="跨平台"></p>
+<p>node使用子进程的方式解决以上问题<br>(4)跨平台<br>Node基于libuv实现跨平台<br><img src="/nodejs/images/cross-platform.png" alt="跨平台"></p>
 <h6 id="Node-的应用场景"><a href="#Node-的应用场景" class="headerlink" title="Node 的应用场景"></a>Node 的应用场景</h6><p>(1)I/O密集型<br>Node面向网络且擅长并行I/O，能够有效地组织起更多的硬件资源，从而提供更多好的服务。<br>I/O密集的优势主要在于Node利用事件循环的处理能力，而不是启动每一个线程为每一个请求服务，资源占用极少。<br>(2)是否不擅长CPU密集型业务<br>node优秀的运算能力主要来自V8的深度性能优化<br><em>CPU密集型应用给Node带来的挑战主要是：由于JavaScript单线程的原因，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起。但是适当调整和分解大型运算任务为多个小任务，使得运算能够适时释放，不阻塞I/O调用的发起，这样既可同时享受到并行异步I/O的好处，又能充分利用CPU。</em></p>
 <p>node充分利用CPU的方式：</p>
 <ul>
@@ -236,7 +236,7 @@
 <li>没有标准接口。在JavaScript中，几乎没有定义过如Web服务器或者数据库之类的标准统一接口。</li>
 <li>缺乏包管理系统。这导致JavaScript应用中基本没有自动加载和安装依赖的能力。</li>
 </ul>
-<p><img src="./images/commonjs-node-relation.png" alt="commonjs与node、浏览器的生态系统"></p>
+<p><img src="/nodejs/images/commonjs-node-relation.png" alt="commonjs与node、浏览器的生态系统"></p>
 <h6 id="CommonJS的模块规范"><a href="#CommonJS的模块规范" class="headerlink" title="CommonJS的模块规范"></a>CommonJS的模块规范</h6><p>分为模块引用、模块定义和模块标识</p>
 <ol>
 <li><p>模块引用<br>在CommonJS规范中，存在require()方法，这个方法接受模块标识，以此引入一个模块的API到当前上下文中</p>

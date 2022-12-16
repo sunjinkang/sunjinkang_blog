@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
 <meta property="og:type" content="article">
@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="渲染流程(1)深度遍历解析HTML建立DOM树(2)解析CSS建立CSSOM树(3)依据DOM树和CSSOM树构造Render树(4)计算各元素尺寸、位置(5)绘制页面像素信息(6)浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上(7)(PS:上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局re">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//hover.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//performance.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//network.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/05/23/4-browser-render/hover.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/05/23/4-browser-render/performance.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/05/23/4-browser-render/network.png">
 <meta property="article:published_time" content="2022-05-23T06:13:56.000Z">
 <meta property="article:modified_time" content="2022-10-25T03:20:16.618Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//hover.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/05/23/4-browser-render/hover.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/05/23/4-browser-render/">
@@ -243,9 +243,9 @@
 <h2 id="事件触发线程"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h2><p>(1)归属于浏览器而不是JS引擎，用来控制事件循环<br>(2)当JS引擎执行代码块如click事件时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件待处理队列的队尾，等待JS引擎的处理</p>
 <h2 id="定时触发器线程"><a href="#定时触发器线程" class="headerlink" title="定时触发器线程"></a>定时触发器线程</h2><p>(1)setInterval与setTimeout所在线程<br>(2)浏览器定时计数器并不是由JS引擎计数的,因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确<br>(3)计时完毕后，将事件添加到事件队列中，等待JS引擎空闲后执行</p>
 <h2 id="异步http请求线程"><a href="#异步http请求线程" class="headerlink" title="异步http请求线程"></a>异步http请求线程</h2><p>(1)在XMLHttpRequest在连接后是通过浏览器新开一个线程请求<br>(2)将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</p>
-<h2 id="实现hover等鼠标操作"><a href="#实现hover等鼠标操作" class="headerlink" title="实现hover等鼠标操作"></a>实现hover等鼠标操作</h2><p><img src="/.io//hover.png" alt="hover"></p>
-<h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/.io//performance.png" alt="performance"></p>
-<h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/.io//network.png" alt="network"></p>
+<h2 id="实现hover等鼠标操作"><a href="#实现hover等鼠标操作" class="headerlink" title="实现hover等鼠标操作"></a>实现hover等鼠标操作</h2><p><img src="/2022/05/23/4-browser-render/hover.png" alt="hover"></p>
+<h2 id="使用performance分析页面性能"><a href="#使用performance分析页面性能" class="headerlink" title="使用performance分析页面性能"></a>使用performance分析页面性能</h2><p><img src="/2022/05/23/4-browser-render/performance.png" alt="performance"></p>
+<h2 id="使用network调试"><a href="#使用network调试" class="headerlink" title="使用network调试"></a>使用network调试</h2><p><img src="/2022/05/23/4-browser-render/network.png" alt="network"></p>
 <ul>
 <li>preserve log 保留之前的请求</li>
 </ul>
