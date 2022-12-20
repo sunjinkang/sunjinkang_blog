@@ -1,293 +1,54 @@
 ---
-title: nodejs基础知识(2)
+title: 深入浅出nodejs阅读笔记(2)
 date: 2022-10-19 19:12:12
-tags: [node, assert, asyncHooks]
+tags: [node, docs]
 ---
 
-#### nodejs文档知识点
+#### 为什么要异步 I/O 
+- 用户体验
+  - ![i/o花费](./images/async-experience.png)
+- 资源分配
+  - ![i/o花费](./images/how-to-call-async.png)
 
-###### assert-断言
-*作用：*用于测试不变式
+*异步I/O与非阻塞I/O*
+操作系统内核对于I/O只有两种方式：阻塞与非阻塞。在调用阻塞I/O时，应用程序需要等待I/O完成才返回结果
+![调用阻塞i/o的过程](./images/jam.png)
+阻塞I/O的一个特点是调用之后一定要等到系统内核层面完成所有操作后，调用才结束。以读取磁盘上的一段文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中之后，这个调用才结束。
 
-*assert.deepEqual(a, b[, message])*
-只测试可枚举的自身属性，原始值使用 == 进行比较，不测试对象原型、连接符、不可枚举属性等
-注意：子对象中可枚举的属性也会被测试
+阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。为了提高性能，内核提供了非阻塞I/O。非阻塞I/O跟阻塞I/O的差别为调用之后会立即返回
+![调用非阻塞i/o的过程](./images/no-jam.png)
 
-*assert.deepStrictEqual(a, b[, message])*
-与assert.deepEqual作用类似，使用全等 === 进行比较
+*操作系统对计算机进行了抽象，将所有输入输出设备抽象为文件。内核在进行文件I/O操作时，通过文件描述符进行管理，而文件描述符类似于应用程序与系统内核之间的凭证。应用程序如果需要进行I/O调用，需要先打开文件描述符，然后再根据文件描述符去实现文件的数据读写。此处非阻塞I/O与阻塞I/O的区别在于阻塞I/O完成整个获取数据的过程，而非阻塞I/O则不带数据直接返回，要获取数据，还需要通过文件描述符再次读取*
 
-*assert.doesNotThrow(block[, error][, message])*
-调用block函数，如果抛出错误且错误类型与error类型一致，则抛出AssertionError，否则抛出错误
+阻塞I/O造成CPU等待浪费，非阻塞带来的麻烦却是需要轮询去确认是否完全完成数据获取，它会让CPU处理状态判断，是对CPU资源的浪费
+现存的轮询技术主要有以下这些：
+- read。它是最原始、性能最低的一种，通过重复调用来检查I/O的状态来完成完整数据的读取。在得到最终数据前，CPU一直耗用在等待上。
+![read轮询](./images/read-loop.png)
+- select。它是在read的基础上改进的一种方案，通过对文件描述符上的事件状态来进行判断
+![select轮询](./images/select-loop.png)
+*select轮询具有一个较弱的限制，那就是由于它采用一个1024长度的数组来存储状态，所以它最多可以同时检查1024个文件描述符*
+- poll。该方案较select有所改进，采用链表的方式避免数组长度的限制，其次它能避免不需要的检查。但是当文件描述符较多的时候，它的性能还是十分低下的。
+![poll轮询](./images/poll-loop.png)
+- epoll。该方案是Linux下效率最高的I/O事件通知机制，在进入轮询的时候如果没有检查到I/O事件，将会进行休眠，直到事件发生将它唤醒。它是真实利用了事件通知、执行回调的方式，而不是遍历查询，所以不会浪费CPU，执行效率较高
+![epoll轮询](./images/epoll-loop.png)
+- kqueue。该方案的实现方式与epoll类似，不过它仅在FreeBSD系统下存在
 
-*assert.equal(actual, expected[, message])*
-使用相等运算符 == 测试actual与expected是否相等
+###### Node 的异步 I/O
+1. 事件循环
+   进程启动时，Node便会创建一个类似于while(true)的循环，每执行一次循环体的过程我们称为Tick。每个Tick的过程就是查看是否有事件待处理，如果有，就取出事件及其相关的回调函数。如果存在关联的回调函数，就执行它们。然后进入下个循环，如果不再有事件处理，就退出进程
+2. 观察者
+   每个事件循环中有一个或者多个观察者，而判断是否有事件要处理的过程就是向这些观察者询问是否有要处理的事件
+3. 请求对象
+   请求对象是异步I/O过程中的重要中间产物，所有的状态都保存在这个对象中，包括送入线程池等待执行以及I/O操作完毕后的回调处理
+![异步i/o流程](./images/async-progress.png)
 
-*assert.fail(message)*
-*assert.fail(actual, expected[, message[, operator[, stackStartFunction]]])*
-抛出AssertionError。如果 message 参数为空，则错误信息为 actual 参数 + operator 参数 + expected 参数。 如果只提供了 actual 参数与 expected 参数，则 operator 参数默认为 '!='。 如果提供了 message 参数，则它会作为错误信息，其他参数会保存在错误对象的属性中。 如果提供了 stackStartFunction 参数，则该函数上的栈帧都会从栈信息中移除
+*事件循环、观察者、请求对象、I/O线程池这四者共同构成了Node异步I/O模型的基本要素。*
+Windows下主要通过IOCP来向系统内核发送I/O调用和从内核获取已完成的I/O操作，配以事
+件循环，以此完成异步I/O的过程。
+Linux下通过epoll实现这个过程
+FreeBSD下通过kqueue实现
+Solaris下通过Event ports实现
 
-*assert.ifError(value)*
-如果value为真，则抛出value，即value为错误信息
+不同的是线程池在Windows下由内核（IOCP）直接提供，*nix系列下由libuv自行实现
 
-*assert.notDeepEqual(actual, expected[, message])*
-测试不深度相等，与assert.deepEqual()相反
-
-*assert.notDeepStrictEqual(actual, expected[, message])*
-测试是否不深度全等，与assert.deepStrictEqual()相反
-
-*assert.notEqual(actual, expected[, message])*
-使用 != 不等运算符测试参数是否不相等
-
-*assert.notStrictEqual(actual, expected[, message])*
-使用不全等运算符（!==）测试参数是否不全等
-
-*assert.ok(value[, message])*
-测试 value 是否为真值。 相当于 assert.equal(!!value, true, message)
-
-
-###### 异步钩子(Async Hooks)
-Error handling(错误处理)
-应用程序运行时带有--abort on uncaught可以实现退出后，打印堆栈跟踪，留下一个核心文件
-**If any AsyncHook callbacks throw, the application will print the stack trace and exit. The exit path does follow that of an uncaught exception, but all 'uncaughtException' listeners are removed, thus forcing the process to exit. The 'exit' callbacks will still be called unless the application is run with --abort-on-uncaught-exception, in which case a stack trace will be printed and the application exits, leaving a core file.**
-
-Printing in AsyncHook callbacks(异步钩子打印信息)
-在异步钩子函数中，打印信息查看数据不能使用 console.log等异步操作，会导致无限递归。
-推荐使用 fs.writeSync(1, msg).
-```javascript
-const fs = require('fs');
-const util = require('util');
-
-function debug(...args) {
-  // use a function like this one when debugging inside an AsyncHooks callback
-  fs.writeSync(1, `${util.format(...args)}\n`);
-}
-```
-**Because printing to the console is an asynchronous operation, console.log() will cause AsyncHook callbacks to be called. Using console.log() or similar asynchronous operations inside an AsyncHook callback function will cause an infinite recursion. An easy solution to this when debugging is to use a synchronous logging operation such as fs.writeFileSync(file, msg, flag). This will print to the file and will not invoke AsyncHook recursively because it is synchronous.**
-
-*asyncHook.enable()*
-启用异步钩子
-
-*asyncHook.disable()*
-禁用异步钩子
-
-*init(asyncId, type, triggerAsyncId, resource)*
-asyncId: number类型，唯一标识符
-type: string类型，异步类型
-triggerAsyncId: number类型，在其执行上下文中创建此异步资源的异步资源的唯一ID
-resource: object类型，异步操作的资源的引用，需要在销毁期间释放
-应用场景：用于资源开启，被调用之前
-
-```javascript
-require('net').createServer().listen(function() { this.close(); });
-// OR
-clearTimeout(setTimeout(() => {}, 10));
-```
-注意：每个资源的ID在当前进程作用域中唯一
-
-*type*命名一般符合资源结构，比如：
-```
-FSEVENTWRAP, FSREQWRAP, GETADDRINFOREQWRAP, GETNAMEINFOREQWRAP, HTTPPARSER,
-JSSTREAM, PIPECONNECTWRAP, PIPEWRAP, PROCESSWRAP, QUERYWRAP, SHUTDOWNWRAP,
-SIGNALWRAP, STATWATCHER, TCPCONNECTWRAP, TCPSERVER, TCPWRAP, TIMERWRAP, TTYWRAP,
-UDPSENDWRAP, UDPWRAP, WRITEWRAP, ZLIB, SSLCONNECTION, PBKDF2REQUEST,
-RANDOMBYTESREQUEST, TLSWRAP, Timeout, Immediate, TickObject, PROMISE
-```
-备注：type类型可能存在冲突，推荐给type添加前缀，比如 package name
-
-*triggerAsyncId*
-引起新资源初始化，调用init函数的资源的唯一标识符，triggerAsyncId展示资源为什么被创建
-```javascript
-async_hooks.createHook({
-  init(asyncId, type, triggerAsyncId) {
-    const eid = async_hooks.executionAsyncId();
-    fs.writeSync(
-      1, `${type}(${asyncId}): trigger: ${triggerAsyncId} execution: ${eid}\n`);
-  }
-}).enable();
-
-require('net').createServer((conn) => {}).listen(8080);
-```
-
-*resource*
-实际初始化的异步资源
-
-```javascript
-let indent = 0;
-async_hooks.createHook({
-  init(asyncId, type, triggerAsyncId) {
-    const eid = async_hooks.executionAsyncId();
-    const indentStr = ' '.repeat(indent);
-    fs.writeSync(
-      1,
-      `${indentStr}${type}(${asyncId}):` +
-      ` trigger: ${triggerAsyncId} execution: ${eid}\n`);
-  },
-  before(asyncId) {
-    const indentStr = ' '.repeat(indent);
-    fs.writeSync(1, `${indentStr}before:  ${asyncId}\n`);
-    indent += 2;
-  },
-  after(asyncId) {
-    indent -= 2;
-    const indentStr = ' '.repeat(indent);
-    fs.writeSync(1, `${indentStr}after:   ${asyncId}\n`);
-  },
-  destroy(asyncId) {
-    const indentStr = ' '.repeat(indent);
-    fs.writeSync(1, `${indentStr}destroy: ${asyncId}\n`);
-  },
-}).enable();
-
-require('net').createServer(() => {}).listen(8080, () => {
-  // Let's wait 10ms before logging the server started.
-  setTimeout(() => {
-    console.log('>>>', async_hooks.executionAsyncId());
-  }, 10);
-});
-
-
-// 打印
-TCPSERVERWRAP(2): trigger: 1 execution: 1
-TickObject(3): trigger: 2 execution: 1
-before:  3
-  Timeout(4): trigger: 3 execution: 3
-  TIMERWRAP(5): trigger: 3 execution: 3
-after:   3
-destroy: 3
-before:  5
-  before:  4
-    TTYWRAP(6): trigger: 4 execution: 4
-    SIGNALWRAP(7): trigger: 4 execution: 4
-    TTYWRAP(8): trigger: 4 execution: 4
->>> 4
-    TickObject(9): trigger: 4 execution: 4
-  after:   4
-after:   5
-before:  9
-after:   9
-destroy: 4
-destroy: 9
-destroy: 5
-```
-
-*before(asyncId)*
-当异步操作启动（如 TCP 服务器接收新连接）或完成（如将数据写入磁盘）时，会调用回调通知用户。 before 回调在所述回调执行之前被调用。 asyncId 是分配给即将执行回调的资源的唯一标识符。
-
-*after(asyncId)*
-在 before 中指定的回调完成后立即调用。
-注意：callback执行中产生异常，after在'uncaughtException' 事件或域的处理程序运行后运行
-
-*destroy(asyncId)*
-asyncId 对应的资源销毁后调用。 它也从嵌入器 API emitDestroy() 异步调用。
-注意：如果资源的回收依赖于垃圾回收机制，由于内存泄露，通过resource对象传给init的引用，destroy不会被调用。???如果不依赖垃圾回收机制，则没有上述问题。
-
-*promiseResolve(asyncId)*
-当调用传给 Promise 构造函数的 resolve 函数时调用（直接或通过其他解决 promise 的方法）。
-注意：这并不一定意味着promise在此时被resolve或reject，promise可能是通过假设另一个Promise的状态来解决的
-
-*async_hooks.executionAsyncResource()*
-executionAsyncResource() 返回的资源对象通常是带有未记录 API 的内部 Node.js 句柄对象。 在对象上使用任何函数或属性都可能使您的应用程序崩溃，应该避免。
-
-*async_hooks.executionAsyncId()*
-当前执行上下文的asyncId，可用于跟踪某些函数被调用的情况
-```javascript
-const async_hooks = require('async_hooks');
-
-console.log(async_hooks.executionAsyncId());  // 1 - bootstrap
-fs.open(path, 'r', (err, fd) => {
-  console.log(async_hooks.executionAsyncId());  // 6 - open()
-});
-```
-executionAsyncId() 返回的 ID 与执行时机有关，与因果无关（被 triggerAsyncId() 涵盖）
-```javascript
-const server = net.createServer(function onConnection(conn) {
-  // Returns the ID of the server, not of the new connection, because the
-  // onConnection callback runs in the execution scope of the server's
-  // MakeCallback().
-  async_hooks.executionAsyncId();
-
-}).listen(port, function onListening() {
-  // Returns the ID of a TickObject (i.e. process.nextTick()) because all
-  // callbacks passed to .listen() are wrapped in a nextTick().
-  async_hooks.executionAsyncId();
-});
-```
-
-*async_hooks.triggerAsyncId()*
-返回正在执行资源的Id
-默认情况下，promise 上下文可能无法获得有效的 triggerAsyncId。
-```javascript
-const server = net.createServer((conn) => {
-  // The resource that caused (or triggered) this callback to be called
-  // was that of the new connection. Thus the return value of triggerAsyncId()
-  // is the asyncId of "conn".
-  async_hooks.triggerAsyncId();
-
-}).listen(port, () => {
-  // Even though all callbacks passed to .listen() are wrapped in a nextTick()
-  // the callback itself exists because the call to the server's .listen()
-  // was made. So the return value would be the ID of the server.
-  async_hooks.triggerAsyncId();
-});
-```
-
-*async_hooks.asyncWrapProviders*
-返回：提供程序类型到相应数字id的map映射。此映射包含可能由async_hooks.init发出的所有事件类型
-此特性禁止使用 process.binding('async_wrap').Providers
-
-*Promise 执行跟踪*
-默认情况下，由于 V8 提供的 promise 自省 API 相对昂贵，因此不会为 promise 执行分配 asyncId。 这意味着默认情况下，使用 promise 或 async/await 的程序将无法正确执行并触发 promise 回调上下文的 id。
-```javascript
-import { executionAsyncId, triggerAsyncId } from 'node:async_hooks';
-
-Promise.resolve(1729).then(() => {
-  console.log(`eid ${executionAsyncId()} tid ${triggerAsyncId()}`);
-});
-// produces:
-// eid 1 tid 0
-```
-```javascript
-import { createHook, executionAsyncId, triggerAsyncId } from 'node:async_hooks';
-createHook({ init() {} }).enable(); // forces PromiseHooks to be enabled.
-Promise.resolve(1729).then(() => {
-  console.log(`eid ${executionAsyncId()} tid ${triggerAsyncId()}`);
-});
-// produces:
-// eid 7 tid 6
-```
-
-###### AsyncResource类
-AsyncResource类被设计为由嵌入程序的异步资源扩展。使用它，用户可以轻松地触发自己资源的生命周期事件。
-```javascript
-import { AsyncResource, executionAsyncId } from 'node:async_hooks';
-
-// AsyncResource() is meant to be extended. Instantiating a
-// new AsyncResource() also triggers init. If triggerAsyncId is omitted then
-// async_hook.executionAsyncId() is used.
-const asyncResource = new AsyncResource(
-  type, { triggerAsyncId: executionAsyncId(), requireManualDestroy: false }
-);
-
-// Run a function in the execution context of the resource. This will
-// * establish the context of the resource
-// * trigger the AsyncHooks before callbacks
-// * call the provided function `fn` with the supplied arguments
-// * trigger the AsyncHooks after callbacks
-// * restore the original execution context
-asyncResource.runInAsyncScope(fn, thisArg, ...args);
-
-// Call AsyncHooks destroy callbacks.
-asyncResource.emitDestroy();
-
-// Return the unique ID assigned to the AsyncResource instance.
-asyncResource.asyncId();
-
-// Return the trigger ID for the AsyncResource instance.
-asyncResource.triggerAsyncId();
-```
-
-###### AsyncLocalStorage 类
-
-
-###### 参考
-https://www.jianshu.com/p/4a568dac41ed
+###### 非 I/O 的异步 API 

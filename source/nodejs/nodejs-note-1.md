@@ -1,5 +1,5 @@
 ---
-title: nodejs基础知识(1)
+title: nodejs基础知识 & 深入浅出nodejs阅读笔记(1)
 date: 2022-10-19 19:12:12
 tags: [node, docs]
 ---
@@ -193,3 +193,107 @@ node_extensions.h文件将这些散列的内建模块统一放进了一个叫nod
 - libuv库
 - Node内部库
 - 其他库
+以.node为扩展名的文件，Node将会调用process.dlopen()方法去加载文件：
+//Native extension for .node 
+Module._extensions['.node'] = process.dlopen;
+
+require()在引入.node文件的过程中，实际上经历了4个层面上的调用：
+![require调用](./images/node-require.png)
+
+###### 模块调用栈
+- C/C++内建模块
+  - 属于最底层的模块，它属于核心模块，主要提供API给JavaScript核心模块和第三方JavaScript文件模块调用。如果不是非常了解要调用的C/C++内建模块，请尽量避免通过process.binding()方法直接调用，这是不推荐的
+- JavaScript核心模块
+  - 主要扮演的职责有两类：一类是作为C/C++内建模块的封装层和桥接层，供文件模块调用；一类是纯粹的功能模块，它不需要跟底层打交道，但是又十分重要
+- 文件模块
+  - 通常由第三方编写，包括普通JavaScript模块和C/C++扩展模块，主要调用方向为普通JavaScript模块调用扩展模块
+![node模块](./images/node-modules.png)
+
+#### 包与NPM
+![包](./images/package.png)
+
+###### 包结构
+包实际上是一个存档文件，即一个目录直接打包为.zip或tar.gz格式的文件，安装后解压还原
+为目录。完全符合CommonJS规范的包目录应该包含如下这些文件。
+- package.json：包描述文件。
+- bin：用于存放可执行二进制文件的目录。
+- lib：用于存放JavaScript代码的目录。
+- doc：用于存放文档的目录。
+- test：用于存放单元测试用例的代码。
+
+###### 包描述文件与NPM
+包描述文件用于表达非代码相关的信息，它是一个JSON格式的文件——package.json，位于包的根目录下，是包的重要组成部分
+CommonJS为package.json文件定义了如下一些必需的字段。
+- name。包名。规范定义它需要由小写的字母和数字组成，可以包含.、_和-，但不允许出现空格。包名必须是唯一的，以免对外公布时产生重名冲突的误解。除此之外，NPM还建议不要在包名中附带上node或js来重复标识它是JavaScript或Node模块。
+- description。包简介。
+- version。版本号。一个语义化的版本号，这在http://semver.org/上有详细定义，通常为major.minor.revision格式。该版本号十分重要，常常用于一些版本控制的场合。
+- keywords。关键词数组，NPM中主要用来做分类搜索。一个好的关键词数组有利于用户快速找到你编写的包。 
+- maintainers。包维护者列表。每个维护者由name、email和web这3个属性组成。示例如下："maintainers": [{ "name": "Jackson Tian", "email": "shyvo1987@gmail.com", "web": "http://html5ify.com" }], NPM通过该属性进行权限认证
+- contributors。贡献者列表。在开源社区中，为开源项目提供代码是经常出现的事情，如果名字能出现在知名项目的contributors列表中，是一件比较有荣誉感的事。列表中的第一个贡献应当是包的作者本人。它的格式与维护者列表相同。
+- bugs。一个可以反馈bug的网页地址或邮件地址。
+- licenses。当前包所使用的许可证列表，表示这个包可以在哪些许可证下使用。它的格式如下："licenses": [{ "type": "GPLv2", "url": "http://www.example.com/licenses/gpl.html", }] 
+- repositories。托管源代码的位置列表，表明可以通过哪些方式和地址访问包的源代码。
+- dependencies。使用当前包所需要依赖的包列表。这个属性十分重要，NPM会通过这个属性帮助自动加载依赖的包。 除了必选字段外，规范还定义了一部分可选字段，具体如下所示。
+- homepage。当前包的网站地址。
+- os。操作系统支持列表。这些操作系统的取值包括aix、freebsd、linux、macos、solaris、vxworks、windows。如果设置了列表为空，则不对操作系统做任何假设。
+- cpu。CPU架构的支持列表，有效的架构名称有arm、mips、ppc、sparc、x86和x86_64。同os一样，如果列表为空，则不对CPU架构做任何假设。
+- engine。支持的JavaScript引擎列表，有效的引擎取值包括ejs、flusspferd、gpsee、jsc、spidermonkey、narwhal、node和v8。
+- builtin。标志当前包是否是内建在底层系统的标准组件。
+- directories。包目录说明。
+- implements。实现规范的列表。标志当前包实现了CommonJS的哪些规范。
+- scripts。脚本说明对象。它主要被包管理器用来安装、编译、测试和卸载包。示例如下：
+"scripts": { "install": "install.js", 
+ "uninstall": "uninstall.js", 
+ "build": "build.js", 
+ "doc": "make-doc.js", 
+ "test": "test.js" } 
+
+包描述文件的规范中，NPM实际需要的字段主要有name、version、description、keywords、repositories、author、bin、main、scripts、engines、dependencies、devDependencies
+与包规范的区别在于多了author、bin、main和devDependencies这4个字段，下面补充说明一下。
+- author。包作者。
+- bin。一些包作者希望包可以作为命令行工具使用。配置好bin字段后，通过npm install package_name -g命令可以将脚本添加到执行路径中，之后可以在命令行中直接执行。前
+面的node-gyp即是这样安装的。通过-g命令安装的模块包称为全局模式。
+- main。模块引入方法require()在引入包时，会优先检查这个字段，并将其作为包中其余模块的入口。如果不存在这个字段，require()方法会查找包目录下的index.js、index.node、index.json文件作为默认入口。
+- devDependencies。一些模块只在开发时需要依赖。配置这个属性，可以提示包的后续开发者安装依赖包
+
+###### 发布包
+- 编写模块
+- 初始化包描述文件
+  - npm init
+- 注册包仓库账号
+  - npm adduser
+- 上传包
+  - npm publish .
+- 安装包
+  - npm install XXXX
+- 管理包权限
+  - npm owner ls <package name>
+  - npm owner add <user> <package name> 
+  - npm owner rm <user> <package name> 
+
+包的标准：
+- 具备良好的测试。
+- 具备良好的文档（README、API）。
+- 具备良好的测试覆盖率。
+- 具备良好的编码规范。
+- 更多条件
+
+###### AMD规范
+AMD规范是CommonJS模块规范的一个延伸，它的模块定义如下：
+define(id?, dependencies?, factory); 
+它的模块id和依赖是可选的，与Node模块相似的地方在于factory的内容就是实际代码的内容
+AMD模块需要用define来明确定义一个模块，而在Node实现中是隐式包装的，它们的目的是进行作用域隔离，仅在需要的时候被引入，避免掉过去那种通过全局变量或者全局命名空间的方式，以免变量污染和不小心被修改。另一个区别则是内容需要通过返回的方式实现导出。
+
+###### CMD规范
+与AMD规范的主要区别在于定义模块和依赖引入的部分。AMD需要在声明模块的时候指定所有的依赖，通过形参传递依赖到模块内容中：
+define(['dep1', 'dep2'], function (dep1, dep2) { 
+ return function () {}; 
+}); 
+与AMD模块规范相比，CMD模块更接近于Node对CommonJS规范的定义：
+define(factory); 
+在依赖部分，CMD支持动态引入，示例如下：
+define(function(require, exports, module) { 
+ // The module code goes here 
+}); 
+require、exports和module通过形参传递给模块，在需要依赖模块时，随时调用require()引入即可。
+
