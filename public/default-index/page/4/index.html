@@ -178,6 +178,107 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/15-js-transform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/19/15-js-transform/" class="post-title-link" itemprop="url">js-类型转换</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-19 15:59:15" itemprop="dateCreated datePublished" datetime="2022-07-19T15:59:15+08:00">2022-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-23 08:33:39" itemprop="dateModified" datetime="2022-11-23T08:33:39+08:00">2022-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在开始之前，先说一下为什么会说这个，之前在看一篇文章的时候，提到 == 和 === 的区别。<br>== ：比较两个数据是否相等，允许进行类型转化<br>比如：1==true、’1’==true，结果都是true<br>===：严格比较两个数据是否是否相等，包括比较类型是否相同，类型不匹配返回false<br>比如：1===true、’1’===true，结果为false</p>
+<h4 id="数学运算符中的类型转换"><a href="#数学运算符中的类型转换" class="headerlink" title="数学运算符中的类型转换"></a>数学运算符中的类型转换</h4><p>1、减、乘、除运算<br><strong>非Number类型的使用减、乘、除(-、*、/)运算符时，会先将非Number类型转换为Number类型</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0, true先转换乘1，然后执行 1 - 1</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">false</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">undefined</span> <span class="comment">// NaN, undefined转换为数字为 NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">&#x27;5&#x27;</span>] <span class="comment">// 10, [&#x27;5&#x27;]先变成&#x27;5&#x27;（这一步涉及拆箱操作）,然后变成数字5</span></span><br></pre></td></tr></table></figure>
+<a class="btn" href="/2022/08/09/devan-operation/">拆箱操作</a>
+
+<p>2、加运算<br><strong>js中的加法运算，还可以用来拼接字符串</strong></p>
+<ul>
+<li>加号一侧为String类型，则加法运算被识别为拼接字符串操作，并会优先将另一侧转换为字符串类型</li>
+<li>加号一侧为Number类型，另一侧为原始类型，则将原始类型转换为Number类型</li>
+<li>加号一侧为Number类型，另一侧为引用类型，将引用类型和Number类型转换成字符串后进行拼接</li>
+<li><em>以上三点，优先级从高到低</em>*</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">&#x27;123&#x27;</span> <span class="comment">// &#x27;123123&#x27; (规则1)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">null</span> <span class="comment">//  123 (规则2)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">true</span> <span class="comment">//  124 (规则2)</span></span><br><span class="line"><span class="number">123</span> + &#123;&#125;   <span class="comment">//  &#x27;123[object Object]&#x27; (规则3)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="逻辑运算中的类型转换"><a href="#逻辑运算中的类型转换" class="headerlink" title="逻辑运算中的类型转换"></a>逻辑运算中的类型转换</h4><p>1、单个变量<br>先将变量转换为Boolean值<br><strong>只有null、undefined、’’、NaN、0、false的boolean值是false，其他情况都是true，比如：{}、[]</strong></p>
+<p>2、使用 == 比较中的5条规则<br><strong>建议使用 ===</strong></p>
+<ul>
+<li>规则1：NaN和其他任何类型比较永远返回false(包括和他自己)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+<li>规则2：boolean和其他任何类型比较，Boolean首先被转换成Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// false,先将true转换为1，而不是把&#x27;2&#x27;变成true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;1&#x27;</span>] <span class="comment">// true, 先将true转换为1，[&#x27;1&#x27;]拆箱成&#x27;1&#x27;,在参考规则3</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;2&#x27;</span>] <span class="comment">// false, 同上</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false, 首先false变成0，然后参考规则4</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure></li>
+<li>String和Number比较，先将String转换为Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="string">&#x27;123&#x27;</span> <span class="comment">// true, &#x27;123&#x27;会变成123</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="number">0</span> <span class="comment">// true，&#x27;&#x27;会变成 0</span></span><br></pre></td></tr></table></figure></li>
+<li>null == undefined 比较结果是true，除此之外，null、undefined和其他任何结果的比较值都为false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>  <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+<li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换为原始类型</li>
+<li><em>ToPrimitive规则是引用类型向原始类型转变的规则，它遵循先 valueOf后 toString的模式期望得到一个原始类型，如果无法得到一个原始类型，就会抛出TypeError</em>*<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; <span class="comment">// true, 对象和字符串比较，对象通过toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// true, [1,2,3]通过toString得到一个基本类型</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/15-js-transform/convert-table.png" alt="类型转换对照表"></p>
+<h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
+<a class="btn" href="/"><i class="fa fa-home"></i></a>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/12/14-about-fe-theory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -214,7 +315,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-18 13:47:25" itemprop="dateModified" datetime="2022-07-18T13:47:25+08:00">2022-07-18</time>
+      <time title="Modified: 2022-11-23 08:33:38" itemprop="dateModified" datetime="2022-11-23T08:33:38+08:00">2022-11-23</time>
     </span>
 
   
@@ -299,7 +400,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-25 15:04:14" itemprop="dateModified" datetime="2022-10-25T15:04:14+08:00">2022-10-25</time>
+      <time title="Modified: 2022-11-23 08:33:38" itemprop="dateModified" datetime="2022-11-23T08:33:38+08:00">2022-11-23</time>
     </span>
 
   
@@ -378,9 +479,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-30 11:23:56 / Modified: 13:18:19" itemprop="dateCreated datePublished" datetime="2022-06-30T11:23:56+08:00">2022-06-30</time>
+      <time title="Created: 2022-06-30 11:23:56" itemprop="dateCreated datePublished" datetime="2022-06-30T11:23:56+08:00">2022-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-23 08:33:38" itemprop="dateModified" datetime="2022-11-23T08:33:38+08:00">2022-11-23</time>
     </span>
 
   
@@ -448,9 +555,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-30 10:45:15 / Modified: 13:22:12" itemprop="dateCreated datePublished" datetime="2022-06-30T10:45:15+08:00">2022-06-30</time>
+      <time title="Created: 2022-06-30 10:45:15" itemprop="dateCreated datePublished" datetime="2022-06-30T10:45:15+08:00">2022-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-23 08:33:38" itemprop="dateModified" datetime="2022-11-23T08:33:38+08:00">2022-11-23</time>
     </span>
 
   
@@ -536,7 +649,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-21 15:48:28" itemprop="dateModified" datetime="2022-07-21T15:48:28+08:00">2022-07-21</time>
+      <time title="Modified: 2022-11-23 08:33:38" itemprop="dateModified" datetime="2022-11-23T08:33:38+08:00">2022-11-23</time>
     </span>
 
   
@@ -648,7 +761,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-14 11:01:44" itemprop="dateModified" datetime="2022-10-14T11:01:44+08:00">2022-10-14</time>
+      <time title="Modified: 2022-11-23 08:33:39" itemprop="dateModified" datetime="2022-11-23T08:33:39+08:00">2022-11-23</time>
     </span>
 
   
@@ -824,7 +937,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:12:26" itemprop="dateModified" datetime="2022-08-10T11:12:26+08:00">2022-08-10</time>
+      <time title="Modified: 2022-11-23 08:33:39" itemprop="dateModified" datetime="2022-11-23T08:33:39+08:00">2022-11-23</time>
     </span>
 
   
@@ -915,7 +1028,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:14:53" itemprop="dateModified" datetime="2022-08-10T11:14:53+08:00">2022-08-10</time>
+      <time title="Modified: 2022-11-23 08:33:39" itemprop="dateModified" datetime="2022-11-23T08:33:39+08:00">2022-11-23</time>
     </span>
 
   
@@ -991,7 +1104,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:16:20" itemprop="dateModified" datetime="2022-08-10T11:16:20+08:00">2022-08-10</time>
+      <time title="Modified: 2022-11-23 08:33:39" itemprop="dateModified" datetime="2022-11-23T08:33:39+08:00">2022-11-23</time>
     </span>
 
   
@@ -1008,86 +1121,6 @@
 <h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2><p><img src="/2022/06/22/6-vue3-render/render.png" alt="render"><br>(1)首先会判断Vnode是否存在，如果不存在，则调用unmount函数，进行组件的卸载<br>(2)否则调用patch函数，对组件进行patch（PS: patch是一个递归的过程）<br>(3)patch 结束后，会调用flushPostFlushCbs函数冲刷任务池<br>(4)最后更新容器上的Vnode<br>注：patch函数的主要职责就是去判断Vnode的节点类型（打上patchFlag标志），然后调用对应类型的Vnode处理方式，进行更细致的patch（最后进行render渲染）</p>
 <h2 id="patch函数"><a href="#patch函数" class="headerlink" title="patch函数"></a>patch函数</h2><p><img src="/2022/06/22/6-vue3-render/render_node1.png" alt="render_node1"><br><img src="/2022/06/22/6-vue3-render/render_node2.png" alt="render_node2"><br><img src="/2022/06/22/6-vue3-render/render_function.png" alt="render_function"><br>注：patch依据不同节点类型，执行不同的处理函数，包括：Text、Comment、Static、Fragment等<br>(1)n1 与 n2 是待比较的两个节点，n1 为旧节点，n2 为新节点<br>(2)container 是新节点的容器<br>(3)anchor 是一个锚点，用来标识当我们对新旧节点做增删或移动等操作时，以哪个节点为参照物<br>(4)optimized 参数是是否开启优化模式的标识</p>
 <h2 id="卸载组件"><a href="#卸载组件" class="headerlink" title="卸载组件"></a>卸载组件</h2><p>如果调用render函数时没有传Vnode，则会调用unmount函数对组件进行卸载 ，卸载过程中：<br>(1)如果存在ref，会首先重置ref<br>(2)如果组件是经过Keep-Alive缓存的组件，会通过deactivate对组件进行卸载<br>(3)如果是组件类型Vnode，会通过unmountComponent函数对组件进行卸载</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/22/5-react-render/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/22/5-react-render/" class="post-title-link" itemprop="url">react渲染</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-22 22:12:37" itemprop="dateCreated datePublished" datetime="2022-06-22T22:12:37+08:00">2022-06-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:15:06" itemprop="dateModified" datetime="2022-08-10T11:15:06+08:00">2022-08-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><h4 id="React-createElement语法糖"><a href="#React-createElement语法糖" class="headerlink" title="React.createElement语法糖"></a>React.createElement语法糖</h4><p>(1)React.createElement(type, [props], […children]);<br>(2)type：元素类型<br>(3)props：属性值<br>(4)children：子元素</p>
-<h4 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h4><p>(1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系<br>(2)$$typeof：标识符，使用Symbol数据结构确保唯一性</p>
-<h4 id="协调算法"><a href="#协调算法" class="headerlink" title="协调算法"></a>协调算法</h4><h4 id="filter图示"><a href="#filter图示" class="headerlink" title="filter图示"></a>filter图示</h4><p><img src="/2022/06/22/5-react-render/fiber_tree.png" alt="filter_tree"></p>
-<h2 id="Element转化为Dom"><a href="#Element转化为Dom" class="headerlink" title="Element转化为Dom"></a>Element转化为Dom</h2><p>(1)所有从React.createElement中收到的值组装成一个React的虚拟Dom，最终调用ReactDom.render方法去实现转化<br>(2)ReactDOM.render(element, container[, callback])<br>(3)ReactDOM.render三个参数，其中第一个参数便是生成的虚拟Dom，第二个参数则是一个真实Dom，此Dom相当于是一个容器，React元素将被渲染到这个容器里面去，第三个参数则是一个callback function</p>
-<h2 id="源码相关"><a href="#源码相关" class="headerlink" title="源码相关"></a>源码相关</h2><p>1、setState触发更新、父组件重新渲染时触发更新<br><img src="/2022/06/22/5-react-render/update_class.png" alt="update_class"><br>(1)static getDerivedStateFromProps()<br>(2)shouldComponentUpdate(nextProps,nextState)<br>(3)render()<br>(4)getSnapshotBeforeUpdate(prevProps,prevState)<br>(5)componentDidUpdate(prevProps,prevState,snapshot)<br>其中，getSnapshotBeforeUpdate(prevProps,prevState)必须返回null或任意快照值(Snapshot Value，undefined除外)。返回的快照值将作为componentDidUpdate的第三个形参<br>2、forceUpdate触发更新<br><img src="/2022/06/22/5-react-render/force_update.png" alt="force_update"><br>(1)static getDerivedStateFromProps()<br>(2)render()<br>(3)getSnapshotBeforeUpdate()<br>(4)componentDidUpdate()</p>
 
       
     </div>
