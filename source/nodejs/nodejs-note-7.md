@@ -122,3 +122,312 @@ console.log(buf.length);
 
 Buffer 实例可以使用 ECMAScript 2015 (ES6) 的 for..of 语法进行遍历
 
+```javascript
+const buf = Buffer.from([1, 2, 3]);
+
+// 输出:
+//   1
+//   2
+//   3
+for (const b of buf) {
+  console.log(b);
+}
+```
+buf.values() 、buf.keys() 和 buf.entries() 方法可用于创建迭代器
+
+*Buffer类*
+Buffer 类是一个全局变量类型，用来直接处理二进制数据的。 它能够使用多种方式构建。
+
+**类方法：Buffer.allocUnsafe(size)**
+分配一个大小为 size 字节的新建的 Buffer 。 如果 size 大于 buffer.constants.MAX_LENGTH 或小于 0，则抛出 RangeError 错误。 如果 size 为 0，则创建一个长度为 0 的 Buffer。
+以这种方式创建的 Buffer 实例的底层内存是未初始化的。 新创建的 Buffer 的内容是未知的，且可能包含敏感数据。 可以使用 buf.fill(0) 初始化 Buffer 实例为0。
+
+```javascript
+const buf = Buffer.allocUnsafe(10);
+console.log(buf);
+// 输出: (内容可能不同): <Buffer 00 00 00 00 00 00 00 00 00 00>
+
+buf.fill(0);
+
+// 输出: <Buffer 00 00 00 00 00 00 00 00 00 00>
+console.log(buf);
+```
+如果 size 不是一个数值，则抛出 TypeError 错误。
+
+注意，Buffer 模块会预分配一个大小为 Buffer.poolSize 的内部 Buffer 实例作为快速分配池， 用于使用 Buffer.allocUnsafe() 新创建的 Buffer 实例，以及废弃的 new Buffer(size) 构造器， 仅限于当 size 小于或等于 Buffer.poolSize >> 1 （Buffer.poolSize 除以2后的最大整数值）。
+
+对这个预分配的内部内存池的使用，是调用 Buffer.alloc(size, fill) 和 Buffer.allocUnsafe(size).fill(fill) 的关键区别。 *具体地说，Buffer.alloc(size, fill) 永远不会使用这个内部的 Buffer 池，但如果 size 小于或等于 Buffer.poolSize 的一半， Buffer.allocUnsafe(size).fill(fill) 会使用这个内部的 Buffer 池。 当应用程序需要 Buffer.allocUnsafe() 提供额外的性能时，这个细微的区别是非常重要的。*
+
+**类方法：Buffer.allocUnsafeSlow(size)**
+当使用 Buffer.allocUnsafe() 分配新建的 Buffer 时，当分配的内存小于 4KB 时，默认会从一个单一的预分配的 Buffer 切割出来。 这使得应用程序可以避免垃圾回收机制因创建太多独立分配的 Buffer 实例而过度使用。 这个方法通过像大多数持久对象一样消除追踪与清理的需求，改善了性能与内存使用。
+
+当然，在开发者可能需要在不确定的时间段从内存池保留一小块内存的情况下，使用 Buffer.allocUnsafeSlow() 创建一个非池的 Buffer 实例然后拷贝出相关的位元是合适的做法。
+```javascript
+// 需要保留一小块内存块
+const store = [];
+
+socket.on('readable', () => {
+  const data = socket.read();
+
+  // 为保留的数据分配内存
+  const sb = Buffer.allocUnsafeSlow(10);
+
+  // 拷贝数据进新分配的内存
+  data.copy(sb, 0, 0, 10);
+
+  store.push(sb);
+});
+```
+*Buffer.allocUnsafeSlow() 应当仅仅作为开发者已经在他们的应用程序中观察到过度的内存保留之后的终极手段使用。*
+
+**类方法：Buffer.byteLength(string[, encoding])**
+返回一个字符串的实际字节长度。 这与 String.prototype.length 不同，因为那返回字符串的字符数。
+
+注意 对于 'base64' 和 'hex'， 该函数假定有效的输入。 对于包含 non-Base64/Hex-encoded 数据的字符串 (e.g. 空格)， 返回值可能大于 从字符串中创建的 Buffer 的长度。
+
+当 string 是一个 Buffer/DataView/TypedArray/ArrayBuffer/SharedArrayBuffer 时，返回实际的字节长度。
+
+**类方法：Buffer.compare(buf1, buf2)**
+比较 buf1 和 buf2 ，通常用于 Buffer 实例数组的排序。 相当于调用 buf1.compare(buf2) 。
+```javascript
+const buf1 = Buffer.from('1234');
+const buf2 = Buffer.from('0123');
+const arr = [buf1, buf2];
+
+console.log(arr.sort(Buffer.compare));
+// 输出: [ <Buffer 30 31 32 33>, <Buffer 31 32 33 34> ]
+// (结果相当于: [buf2, buf1])
+```
+
+**类方法：Buffer.concat(list[, totalLength])**
+返回一个合并了 list 中所有 Buffer 实例的新建的 Buffer 。
+
+如果 list 中没有元素、或 totalLength 为 0 ，则返回一个新建的长度为 0 的 Buffer 。
+
+*如果没有提供 totalLength ，则从 list 中的 Buffer 实例计算得到。 为了计算 totalLength 会导致需要执行额外的循环，所以提供明确的长度会运行更快。*
+*如果提供了 totalLength，totalLength 必须是一个正整数。如果从 list 中计算得到的 Buffer 长度超过了 totalLength，则合并的结果将会被截断为 totalLength 的长度。*
+
+```javascript
+const buf1 = Buffer.alloc(10);
+const buf2 = Buffer.alloc(14);
+const buf3 = Buffer.alloc(18);
+const totalLength = buf1.length + buf2.length + buf3.length;
+
+console.log(totalLength);
+// 输出: 42
+
+const bufA = Buffer.concat([buf1, buf2, buf3], totalLength);
+console.log(bufA);
+// 输出: <Buffer 00 00 00 00 ...>
+
+console.log(bufA.length);
+// 输出: 42
+```
+
+**类方法：Buffer.from(array)**
+如果 array 不是一个数组，则抛出 TypeError 错误
+**类方法：Buffer.from(arrayBuffer[, byteOffset[, length]])**
+arrayBuffer <ArrayBuffer> | <SharedArrayBuffer> ArrayBuffer 或 SharedArrayBuffer 或 TypedArray 的 .buffer 属性。
+byteOffset <integer> 开始拷贝的索引。默认为 0。
+length <integer> 拷贝的字节数。默认为 arrayBuffer.length - byteOffset。
+
+该方法将创建一个 ArrayBuffer 的视图，而不会复制底层内存。例如，当传入一个 TypedArray 实例的 .buffer 属性的引用时，这个新建的 Buffer 会像 TypedArray 那样共享同一分配的内存。
+
+```javascript
+const arr = new Uint16Array(2);
+
+arr[0] = 5000;
+arr[1] = 4000;
+
+const buf = Buffer.from(arr.buffer);
+// 与 `arr` 共享内存
+
+console.log(buf);
+// 输出: <Buffer 88 13 a0 0f>
+
+arr[1] = 6000;
+// 改变原始的 Uint16Array 也会改变 Buffer
+
+console.log(buf);
+// 输出: <Buffer 88 13 70 17>
+```
+可选的 byteOffset 和 length 参数指定将与 Buffer 共享的 arrayBuffer 的内存范围
+```javascript
+const ab = new ArrayBuffer(10);
+const buff = Buffer.from(ab, 0, 2);
+console.log(buff.length);
+// 输出: 2
+```
+如果 arrayBuffer 不是 ArrayBuffer 或 SharedArrayBuffer，则抛出 TypeError 错误
+
+**类方法：Buffer.from(buffer)**
+将传入的 buffer 数据拷贝到一个新建的 Buffer 实例。
+```javascript
+const buf1 = Buffer.from('buffer');
+const buf2 = Buffer.from(buf1);
+buf1[0] = 0x61;
+console.log(buf1.toString());
+// 输出: auffer
+
+console.log(buf2.toString());
+// 输出: buffer
+```
+
+**类方法：Buffer.from(string[, encoding])**
+新建一个包含所给的 JavaScript 字符串 string 的 Buffer 。 encoding 参数指定 string 的字符编码。
+```javascript
+const buf1 = Buffer.from('this is a tést');
+
+console.log(buf1.toString());
+// 输出: this is a tést
+
+console.log(buf1.toString('ascii'));
+// 输出: this is a tC)st
+
+const buf2 = Buffer.from('7468697320697320612074c3a97374', 'hex');
+
+console.log(buf2.toString());
+// 输出: this is a tést
+```
+
+**Class Method: Buffer.from(object[, offsetOrEncoding[, length]])**
+object <Object> 一个支持 Symbol.toPrimitive 或 valueOf() 的对象
+offsetOrEncoding <number> | <string> 字节偏移量或编码，取决于 object.valueOf() 或 object[Symbol.toPrimitive]() 的返回值。
+length <number> 长度值，取决于 object.valueOf() 或 object[Symbol.toPrimitive]() 的返回值。
+那些其 valueOf() 方法返回值如果不严格等于 object 的对象，返回Buffer.from(object.valueOf(), offsetOrEncoding, length)。
+```
+const buf = Buffer.from(new String('this is a test'));
+// <Buffer 74 68 69 73 20 69 73 20 61 20 74 65 73 74>
+```
+那些支持 Symbol.toPrimitive 的对象， 返回 Buffer.from(object[Symbol.toPrimitive](), offsetOrEncoding, length)。
+```
+class Foo {
+  [Symbol.toPrimitive]() {
+    return 'this is a test';
+  }
+}
+
+const buf = Buffer.from(new Foo(), 'utf8');
+// <Buffer 74 68 69 73 20 69 73 20 61 20 74 65 73 74>
+```
+
+**类方法：Buffer.isBuffer(obj)**
+如果 obj 是一个 Buffer 则返回 true ，否则返回 false 
+**类方法：Buffer.isEncoding(encoding)**
+如果 encoding 是一个支持的字符编码则返回 true，否则返回 false 。
+**类属性：Buffer.poolSize**
+这是用于决定预分配的、内部 Buffer 实例池的大小的字节数。 这个值可以修改。默认值：8192
+
+**buf[index]**
+索引操作符 [index] 可用于获取或设置 buf 中指定 index 位置的八位字节。 这个值指向的是单个字节，所以合法的值范围是的 0x00 至 0xFF（十六进制），或 0 至 255（十进制）。
+
+该操作符继承自 Uint8Array，所以它对越界访问的处理与 UInt8Array 相同（也就是说，获取时返回 undefined，设置时什么也不做）。
+```
+const str = 'Node.js';
+const buf = Buffer.allocUnsafe(str.length);
+
+for (let i = 0; i < str.length; i++) {
+  buf[i] = str.charCodeAt(i);
+}
+
+console.log(buf.toString('ascii'));
+// 输出: Node.js
+```
+
+**buf.buffer**
+buffer 属性指向创建该 Buffer 的底层的 ArrayBuffer 对象。
+```
+const arrayBuffer = new ArrayBuffer(16);
+const buffer = Buffer.from(arrayBuffer);
+
+console.log(buffer.buffer === arrayBuffer);
+// 输出: true
+```
+
+**buf.compare(target[, targetStart[, targetEnd[, sourceStart[, sourceEnd]]]])**
+target <Buffer> | <Uint8Array> 要比较的 Buffer 或 Uint8Array。
+targetStart <integer> target 中开始对比的偏移量。 默认: 0
+targetEnd <integer> target 中结束对比的偏移量（不包含）。 默认: target.length
+sourceStart <integer> buf 中开始对比的偏移量。 默认: 0
+sourceEnd <integer> buf 中结束对比的偏移量（不包含）。 默认: buf.length
+返回: <integer>
+比较 buf 与 target，返回表明 buf 在排序上是否排在 target 之前、或之后、或相同。 对比是基于各自 Buffer 实际的字节序列。
+
+如果 target 与 buf 相同，则返回 0 。
+如果 target 排在 buf 前面，则返回 1 。
+如果 target 排在 buf 后面，则返回 -1 。
+
+```
+const buf1 = Buffer.from('ABC');
+const buf2 = Buffer.from('BCD');
+const buf3 = Buffer.from('ABCD');
+
+console.log(buf1.compare(buf1));
+// 输出: 0
+
+console.log(buf1.compare(buf2));
+// 输出: -1
+
+console.log(buf1.compare(buf3));
+// 输出: -1
+
+console.log(buf2.compare(buf1));
+// 输出: 1
+
+console.log(buf2.compare(buf3));
+// 输出: 1
+
+console.log([buf1, buf2, buf3].sort(Buffer.compare));
+// 输出: [ <Buffer 41 42 43>, <Buffer 41 42 43 44>, <Buffer 42 43 44> ]
+// (结果相当于: [buf1, buf3, buf2])
+```
+可选的 targetStart 、 targetEnd 、 sourceStart 与 sourceEnd 参数可用于分别在 target 与 buf 中限制对比在指定的范围内。
+```
+const buf1 = Buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+const buf2 = Buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
+
+console.log(buf1.compare(buf2, 5, 9, 0, 4));
+// 输出: 0
+
+console.log(buf1.compare(buf2, 0, 6, 4));
+// 输出: -1
+
+console.log(buf1.compare(buf2, 5, 6, 5));
+// 输出: 1
+```
+如果 targetStart < 0 、 sourceStart < 0 、 targetEnd > target.byteLength 或 sourceEnd > source.byteLength，则抛出 RangeError 错误。
+
+**buf.copy(target[, targetStart[, sourceStart[, sourceEnd]]])**
+target <Buffer> | <Uint8Array> 要拷贝进的 Buffer 或 Uint8Array。
+targetStart <integer> target 中开始拷贝进的偏移量。 默认: 0
+sourceStart <integer> buf 中开始拷贝的偏移量。 默认: 0
+sourceEnd <integer> buf 中结束拷贝的偏移量（不包含）。 默认: buf.length
+返回: <integer> 被拷贝的字节数。
+拷贝 buf 的一个区域的数据到 target 的一个区域，即便 target 的内存区域与 buf 的重叠。
+```
+const buf1 = Buffer.allocUnsafe(26);
+const buf2 = Buffer.allocUnsafe(26).fill('!');
+
+for (let i = 0; i < 26; i++) {
+  // 97 是 'a' 的十进制 ASCII 值
+  buf1[i] = i + 97;
+}
+
+buf1.copy(buf2, 8, 16, 20);
+
+console.log(buf2.toString('ascii', 0, 25));
+// 输出: !!!!!!!!qrst!!!!!!!!!!!!!
+
+// 创建一个 Buffer ，并拷贝同一 Buffer 中一个区域的数据到另一个重叠的区域。
+const buf = Buffer.allocUnsafe(26);
+
+for (let i = 0; i < 26; i++) {
+  // 97 是 'a' 的十进制 ASCII 值
+  buf[i] = i + 97;
+}
+
+buf.copy(buf, 0, 4, 10);
+
+console.log(buf.toString());
+// 输出: efghijghijklmnopqrstuvwxyz
+```
