@@ -50,4 +50,49 @@ module_name 必须匹配最终的二进制文件名（不包括 .node 后缀）�
 
 在 hello.cc 示例中，初始化函数是 init，插件模块名是 addon。
 
+**构建**
+
 当源代码已被编写，它必须被编译成二进制 addon.node 文件。 要做到这点，需在项目的顶层创建一个名为 binding.gyp 的文件，它使用一个类似 JSON 的格式来描述模块的构建配置。 该文件会被 node-gyp（一个用于编译 Node.js 插件的工具）使用。
+```
+{
+  "targets": [
+    {
+      "target_name": "addon",
+      "sources": [ "hello.cc" ]
+    }
+  ]
+}
+```
+
+当使用 npm install 安装一个 Node.js 插件时，npm 会使用自身捆绑的 node-gyp 版本来执行同样的一套动作，为用户要求的平台生成一个插件编译后的版本。
+
+当构建完成时，二进制插件就可以在 Node.js 中被使用，通过 require() 构建后的 addon.node 模块
+```
+// hello.js
+const addon = require('./build/Release/addon');
+
+console.log(addon.hello());
+// 打印: 'world'
+```
+
+*因为编译后的二进制插件的确切路径取决于它如何被编译（比如有时它可能在 ./build/Debug/ 中），所以插件可以使用 bindings 包加载编译后的模块。*
+
+注意，虽然 bindings 包在如何定位插件模块的实现上更复杂，但它本质上使用了一个 try-catch 模式
+```
+try {
+  return require('./build/Release/addon.node');
+} catch (err) {
+  return require('./build/Debug/addon.node');
+}
+```
+
+**链接到 Node.js 自有的依赖**
+Node.js 使用了一些静态链接库，所有的插件都需要链接到 V8，也可能链接到任何其他依赖。 通常情况下，只要简单地包含相应的 #include <...> 声明（如 #include <v8.h>），则 node-gyp 会自动定位到相应的头文件。 但是也有一些注意事项需要注意：
+- 当 node-gyp 运行时，它会检测指定的 Node.js 发行版本，并下载完整的源代码包或只是头文件。 如果下载了完整的源代码，则插件对全套的 Node.js 依赖有完全的访问权限。 如果只下载了 Node.js 的文件头，则只有 Node.js 导出的符号可用。
+
+- node-gyp 可使用指向一个本地 Node.js 源代码镜像的 --nodedir 标志来运行。 如果使用该选项，则插件有全套依赖的访问权限。
+
+**使用 require() 加载插件**
+编译后的二进制插件的文件扩展名是 .node（而不是 .dll 或 .so）。 require() 函数用于查找具有 .node 文件扩展名的文件，并初始化为动态链接库。
+
+当调用 require() 时，.node 拓展名通常可被省略，Node.js 仍会找到并初始化该插件。 注意，Node.js 会优先尝试查找并加载同名的模块或 JavaScript 文件。 例如，如果与二进制的 addon.node 同一目录下有一个 addon.js 文件，则 require('addon') 会优先加载 addon.js 文件。
