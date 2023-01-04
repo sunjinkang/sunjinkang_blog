@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="crypto 模块提供了加密功能，包含对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装。 使用 require(‘crypto’) 来访问该模块。 1const crypto &#x3D; require(&amp;#x27;crypto&amp;#x27;);  Class: CertificateSPKAC 最初是由 Netscape 实现的一种证书签名请求机制, 现在正式成为 HTML">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nodejs基础知识(6)">
+<meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-13.html">
+<meta property="og:site_name" content="Sun ...something">
+<meta property="og:description" content="crypto 模块提供了加密功能，包含对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装。 使用 require(‘crypto’) 来访问该模块。 1const crypto &#x3D; require(&amp;#x27;crypto&amp;#x27;);  Class: CertificateSPKAC 最初是由 Netscape 实现的一种证书签名请求机制, 现在正式成为 HTML">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-03T10:04:15.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:37:40.464Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="crypto (加密)">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/nodejs/nodejs-note-13">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-13.html","path":"nodejs/nodejs-note-13.html","title":"nodejs基础知识(6)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>nodejs基础知识(6) | Sun ...something
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun ...something</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
+      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Class-Certificate"><span class="nav-number">1.</span> <span class="nav-text">Class: Certificate</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Class-Cipher"><span class="nav-number">2.</span> <span class="nav-text">Class: Cipher</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">nodejs基础知识(6)
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>crypto 模块提供了加密功能，包含对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装。</p>
+<p>使用 require(‘crypto’) 来访问该模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h6 id="Class-Certificate"><a href="#Class-Certificate" class="headerlink" title="Class: Certificate"></a>Class: Certificate</h6><p>SPKAC 最初是由 Netscape 实现的一种证书签名请求机制, 现在正式成为 HTML5’s keygen element 的一部分.<br>crypto 模块提供 Certificate 类用于处理 SPKAC 数据. 最普遍的用法是处理 HTML5 keygen 元素 产生的输出. Node.js 内部使用 OpenSSL’s SPKAC implementation 处理.</p>
+<p>new crypto.Certificate()#<br>可以使用 new 关键字或者调用 crypto.Certificate() 方法创建 Certificate 类的实例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cert1 = <span class="keyword">new</span> crypto.Certificate();</span><br><span class="line"><span class="keyword">const</span> cert2 = crypto.Certificate();</span><br></pre></td></tr></table></figure>
+
+<p>certificate.exportChallenge(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 返回 spkac 数据结构的 challenge 部分，spkac 包含一个公钥和一个 challange。</Buffer></DataView></TypedArray></Buffer></string></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).Certificate();</span><br><span class="line"><span class="keyword">const</span> spkac = getSpkacSomehow();<span class="comment">// 生成过程省略了，不存在这个函数，只是一种象征意义</span></span><br><span class="line"><span class="keyword">const</span> challenge = cert.exportChallenge(spkac);</span><br><span class="line"><span class="built_in">console</span>.log(challenge.toString(<span class="string">&#x27;utf8&#x27;</span>));</span><br><span class="line"><span class="comment">// Prints: the challenge as a UTF8 string</span></span><br></pre></td></tr></table></figure>
+
+<p>certificate.exportPublicKey(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 数据结构的公钥部分，spkac 包含一个公钥和一个 challange。</Buffer></DataView></TypedArray></Buffer></string></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).Certificate();</span><br><span class="line"><span class="keyword">const</span> spkac = getSpkacSomehow();<span class="comment">// 生成过程省略了，不存在这个函数，只是一种象征意义</span></span><br><span class="line"><span class="keyword">const</span> publicKey = cert.exportPublicKey(spkac);</span><br><span class="line"><span class="built_in">console</span>.log(publicKey);</span><br><span class="line"><span class="comment">// Prints: the public key as &lt;Buffer ...&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>certificate.verifySpkac(spkac)<br>spkac <Buffer> | <TypedArray> | <DataView><br>返回 <boolean> 如果 spkac 数据结构是有效的返回 true，否则返回 false。</boolean></DataView></TypedArray></Buffer></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).Certificate();</span><br><span class="line"><span class="keyword">const</span> spkac = getSpkacSomehow();</span><br><span class="line"><span class="built_in">console</span>.log(cert.verifySpkac(Buffer.from(spkac)));</span><br><span class="line"><span class="comment">// Prints: true 或者 false</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Class-Cipher"><a href="#Class-Cipher" class="headerlink" title="Class: Cipher"></a>Class: Cipher</h6><p>Cipher类的实例用于加密数据。这个类可以用在以下两种方法中的一种:</p>
+<ul>
+<li>作为stream，既可读又可写，未加密数据的编写是为了在可读的方面生成加密的数据</li>
+<li>使用cipher.update()和cipher.final()方法产生加密的数据。<br>crypto.createCipher()或crypto.createCipheriv()方法用于创建Cipher实例。Cipher对象不能直接使用new关键字创建。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Cipher对象作为流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.createCipher(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> encrypted = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">cipher.on(<span class="string">&#x27;readable&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> data = cipher.read();</span><br><span class="line">  <span class="keyword">if</span> (data)</span><br><span class="line">    encrypted += data.toString(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">cipher.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(encrypted);</span><br><span class="line">  <span class="comment">// Prints: ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">cipher.write(<span class="string">&#x27;some clear text data&#x27;</span>);</span><br><span class="line">cipher.end();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Cipher和管道流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.createCipher(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = fs.createReadStream(<span class="string">&#x27;test.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = fs.createWriteStream(<span class="string">&#x27;test.enc&#x27;</span>);</span><br><span class="line"></span><br><span class="line">input.pipe(cipher).pipe(output);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用cipher.update()和cipher.final()方法</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.createCipher(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> encrypted = cipher.update(<span class="string">&#x27;some clear text data&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">encrypted += cipher.final(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(encrypted);</span><br><span class="line"><span class="comment">// Prints: ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>cipher.final([outputEncoding])<br>outputEncoding <string><br>返回任何加密的内容。如果 outputEncoding 参数是’latin1’, ‘base64’ 或者 ‘hex’，返回字符串。 如果没有提供 outputEncoding，则返回Buffer。<br><em>一旦cipher.final()方法已被调用，Cipher 对象就不能再用于加密数据。如果试图再次调用cipher.final()，将会抛出一个错误。</em></string></p>
+<p>cipher.setAAD(buffer)<br>buffer <Buffer><br>返回<Cipher>方法链。<br>当使用经过验证的加密模式(目前只支持GCM)时，cipher.setAAD()方法设置用于additional authenticated data(附加验证的data(AAD))输入参数的值。<br><em>cipher.setAAD()法必须在cipher.update()之前调用。</em></Cipher></Buffer></p>
+<p>cipher.getAuthTag()#<br>当使用经验证的加密模式时(目前只有GCM支持),cipher.getAuthTag()方法返回一个Buffer，此Buffer包含已从给定数据计算后的authentication tag。<br><em>cipher.getAuthTag()方法只能在使用cipher.final()方法完全加密后调用。</em></p>
+<p>cipher.setAutoPadding([autoPadding])<br>autoPadding <boolean> 默认为 true.<br>返回<Cipher>方法链。<br>当使用块加密算法时，Cipher类会自动添加padding到输入数据中，来适配相应块大小。可调用cipher.setAutoPadding(false)禁用默认padding。<br>当autoPadding是false时，整个输入数据的长度必须是cipher块大小的倍数，否则cipher.final()将抛出一个错误。 禁用自动填充对于非标准填充是有用的，例如使用0x0代替PKCS填充。<br><em>cipher.setAutoPadding()必须在cipher.final()之前被调用。</em></Cipher></boolean></p>
+<p>cipher.update(data[, inputEncoding][, outputEncoding])<br>用data更新密码。如果给出了inputEncoding的论证，它的值必须是’utf8’, ‘ascii’, 或者’latin1’，而data参数是使用指定编码的字符串。如果不给出inputEncoding的参数，则data必须是Buffer，TypedArray， 或者DataView。如果data是一个Buffer，TypedArray， 或者 DataView， 那么inputEncoding就被忽略了。<br>outputEncoding指定了加密数据的输出格式，可以是’latin1’， ‘base64’ 或者 ‘hex’。如果指定了outputEncoding，则返回使用指定编码的字符串。如果没有outputEncoding被提供，会返回Buffer。<br><em>cipher.update()方法可以用新数据多次调用，直到cipher.final()被调用。在cipher.final()之后调用cipher.update()将抛出错误。</em></p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
