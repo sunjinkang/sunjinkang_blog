@@ -20,14 +20,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Sun ...something">
+    <meta name="description" content="Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径 1node inspect test.js 在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点 123const a &#x3D; 1;debugger;const b &#x3D; 2; repl 命令用于运行代码">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nodejs基础知识(5)">
 <meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-14.html">
 <meta property="og:site_name" content="Sun ...something">
+<meta property="og:description" content="Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径 1node inspect test.js 在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点 123const a &#x3D; 1;debugger;const b &#x3D; 2; repl 命令用于运行代码">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-04T08:07:35.798Z">
-<meta property="article:modified_time" content="2023-01-04T08:07:35.798Z">
+<meta property="article:published_time" content="2023-01-06T06:52:33.000Z">
+<meta property="article:modified_time" content="2023-01-06T09:51:35.358Z">
 <meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="debugger 调试器">
+<meta property="article:tag" content="dns (域名服务器)">
 <meta name="twitter:card" content="summary">
 
 
@@ -35,10 +40,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-14.html","path":"nodejs/nodejs-note-14.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-14.html","path":"nodejs/nodejs-note-14.html","title":"nodejs基础知识(5)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Sun ...something
+<title>nodejs基础知识(5) | Sun ...something
 </title>
   
 
@@ -104,7 +109,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -117,6 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%9B%91%E8%A7%86%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">监视器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C"><span class="nav-number">2.</span> <span class="nav-text">命令参考手册</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">DNS(域名解析)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Class-dns-Resolver"><span class="nav-number">1.</span> <span class="nav-text">Class dns.Resolver</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +185,7 @@
     
     <div class="post-block" lang="en"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
+<h1 class="post-title" itemprop="name headline">nodejs基础知识(5)
 </h1>
 
 <div class="post-meta-container">
@@ -190,7 +196,107 @@
       
       
       <div class="post-body">
-          
+          <p>Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node inspect test.js</span><br></pre></td></tr></table></figure>
+<p>在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">debugger</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>repl 命令用于运行代码。 next 命令用于步入下一行。 输入 help 可查看其他可用的命令。<br>按下 enter 键且不输入命令，则可重复上一个调试命令。</p>
+<h6 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h6><p>在每个断点上，监视器列表中的每个表达式都会在当前上下文中被执行，并在断点的源代码列表之前立即显示。<br>输入 watch(‘my_expression’) 开始监视一个表达式。 watchers 命令会打印已激活的监视器。 输入 unwatch(‘my_expression’) 来移除一个监视器。</p>
+<h6 id="命令参考手册"><a href="#命令参考手册" class="headerlink" title="命令参考手册"></a>命令参考手册</h6><p><strong>步进</strong></p>
+<ul>
+<li>cont, c - 继续执行</li>
+<li>next, n - 下一步</li>
+<li>step, s - 跳进函数</li>
+<li>out, o - 跳出函数</li>
+<li>pause - 暂停运行代码（类似开发者工具中的暂停按钮）</li>
+</ul>
+<p><strong>断点</strong></p>
+<ul>
+<li>setBreakpoint(), sb() - 在当前行设置断点</li>
+<li>setBreakpoint(line), sb(line) - 在指定行设置断点</li>
+<li>setBreakpoint(‘fn()’), sb(…) - 在函数体的第一条语句设置断点</li>
+<li>setBreakpoint(‘script.js’, 1), sb(…) - 在 script.js 的第 1 行设置断点</li>
+<li>clearBreakpoint(‘script.js’, 1), cb(…) - 清除 script.js 第 1 行的断点</li>
+</ul>
+<p>也可以在一个还未被加载的文件（模块）中设置断点</p>
+<p><strong>信息</strong></p>
+<ul>
+<li>backtrace, bt - 打印当前执行框架的回溯</li>
+<li>list(5) - 列出脚本源代码的 5 行上下文（前后各 5 行）</li>
+<li>watch(expr) - 添加表达式到监视列表</li>
+<li>unwatch(expr) - 从监视列表移除表达式</li>
+<li>watchers - 列出所有监视器和它们的值（每个断点会自动列出）</li>
+<li>repl - 打开调试器的 repl，用于在所调试的脚本的上下文中进行执行</li>
+<li>exec expr - 在所调试的脚本的上下文中执行一个表达式</li>
+</ul>
+<p><strong>执行控制</strong></p>
+<ul>
+<li>run - 运行脚本（调试器开始时自动运行）</li>
+<li>restart - 重新启动脚本</li>
+<li>kill - 终止脚本</li>
+</ul>
+<p><strong>杂项</strong></p>
+<ul>
+<li>scripts - 列出所有已加载的脚本</li>
+<li>version - 显示 V8 引擎的版本号</li>
+</ul>
+<p>Node.js 的 V8 检查器集合<br>打开Chrome地址：chrome://inspect/#devices<br>运行 node –inspect-brk test.js<br>即可在浏览器中查看node运行结果<br><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/guides/debugging-getting-started/">相关文档地址</a></p>
+<h4 id="DNS-域名解析"><a href="#DNS-域名解析" class="headerlink" title="DNS(域名解析)"></a>DNS(域名解析)</h4><p>dns 模块包含两类函数：</p>
+<ol>
+<li>第一类函数，使用底层操作系统工具进行域名解析，且无需进行网络通信。 这类函数只有一个：[dns.lookup()]。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.lookup(<span class="string">&#x27;iana.org&#x27;</span>, <span class="function">(<span class="params">err, address, family</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;IP 地址: %j 地址族: IPv%s&#x27;</span>, address, family);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// IP 地址: &quot;192.0.43.8&quot; 地址族: IPv4</span></span><br></pre></td></tr></table></figure></li>
+<li>第二类函数，连接到一个真实的 DNS 服务器进行域名解析，且始终使用网络进行 DNS 查询。 这类函数包含了 dns 模块中除 [dns.lookup()] 以外的所有函数。 这些函数使用与 dns.lookup() 不同的配置文件（例如 /etc/hosts）。 这类函数适合于那些不想使用底层操作系统工具进行域名解析、而是想使用网络进行 DNS 查询的开发者。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.resolve4(<span class="string">&#x27;archive.org&#x27;</span>, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`IP 地址: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(addresses)&#125;</span>`</span>);</span><br><span class="line">  addresses.forEach(<span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">    dns.reverse(a, <span class="function">(<span class="params">err, hostnames</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">throw</span> err;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`IP 地址 <span class="subst">$&#123;a&#125;</span> 逆向解析到域名: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(hostnames)&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h6 id="Class-dns-Resolver"><a href="#Class-dns-Resolver" class="headerlink" title="Class dns.Resolver"></a>Class dns.Resolver</h6><p>DNS请求的独立解析程序。<br>使用默认的设置创建一个新的解析程序。为一个解析程序设置servers使用[resolver.setServers()][dns.setServers()]，它不会影响其他的解析程序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Resolver &#125; = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> resolver = <span class="keyword">new</span> Resolver();</span><br><span class="line">resolver.setServers([<span class="string">&#x27;4.4.4.4&#x27;</span>]);</span><br><span class="line"><span class="comment">// This request will use the server at 4.4.4.4, independent of global settings.</span></span><br><span class="line">resolver.resolve4(<span class="string">&#x27;example.org&#x27;</span>, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>dns模块方法：</p>
+<ul>
+<li>[resolver.getServers()][dns.getServers()]</li>
+<li>[resolver.setServers()][dns.setServers()]</li>
+<li>[resolver.resolve()][dns.resolve()]</li>
+<li>[resolver.resolve4()][dns.resolve4()]</li>
+<li>[resolver.resolve6()][dns.resolve6()]</li>
+<li>[resolver.resolveAny()][dns.resolveAny()]</li>
+<li>[resolver.resolveCname()][dns.resolveCname()]</li>
+<li>[resolver.resolveMx()][dns.resolveMx()]</li>
+<li>[resolver.resolveNaptr()][dns.resolveNaptr()]</li>
+<li>[resolver.resolveNs()][dns.resolveNs()]</li>
+<li>[resolver.resolvePtr()][dns.resolvePtr()]</li>
+<li>[resolver.resolveSoa()][dns.resolveSoa()]</li>
+<li>[resolver.resolveSrv()][dns.resolveSrv()]</li>
+<li>[resolver.resolveTxt()][dns.resolveTxt()]</li>
+<li>[resolver.reverse()][dns.reverse()]</li>
+</ul>
+<p><strong>resolver.cancel()</strong><br>取消这个解析程序的未解决的DNS查询，相应的回调用一个ECANCELLED码调用。</p>
+<p><strong>dns.getServers()</strong><br>返回一个用于当前DNS解析的IP地址的数组的字符串，格式根据[rfc5952][]。如果使用自定义端口，那么字符串将包括一个端口部分。</p>
+<p><strong>dns.lookup(hostname[, options], callback)</strong></p>
+<ul>
+<li>hostname <string></string></li>
+<li>options <integer> | <Object></Object></integer></li>
+<li>family <integer> The record family. Must be 4 or 6. IPv4 and IPv6 addresses are both returned by default.</integer></li>
+<li>hints <number> One or more [supported getaddrinfo flags][]. Multiple flags may be passed by bitwise ORing their values.</number></li>
+<li>all <boolean> When true, the callback returns all resolved addresses in an array. Otherwise, returns a single address. Default: false</boolean></li>
+<li>verbatim <boolean> When true, the callback receives IPv4 and IPv6 addresses in the order the DNS resolver returned them. When false, IPv4 addresses are placed before IPv6 addresses. Default: currently false (addresses are reordered) but this is expected to change in the not too distant future. New code should use { verbatim: true }.</boolean></li>
+<li>callback <Function></Function></li>
+<li>err <Error></Error></li>
+<li>address <string> A string representation of an IPv4 or IPv6 address.</string></li>
+<li>family <integer> 4 or 6, denoting the family of address.<br>解析hostname(例如：’nodejs.org’)为第一个找到的A（IPv4）或AAAA（IPv6）记录。options可以是对象或者整数。如果options没有被提供，那么IPv4 和 IPv6都是有效的。如果options是整数，只能是4或6。<br>另外，options可以是一个含有以下属性的对象：</integer></li>
+<li>family <Number> - T地址族。如果提供，必须为整数4或6。如果没有提供，只接受IPv4和IPv6地址。</Number></li>
+<li>hints: <Number> - 如果提供，它必须是一个或多个支持的getaddrinfo标识。如果没有提供，那么没有标识被传递给getaddrinfo。多个标识可以通过在逻辑上ORing它们的值，来传递给hints。支持的getaddrinfo标识请参阅下文。有关支持的标志的更多信息请查询[supported getaddrinfo flags][]章节。</Number></li>
+<li>all: <Boolean> - 值为true时， 回调函数返回一个包含所有解析后地址的数组，否则只返回一个地址。默认值为false。<br>所有的参数都是可选的。<br>回调函数包含(err, address, family)参数。address是IPv4或IPv6地址字符串。family、是整数4或6，表示地址族（不一定是最初传递给查找的值）。<br>当all属性被设置为true时，回调函数参数变为(err, addresses)，addresses则变成一个由address 和 family 属性组成的对象数组。<br>发生错误时，err是一个[Error][]对象，err.code是错误码。不仅在主机名不存在时，在如没有可用的文件描述符等情况下查找失败，err.code也会被设置为’ENOENT’。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  <span class="attr">family</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="attr">hints</span>: dns.ADDRCONFIG | dns.V4MAPPED,</span><br><span class="line">&#125;;</span><br><span class="line">dns.lookup(<span class="string">&#x27;example.com&#x27;</span>, options, <span class="function">(<span class="params">err, address, family</span>) =&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;address: %j family: IPv%s&#x27;</span>, address, family));</span><br><span class="line"><span class="comment">// address: &quot;::ffff:93.184.216.34&quot; family: IPv6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// When options.all is true, the result will be an Array.</span></span><br><span class="line">options.all = <span class="literal">true</span>;</span><br><span class="line">dns.lookup(<span class="string">&#x27;example.com&#x27;</span>, options, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;addresses: %j&#x27;</span>, addresses));</span><br><span class="line"><span class="comment">// addresses: [&#123;&quot;address&quot;:&quot;::ffff:93.184.216.34&quot;,&quot;family&quot;:6&#125;]</span></span><br></pre></td></tr></table></figure>
+以下内容可以作为hints标志传递给[dns.lookup()]:</Boolean></li>
+<li>dns.ADDRCONFIG: 返回当前系统支持的地址类型。例如，如果当前系统至少配置了一个 IPv4 地址，则返回 IPv4地址。不考虑回环地址。</li>
+<li>dns.V4MAPPED: 如果指定了 IPv6 家族， 但是没有找到 IPv6 地址，将返回 IPv4 映射的 IPv6地址。在有些操作系统中不支持</li>
+</ul>
+<p>dns.lookupService(address, port, callback)</p>
+<ul>
+<li>address <string></string></li>
+<li>port <number></number></li>
+<li>callback <Function></Function></li>
+<li>err <Error></Error></li>
+<li>hostname <string> e.g. example.com</string></li>
+<li>service <string> e.g. http<br>将参数address和port传入操作系统底层getnameinfo服务来解析处理并返回主机名。<br>如果address不是有效的IP地址，会抛出TypeError。port必须是一个整数.如果不是规定的端口号，会抛出TypeError.<br>出错情况下，err是一个Error对象，err.code代码错误码。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.lookupService(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">22</span>, <span class="function">(<span class="params">err, hostname, service</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(hostname, service);</span><br><span class="line">  <span class="comment">// DESKTOP-894BKU0 ssh</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></string></li>
+</ul>
+
       </div>
       
       
