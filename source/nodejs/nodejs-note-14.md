@@ -183,4 +183,130 @@ dns.lookupService('127.0.0.1', 22, (err, hostname, service) => {
   // DESKTOP-894BKU0 ssh
 });
 ```
+如果以 [util.promisify()][] 方式进行调用, 它将返回一个包含hostname和service属性的 Promise 对象。
+
+dns.resolve(hostname[, rrtype], callback)
+- hostname <string> 解析的主机名。
+- rrtype <string> 资源记录类型. 默认: 'A'.
+- callback <Function>
+  - err <Error>
+  - records <string[]> | <Object[]> | <Object>
+使用DNS协议来解析一个主机名(e.g. 'nodejs.org')为一个资源记录的数组。回调函数的参数为(err, records)。当成功时，records将是一个资源记录的数组。它的类型和结构取决于rrtype
+![dns.resolve](./images/dns-resolve.png)
+出错时，err是一个[Error][] object，err.code是DNS error codes的一种。
+
+dns.resolve4(hostname[, options], callback)
+- hostname <string> 需要解析的主机名。
+- options <Object>
+  - ttl <boolean> 记录每一条记录的存活次数 (TTL)。如果为 true， 返回的结果将会为 Object 的数组，就像 { address: '1.2.3.4', ttl: 60 } 带有 TTL 秒数的记录，而不是 string 的数组.
+- callback <Function>
+  - err <Error>
+  - addresses <string[]> | <Object[]>
+使用DNS协议解析IPv4地址主机名(A记录)。addresses参数是传递给callback函数的IPv4地址数组。（例如：['74.125.79.104', '74.125.79.105', '74.125.79.106']）
+
+dns.resolve6(hostname[, options], callback)
+*参数说明参考：dns.resolve4*
+
+dns.resolveCname(hostname, callback)
+- hostname <string>
+- callback <Function>
+  - err <Error>
+  - addresses <string[]>
+使用DNS协议解析CNAME记录主机名。addresses参数是传递给callback函数规范内有效的主机名数组（例如：['bar.example.com']）
+
+dns.resolveMx(hostname, callback)
+- hostname <string>
+- callback <Function>
+  - err <Error>
+  - addresses <Object[]>
+使用DNS协议处理邮件交换记录主机名(MX记录)。addresses参数是传递给callback函数的主机名对象数组，对象包含priority和exchange属性（例如： [{priority: 10, exchange: 'mx.example.com'}, ...]）。
+
+dns.resolveNaptr(hostname, callback)
+*参数与上面的类似*
+使用DNS协议来处理基于正则表达式匹配的记录(NAPTR记录)的主机名。addresses参数是传递给callback函数的主机名对象数组，对象包含属性：
+- flags
+- service
+- regexp
+- replacement
+- order
+- preference
+
+dns.resolveNs(hostname, callback)
+*参数与上面的类似*
+使用DNS协议处理名称服务器主机名记录(NS记录)。addresses为有效的名称服务器记录主机名数组（eg:['ns1.example.com', 'ns2.example.com']）。
+
+dns.resolvePtr(hostname, callback)
+*参数与上面的类似*
+使用DNS协议处理主机名引用记录(PTR记录)。addresses参数将一个字符串数组传递给回调函数callback,其中包含回复记录。
+
+dns.resolveSoa(hostname, callback)
+*参数与上面的类似*
+使用DNS协议处理主机名子域名记录(SOA记录)。addresses参数为一个对象包含以下属性：
+- nsname
+- hostmaster
+- serial
+- refresh
+- retry
+- expire
+- minttl
+
+dns.resolveSrv(hostname, callback)
+*参数与上面的类似*
+使用DNS协议来处理主机名服务记录(SRV记录)。callback函数返回的addresses参数为对象数组,每个对象包含以下属性：
+- priority
+- weight
+- port
+- name
+
+dns.resolveTxt(hostname, callback)
+*参数与上面的类似*
+使用DNS协议处理文本查询主机名(TXT记录)。回调函数callback会返回records参数，它是一个文本记录与主机名一一对应的二维数组(例如：[ ['v=spf1 ip4:0.0.0.0 ', '~all' ] ]). 每个数组文本块包含一条记录。根据用例,这些可以是连接在一起或单独对待。
+
+dns.resolveAny(hostname, callback)
+- hostname <string>
+- callback <Function>
+  - err <Error>
+  - ret <Object[]>
+使用DNS协议解析所有记录(也称为ANY或 * query)。传递给回调函数的ret参数将是一个包含各种类型记录的数组。每个对象都有一个属性类型，用于指示当前记录的类型。根据类型的不同，额外的属性会出现在对象上:
+![dns-resolveany](./images/dns-resolveany.png)
+
+dns.reverse(ip, callback)
+- ip <string>
+- callback <Function>
+  - err <Error>
+  - hostnames <string[]>
+执行一个反向DNS查询返回IPv4或IPv6地址的主机名的数组。出错情况下，err是一个Error对象，err.code代码错误码。
+
+dns.setServers(servers)
+servers <string[]> array of [rfc5952][] formatted addresses
+设置IP地址服务器端口在进行DNS解析时可用，servers参数是一个[rfc5952][]数组格式的地址。 如果端口是IANA默认端口(53),那么它可以被忽略。
+ip地址无效将会报错。
+*dns.setServers()方法不要在DNS查询过程中使用。*
+
+**错误码**
+每个DNS查询可以返回一个错误代码如下:
+- dns.NODATA: DNS服务返回没有数据.
+- dns.FORMERR: DNS服务器查询没有格式化.
+- dns.SERVFAIL: DNS服务器返回失败。
+- dns.NOTFOUND: 域名未找到。
+- dns.NOIMP: DNS服务器不执行请求的操作。
+- dns.REFUSED: 查询DNS服务器拒绝。
+- dns.BADQUERY: 未格式化DNS查询。
+- dns.BADNAME: 未格式化主机名
+- dns.BADFAMILY: 没有提供地址族
+- dns.BADRESP: 未格式化DNS回复
+- dns.CONNREFUSED: 无法连接DNS服务器
+- dns.TIMEOUT: 连接DNS服务器超时
+- dns.EOF: 文件末尾
+- dns.FILE: 读取文件错误
+- dns.NOMEM: 内存溢出
+- dns.DESTRUCTION: 通道以及销毁
+- dns.BADSTR: 未格式化字符串
+- dns.BADFLAGS: 指定非法标记
+- dns.NONAME: 给定的主机名不是数字。
+- dns.BADHINTS: 指定非法的提示标志。
+- dns.NOTINITIALIZED: c-ares异步DNS请求库初始化未完成。
+- dns.LOADIPHLPAPI: 加载iphlpapi.dll(Windows IP辅助API应用程序接口模块)错误
+- dns.ADDRGETNETWORKPARAMS: 找不到GetNetworkParams(读取本机DNS信息)函数
+- dns.CANCELLED: DNS查询取消
 

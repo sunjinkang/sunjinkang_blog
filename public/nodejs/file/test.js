@@ -374,8 +374,234 @@
 // // addresses: [{"address":"::ffff:93.184.216.34","family":6}]
 
 // lookupService
-const dns = require('dns');
-dns.lookupService('127.0.0.1', 22, (err, hostname, service) => {
-  console.log(hostname, service);
-  // DESKTOP-894BKU0 ssh
-});
+// const dns = require('dns');
+// dns.lookupService('127.0.0.1', 22, (err, hostname, service) => {
+//   console.log(hostname, service);
+//   // DESKTOP-894BKU0 ssh
+// });
+
+// dns.resolveCname('www.baidu.com', (err, hostname) => {
+//   console.log(hostname);
+//   // [ 'www.a.shifen.com' ]
+// });
+// dns.resolveMx('google.com', (err, hostname) => {
+//   console.log(hostname);
+//   // [ { exchange: 'smtp.google.com', priority: 10 } ]
+// });
+// dns.resolveNaptr('google.com', (err, hostname) => {
+//   console.log(hostname);
+//   // undefined
+// });
+// dns.resolveSoa('google.com', (err, hostname) => {
+//   console.log(hostname);
+//   // {
+//   //   nsname: 'ns1.google.com',
+//   //   hostmaster: 'dns-admin.google.com',
+//   //   serial: 500503917,
+//   //   refresh: 900,
+//   //   retry: 900,
+//   //   expire: 1800,
+//   //   minttl: 60
+//   // }
+// });
+// dns.resolveSrv('google.com', (err, hostname) => {
+//   console.log(err);
+//   // code: 'ENODATA',
+//   console.log(hostname);
+//   // undefined
+// });
+// dns.resolveTxt('google.com', (err, hostname) => {
+//   console.log(hostname);
+// [
+//   [ 'v=spf1 include:_spf.google.com ~all' ],
+//   [
+//     'google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o'
+//   ],
+//   [ 'docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e' ],
+//   [ 'facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95' ],
+//   [ 'onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef' ],
+//   [
+//     'webexdomainverification.8YX6G=6e6922db-e3e6-4a36-904e-a805c28087fa'
+//   ],
+//   [
+//     'atlassian-domain-verification=5YjTmWmjI92ewqkx2oXmBaD60Td9zWon9r6eakvHX6B77zzkFQto8PQ9QsKnbf4I'
+//   ],
+//   [ 'apple-domain-verification=30afIBcvSuDV2PLX' ],
+//   [ 'MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB' ],
+//   [
+//     'globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8='
+//   ],
+//   [
+//     'google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ'
+//   ],
+//   [ 'docusign=1b0a6754-49b1-4db5-8540-d2c12664b289' ]
+// ]
+// });
+
+// dns.resolveAny('google.com', (err, hostname) => {
+//   console.log(hostname);
+//   // [
+//   //   { address: '142.251.43.14', ttl: 526, type: 'A' },
+//   //   { value: 'ns2.google.com', type: 'NS' },
+//   //   { value: 'ns1.google.com', type: 'NS' },
+//   //   { value: 'ns4.google.com', type: 'NS' },
+//   //   { value: 'ns3.google.com', type: 'NS' },
+//   //   {
+//   //     entries: [
+//   //       'google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o'
+//   //     ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e' ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95' ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef' ]
+//   // ,
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [
+//   //       'webexdomainverification.8YX6G=6e6922db-e3e6-4a36-904e-a805c28087fa'
+//   //     ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [
+//   //       'atlassian-domain-verification=5YjTmWmjI92ewqkx2oXmBaD60Td9zWon9r6eakvHX6B77zzkFQto8PQ9QsKnbf4I'
+//   //     ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'apple-domain-verification=30afIBcvSuDV2PLX' ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB' ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [
+//   //       'globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8='
+//   //     ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [
+//   //       'google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ'
+//   //     ],
+//   //     type: 'TXT'
+//   //   },
+//   //   {
+//   //     entries: [ 'docusign=1b0a6754-49b1-4db5-8540-d2c12664b289' ],
+//   //     type: 'TXT'
+//   //   },
+//   //   { entries: [ 'v=spf1 include:_spf.google.com ~all' ], type: 'TXT' }
+//   // ]
+// });
+
+// dns.reverse('58.221.60.236', (err, hostname) => {
+//   console.log(err);
+//   //  code: 'ENOTFOUND'
+//   console.log(hostname);
+//   // undefined
+// });
+
+// function MyError() {
+//   Error.stackTraceLimit = 2;
+//   // Error.captureStackTrace(this);
+//   Error.captureStackTrace(this, MyError);
+// }
+
+// console.log(new MyError().stack);
+// const process = require('process');
+// var EventEmitter = require('events').EventEmitter;
+// var life = new EventEmitter();
+// function water(who) {
+//   console.log('给 ' + who + ' 倒水');
+// }
+// life.on('Miss', water);
+// life.on('Miss', function (who) {
+//   // setImmediate(() => {
+//   //   console.log('给 ' + who + ' 按摩');
+//   // });
+//   process.nextTick(() => {
+//     console.log('给 ' + who + ' 按摩');
+//   });
+// });
+// life.on('Miss', function (who) {
+//   console.log('给 ' + who + ' 聊天');
+// });
+// life.removeListener('Miss', water);
+// life.emit('Miss', '汉子');
+// console.log(life.listeners('Miss').length);
+
+// var EventEmitter = require('events').EventEmitter;
+// var myEmitter = new EventEmitter();
+// // let m = 0;
+// // myEmitter.on('event', () => {
+// //   console.log(++m);
+// // });
+// // myEmitter.emit('event');
+// // // 打印: 1
+// // myEmitter.emit('event');
+// // // 打印: 2
+
+// let m = 0;
+// myEmitter.once('event', () => {
+//   console.log(++m);
+// });
+// myEmitter.emit('event');
+// // 打印: 1
+// myEmitter.emit('event');
+// // 忽略
+
+// var EventEmitter = require('events').EventEmitter;
+// var myEmitter = new EventEmitter();
+// // 只处理一次，所以不会无限循环
+// myEmitter.once('newListener', (event, listener) => {
+//   if (event === 'event') {
+//     // 在开头插入一个新的监听器
+//     myEmitter.on('event', () => {
+//       console.log('B');
+//     });
+//   }
+// });
+// myEmitter.on('event', () => {
+//   console.log('A');
+// });
+// myEmitter.emit('event');
+// // 打印:
+// //   B
+// //   A
+
+const EventEmitter = require('events');
+// const myEE = new EventEmitter();
+// myEE.on('foo', () => {});
+// myEE.on('bar', () => {});
+
+// const sym = Symbol('symbol');
+// myEE.on(sym, () => {});
+
+// console.log(myEE.eventNames());
+// // [ 'foo', 'bar', Symbol(symbol) ]
+
+// const myEE = new EventEmitter();
+// myEE.on('foo', () => console.log('a'));
+// myEE.prependListener('foo', () => console.log('b'));
+// myEE.emit('foo');
+// b
+// a
+
+const myEE = new EventEmitter();
+myEE.once('foo', () => console.log('a'));
+myEE.prependOnceListener('foo', () => console.log('b'));
+myEE.emit('foo');
+myEE.emit('foo');
+// b
+// a
