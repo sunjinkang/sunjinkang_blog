@@ -580,7 +580,7 @@
 // //   B
 // //   A
 
-const EventEmitter = require('events');
+// const EventEmitter = require('events');
 // const myEE = new EventEmitter();
 // myEE.on('foo', () => {});
 // myEE.on('bar', () => {});
@@ -598,10 +598,27 @@ const EventEmitter = require('events');
 // b
 // a
 
-const myEE = new EventEmitter();
-myEE.once('foo', () => console.log('a'));
-myEE.prependOnceListener('foo', () => console.log('b'));
-myEE.emit('foo');
-myEE.emit('foo');
+// const myEE = new EventEmitter();
+// myEE.once('foo', () => console.log('a'));
+// myEE.prependOnceListener('foo', () => console.log('b'));
+// myEE.emit('foo');
+// myEE.emit('foo');
 // b
 // a
+
+// const fs = require('fs');
+// // fs.appendFile('message.txt', 'data to append', 'utf8', (err) => {
+// //   if (err) throw err;
+// //   console.log('The "data to append" was appended to file!');
+// // });
+
+// try {
+//   fs.appendFileSync(
+//     'message.txt',
+//     '/n data to append wfqefqfqfwqefwqf',
+//     'utf8'
+//   );
+//   console.log('The "data to append" was appended to file!');
+// } catch (err) {
+//   /* Handle the error */
+// }

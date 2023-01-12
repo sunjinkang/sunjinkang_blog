@@ -1,5 +1,5 @@
 ---
-title: nodejs基础知识(5)
+title: nodejs基础知识(8)
 date: 2023-01-10 13:13:23
 tags: [node, ECMAScript模块, Error (错误), events (事件)]
 ---
