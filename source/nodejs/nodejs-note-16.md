@@ -424,9 +424,56 @@ fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
 });
 ```
 
+fs.watch(filename[, options][, listener])
+*说明: fs.watch API 不是 100％ 跨平台一致的，且在某些情况下不可用。递归选项只支持 macOS 和 Windows。*
+
+*可用性*
+特性依赖于底层操作系统提供的一种方法来通知文件系统的变化。
+- 在 Linux 系统中，使用 inotify。
+- 在 BSD 系统中，使用 kqueue。
+- 在 macOS 系统中，对文件使用 kqueue，对目录使用 FSEvents。
+- 在 SunOS 系统（包括 Solaris 和 SmartOS）中，使用 event ports。
+- 在 Windows 系统中，该特性依赖 ReadDirectoryChangesW。
+- 在 Aix 系统中，该特性依赖 AHAFS 必须是启动的。
+
+*文件名参数*
+回调中提供的 filename 参数仅在 Linux、macOS、Windows、以及 AIX 系统上支持。 即使在支持的平台中，filename 也不能保证提供。 因此，不要以为 filename 参数总是在回调中提供，如果它是空的，需要有一定的后备逻辑。
+
+fs.watchFile(filename[, options], listener)
+注意：fs.watch() 比 fs.watchFile 和 fs.unwatchFile 更高效。 可能的话，应该使用 fs.watch 而不是 fs.watchFile 和 fs.unwatchFile。
+注意: 当 fs.watchFile() 所监听的文件消失并重新出现时，第二个回调函数中返回的 previousstat (文件重新出现)将与第一个回调函数的 previousstat (消失)相同。
+这种情况会发生在:
+- 该文件被删除，然后又恢复
+- 文件重命名两次，但第二次重命名与其原名称相同
+
+fs.write(fd, buffer[, offset[, length[, position]]], callback)
+注意，多次对同一文件使用 fs.write 且不等待回调，是不安全的。 对于这种情况，强烈推荐使用 fs.createWriteStream。
+在 Linux 上，当文件以追加模式打开时，指定位置的写入是不起作用的。 内核会忽略位置参数，并总是将数据追加到文件的末尾。
+
+fs.writeFile(file, data[, options], callback)
+注意，多次对同一文件使用 fs.writeFile 且不等待回调，是不安全的。 对于这种情况，强烈推荐使用 fs.createWriteStream。
+注意：如果 file 指定为一个文件描述符，则它不会被自动关闭。
 
 
+fs 常量
+以下常量由 fs.constants 输出。
+注意：不是所有的常量在每一个操作系统上都是可用的。
 
+文件访问常量：以下常量用于 fs.access()。
+![文件访问常量](./images/fs-const-access.png)
+
+文件打开常量
+以下常量用于 fs.open()。
+![文件打开常量](./images/fs-const-open-1.png)
+![文件打开常量](./images/fs-const-open-2.png)
+
+文件类型常量
+以下常量用于 fs.Stats 对象中用于决定一个文件的类型的 mode 属性。
+![文件类型常量](./images/fs-const-mode.png)
+
+文件模式常量
+以下常量用于 fs.Stats 对象中用于决定一个文件访问权限的 mode 属性。
+![文件模式常量](./images/fs-const-mode-1.png)
 
 
 
