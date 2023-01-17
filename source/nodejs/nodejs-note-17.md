@@ -422,3 +422,240 @@ Http2Stream实例销毁时机：
 当Http2Stream实例被销毁时，将尝试发送一个RST_STREAM帧给连接的对等体。
 当Http2Stream实例被销毁时，'close'事件将被触发。因为Http2Stream是stream.Duplex的一个实例。如果流数据当前正在流动，'end'事件也将被触发。如果调用http2stream.destroy()时传递了一个error作为第一个参数，'error'事件也可能被触发。
 Http2Stream被销毁后，Http2Stream .destroyed属性将为true, Http2Stream .destroyed属性将为true。属性将指定RST_STREAM错误码。Http2Stream实例一旦被销毁就不再可用。
+
+http2stream.priority(options)
+- options <Object>
+  - exclusive <boolean> 当为true且parent标识父流时，此流将成为父流的唯一直接依赖项，所有其他现有依赖项都将成为此流的依赖项。默认值:false。
+  - parent <number> 指定此流所依赖的流的数字标识符。
+  - weight <number> 指定一个流相对于具有相同父流的其他流的相对依赖关系。取值为1 ~ 256之间的数字。
+  - silent <boolean> 当为true时，在本地改变优先级，而不向连接的对等体发送优先级帧。
+更新此Http2Stream实例的优先级。
+
+http2stream.sendTrailers(headers)
+- headers <HTTP/2 Headers Object>
+向连接的HTTP/2对等端发送一个尾随报头帧。此方法将导致Http2Stream立即关闭，并且只能在'wantTrailers'事件触发后调用。当发送请求或发送响应时，必须设置options.waitForTrailers选项，以便在最后的数据帧之后保持Http2Stream打开，以便可以发送trailers。
+```javascript
+const http2 = require('node:http2');
+const server = http2.createServer();
+server.on('stream', (stream) => {
+  stream.respond(undefined, { waitForTrailers: true });
+  stream.on('wantTrailers', () => {
+    stream.sendTrailers({ xyz: 'abc' });
+  });
+  stream.end('Hello World');
+});
+```
+HTTP/1规范禁止trailers包含HTTP/2伪报头字段(例如:':method'， ':path'，等等)。
+
+**Class: ClientHttp2Stream**
+Extends <Http2Stream>
+
+Event: 'response'
+- headers <HTTP/2 Headers Object>
+- flags <number>
+当从连接的HTTP/2服务器接收到此流的响应报头帧时，会触发'response'事件。监听器返回两个参数:一个包含接收到的HTTP/2 Headers对象的对象，以及与头部相关的标志。
+```javascript
+const http2 = require('node:http2');
+const client = http2.connect('https://localhost');
+const req = client.request({ ':path': '/' });
+req.on('response', (headers, flags) => {
+  console.log(headers[':status']);
+});
+```
+
+**Class: ServerHttp2Stream**
+
+http2stream.respondWithFile(path[, headers[, options]])
+- path <string> | <Buffer> | <URL>
+- headers <HTTP/2 Headers Object>
+- options <Object>
+  - statCheck <Function>
+  - onError <Function> 在发送之前发生错误时调用的回调函数。
+  - waitForTrailers <boolean> 当为true时，Http2Stream将在最后一个数据帧被发送后发出'wantTrailers'事件。
+  - offset <number> 开始读取的偏移位置。
+  - length <number> fd要发送的数据量
+发送一个常规文件作为响应。该路径必须指定一个常规文件，否则将在Http2Stream对象上触发'error'事件。
+当使用时，Http2Stream对象的Duplex接口将自动关闭。
+可以指定options.statCheck函数，让用户代码有机会基于fs设置额外的内容标头。给定文件的统计细节:
+如果在试图读取文件数据时发生错误，Http2Stream将使用RST_STREAM帧和标准INTERNAL_ERROR代码关闭。如果定义了onError回调函数，则将调用它。否则流将被破坏。
+options.statCheck函数也可以通过返回false来取消发送操作。
+内容长度报头字段将被自动设置。
+偏移量和长度选项可用于将响应限制到特定的范围子集。
+options.onError函数还可以用于处理在文件传递开始之前可能发生的所有错误。默认行为是销毁流。
+如果设置了options.waitForTrailers选项，'wantTrailers'事件将在最后一块要发送的有效负载数据排队后立即触发。然后可以使用http2stream.sendTrailers()方法向对等端发送尾随报头字段。
+如果设置了options.waitForTrailers, Http2Stream将不会在传输最后一个数据帧时自动关闭。用户代码必须调用Http2Stream.sendTrailers()或Http2Stream.close()来关闭Http2Stream。
+
+**Class: Http2Server**
+Extends: <net.Server>
+使用http2.createServer()后创建的Http2Server实例。Http2Server类不由node:http2模块直接导出
+
+Event: 'stream'
+- stream <Http2Stream> 对流的引用
+- headers <HTTP/2 Headers Object> header对象
+- flags <number> 相关的数字标志
+- rawHeaders <Array> 一个数组，其中包含原始标头名称和它们各自的值。
+当与服务器相关的Http2Session触发'stream'事件时，就会触发'stream'事件。可以查看Http2Session的'stream'事件
+
+server.updateSettings([settings])
+- settings <HTTP/2 Settings Object>
+用于更新server的设置
+遇到错误的设置值抛出ERR_HTTP2_INVALID_SETTING_VALUE错误
+遇到错误的设置参数抛出ERR_INVALID_ARG_TYPE错误
+
+**Class: Http2SecureServer**
+
+Event: 'unknownProtocol'
+- socket <stream.Duplex>
+'unknownProtocol'事件在连接的客户端无法协商允许的协议(即HTTP/2或HTTP/1.1)时触发。事件处理程序接收socket进行处理。如果没有为此事件注册侦听器，则连接将被终止。超时可以使用传递给http2.createSecureServer()的'unknownProtocolTimeout'选项指定。
+
+http2.createServer([options][, onRequestHandler])
+由于目前还没有已知的浏览器支持未加密的HTTP/2，因此在与浏览器客户端通信时，必须使用http2.createSecureServer()。
+```javascript
+const http2 = require('node:http2');
+
+// Create an unencrypted HTTP/2 server.
+// Since there are no browsers known that support
+// unencrypted HTTP/2, the use of `http2.createSecureServer()`
+// is necessary when communicating with browser clients.
+const server = http2.createServer();
+
+server.on('stream', (stream, headers) => {
+  stream.respond({
+    'content-type': 'text/html; charset=utf-8',
+    ':status': 200,
+  });
+  stream.end('<h1>Hello World</h1>');
+});
+
+server.listen(80);
+```
+
+http2.createSecureServer(options[, onRequestHandler])
+返回一个创建和管理Http2Session实例的tls服务器实例。
+```
+const http2 = require('node:http2');
+const fs = require('node:fs');
+
+const options = {
+  key: fs.readFileSync('server-key.pem'),
+  cert: fs.readFileSync('server-cert.pem'),
+};
+
+// Create a secure HTTP/2 server
+const server = http2.createSecureServer(options);
+
+server.on('stream', (stream, headers) => {
+  stream.respond({
+    'content-type': 'text/html; charset=utf-8',
+    ':status': 200,
+  });
+  stream.end('<h1>Hello World</h1>');
+});
+
+server.listen(80);
+```
+
+http2.constants
+Error codes for RST_STREAM and GOAWAY
+![http2 constants](./images/http-constant.png)
+
+http2.getDefaultSettings()
+- Returns: <HTTP/2 Settings Object>
+返回一个包含Http2Session实例默认设置的对象。*此方法每次调用时返回一个新的对象实例，因此返回的实例可以安全地修改以供使用。*
+
+http2.getPackedSettings([settings])
+- settings <HTTP/2 Settings Object>
+- Returns: <Buffer>
+返回一个Buffer实例，该实例包含HTTP/2规范中指定的给定HTTP/2设置的序列化表示。这将用于HTTP2-Settings报头字段。
+与http2.getUnpackedSettings(buf)作用相反
+
+Headers object
+头文件在JavaScript对象上表示为own-properties。属性键将被序列化为小写。属性值应该是字符串(如果不是，它们将被强制转换为字符串)或字符串数组(以便每个报头字段发送多个值)。
+```
+const headers = {
+  ':status': '200',
+  'content-type': 'text-plain',
+  'ABC': ['has', 'more', 'than', 'one', 'value'],
+};
+
+stream.respond(headers);
+```
+传递给回调函数的头对象将有一个空原型。这意味着正常的JavaScript对象方法，如object .prototype. tostring()和object .prototype. hasownproperty()将无法工作。
+对于传入的报头:
+- :status头转化为数字.
+- 以下属性已废弃 :status, :method, :authority, :scheme, :path, :protocol, age, authorization, access-control-allow-credentials, access-control-max-age, access-control-request-method, content-encoding, content-language, content-length, content-location, content-md5, content-range, content-type, date, dnt, etag, expires, from, host, if-match, if-modified-since, if-none-match, if-range, if-unmodified-since, last-modified, location, max-forwards, proxy-authorization, range, referer,retry-after, tk, upgrade-insecure-requests, user-agent or x-content-type-options
+- set-cookie总是一个数组，新值添加到数组中
+- 多个cookie报头, 值使用 '; '连接，其他报头，值用', '连接
+
+Sensitive headers
+HTTP2报头可以被标记为敏感的，这意味着HTTP/2报头压缩算法永远不会索引它们。这对于低熵的报头值是有意义的，并且可能被攻击者认为是有价值的，例如Cookie或授权。要实现这一点，将头名称添加到[http2. conf]文件中。属性作为数组:
+```
+const headers = {
+  ':status': '200',
+  'content-type': 'text-plain',
+  'cookie': 'some-cookie',
+  'other-sensitive-header': 'very secret data',
+  [http2.sensitiveHeaders]: ['cookie', 'other-sensitive-header'],
+};
+
+stream.respond(headers);
+```
+对于某些报头，如授权和短Cookie报头，此标志是自动设置的。
+此属性也为接收的报头设置。它将包含所有标记为敏感的头文件的名称，包括自动标记为敏感的头文件。
+
+Error handling
+在使用node:http2模块时，可能会出现几种类型的错误条件:
+- 当传入不正确的参数、选项或设置值时，将发生验证错误。这些将始终由同步抛出报告。
+- 状态错误发生在在不正确的时间尝试操作时(例如，尝试在流关闭后向流发送数据)。这些将使用同步抛出或通过Http2Stream、Http2Session或HTTP/2 Server对象上的'error'事件报告，这取决于错误发生的时间和地点。
+- HTTP/2会话异常失败时，内部错误。这些将通过Http2Session或HTTP/2 Server对象上的'error'事件报告。
+- 当违反各种HTTP/2协议约束时，就会发生协议错误。这些将使用同步抛出或通过Http2Stream、Http2Session或HTTP/2 Server对象上的'error'事件报告，这取决于错误发生的时间和地点。
+
+报头名称和值中的无效字符处理
+HTTP/2实现比HTTP/1实现更严格地处理HTTP报头名称和值中的无效字符。
+报头字段名是不区分大小写的，并且在线路上严格以小写字符串传输。Node.js提供的API允许头名称设置为混合大小写字符串(例如Content-Type)，但会在传输时将其转换为小写(例如Content-Type)。
+报头字段名必须只包含以下一个或多个ASCII字符:a-z, a-z, 0-9， !， #， $， %， &， '， *， +， -， .， ^， _， '(反引号)，|，和~。
+在HTTP报头字段名中使用无效字符将导致流关闭，并报告协议错误。
+报头字段值的处理更为宽松，但不应包含换行或回车字符，并应根据HTTP规范的要求限制为US-ASCII字符。
+
+在HTTP/2中，请求路径、主机名、协议和方法表示为特殊的头，前缀为:字符(例如:path)。这些特殊的头文件将包含在request.headers对象中。必须注意不要无意中修改这些特殊的标头，否则可能会发生错误。例如，从请求中删除所有头部将导致错误发生:
+
+注意：:authority和主机
+HTTP/2要求请求具有:authority伪报头或主机报头。直接构建HTTP/2请求时优先使用:authority，从HTTP/1转换时使用主机(例如，在代理中)。
+如果:authority不存在，兼容性API回落到主机。但是，如果不使用兼容性API(或直接使用req.headers)，需要自己实现任何回退行为。
+
+#### https
+判断是否支持crypto
+```
+let https;
+try {
+  https = require('node:https');
+} catch (err) {
+  console.error('https support is disabled!');
+}
+```
+
+**Class: https.Agent**
+
+new Agent([options])
+- options <Object> 要在代理上设置的一组可配置选项。可以具有与http.Agent(options)相同的字段。还有：
+  - maxCachedSessions <number> TLS缓存的最大会话数。使用0禁用TLS会话缓存。默认值:100。
+  - servername <string> 服务器名指示要发送到服务器的扩展名的值。使用空字符串"禁用发送扩展名。Default:目标服务器的主机名，除非目标服务器是使用IP地址指定的，在这种情况下，默认为''(无扩展名)。
+
+Event: 'keylog'
+- line <Buffer> ASCII文本行，NSS SSLKEYLOGFILE格式。
+- tlsSocket <tls.TLSSocket> 生成的tls.TLSSocket实例
+keylog事件在此代理管理的连接生成密钥材料或接收密钥材料时触发(通常在握手完成之前，但不一定)。可以存储此密钥材料以进行调试，因为它允许对捕获的TLS流量进行解密。每个socket可能会触发多次。
+
+https.request(options[, callback])
+https.request(url[, options][, callback])
+- url <string> | <URL>
+- options <Object> | <string> | <URL> 与http.request()选项一致, 存在如下默认值差异:
+  - protocol Default: 'https:'
+  - port Default: 443
+  - agent Default: https.globalAgent
+- callback <Function>
+- Returns: <http.ClientRequest>
+以下来自tls.connect()的额外属性也可以添加到options中：ca, cert, ciphers, clientCertEngine, crl, dhparam, ecdhCurve, honorCipherOrder, key, passphrase, pfx, rejectUnauthorized, secureOptions, secureProtocol, servername, sessionIdContext, highWaterMark.
+options可以是一个对象、一个字符串或者一个URL对象。如果options是字符串，会自动使用new URL()解析。如果是一个URL对象，会自动转换为一个普通的options对象。
+https.request()返回一个http.ClientRequest类的实例。 ClientRequest实例是一个可写流。如果需要使用POST请求上传文件，可以写入ClientRequest的对象中。
+

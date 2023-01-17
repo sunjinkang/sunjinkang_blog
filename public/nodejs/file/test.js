@@ -580,7 +580,7 @@
 // //   B
 // //   A
 
-const EventEmitter = require('events');
+// const EventEmitter = require('events');
 // const myEE = new EventEmitter();
 // myEE.on('foo', () => {});
 // myEE.on('bar', () => {});
@@ -598,10 +598,123 @@ const EventEmitter = require('events');
 // b
 // a
 
-const myEE = new EventEmitter();
-myEE.once('foo', () => console.log('a'));
-myEE.prependOnceListener('foo', () => console.log('b'));
-myEE.emit('foo');
-myEE.emit('foo');
+// const myEE = new EventEmitter();
+// myEE.once('foo', () => console.log('a'));
+// myEE.prependOnceListener('foo', () => console.log('b'));
+// myEE.emit('foo');
+// myEE.emit('foo');
 // b
 // a
+
+// const fs = require('fs');
+// // fs.appendFile('message.txt', 'data to append', 'utf8', (err) => {
+// //   if (err) throw err;
+// //   console.log('The "data to append" was appended to file!');
+// // });
+
+// try {
+//   fs.appendFileSync(
+//     'message.txt',
+//     '/n data to append wfqefqfqfwqefwqf',
+//     'utf8'
+//   );
+//   console.log('The "data to append" was appended to file!');
+// } catch (err) {
+//   /* Handle the error */
+// }
+
+const http = require('http');
+// const options = {
+//   host: 'nodejs.cn',
+// };
+// const req = http.get(options);
+// req.end();
+// req.once('response', (res) => {
+//   const ip = req.socket.localAddress;
+//   const port = req.socket.localPort;
+//   console.log(`你的IP地址是 ${ip}，你的源端口是 ${port}。`);
+//   // consume response object
+// });
+
+// console.log(http.METHODS);
+// [
+//   'ACL',         'BIND',       'CHECKOUT',
+//   'CONNECT',     'COPY',       'DELETE',
+//   'GET',         'HEAD',       'LINK',
+//   'LOCK',        'M-SEARCH',   'MERGE',
+//   'MKACTIVITY',  'MKCALENDAR', 'MKCOL',
+//   'MOVE',        'NOTIFY',     'OPTIONS',
+//   'PATCH',       'POST',       'PROPFIND',
+//   'PROPPATCH',   'PURGE',      'PUT',
+//   'REBIND',      'REPORT',     'SEARCH',
+//   'SOURCE',      'SUBSCRIBE',  'TRACE',
+//   'UNBIND',      'UNLINK',     'UNLOCK',
+//   'UNSUBSCRIBE'
+// ]
+
+console.log(http.STATUS_CODES);
+// {
+//   '100': 'Continue',
+//   '101': 'Switching Protocols',
+//   '102': 'Processing',
+//   '103': 'Early Hints',
+//   '200': 'OK',
+//   '201': 'Created',
+//   '202': 'Accepted',
+//   '203': 'Non-Authoritative Information',
+//   '204': 'No Content',
+//   '205': 'Reset Content',
+//   '206': 'Partial Content',
+//   '207': 'Multi-Status',
+//   '208': 'Already Reported',
+//   '226': 'IM Used',
+//   '300': 'Multiple Choices',
+//   '301': 'Moved Permanently',
+//   '302': 'Found',
+//   '303': 'See Other',
+//   '304': 'Not Modified',
+//   '305': 'Use Proxy',
+//   '307': 'Temporary Redirect',
+//   '308': 'Permanent Redirect',
+//   '400': 'Bad Request',
+//   '401': 'Unauthorized',
+//   '402': 'Payment Required',
+//   '403': 'Forbidden',
+//   '404': 'Not Found',
+//   '405': 'Method Not Allowed',
+//   '406': 'Not Acceptable',
+//   '407': 'Proxy Authentication Required',
+//   '408': 'Request Timeout',
+//   '409': 'Conflict',
+//   '410': 'Gone',
+//   '411': 'Length Required',
+//   '412': 'Precondition Failed',
+//   '413': 'Payload Too Large',
+//   '414': 'URI Too Long',
+//   '415': 'Unsupported Media Type',
+//   '416': 'Range Not Satisfiable',
+//   '417': 'Expectation Failed',
+//   '418': "I'm a Teapot",
+//   '421': 'Misdirected Request',
+//   '422': 'Unprocessable Entity',
+//   '423': 'Locked',
+//   '424': 'Failed Dependency',
+//   '425': 'Too Early',
+//   '426': 'Upgrade Required',
+//   '428': 'Precondition Required',
+//   '429': 'Too Many Requests',
+//   '431': 'Request Header Fields Too Large',
+//   '451': 'Unavailable For Legal Reasons',
+//   '500': 'Internal Server Error',
+//   '501': 'Not Implemented',
+//   '502': 'Bad Gateway',
+//   '503': 'Service Unavailable',
+//   '504': 'Gateway Timeout',
+//   '505': 'HTTP Version Not Supported',
+//   '506': 'Variant Also Negotiates',
+//   '507': 'Insufficient Storage',
+//   '508': 'Loop Detected',
+//   '509': 'Bandwidth Limit Exceeded',
+//   '510': 'Not Extended',
+//   '511': 'Network Authentication Required'
+// }
