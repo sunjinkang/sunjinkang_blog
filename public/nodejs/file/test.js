@@ -652,7 +652,7 @@ const http = require('http');
 //   'UNSUBSCRIBE'
 // ]
 
-console.log(http.STATUS_CODES);
+// console.log(http.STATUS_CODES);
 // {
 //   '100': 'Continue',
 //   '101': 'Switching Protocols',
@@ -718,3 +718,8 @@ console.log(http.STATUS_CODES);
 //   '510': 'Not Extended',
 //   '511': 'Network Authentication Required'
 // }
+
+// console.log(__filename);
+// // C:\Users\xxx\source\nodejs\file\test.js
+// console.log(__dirname);
+// // C:\Users\xxx\source\nodejs\file
