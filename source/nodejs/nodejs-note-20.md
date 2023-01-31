@@ -1,7 +1,7 @@
 ---
 title: nodejs基础知识(10)
 date: 2023-01-20 09:38:46
-tags: [node, ECMAScript]
+tags: [node, ECMAScript, package 包模块]
 ---
 
 #### ECMAScript 模块
@@ -112,10 +112,7 @@ import packageConfig from './package.json' assert { type: 'json' };
 await 关键字可以用在 ECMAScript 模块的顶层主体中。
 如果顶层 await 表达式永远无法解析，则 node 进程将以 13 状态码退出。
 
-title: nodejs基础知识(11)
-date: 2023-01-30 10:34:23
-tags: [node, package 包模块]
----
+
 
 #### package 包模块
 包是由 package.json 文件描述的文件夹树。 包由包含 package.json 文件的文件夹和所有子文件夹组成，直到包含另一个 package.json 文件的下一个文件夹或名为 node_modules 的文件夹。
@@ -239,6 +236,68 @@ import featureX from 'es-module-package/features/x.js';
 - 该包提供命名导出，例如 import { name } from 'pkg' 而不是 import pkg from 'pkg'; pkg.name。
 - 该包可能在其他 ES 模块环境中可用，例如浏览器。
 - 避免或最小化上一节中描述的危害。
+
+**双包编写方法**
+- 使用 ES 模块封装器
+在 CommonJS 中编写包或将 ES 模块源代码转换为 CommonJS，并创建定义命名导出的 ES 模块封装文件。 使用条件导出, import 使用 ES 模块封装器，require 使用 CommonJS 入口点。
+```
+// ./node_modules/pkg/index.cjs
+exports.name = 'value';
+
+// ./node_modules/pkg/wrapper.mjs
+import cjsModule from './index.cjs';
+export const name = cjsModule.name;
+
+import cjsModule from './index.cjs';
+export const name = cjsModule.name;
+export default cjsModule;
+```
+此方法适用于以下任何用例：
+- 该包目前是用 CommonJS 编写的，作者不希望将其重构为 ES 模块语法，而是希望为 ES 模块使用者提供命名导出。
+- 该包还有其他依赖它的包，最终用户可能会同时安装这个包和那些其他包。 比如 utilities 包直接在应用中使用，utilities-plus 包给 utilities 增加了一些功能。 因为封装器导出了底层的 CommonJS 文件，所以 utilities-plus 是用 CommonJS 还是 ES 模块语法编写的并不重要；无论哪种方式都可以。
+- 包存储内部状态，包作者宁愿不重构包以隔离其状态管理。 请参阅下一章节。
+
+此方法的变体不需要消费者有条件导出，可以添加一个导出，例如 "./module"，指向包的全 ES 模块语法版本。 如果用户确定 CommonJS 版本不会在应用程序的任何地方加载，例如通过依赖项，或者如果可以加载 CommonJS 版本但不影响 ES 模块版本（例如, 因为包是无状态的）：
+```
+// ./node_modules/pkg/package.json
+{
+  "type": "module",
+  "exports": {
+    ".": "./index.cjs",
+    "./module": "./wrapper.mjs"
+  }
+}
+```
+- 隔离状态
+*状态是一个问题的原因是因为包的 CommonJS 和 ES 模块版本都可能在应用程序中使用；例如，用户的应用程序代码可以 import ES 模块版本，而依赖项 require CommonJS 版本。 如果发生这种情况，包的两个副本将被加载到内存中，因此将出现两个不同的状态。 这可能会导致难以解决的错误。*
+
+除了编写无状态包（例如，如果 JavaScript 的 Math 是一个包，它将是无状态的，因为它的所有方法都是静态的），还有一些方法可以隔离状态，以便在可能加载的 CommonJS 和 ES 模块之间共享它包的实例：
+(1)如果可能，在实例化对象中包含所有状态。 比如 JavaScript 的 Date
+(2)在包的 CommonJS 和 ES 模块版本之间共享的一个或多个 CommonJS 文件中隔离状态。 比如 CommonJS 和 ES 模块入口点分别是 index.cjs 和 index.mjs：
+```
+// ./node_modules/pkg/index.cjs
+const state = require('./state.cjs');
+module.exports.state = state;
+
+// ./node_modules/pkg/index.mjs
+import state from './state.cjs';
+export {
+  state
+};
+```
+此方法适用于以下任何用例：
+- 该包目前是用 ES 模块语法编写的，包作者希望在支持此类语法的任何地方使用该版本。
+- 包是无状态的，或者它的状态可以很容易地被隔离。
+- 该包不太可能有其他依赖它的公共包，或者如果有，则该包是无状态的，或者具有不需要在依赖项之间或与整个应用程序共享的状态。
+*即使处于隔离状态，在 CommonJS 和 ES 模块版本之间仍然存在可能执行额外代码的成本。*
+
+与之前的方法一样，这种方法的变体不需要消费者有条件的导出，可以添加一个导出，例如 "./module"，指向包的全 ES 模块语法版本
+
+
+
+
+
+
 
 
 
