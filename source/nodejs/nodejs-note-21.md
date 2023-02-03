@@ -21,3 +21,61 @@ net.createServer().listen(path.join('\\\\?\\pipe', process.cwd(), 'myctl'));
 'drop' 事件
 *当连接数达到 server.maxConnections 的阈值时，服务器将丢弃新的连接并触发 'drop' 事件。*
 
+server.close([callback])
+停止服务器接受新连接并保持现有连接。 该函数是异步的，当所有连接都结束并且服务器触发 'close' 事件时，则服务器最终关闭。 一旦 'close' 事件发生，则可选的 callback 将被调用。 与该事件不同，如果服务器在关闭时未打开，它将以 Error 作为唯一参数被调用。?????
+
+server.listen()
+*当且仅当在第一次调用 server.listen() 期间出现错误或调用 server.close() 时，才能再次调用 server.listen() 方法。 否则，将抛出 ERR_SERVER_ALREADY_LISTEN 错误。*
+监听时最常见的错误之一是 EADDRINUSE。 当另一个服务器已经在监听请求的 port/path/handle 时会发生这种情况。 处理此问题的方法之一是在一定时间后重试：
+```
+server.on('error', (e) => {
+  if (e.code === 'EADDRINUSE') {
+    console.log('Address in use, retrying...');
+    setTimeout(() => {
+      server.close();
+      server.listen(PORT, HOST);
+    }, 1000);
+  }
+});
+```
+server.maxConnections
+设置此属性以在服务器的连接计数变高时拒绝连接。
+*一旦套接字已发送给具有 child_process.fork() 的子进程，则不建议使用此选项。*
+
+server.ref()
+与 unref() 相反，如果它是唯一剩下的服务器（默认行为），则在以前的 unref 的服务器上调用 ref() 不会让程序退出。 如果服务器被 ref，则再次调用 ref() 将无效。
+
+server.unref()
+如果服务器是事件系统中唯一的活动服务器，则在服务器上调用 unref() 将允许程序退出。 如果服务器已经被 unref，则再次调用 unref() 将无效。
+
+**net.Socket 类**
+此类是 TCP 套接字或流式 IPC 端点（在 Windows 上使用命名管道，否则使用 Unix 域套接字）的抽象。 它也是 EventEmitter。
+net.Socket 可以由用户创建并直接用于与服务器交互。
+它也可以由 Node.js 创建并在接收到连接时传给用户。
+
+'timeout' 事件
+*如果套接字因不活动而超时则触发。 这只是通知套接字已空闲。 用户必须手动关闭连接。*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+与该事件不同，如果服务器在关闭时未打开，它将以 Error 作为唯一参数被调用。?????
