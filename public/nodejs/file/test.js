@@ -623,7 +623,7 @@
 //   /* Handle the error */
 // }
 
-const http = require('http');
+// const http = require('http');
 // const options = {
 //   host: 'nodejs.cn',
 // };
@@ -723,3 +723,12 @@ const http = require('http');
 // // C:\Users\xxx\source\nodejs\file\test.js
 // console.log(__dirname);
 // // C:\Users\xxx\source\nodejs\file
+
+import fs, { readFileSync } from 'node:fs';
+import { syncBuiltinESMExports } from 'node:module';
+import { Buffer } from 'node:buffer';
+
+fs.readFileSync = () => Buffer.from('Hello, ESM');
+syncBuiltinESMExports();
+console.log(fs.readFileSync === readFileSync);
+// true

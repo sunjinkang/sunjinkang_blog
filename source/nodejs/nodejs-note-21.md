@@ -56,26 +56,37 @@ net.Socket 可以由用户创建并直接用于与服务器交互。
 'timeout' 事件
 *如果套接字因不活动而超时则触发。 这只是通知套接字已空闲。 用户必须手动关闭连接。*
 
+socket.end([data[, encoding]][, callback])
+- data <string> | <Buffer> | <Uint8Array>
+- encoding <string> 仅当数据为 string 时使用。 默认值: 'utf8'。
+- callback <Function> 套接字完成时的可选回调。
+半关闭套接字。 即，它发送一个 FIN 数据包。 服务器可能仍会发送一些数据。
 
+socket.pause()
+暂停读取数据。 也就是说，不会触发 'data' 事件。 用于限制上传。
 
+socket.pending
+如果套接字尚未连接，则为 true，要么是因为 .connect() 尚未被调用，要么是因为它仍在连接过程中
 
+socket.resume()
+调用 socket.pause() 后继续读取。
 
+socket.setNoDelay([noDelay])
+- noDelay <boolean> 默认值: true
+启用/禁用 Nagle 算法的使用。
+创建 TCP 连接时，它将启用 Nagle 算法。
+Nagle 的算法在数据通过网络发送之前延迟数据。 它试图以延迟为代价来优化吞吐量。
+为 noDelay 传入 true 或不传入参数将禁用套接字的 Nagle 算法。 为 noDelay 传入 false 将启用 Nagle 的算法。
 
+socket.setTimeout(timeout[, callback])
+- timeout <number>
+- callback <Function>
+将套接字设置为在套接字上 timeout 毫秒不活动后超时。 默认情况下 net.Socket 没有超时。
+当空闲超时被触发时，套接字将收到 'timeout' 事件，但连接不会被切断。 用户必须手动调用 socket.end() 或 socket.destroy() 才能结束连接。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-与该事件不同，如果服务器在关闭时未打开，它将以 Error 作为唯一参数被调用。?????
+socket.readyState
+此属性将连接状态表示为字符串。
+- 如果流正在连接，则 socket.readyState 是 opening。
+- 如果流可读可写，则为 open。
+- 如果流可读不可写，则为 readOnly。
+- 如果流不可读写，则为 writeOnly。
