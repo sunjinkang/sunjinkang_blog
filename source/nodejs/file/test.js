@@ -724,11 +724,31 @@
 // console.log(__dirname);
 // // C:\Users\xxx\source\nodejs\file
 
-import fs, { readFileSync } from 'node:fs';
-import { syncBuiltinESMExports } from 'node:module';
-import { Buffer } from 'node:buffer';
+// import fs, { readFileSync } from 'node:fs';
+// import { syncBuiltinESMExports } from 'node:module';
+// import { Buffer } from 'node:buffer';
 
-fs.readFileSync = () => Buffer.from('Hello, ESM');
-syncBuiltinESMExports();
-console.log(fs.readFileSync === readFileSync);
-// true
+// fs.readFileSync = () => Buffer.from('Hello, ESM');
+// syncBuiltinESMExports();
+// console.log(fs.readFileSync === readFileSync);
+// // true
+
+import os from 'node:os';
+// console.log(os.platform());
+// // win32
+// console.log(os.release());
+// // 10.0.19044
+// console.log(os.EOL);
+// // \r\n
+// console.log(os.arch());
+// // x64
+// console.log(os.tmpdir());
+// // C:\Users\sunji\AppData\Local\Temp
+// console.log(os.totalmem());
+// // 8424386560
+// console.log(os.type());
+// // Windows_NT
+// console.log(os.uptime());
+// 334498
+console.log(os.userInfo());
+console.log(os.version());
