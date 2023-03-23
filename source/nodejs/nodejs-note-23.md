@@ -5,10 +5,8 @@ tags: [node, process 进程]
 ---
 
 #### process 进程
-'beforeExit' 事件#
-中英对照
 
-新增于: v0.11.12
+'beforeExit' 事件
 当 Node.js 清空其事件循环并且没有额外的工作要安排时，则会触发 'beforeExit' 事件。 通常情况下，当没有工作要调度时，Node.js 进程会退出，但是注册在 'beforeExit' 事件上的监听器可以进行异步的调用，从而使 Node.js 进程继续。
 
 调用监听器回调函数时将 process.exitCode 的值作为唯一的参数传入。
@@ -16,7 +14,7 @@ tags: [node, process 进程]
 对于导致显式终止的条件，例如调用 process.exit() 或未捕获的异常，则不会触发 'beforeExit' 事件。
 
 'beforeExit' 不应用作 'exit' 事件的替代，除非打算安排额外的工作。
-
+```javascript
 import process from 'node:process';
 
 process.on('beforeExit', (code) => {
@@ -33,32 +31,27 @@ console.log('This message is displayed first.');
 // This message is displayed first.
 // Process beforeExit event with code: 0
 // Process exit event with code: 0
-'disconnect' 事件#
-中英对照
+```
 
-新增于: v0.7.7
+'disconnect' 事件#
 如果 Node.js 进程是使用 IPC 通道衍生（参见子进程和集群文档），则在 IPC 通道关闭时将触发 'disconnect' 事件。
 
-'exit' 事件#
-中英对照
-
-新增于: v0.1.7
+'exit' 事件
 code <integer>
 当 Node.js 进程由于以下任一原因即将退出时，则会触发 'exit' 事件：
-
-process.exit() 方法被显式调用；
-Node.js 事件循环不再需要执行任何额外的工作。
+- process.exit() 方法被显式调用；
+- Node.js 事件循环不再需要执行任何额外的工作。
 此时没有办法阻止事件循环的退出，一旦所有 'exit' 监听器都运行完毕，则 Node.js 进程将终止。
-
 监听器回调函数使用 process.exitCode 属性指定的退出码或传给 process.exit() 方法的 exitCode 参数调用。
-
+```javascript
 import process from 'node:process';
 
 process.on('exit', (code) => {
   console.log(`About to exit with code: ${code}`);
 });
+```
 监听器函数必须只执行同步的操作。 Node.js 进程将在调用 'exit' 事件监听器之后立即退出，从而使任何仍在事件循环中排队的其他工作被丢弃。 例如，在以下示例中，超时永远不会发生：
-
+```javascript
 import process from 'node:process';
 
 process.on('exit', (code) => {
@@ -66,79 +59,27 @@ process.on('exit', (code) => {
     console.log('This will not run');
   }, 0);
 });
-'message' 事件#
-中英对照
+```
 
-新增于: v0.5.10
+'message' 事件
 message <Object> | <boolean> | <number> | <string> | <null> 解析的 JSON 对象或可序列化的原始值。
 sendHandle <net.Server> | <net.Socket> net.Server 或 net.Socket 对象、或未定义。
 如果 Node.js 进程是使用 IPC 通道衍生（参见子进程和集群文档），则每当子进程收到父进程使用 childprocess.send() 发送的消息时，就会触发 'message' 事件。
+*消息经过序列化和解析。 结果消息可能与最初发送的消息不同。*
+*如果在衍生进程时将 serialization 选项设置为 advanced，则 message 参数可以包含 JSON 无法表示的数据。*
 
-消息经过序列化和解析。 结果消息可能与最初发送的消息不同。
-
-如果在衍生进程时将 serialization 选项设置为 advanced，则 message 参数可以包含 JSON 无法表示的数据。 有关更多详细信息，请参阅子进程的高级序列化。
-
-'multipleResolves' 事件#
-中英对照
-
-新增于: v10.12.0弃用于: v17.6.0
-稳定性: 0 - 弃用
-type <string> 解决类型 'resolve' 或 'reject' 之一。
-promise <Promise> 不止一次解决或拒绝的 promise。
-value <any> 在原始解决之后解决或拒绝 promise 的值。
-每当 Promise 满足以下任一条件时，就会触发 'multipleResolves' 事件：
-
-解决了不止一次。
-拒绝了不止一次。
-解决后拒绝。
-拒绝后解决。
-这对于在使用 Promise 构造函数时跟踪应用程序中的潜在错误很有用，因为多个解决被静默吞下。 但是，此事件的发生并不一定表示错误。 例如，Promise.race() 可以触发 'multipleResolves' 事件。
-
-由于在上面的 Promise.race() 示例这样的情况下事件的不可靠性，它已被弃用。
-
-import process from 'node:process';
-
-process.on('multipleResolves', (type, promise, reason) => {
-  console.error(type, promise, reason);
-  setImmediate(() => process.exit(1));
-});
-
-async function main() {
-  try {
-    return await new Promise((resolve, reject) => {
-      resolve('First call');
-      resolve('Swallowed resolve');
-      reject(new Error('Swallowed reject'));
-    });
-  } catch {
-    throw new Error('Failed');
-  }
-}
-
-main().then(console.log);
-// resolve: Promise { 'First call' } 'Swallowed resolve'
-// reject: Promise { 'First call' } Error: Swallowed reject
-//     at Promise (*)
-//     at new Promise (<anonymous>)
-//     at main (*)
-// First call
-'rejectionHandled' 事件#
-中英对照
-
-新增于: v1.4.1
+'rejectionHandled' 事件
 promise <Promise> 最近处理的 promise。
 每当 Promise 被拒绝并且错误句柄被附加到它（例如使用 promise.catch()）晚于一轮 Node.js 事件循环时，则 'rejectionHandled' 事件就会触发。
 
 Promise 对象会在 'unhandledRejection' 事件中先处理，但在处理过程中获得了拒绝句柄。
-
 对于 Promise 链，没有始终可以处理拒绝的顶层概念。 由于本质上是异步的，Promise 拒绝可以在未来的某个时间点处理，可能比触发 'unhandledRejection' 事件所需的事件循环轮询要晚得多。
 
 另一种表述方式是，与同步代码中未处理的异常列表不断增长不同，promise 中未处理的拒绝列表可能会不断增长和缩小。
 
 在同步代码中，当未处理的异常列表增长时，会触发 'uncaughtException' 事件。
-
 在异步代码中，当未处理的拒绝列表增长时，会触发 'unhandledRejection' 事件，当未处理的拒绝列表缩小时，会触发 'rejectionHandled' 事件。
-
+```javascript
 import process from 'node:process';
 
 const unhandledRejections = new Map();
@@ -148,16 +89,14 @@ process.on('unhandledRejection', (reason, promise) => {
 process.on('rejectionHandled', (promise) => {
   unhandledRejections.delete(promise);
 });
+```
 在这个例子中，unhandledRejections Map 将随着时间的推移而增长和缩小，反映了开始未处理然后变成处理的拒绝。 可以定期在错误日志中记录此类错误（这可能最适合长时间运行的应用程序）或在进程退出时（这可能对脚本最方便）。
 
-'uncaughtException' 事件#
-中英对照
-
-版本历史
+'uncaughtException' 事件
 err <Error> 未捕获的异常。
 origin <string> 指示异常是源自未处理的拒绝还是源自同步错误。 可以是 'uncaughtException' 或 'unhandledRejection'。 后者用于在基于 Promise 的异步上下文中发生异常（或者如果 Promise 被拒绝）并且 --unhandled-rejections 标志设置为 strict 或 throw（这是默认值）并且拒绝未被处理，或者当拒绝发生在命令行入口点的 ES 模块静态加载阶段。
 当未捕获的 JavaScript 异常一直冒泡回到事件循环时，则会触发 'uncaughtException' 事件。 默认情况下，Node.js 通过将堆栈跟踪打印到 stderr 并以代码 1 退出，覆盖任何先前设置的 process.exitCode 来处理此类异常。 为 'uncaughtException' 事件添加句柄会覆盖此默认行为。 或者，更改 'uncaughtException' 处理程序中的 process.exitCode，这将导致进程以提供的退出码退出。 否则，在存在此类句柄的情况下，进程将以 0 退出。
-
+```javascript
 import process from 'node:process';
 
 process.on('uncaughtException', (err, origin) => {
@@ -175,11 +114,10 @@ setTimeout(() => {
 // 故意引发异常，但不捕获。
 nonexistentFunc();
 console.log('This will not run.');
+```
 通过安装 'uncaughtExceptionMonitor' 监听器，可以在不覆盖退出进程的默认行为的情况下监视 'uncaughtException' 事件。
 
-注意: 正确使用 'uncaughtException'#
-中英对照
-
+注意: 正确使用 'uncaughtException'
 'uncaughtException' 是用于异常处理的粗略机制，仅用作最后的手段。 事件_不应该_用作 On Error Resume Next 的等价物。 未处理的异常本质上意味着应用程序处于未定义状态。 在没有从异常中正确恢复的情况下尝试恢复应用程序代码可能会导致其他不可预见和不可预测的问题。
 
 从事件句柄中抛出的异常将不会被捕获。 而是，该进程将以非零退出码退出，并将打印堆栈跟踪。 这是为了避免无限递归。
@@ -190,16 +128,13 @@ console.log('This will not run.');
 
 为了以更可靠的方式重新启动崩溃的应用程序，无论 'uncaughtException' 是否触发，都应该在单独的进程中使用外部监视器来检测应用程序故障并根据需要恢复或重新启动。
 
-'uncaughtExceptionMonitor' 事件#
-中英对照
-
-新增于: v13.7.0, v12.17.0
+'uncaughtExceptionMonitor' 事件
 err <Error> 未捕获的异常。
 origin <string> 指示异常是源自未处理的拒绝还是源自同步错误。 可以是 'uncaughtException' 或 'unhandledRejection'。 后者用于在基于 Promise 的异步上下文中发生异常（或者如果 Promise 被拒绝）并且 --unhandled-rejections 标志设置为 strict 或 throw（这是默认值）并且拒绝未被处理，或者当拒绝发生在命令行入口点的 ES 模块静态加载阶段。
 'uncaughtExceptionMonitor' 事件在 'uncaughtException' 事件触发或通过 process.setUncaughtExceptionCaptureCallback() 安装的钩子被调用之前触发。
 
 一旦触发 'uncaughtException' 事件，则安装 'uncaughtExceptionMonitor' 监听器不会更改行为。 如果没有安装 'uncaughtException' 监听器，则进程仍然会崩溃。
-
+```javascript
 import process from 'node:process';
 
 process.on('uncaughtExceptionMonitor', (err, origin) => {
@@ -209,14 +144,13 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
 // 故意引发异常，但不捕获。
 nonexistentFunc();
 // 仍然崩溃 Node.js
-'unhandledRejection' 事件#
-中英对照
+```
 
-版本历史
+'unhandledRejection' 事件
 reason <Error> | <any> Promise 被拒绝的对象（通常是 Error 对象）。
 promise <Promise> 被拒绝的 promise。
 每当 Promise 被拒绝并且在事件循环的一个轮询内没有错误句柄附加到承诺时，则会触发 'unhandledRejection' 事件。 使用 Promise 进行编程时，异常被封装为“被拒绝的 promise”。 拒绝可以使用 promise.catch() 捕获和处理，并通过 Promise 链传播。 'unhandledRejection' 事件对于检测和跟踪尚未处理的被拒绝的 promise 很有用。
-
+```javascript
 import process from 'node:process';
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -227,7 +161,7 @@ process.on('unhandledRejection', (reason, promise) => {
 somePromise.then((res) => {
   return reportToUser(JSON.pasre(res)); // 注意错别字 (`pasre`)
 }); // 无 `.catch()` 或 `.then()`
-以下也将触发 'unhandledRejection' 事件被触发：
+// 以下也将触发 'unhandledRejection' 事件被触发：
 
 import process from 'node:process';
 
@@ -238,20 +172,18 @@ function SomeResource() {
 
 const resource = new SomeResource();
 // resource.loaded 上没有 .catch 或 .then
+```
 在此示例情况下，可以将拒绝作为开发人员错误进行跟踪，这通常是其他 'unhandledRejection' 事件的情况。 为了解决此类故障，可以将非操作 .catch(() => { }) 句柄附加到 resource.loaded，这将阻止触发 'unhandledRejection' 事件。
 
-'warning' 事件#
-中英对照
-
-新增于: v6.0.0
+'warning' 事件
 warning <Error> 警告的主要属性是：
-name <string> 警告的名称。 默认值: 'Warning'。
-message <string> 系统提供的警告描述。
-stack <string> 代码中发出警告的位置的堆栈跟踪。
+- name <string> 警告的名称。 默认值: 'Warning'。
+- message <string> 系统提供的警告描述。
+- stack <string> 代码中发出警告的位置的堆栈跟踪。
 每当 Node.js 触发进程警告时，则会触发 'warning' 事件。
 
 进程警告类似于错误，因为其描述了引起用户注意的异常情况。 但是，警告不是正常 Node.js 和 JavaScript 错误处理流程的一部分。 Node.js 可以在检测到可能导致次优应用程序性能、错误或安全漏洞的不良编码实践时触发警告。
-
+```javascript
 import process from 'node:process';
 
 process.on('warning', (warning) => {
@@ -259,49 +191,43 @@ process.on('warning', (warning) => {
   console.warn(warning.message); // 打印警告信息
   console.warn(warning.stack);   // 打印堆栈跟踪
 });
+```
+
 默认情况下，Node.js 会将进程警告打印到 stderr。 --no-warnings 命令行选项可用于抑制默认控制台输出，但 'warning' 事件仍将由 process 对象触发。
 
 以下示例说明了在向事件添加过多监听器时打印到 stderr 的警告：
-
+```javascript
 $ node
 > events.defaultMaxListeners = 1;
 > process.on('foo', () => {});
 > process.on('foo', () => {});
 > (node:38638) MaxListenersExceededWarning: Possible EventEmitter memory leak
-detected. 2 foo listeners added. Use emitter.setMaxListeners() to increase limit
+// detected. 2 foo listeners added. Use emitter.setMaxListeners() to increase limit
+```
 相比之下，以下示例关闭默认警告输出并向 'warning' 事件添加自定义句柄：
-
+```javascript
 $ node --no-warnings
 > const p = process.on('warning', (warning) => console.warn('Do not do that!'));
 > events.defaultMaxListeners = 1;
 > process.on('foo', () => {});
 > process.on('foo', () => {});
 > Do not do that!
+```
+
 --trace-warnings 命令行选项可用于使警告的默认控制台输出包括警告的完整堆栈跟踪。
-
 使用 --throw-deprecation 命令行标志启动 Node.js 将导致自定义弃用警告作为异常抛出。
-
 使用 --trace-deprecation 命令行标志将导致自定义弃用与堆栈跟踪一起打印到 stderr。
-
 使用 --no-deprecation 命令行标志将抑制自定义弃用的所有报告。
-
 *-deprecation 命令行标志仅影响使用名称 'DeprecationWarning' 的警告。
 
-'worker' 事件#
-中英对照
-
-新增于: v16.2.0, v14.18.0
+'worker' 事件
 worker <Worker> 创建的 <Worker>。
 创建新的 <Worker> 线程后会触发 'worker' 事件。
 
-触发自定义的告警#
-中英对照
-
+触发自定义的告警
 请参阅 process.emitWarning() 方法以发出自定义或特定于应用程序的警告。
 
-Node.js 警告的名称#
-中英对照
-
+Node.js 警告的名称
 Node.js 触发的警告类型（由 name 属性标识）没有严格的指导方针。 可以随时添加新类型的警告。 一些最常见的警告类型包括：
 
 'DeprecationWarning' - 表示使用已弃用的 Node.js API 或功能。 此类警告必须包含标识弃用代码的 'code' 属性。
@@ -309,17 +235,15 @@ Node.js 触发的警告类型（由 name 属性标识）没有严格的指导方
 'MaxListenersExceededWarning' - 表示在 EventEmitter 或 EventTarget 上注册了太多给定事件的监听器。 这通常表示内存泄漏。
 'TimeoutOverflowWarning' - 表示已向 setTimeout() 或 setInterval() 函数提供了无法容纳在 32 位有符号整数内的数值。
 'UnsupportedWarning' - 表示使用不受支持的选项或功能，这些选项或功能将被忽略而不是被视为错误。 一个示例是在使用 HTTP/2 兼容性 API 时使用 HTTP 响应状态消息。
-信号事件#
-中英对照
 
+
+信号事件
 当 Node.js 进程收到信号时，则将触发信号事件。 有关标准 POSIX 信号名称（例如 'SIGINT'、'SIGHUP' 等）的列表，请参阅 signal(7)。
 
 信号在 Worker 线程上不可用。
-
 信号句柄将接收信号的名称（'SIGINT'、'SIGTERM' 等）作为第一个参数。
-
 每个事件的名称将是信号的大写通用名称（例如 'SIGINT' 表示 SIGINT 信号）。
-
+```javascript
 import process from 'node:process';
 
 // 从标准输入开始读取，因此进程不会退出。
@@ -336,6 +260,7 @@ function handle(signal) {
 
 process.on('SIGINT', handle);
 process.on('SIGTERM', handle);
+```
 'SIGUSR1' 由 Node.js 预留以启动调试器。 可以安装监听器，但这样做可能会干扰调试器。
 'SIGTERM' 和 'SIGINT' 在非 Windows 平台上具有默认的句柄，其在使用代码 128 + signal number 退出之前重置终端模式。 如果这些信号之一安装了监听器，则其默认行为将被删除（Node.js 将不再退出）。
 'SIGPIPE' 默认情况下忽略。 它可以安装监听器。
@@ -349,32 +274,25 @@ process.on('SIGTERM', handle);
 'SIGBUS'、'SIGFPE'、'SIGSEGV' 和 'SIGILL'，当不使用 kill(2) 人为引发时，本质上会使进程处于调用 JS 监听器不安全的状态。 这样做可能会导致进程停止响应。
 0 可以发送来测试进程是否存在，如果进程存在则没影响，如果进程不存在则抛出错误。
 Windows 不支持信号，因此没有等价的使用信号来终止，但 Node.js 提供了一些对 process.kill() 和 subprocess.kill() 的模拟：
-
 发送 SIGINT、SIGTERM、和 SIGKILL 会导致目标进程无条件的终止，之后子进程会报告进程被信号终止。
 发送信号 0 可以作为独立于平台的方式来测试进程是否存在。
-process.abort()#
-中英对照
 
-新增于: v0.7.0
+
+process.abort()
 process.abort() 方法会导致 Node.js 进程立即退出并生成一个核心文件。
+*此特性在 Worker 线程中不可用。*
 
-此特性在 Worker 线程中不可用。
-
-process.allowedNodeEnvironmentFlags#
-中英对照
-
-新增于: v10.10.0
-<Set>
+process.allowedNodeEnvironmentFlags
 process.allowedNodeEnvironmentFlags 属性是 NODE_OPTIONS 环境变量中允许的特殊的只读 Set 标志。
 
 process.allowedNodeEnvironmentFlags 继承了 Set，但覆盖了 Set.prototype.has 以识别几种不同的可能标志表示。 在以下情况下，process.allowedNodeEnvironmentFlags.has() 将返回 true：
+- 标志可以省略前导单（-）或双（--）破折号；例如，inspect-brk 代表 --inspect-brk，或 r 代表 -r。
+- 传给 V8 的标志（如 --v8-options 中所列）可能会替换一个或多个_非前导_破折号作为下划线，反之亦然；例如，--perf_basic_prof、--perf-basic-prof、--perf_basic-prof 等。
+- 标志可能包含一个或多个等于 (=) 字符；在第一个等号之后并包括在内的所有字符都将被忽略；例如，--stack-trace-limit=100。
+- 标志_必须_在 NODE_OPTIONS 中是允许的。
 
-标志可以省略前导单（-）或双（--）破折号；例如，inspect-brk 代表 --inspect-brk，或 r 代表 -r。
-传给 V8 的标志（如 --v8-options 中所列）可能会替换一个或多个_非前导_破折号作为下划线，反之亦然；例如，--perf_basic_prof、--perf-basic-prof、--perf_basic-prof 等。
-标志可能包含一个或多个等于 (=) 字符；在第一个等号之后并包括在内的所有字符都将被忽略；例如，--stack-trace-limit=100。
-标志_必须_在 NODE_OPTIONS 中是允许的。
 在 process.allowedNodeEnvironmentFlags 上迭代时，标志只会出现_一次_；每个都以一个或多个破折号开头。 传给 V8 的标志将包含下划线而不是非前导破折号：
-
+```javascript
 import { allowedNodeEnvironmentFlags } from 'node:process';
 
 allowedNodeEnvironmentFlags.forEach((flag) => {
@@ -383,37 +301,32 @@ allowedNodeEnvironmentFlags.forEach((flag) => {
   // --abort_on_uncaught_exception
   // ...
 });
-process.allowedNodeEnvironmentFlags 的方法 add()、clear() 和 delete() 什么都不做，会静默失败。
-
+// process.allowedNodeEnvironmentFlags 的方法 add()、clear() 和 delete() 什么都不做，会静默失败。
+```
 如果 Node.js 编译时_没有_ NODE_OPTIONS 支持（显示在 process.config 中），那么 process.allowedNodeEnvironmentFlags 将包含_本来_允许的内容。
 
-process.arch#
-中英对照
-
-新增于: v0.5.0
-<string>
+process.arch
 为其编译 Node.js 二进制文件的操作系统 CPU 架构。 可能的值为：'arm'、'arm64'、'ia32'、'mips'、'mipsel'、'ppc'、'ppc64'、's390'、's390x'、以及 'x64'。
-
+```javascript
 import { arch } from 'node:process';
 
 console.log(`This processor architecture is ${arch}`);
-process.argv#
-中英对照
+```
 
-新增于: v0.1.27
-<string[]>
+process.argv
 process.argv 属性返回数组，其中包含启动 Node.js 进程时传入的命令行参数。 第一个元素将是 process.execPath。 如果需要访问 argv[0] 的原始值，请参阅 process.argv0。 第二个元素将是正在执行的 JavaScript 文件的路径。 其余元素将是任何其他命令行参数。
 
 例如，假设 process-args.js 有以下脚本：
-
+```javascript
 import { argv } from 'node:process';
 
 // 打印 process.argv
 argv.forEach((val, index) => {
   console.log(`${index}: ${val}`);
 });
+```
 以如下方式启动 Node.js 进程：
-
+```javascript
 $ node process-args.js one two=three four
 将生成输出：
 
@@ -422,48 +335,33 @@ $ node process-args.js one two=three four
 2: one
 3: two=three
 4: four
-process.argv0#
-中英对照
+```
 
-新增于: v6.4.0
-<string>
+process.argv0
 process.argv0 属性存储了 Node.js 启动时传入的 argv[0] 原始值的只读副本。
-
+```javascript
 $ bash -c 'exec -a customArgv0 ./node'
 > process.argv[0]
 '/Volumes/code/external/node/out/Release/node'
 > process.argv0
 'customArgv0'
-process.channel#
-中英对照
+```
 
-版本历史
-<Object>
+process.channel
 如果 Node.js 进程是使用 IPC 通道衍生（参见子进程文档），则 process.channel 属性是对 IPC 通道的引用。 如果不存在 IPC 通道，则此属性为 undefined。
 
-process.channel.ref()#
-中英对照
-
-新增于: v7.1.0
+process.channel.ref()
 如果之前已调用过 .unref()，则此方法使 IPC 通道保持进程的事件循环运行。
-
 通常，这是通过 process 对象上的 'disconnect' 和 'message' 监听器的数量来管理的。 但是，此方法可用于显式请求特定行为。
 
-process.channel.unref()#
-中英对照
-
-新增于: v7.1.0
+process.channel.unref()
 此方法使 IPC 通道不会保持进程的事件循环运行，并且即使在通道打开时也让它完成。
-
 通常，这是通过 process 对象上的 'disconnect' 和 'message' 监听器的数量来管理的。 但是，此方法可用于显式请求特定行为。
 
-process.chdir(directory)#
-中英对照
-
-新增于: v0.1.17
+process.chdir(directory)
 directory <string>
 process.chdir() 方法更改 Node.js 进程的当前工作目录，如果失败则抛出异常（例如，如果指定的 directory 不存在）。
-
+```javascript
 import { chdir, cwd } from 'node:process';
 
 console.log(`Starting directory: ${cwd()}`);
@@ -473,17 +371,13 @@ try {
 } catch (err) {
   console.error(`chdir: ${err}`);
 }
+```
 此特性在 Worker 线程中不可用。
 
-process.config#
-中英对照
-
-版本历史
-<Object>
+process.config
 process.config 属性返回 Object，其中包含用于编译当前 Node.js 可执行文件的配置选项的 JavaScript 表示。 这与运行 ./configure 脚本时生成的 config.gypi 文件相同。
-
 可能的输出示例如下所示：
-
+```javascript
 {
   target_defaults:
    { cflags: [],
@@ -509,31 +403,23 @@ process.config 属性返回 Object，其中包含用于编译当前 Node.js 可�
      v8_use_snapshot: 1
    }
 }
+```
 process.config 属性是非只读的，并且生态系统中存在已知扩展、修改或完全替换 process.config 值的现有模块。
+*修改 process.config 属性或 process.config 对象的任何子属性已被弃用。 在未来的版本中，process.config 将变为只读。*
 
-修改 process.config 属性或 process.config 对象的任何子属性已被弃用。 在未来的版本中，process.config 将变为只读。
-
-process.connected#
-中英对照
-
-新增于: v0.7.2
-<boolean>
+process.connected
 如果 Node.js 进程使用 IPC 通道衍生（参见子进程和集群文档），则只要 IPC 通道连接，process.connected 属性将返回 true，并在调用 process.disconnect() 后返回 false。
-
 一旦 process.connected 为 false，就不能再使用 process.send() 通过 IPC 通道发送消息。
 
 process.cpuUsage([previousValue])#
-中英对照
-
-新增于: v6.1.0
 previousValue <Object> 先前调用 process.cpuUsage() 的返回值
 返回: <Object>
-user <integer>
-system <integer>
+- user <integer>
+- system <integer>
 process.cpuUsage() 方法在具有属性 user 和 system 的对象中返回当前进程的用户和系统 CPU 时间使用情况，其值为微秒值（百万分之一秒）。 这些值分别测量在用户和系统代码中花费的时间，如果多个 CPU 内核为此进程执行工作，则最终可能会大于实际经过的时间。
 
 先前调用 process.cpuUsage() 的结果可以作为参数传给函数，以获取差异读数。
-
+```javascript
 import { cpuUsage } from 'node:process';
 
 const startUsage = cpuUsage();
@@ -545,51 +431,40 @@ while (Date.now() - now < 500);
 
 console.log(cpuUsage(startUsage));
 // { user: 514883, system: 11226 }
-process.cwd()#
-中英对照
+```
 
-新增于: v0.1.8
-返回: <string>
+process.cwd()
 process.cwd() 方法返回 Node.js 进程的当前工作目录。
-
+```javascript
 import { cwd } from 'node:process';
 
 console.log(`Current directory: ${cwd()}`);
-process.debugPort#
-中英对照
+```
 
-新增于: v0.7.2
-<number>
+process.debugPort
 启用时 Node.js 调试器使用的端口。
-
+```javascript
 import process from 'node:process';
 
 process.debugPort = 5858;
-process.disconnect()#
-中英对照
+```
 
-新增于: v0.7.2
+process.disconnect()
 如果 Node.js 进程是使用 IPC 通道衍生（参见子进程和集群文档），则 process.disconnect() 方法将关闭通往父进程的 IPC 通道，一旦没有其他连接使其保持活动状态，则允许子进程正常退出。
-
 调用 process.disconnect() 的效果和从父进程调用 ChildProcess.disconnect() 是一样的。
-
 如果 Node.js 进程不是使用 IPC 通道衍生，则 process.disconnect() 将是 undefined。
 
-process.dlopen(module, filename[, flags])#
-中英对照
-
-版本历史
-module <Object>
-filename <string>
-flags <os.constants.dlopen> 默认值: os.constants.dlopen.RTLD_LAZY
+process.dlopen(module, filename[, flags])
+- module <Object>
+- filename <string>
+- flags <os.constants.dlopen> 默认值: os.constants.dlopen.RTLD_LAZY
 process.dlopen() 方法允许动态加载共享对象。 require() 主要用于加载 C++ 插件，除非特殊情况，否则不应直接使用。 换句话说，require() 应该优先于 process.dlopen()，除非有特定的原因，例如自定义 dlopen 标志或从 ES 模块加载。
 
 flags 参数是整数，允许指定 dlopen 行为。 有关详细信息，请参阅 os.constants.dlopen 文档。
-
 调用 process.dlopen() 时的一个重要要求是必须传入 module 实例。 然后可以通过 module.exports 访问由 C++ 插件导出的函数。
 
 下面的示例显示了如何加载名为 local.node 的 C++ 插件，该插件导出 foo 函数。 通过传入 RTLD_NOW 常量，在调用返回之前加载所有符号。 在此示例中，假定常量可用。
-
+```javascript
 import { dlopen } from 'node:process';
 import { constants } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -598,18 +473,17 @@ const module = { exports: {} };
 dlopen(module, fileURLToPath(new URL('local.node', import.meta.url)),
        constants.dlopen.RTLD_NOW);
 module.exports.foo();
-process.emitWarning(warning[, options])#
-中英对照
+```
 
-新增于: v8.0.0
+process.emitWarning(warning[, options])
 warning <string> | <Error> 要触发的警告。
 options <Object>
-type <string> 当 warning 是 String 时，type 是用于触发警告的 type 的名称。 默认值: 'Warning'。
-code <string> 触发的警告实例的唯一标识符。
-ctor <Function> 当 warning 为 String 时，ctor 是可选函数，用于限制生成的堆栈跟踪。 默认值: process.emitWarning。
-detail <string> 要包含在错误中的额外文本。
+- type <string> 当 warning 是 String 时，type 是用于触发警告的 type 的名称。 默认值: 'Warning'。
+- code <string> 触发的警告实例的唯一标识符。
+- ctor <Function> 当 warning 为 String 时，ctor 是可选函数，用于限制生成的堆栈跟踪。 默认值: process.emitWarning。
+- detail <string> 要包含在错误中的额外文本。
 process.emitWarning() 方法可用于触发自定义或特定于应用程序的进程警告。 这些可以通过向 'warning' 事件添加句柄来监听。
-
+```javascript
 import { emitWarning } from 'node:process';
 
 // 触发带有代码和其他详细信息的警告。
@@ -620,8 +494,9 @@ emitWarning('Something happened!', {
 // 触发:
 // (node:56338) [MY_WARNING] Warning: Something happened!
 // This is some additional information
+```
 在此示例中，Error 对象由 process.emitWarning() 在内部生成并传给 'warning' 句柄。
-
+```javascript
 import process from 'node:process';
 
 process.on('warning', (warning) => {
@@ -631,18 +506,16 @@ process.on('warning', (warning) => {
   console.warn(warning.stack);   // Stack trace
   console.warn(warning.detail);  // 'This is some additional information'
 });
+```
 如果 warning 作为 Error 对象传入，则忽略 options 参数。
 
-process.emitWarning(warning[, type[, code]][, ctor])#
-中英对照
-
-新增于: v6.0.0
-warning <string> | <Error> 要触发的警告。
-type <string> 当 warning 是 String 时，type 是用于触发警告的 type 的名称。 默认值: 'Warning'。
-code <string> 触发的警告实例的唯一标识符。
-ctor <Function> 当 warning 为 String 时，ctor 是可选函数，用于限制生成的堆栈跟踪。 默认值: process.emitWarning。
+process.emitWarning(warning[, type[, code]][, ctor])
+- warning <string> | <Error> 要触发的警告。
+- type <string> 当 warning 是 String 时，type 是用于触发警告的 type 的名称。 默认值: 'Warning'。
+- code <string> 触发的警告实例的唯一标识符。
+- ctor <Function> 当 warning 为 String 时，ctor 是可选函数，用于限制生成的堆栈跟踪。 默认值: process.emitWarning。
 process.emitWarning() 方法可用于触发自定义或特定于应用程序的进程警告。 这些可以通过向 'warning' 事件添加句柄来监听。
-
+```javascript
 import { emitWarning } from 'node:process';
 
 // 使用字符串触发警告。
@@ -657,8 +530,9 @@ import { emitWarning } from 'node:process';
 
 emitWarning('Something happened!', 'CustomWarning', 'WARN001');
 // 触发: (node:56338) [WARN001] CustomWarning: Something happened!
+```
 在前面的每个示例中，Error 对象由 process.emitWarning() 在内部生成并传给 'warning' 句柄。
-
+```javascript
 import process from 'node:process';
 
 process.on('warning', (warning) => {
@@ -667,8 +541,9 @@ process.on('warning', (warning) => {
   console.warn(warning.code);
   console.warn(warning.stack);
 });
+```
 如果 warning 作为 Error 对象传入，则它将被不加修改地传给 'warning' 事件句柄（并且可选的 type、code 和 ctor 参数将被忽略）：
-
+```javascript
 import { emitWarning } from 'node:process';
 
 // 使用 Error 对象触发警告。
@@ -679,20 +554,17 @@ myWarning.code = 'WARN001';
 
 emitWarning(myWarning);
 // 触发: (node:56338) [WARN001] CustomWarning: Something happened!
+```
 如果 warning 不是字符串或 Error 对象，则抛出 TypeError。
-
 虽然进程警告使用 Error 对象，但进程警告机制不是替代正常错误处理机制。
-
 如果警告 type 为 'DeprecationWarning'，则执行以下额外处理：
+- 如果使用 --throw-deprecation 命令行标志，则弃用警告将作为异常抛出，而不是作为事件触发。
+- 如果使用 --no-deprecation 命令行标志，则会取消弃用警告。
+- 如果使用 --trace-deprecation 命令行标志，则弃用警告将与完整堆栈跟踪一起打印到 stderr。
 
-如果使用 --throw-deprecation 命令行标志，则弃用警告将作为异常抛出，而不是作为事件触发。
-如果使用 --no-deprecation 命令行标志，则会取消弃用警告。
-如果使用 --trace-deprecation 命令行标志，则弃用警告将与完整堆栈跟踪一起打印到 stderr。
-避免重复警告#
-中英对照
-
+避免重复警告
 作为最佳实践，每个进程只应触发一次警告。 为此，则将 emitWarning() 放在布尔值后面。
-
+```javascript
 import { emitWarning } from 'node:process';
 
 function emitMyWarning() {
@@ -705,15 +577,13 @@ emitMyWarning();
 // 触发: (node: 56339) Warning: Only warn once!
 emitMyWarning();
 // 什么都不触发
-process.env#
-中英对照
+```
 
-版本历史
-<Object>
+process.env
 process.env 属性返回包含用户环境的对象。 参见 environ(7)。
 
 此对象的示例如下所示：
-
+```javascript
 {
   TERM: 'xterm-256color',
   SHELL: '/usr/local/bin/bash',
@@ -726,17 +596,19 @@ process.env 属性返回包含用户环境的对象。 参见 environ(7)。
   LOGNAME: 'maciej',
   _: '/usr/local/bin/node'
 }
+```
 可以修改此对象，但此类修改不会反映在 Node.js 进程之外，或反映到其他 Worker 线程（除非显示请求）。 换句话说，以下示例将不起作用：
 
 $ node -e 'process.env.foo = "bar"' && echo $foo
 但是以下示例则将起作用：
-
+```javascript
 import { env } from 'node:process';
 
 env.foo = 'bar';
 console.log(env.foo);
+```
 在 process.env 上分配属性会将值隐式转换为字符串。 此行为已弃用。 当值不是字符串、数字或布尔值时，Node.js 的未来版本可能会抛出错误。
-
+```javascript
 import { env } from 'node:process';
 
 env.test = null;
@@ -745,7 +617,7 @@ console.log(env.test);
 env.test = undefined;
 console.log(env.test);
 // => 'undefined'
-使用 delete 从 process.env 中删除属性。
+// 使用 delete 从 process.env 中删除属性。
 
 import { env } from 'node:process';
 
@@ -753,22 +625,20 @@ env.TEST = 1;
 delete env.TEST;
 console.log(env.TEST);
 // => undefined
-在 Windows 操作系统上，环境变量不区分大小写。
+// 在 Windows 操作系统上，环境变量不区分大小写。
 
 import { env } from 'node:process';
 
 env.TEST = 1;
 console.log(env.test);
 // => 1
+```
 除非在创建 Worker 实例时显式地指定，否则每个 Worker 线程都有自己的 process.env 副本，基于其父线程的 process.env，或任何指定为 Worker 构造函数的 env 选项。 对 process.env 的更改不会跨 Worker 线程可见，只有主线程可以进行对操作系统或原生插件可见的更改。
 
-process.execArgv#
-中英对照
-
-新增于: v0.7.7
-<string[]>
-process.execArgv 属性返回 Node.js 进程启动时传入的一组特定于 Node.js 的命令行选项。 这些选项不会出现在 process.argv 属性返回的数组中，也不包括 Node.js 可执行文件、脚本名称或脚本名称后面的任何选项。 这些选项可用于衍生与父进程具有相同执行环境的子进程。
-
+process.execArgv
+process.execArgv 属性返回 Node.js 进程启动时传入的一组特定于 Node.js 的命令行选项。 
+**这些选项不会出现在 process.argv 属性返回的数组中，也不包括 Node.js 可执行文件、脚本名称或脚本名称后面的任何选项。 这些选项可用于衍生与父进程具有相同执行环境的子进程。**
+```javascript
 $ node --harmony script.js --version
 process.execArgv 的结果：
 
@@ -776,36 +646,29 @@ process.execArgv 的结果：
 process.argv 的结果：
 
 ['/usr/local/bin/node', 'script.js', '--version']
+```
 有关具有此属性的工作线程的详细行为，请参阅 Worker 构造函数。
 
-process.execPath#
-中英对照
-
-新增于: v0.1.100
-<string>
+process.execPath
 process.execPath 属性返回启动 Node.js 进程的可执行文件的绝对路径名。 符号链接（如果有）会被解析。
 
-'/usr/local/bin/node'
-process.exit([code])#
-中英对照
-
-新增于: v0.1.13
+process.exit([code])
 code <integer> 退出码。 默认值: 0。
 process.exit() 方法指示 Node.js 以 code 的退出状态同步终止进程。 如果省略 code，则退出将使用“成功”代码 0 或 process.exitCode 的值（如果已设置）。 直到所有 'exit' 事件监听器都被调用，Node.js 才会终止。
 
 以“失败”代码退出：
-
+```javascript
 import { exit } from 'node:process';
 
 exit(1);
+```
 执行 Node.js 的 shell 应该看到退出码为 1。
-
 调用 process.exit() 将强制进程尽快退出，即使仍有未完全完成的异步操作挂起，包括对 process.stdout 和 process.stderr 的 I/O 操作。
 
 在大多数情况下，实际上没有必要显式调用 process.exit()。 如果事件循环中没有其他待处理的工作，则 Node.js 进程将自行退出。 可以设置 process.exitCode 属性来告诉进程在进程正常退出时使用哪个退出码。
 
 例如，以下示例说明了 process.exit() 方法的误用，其可能导致打印到标准输出的数据被截断和丢失：
-
+```javascript
 import { exit } from 'node:process';
 
 // 这是不该做的示例：
@@ -813,10 +676,11 @@ if (someConditionNotMet()) {
   printUsageToStdout();
   exit(1);
 }
+```
 这是有问题的原因是因为在 Node.js 中写入 process.stdout 有时是异步的，并且可能发生在 Node.js 事件循环的多个滴答上。 但是，调用 process.exit() 会强制进程在执行对 stdout 的其他写入之前退出。
 
 代码应该设置 process.exitCode 并通过避免为事件循环安排任何额外工作来允许进程自然退出，而不是直接调用 process.exit()：
-
+```javascript
 import process from 'node:process';
 
 // 如何正确设置退出码，同时让进程正常退出。
@@ -824,27 +688,17 @@ if (someConditionNotMet()) {
   printUsageToStdout();
   process.exitCode = 1;
 }
+```
 如果由于错误情况需要终止 Node.js 进程，则抛出未捕获的错误并允许进程相应地终止比调用 process.exit() 更安全。
-
 在 Worker 线程中，该函数停止当前线程而不是当前进程。
 
-process.exitCode#
-中英对照
-
-新增于: v0.11.8
-<integer>
+process.exitCode
 当进程正常退出或通过 process.exit() 退出而不指定代码时，将作为进程退出码的数字。
-
 将代码指定为 process.exit(code) 将覆盖 process.exitCode 的任何先前设置。
 
-process.getActiveResourcesInfo()#
-中英对照
-
-新增于: v17.3.0, v16.14.0
-稳定性: 1 - 实验
-返回: <string[]>
+process.getActiveResourcesInfo()
 process.getActiveResourcesInfo() 方法返回字符串数组，其中包含当前保持事件循环活动的活动资源的类型。
-
+```javascript
 import { getActiveResourcesInfo } from 'node:process';
 import { setTimeout } from 'node:timers';
 
@@ -854,97 +708,76 @@ console.log('After:', getActiveResourcesInfo());
 // 打印:
 //   Before: [ 'CloseReq', 'TTYWrap', 'TTYWrap', 'TTYWrap' ]
 //   After: [ 'CloseReq', 'TTYWrap', 'TTYWrap', 'TTYWrap', 'Timeout' ]
-process.getegid()#
-中英对照
+```
 
-新增于: v2.0.0
+process.getegid()
 process.getegid() 方法返回 Node.js 进程的数字有效群组标识。 （见 getegid(2)。）
-
+```javascript
 import process from 'node:process';
 
 if (process.getegid) {
   console.log(`Current gid: ${process.getegid()}`);
 }
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。
+```
+*此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。*
 
-process.geteuid()#
-中英对照
-
-新增于: v2.0.0
-返回: <Object>
+process.geteuid()
 process.geteuid() 方法返回进程的数字有效用户身份。 （见 geteuid(2)。）
-
+```javascript
 import process from 'node:process';
 
 if (process.geteuid) {
   console.log(`Current uid: ${process.geteuid()}`);
 }
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。
+```
+*此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。*
 
-process.getgid()#
-中英对照
-
-新增于: v0.1.31
-返回: <Object>
+process.getgid()
 process.getgid() 方法返回进程的数字群组标识。 （见 getgid(2)。）
-
+```javascript
 import process from 'node:process';
 
 if (process.getgid) {
   console.log(`Current gid: ${process.getgid()}`);
 }
+```
 此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。
 
-process.getgroups()#
-中英对照
-
-新增于: v0.9.4
-返回: <integer[]>
+process.getgroups()
 process.getgroups() 方法返回带有补充组 ID 的数组。 POSIX 不指定是否包含有效组 ID，但 Node.js 确保它始终包含。
-
+```javascript
 import process from 'node:process';
 
 if (process.getgroups) {
   console.log(process.getgroups()); // [ 16, 21, 297 ]
 }
+```
 此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。
 
-process.getuid()#
-中英对照
-
-新增于: v0.1.28
-返回: <integer>
+process.getuid()
 process.getuid() 方法返回进程的数字用户标识。 （见 getuid(2)。）
-
+```javascript
 import process from 'node:process';
 
 if (process.getuid) {
   console.log(`Current uid: ${process.getuid()}`);
 }
+```
 此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。
 
-process.hasUncaughtExceptionCaptureCallback()#
-中英对照
-
-新增于: v9.3.0
-返回: <boolean>
+process.hasUncaughtExceptionCaptureCallback()
 指示是否已使用 process.setUncaughtExceptionCaptureCallback() 设置回调。
 
-process.hrtime([time])#
-中英对照
-
-新增于: v0.7.6
-稳定性: 3 - 旧版. 改为使用 process.hrtime.bigint() 。
+process.hrtime([time])
 time <integer[]> 先前调用 process.hrtime() 的结果
 返回: <integer[]>
 这是 process.hrtime.bigint() 在 JavaScript 中引入 bigint 之前的旧版本。
-
 process.hrtime() 方法在 [seconds, nanoseconds] 元组 Array 中返回当前高解析度实时，其中 nanoseconds 是无法以秒精度表示的实时剩余部分。
 
 time 是可选参数，它必须是先前 process.hrtime() 调用 diff 与当前时间的结果。 如果传入的参数不是元组 Array，则会抛出 TypeError。 传入用户定义的数组而不是先前调用 process.hrtime() 的结果将导致未定义的行为。
 
 这些时间相对于过去的任意时间，与一天中的时间无关，因此不受时钟漂移的影响。 主要用途是测量间隔之间的性能：
-
+```javascript
 import { hrtime } from 'node:process';
 
 const NS_PER_SEC = 1e9;
@@ -958,15 +791,12 @@ setTimeout(() => {
   console.log(`Benchmark took ${diff[0] * NS_PER_SEC + diff[1]} nanoseconds`);
   // 基准测试耗时 1000000552 纳秒
 }, 1000);
-process.hrtime.bigint()#
-中英对照
+```
 
-新增于: v10.7.0
-返回: <bigint>
+process.hrtime.bigint()
 process.hrtime() 方法的 bigint 版本以纳秒为单位返回当前高解析度实时作为 bigint。
-
 与 process.hrtime() 不同，它不支持额外的 time 参数，因为可以直接通过减去两个 bigint 来计算差异。
-
+```javascript
 import { hrtime } from 'node:process';
 
 const start = hrtime.bigint();
@@ -979,16 +809,15 @@ setTimeout(() => {
   console.log(`Benchmark took ${end - start} nanoseconds`);
   // 基准测试耗时 1154389282 纳秒
 }, 1000);
-process.initgroups(user, extraGroup)#
-中英对照
+```
 
-新增于: v0.9.4
-user <string> | <number> 用户名或数字标识符。
-extraGroup <string> | <number> 群组名或数字标识符。
+process.initgroups(user, extraGroup)
+- user <string> | <number> 用户名或数字标识符。
+- extraGroup <string> | <number> 群组名或数字标识符。
 process.initgroups() 方法读取 /etc/group 文件并使用用户所属的所有组初始化组访问列表。 这是一个特权操作，要求 Node.js 进程具有 root 访问权限或 CAP_SETGID 能力。
 
 删除权限时要小心：
-
+```javascript
 import { getgroups, initgroups, setgid } from 'node:process';
 
 console.log(getgroups());         // [ 0 ]
@@ -996,12 +825,10 @@ initgroups('nodeuser', 1000);     // 切换用户
 console.log(getgroups());         // [ 27, 30, 46, 1000, 0 ]
 setgid(1000);                     // 删除 root 的 gid
 console.log(getgroups());         // [ 27, 30, 46, 1000 ]
+```
 此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
 
-process.kill(pid[, signal])#
-中英对照
-
-新增于: v0.0.6
+process.kill(pid[, signal])
 pid <number> 进程标识
 signal <string> | <number> 要发送的信号，可以是字符串或数字。 默认值: 'SIGTERM'。
 process.kill() 方法将 signal 发送到由 pid 标识的进程。
@@ -1009,9 +836,8 @@ process.kill() 方法将 signal 发送到由 pid 标识的进程。
 信号名称是字符串，例如 'SIGINT' 或 'SIGHUP'。 有关详细信息，请参阅信号事件和 kill(2)。
 
 如果目标 pid 不存在，则此方法将抛出错误。 作为特殊情况，可以使用信号 0 来测试进程是否存在。 如果使用 pid 来杀死进程组，则 Windows 平台将抛出错误。
-
 尽管此函数的名字是 process.kill()，但它实际上只是信号发送者，就像 kill 系统调用。 发送的信号可能会做其他事情而不是杀死目标进程。
-
+```javascript
 import process, { kill } from 'node:process';
 
 process.on('SIGHUP', () => {
@@ -1024,30 +850,18 @@ setTimeout(() => {
 }, 100);
 
 kill(process.pid, 'SIGHUP');
+```
 当 Node.js 进程收到 SIGUSR1 时，Node.js 将启动调试器。 参见信号事件。
 
-process.mainModule#
-中英对照
-
-新增于: v0.1.17弃用于: v14.0.0
-稳定性: 0 - 弃用: 改为使用 require.main 。
-<Object>
-process.mainModule 属性提供了另一种检索 require.main 的方法。 不同之处在于，如果主模块在运行时发生更改，则 require.main 可能仍会引用更改发生前所需模块中的原始主模块。 通常，可以安全地假设两者指的是同一个模块。
-
-与 require.main 一样，如果没有入口脚本，则 process.mainModule 将是 undefined。
-
-process.memoryUsage()#
-中英对照
-
-版本历史
+process.memoryUsage()
 返回: <Object>
-rss <integer>
-heapTotal <integer>
-heapUsed <integer>
-external <integer>
-arrayBuffers <integer>
+- rss <integer>
+- heapTotal <integer>
+- heapUsed <integer>
+- external <integer>
+- arrayBuffers <integer>
 返回描述 Node.js 进程的内存使用量（以字节为单位）的对象。
-
+```javascript
 import { memoryUsage } from 'node:process';
 
 console.log(memoryUsage());
@@ -1059,37 +873,30 @@ console.log(memoryUsage());
 //  external: 49879,
 //  arrayBuffers: 9386
 // }
-heapTotal 和 heapUsed 指的是 V8 的内存使用量。
-external 指的是绑定到 V8 管理的 JavaScript 对象的 C++ 对象的内存使用量。
-rss，常驻集大小，是进程在主内存设备（即总分配内存的子集）中占用的空间量，包括所有 C++ 和 JavaScript 对象和代码。
-arrayBuffers 是指为 ArrayBuffer 和 SharedArrayBuffer 分配的内存，包括所有 Node.js Buffer。 这也包含在 external 值中。 当 Node.js 被用作嵌入式库时，此值可能为 0，因为在这种情况下可能不会跟踪 ArrayBuffer 的分配。
-当使用 Worker 线程时，则 rss 将是对整个进程都有效的值，而其他字段仅涉及当前线程。
-
+// heapTotal 和 heapUsed 指的是 V8 的内存使用量。
+// external 指的是绑定到 V8 管理的 JavaScript 对象的 C++ 对象的内存使用量。
+// rss，常驻集大小，是进程在主内存设备（即总分配内存的子集）中占用的空间量，包括所有 C++ 和 JavaScript 对象和代码。
+// arrayBuffers 是指为 ArrayBuffer 和 SharedArrayBuffer 分配的内存，包括所有 Node.js Buffer。 这也包含在 external 值中。 当 Node.js 被用作嵌入式库时，此值可能为 0，因为在这种情况下可能不会跟踪 ArrayBuffer 的分配。
+// 当使用 Worker 线程时，则 rss 将是对整个进程都有效的值，而其他字段仅涉及当前线程。
+```
 process.memoryUsage() 方法遍历每个页面以收集有关内存使用情况的信息，这可能会根据程序内存分配而变慢。
 
-process.memoryUsage.rss()#
-中英对照
-
-新增于: v15.6.0, v14.18.0
-返回: <integer>
+process.memoryUsage.rss()
 process.memoryUsage.rss() 方法返回以字节为单位表示驻留集大小的整数 (RSS)。
-
 驻留集大小是进程在主内存设备（即总分配内存的子集）中占用的空间量，包括所有 C++ 和 JavaScript 对象和代码。
-
-这与 process.memoryUsage() 提供的 rss 属性值相同，但 process.memoryUsage.rss() 更快。
-
+*这与 process.memoryUsage() 提供的 rss 属性值相同，但 process.memoryUsage.rss() 更快。*
+```javascript
 import { memoryUsage } from 'node:process';
 
 console.log(memoryUsage.rss());
 // 35655680
-process.nextTick(callback[, ...args])#
-中英对照
+```
 
-版本历史
+process.nextTick(callback[, ...args])
 callback <Function>
 ...args <any> 当调用 callback 时要传入的额外参数
-process.nextTick() 将 callback 添加到"下一个滴答队列"。 在 JavaScript 堆栈上的当前操作运行完成之后，且在允许事件循环继续之前，此队列将被完全排空。 如果递归地调用 process.nextTick()，则可能会创建无限的循环。 有关更多背景信息，请参阅事件循环指南。
-
+process.nextTick() 将 callback 添加到"下一个滴答队列"。 在 JavaScript 堆栈上的当前操作运行完成之后，且在允许事件循环继续之前，此队列将被完全排空。 如果递归地调用 process.nextTick()，则可能会创建无限的循环。
+```javascript
 import { nextTick } from 'node:process';
 
 console.log('start');
@@ -1101,8 +908,10 @@ console.log('scheduled');
 // start
 // scheduled
 // nextTick callback
-这在开发 API 时很重要，以便让用户有机会在对象构建之后但在任何 I/O 发生之前分配事件句柄：
+```
 
+这在开发 API 时很重要，以便让用户有机会在对象构建之后但在任何 I/O 发生之前分配事件句柄：
+```javascript
 import { nextTick } from 'node:process';
 
 function MyThing(options) {
@@ -1117,6 +926,7 @@ const thing = new MyThing();
 thing.getReadyForStuff();
 
 // thing.startDoingStuff() 现在被调用，而不是之前。
+```
 这对于要 100% 同步或 100% 异步的 API 非常重要。 设想这个示例：
 
 // 警告！不要使用！不安全的危险！
