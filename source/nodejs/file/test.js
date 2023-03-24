@@ -733,7 +733,7 @@
 // console.log(fs.readFileSync === readFileSync);
 // // true
 
-import os from 'node:os';
+// import os from 'node:os';
 // console.log(os.platform());
 // // win32
 // console.log(os.release());
@@ -750,5 +750,80 @@ import os from 'node:os';
 // // Windows_NT
 // console.log(os.uptime());
 // 334498
-console.log(os.userInfo());
-console.log(os.version());
+// console.log(os.userInfo());
+// console.log(os.version());
+
+// import { report } from 'process';
+// console.log(report);
+// console.log(report.writeReport('../testReport.json'));
+// console.log(report.resourceUsage());
+
+// import process from 'node:process';
+
+// if (process.getegid && process.setegid) {
+//   console.log(`Current gid: ${process.getegid()}`);
+//   try {
+//     process.setegid(501);
+//     console.log(`New gid: ${process.getegid()}`);
+//   } catch (err) {
+//     console.log(`Failed to set gid: ${err}`);
+//   }
+// }
+// console.log(process.title);
+// C:\Windows\System32\cmd.exe - node  test.js
+// process.title = 'qwer';
+// console.log(process.title);
+// qwer
+
+// console.log(process.uptime());
+// // 0.0754413
+// console.log(process.version);
+// // v18.12.1
+// console.log(process.versions.node);
+// // 18.12.1
+// console.log(process.versions);
+// {
+//  node: '18.12.1',
+//  v8: '10.2.154.15-node.12',
+//  uv: '1.43.0',
+//  zlib: '1.2.11',
+//  brotli: '1.0.9',
+//  ares: '1.18.1',
+//  modules: '108',
+//  nghttp2: '1.47.0',
+//  napi: '8',
+//  llhttp: '6.0.10',
+//  openssl: '3.0.7+quic',
+//  cldr: '41.0',
+//  icu: '71.1',
+//  tz: '2022b',
+//  unicode: '14.0',
+//  ngtcp2: '0.8.1',
+//  nghttp3: '0.7.0'
+// }
+
+import readline from 'node:readline';
+import process from 'node:process';
+var rl = readline.createInterface(process.stdin, process.stdout);
+// rl.setPrompt('Test');
+// rl.prompt();
+// rl.question('What is your favorite food? ', (answer) => {
+//   console.log(`Oh, so your favorite food is ${answer}`);
+//   process.exit(0);
+// });
+const ac = new AbortController();
+const signal = ac.signal;
+
+rl.question('What is your favorite food? ', { signal }, (answer) => {
+  console.log(`Oh, so your favorite food is ${answer}`);
+});
+
+signal.addEventListener(
+  'abort',
+  () => {
+    console.log('The food question timed out');
+  },
+  { once: true }
+);
+
+setTimeout(() => ac.abort(), 10000);

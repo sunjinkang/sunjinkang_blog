@@ -928,7 +928,7 @@ thing.getReadyForStuff();
 // thing.startDoingStuff() 现在被调用，而不是之前。
 ```
 这对于要 100% 同步或 100% 异步的 API 非常重要。 设想这个示例：
-
+```javascript
 // 警告！不要使用！不安全的危险！
 function maybeSync(arg, cb) {
   if (arg) {
@@ -938,8 +938,9 @@ function maybeSync(arg, cb) {
 
   fs.stat('file', cb);
 }
+```
 此 API 是危险的，因为在以下情况下：
-
+```javascript
 const maybeTrue = Math.random() > 0.5;
 
 maybeSync(maybeTrue, () => {
@@ -947,10 +948,11 @@ maybeSync(maybeTrue, () => {
 });
 
 bar();
+```
 并不清楚是先调用 foo() 还是 bar()。
 
 以下方法要好得多：
-
+```javascript
 import { nextTick } from 'node:process';
 
 function definitelyAsync(arg, cb) {
@@ -961,11 +963,11 @@ function definitelyAsync(arg, cb) {
 
   fs.stat('file', cb);
 }
-何时使用 queueMicrotask() 与 process.nextTick()#
-中英对照
+```
 
-queueMicrotask() API 是 process.nextTick() 的替代方案，它还使用用于执行 then、catch 和 finally 处理程序的相同微任务队列来延迟函数的执行。 在 Node.js 中，每次“下一个滴答队列”被排空时，微任务队列也会立即排空。
-
+何时使用 queueMicrotask() 与 process.nextTick()
+**queueMicrotask() API 是 process.nextTick() 的替代方案，它还使用用于执行 then、catch 和 finally 处理程序的相同微任务队列来延迟函数的执行。 在 Node.js 中，每次“下一个滴答队列”被排空时，微任务队列也会立即排空。**
+```javascript
 import { nextTick } from 'node:process';
 
 Promise.resolve().then(() => console.log(2));
@@ -975,8 +977,10 @@ nextTick(() => console.log(1));
 // 1
 // 2
 // 3
-对于_大多数_用户空间用例，queueMicrotask() API 提供了一种可移植且可靠的延迟执行机制，该机制适用于多个 JavaScript 平台环境，应该比 process.nextTick() 更受青睐。 在简单的场景中，queueMicrotask() 可以直接替代 process.nextTick()。
+```
 
+对于_大多数_用户空间用例，queueMicrotask() API 提供了一种可移植且可靠的延迟执行机制，该机制适用于多个 JavaScript 平台环境，应该比 process.nextTick() 更受青睐。 在简单的场景中，queueMicrotask() 可以直接替代 process.nextTick()。
+```javascript
 console.log('start');
 queueMicrotask(() => {
   console.log('microtask callback');
@@ -986,141 +990,22 @@ console.log('scheduled');
 // start
 // scheduled
 // microtask callback
-两个 API 之间一个值得注意的区别是 process.nextTick() 允许指定额外值，这些值将在调用时作为参数传递给延迟函数。 使用 queueMicrotask() 实现相同的结果需要使用闭包或绑定函数：
+```
+*process.nextTick()和queueMicrotask()区别*
+- process.nextTick() 允许指定额外值，这些值将在调用时作为参数传递给延迟函数。使用 queueMicrotask() 实现相同的结果需要使用闭包或绑定函数
+- 从下一个滴答队列和微任务队列中引发的错误的处理方式存在细微差别。 在排队的微任务回调中抛出的错误应该在可能的情况下在排队的回调中处理。 如果不是，则可以使用 process.on('uncaughtException') 事件句柄来捕获和处理错误。
 
-function deferred(a, b) {
-  console.log('microtask', a + b);
-}
 
-console.log('start');
-queueMicrotask(deferred.bind(undefined, 1, 2));
-console.log('scheduled');
-// 输出：
-// start
-// scheduled
-// microtask 3
-从下一个滴答队列和微任务队列中引发的错误的处理方式存在细微差别。 在排队的微任务回调中抛出的错误应该在可能的情况下在排队的回调中处理。 如果不是，则可以使用 process.on('uncaughtException') 事件句柄来捕获和处理错误。
-
-如有疑问，除非需要 process.nextTick() 的特定功能，否则请使用 queueMicrotask()。
-
-process.noDeprecation#
-中英对照
-
-新增于: v0.8.0
-<boolean>
+process.noDeprecation
 process.noDeprecation 属性指示是否在当前 Node.js 进程上设置了 --no-deprecation 标志。 有关此标志行为的更多信息，请参阅 'warning' 事件和 emitWarning() 方法的文档。
 
-process.pid#
-中英对照
 
-新增于: v0.1.15
-<integer>
-process.pid 属性返回进程的 PID。
-
-import { pid } from 'node:process';
-
-console.log(`This process is pid ${pid}`);
-process.platform#
-中英对照
-
-新增于: v0.1.16
-<string>
-process.platform 属性返回用于标识编译 Node.js 二进制文件的操作系统平台的字符串。
-
-目前可能的值是：
-
-'aix'
-'darwin'
-'freebsd'
-'linux'
-'openbsd'
-'sunos'
-'win32'
-import { platform } from 'node:process';
-
-console.log(`This platform is ${platform}`);
-如果 Node.js 是在安卓操作系统上构建的，则也可能返回值 'android'。 但是，Node.js 中的安卓支持是实验的。
-
-process.ppid#
-中英对照
-
-新增于: v9.2.0, v8.10.0, v6.13.0
-<integer>
-process.ppid 属性返回当前进程的父进程的 PID。
-
-import { ppid } from 'node:process';
-
-console.log(`The parent process is pid ${ppid}`);
-process.release#
-中英对照
-
-版本历史
-<Object>
-process.release 属性返回 Object，其中包含与当前版本相关的元数据，包括源 tarball 和 headers-only tarball 的网址。
-
-process.release 包含以下属性：
-
-name <string> 始终为 'node' 的值。
-sourceUrl <string> 指向包含当前版本源代码的 .tar.gz 文件的绝对网址。
-headersUrl<string> 指向 .tar.gz 文件的绝对网址，该文件仅包含当前版本的源头文件。 该文件比完整的源文件小得多，可用于编译 Node.js 原生插件。
-libUrl <string> 指向与当前版本的体系结构和版本匹配的 node.lib 文件的绝对网址。 此文件用于编译 Node.js 原生插件。 此属性仅存在于 Windows 构建的 Node.js 中，在所有其他平台上将缺失。
-lts <string> 标识此版本的 LTS 标签的字符串标签。 此属性仅适用于 LTS 版本，对于所有其他版本类型（包括 Current 版本）为 undefined。 有效值包括 LTS 版本代码名称（包括不再受支持的代码名称）。
-'Dubnium' 表示以 10.13.0 开头的 10.x LTS 行。
-'Erbium' 表示以 12.13.0 开头的 12.x LTS 行。其他 LTS 版本代码名称，请参见 Node.js 更新日志存档
-{
-  name: 'node',
-  lts: 'Erbium',
-  sourceUrl: 'https://nodejs.org/download/release/v12.18.1/node-v12.18.1.tar.gz',
-  headersUrl: 'https://nodejs.org/download/release/v12.18.1/node-v12.18.1-headers.tar.gz',
-  libUrl: 'https://nodejs.org/download/release/v12.18.1/win-x64/node.lib'
-}
-在源代码树的非发布版本的自定义构建中，可能只存在 name 属性。 不应依赖附加属性的存在。
-
-process.report#
-中英对照
-
-版本历史
-<Object>
+process.report
 process.report 是一个对象，其方法用于为当前进程生成诊断报告。 报告文档中提供了额外文档。
 
-process.report.compact#
-中英对照
-
-新增于: v13.12.0, v12.17.0
-<boolean>
-以紧凑的单行 JSON 格式编写报告，与专为人类使用而设计的默认多行格式相比，日志处理系统更易于使用。
-
-import { report } from 'node:process';
-
-console.log(`Reports are compact? ${report.compact}`);
-process.report.directory#
-中英对照
-
-版本历史
-<string>
-写入报告的目录。 默认值为空字符串，表示将报告写入 Node.js 进程的当前工作目录。
-
-import { report } from 'node:process';
-
-console.log(`Report directory is ${report.directory}`);
-process.report.filename#
-中英对照
-
-版本历史
-<string>
-写入报告的文件名。 如果设置为空字符串，则输出文件名将由时间戳、PID 和序列号组成。 默认值为空字符串。
-
-import { report } from 'node:process';
-
-console.log(`Report filename is ${report.filename}`);
-process.report.getReport([err])#
-中英对照
-
-版本历史
-err <Error> 用于报告 JavaScript 堆栈的自定义错误。
-返回: <Object>
+process.report.getReport([err])
 返回正在运行的进程的诊断报告的 JavaScript 对象表示形式。 报告的 JavaScript 堆栈跟踪取自 err（如果存在）。
-
+```javascript
 import { report } from 'node:process';
 
 const data = report.getReport();
@@ -1129,446 +1014,110 @@ console.log(data.header.nodejsVersion);
 // 类似于 process.report.writeReport()
 import fs from 'node:fs';
 fs.writeFileSync('my-report.log', util.inspect(data), 'utf8');
-报告文档中提供了额外文档。
+```
 
-process.report.reportOnFatalError#
-中英对照
-
-版本历史
-<boolean>
-如果为 true，则会生成有关致命错误（例如内存不足错误或 C++ 断言失败）的诊断报告。
-
-import { report } from 'node:process';
-
-console.log(`Report on fatal error: ${report.reportOnFatalError}`);
-process.report.reportOnSignal#
-中英对照
-
-版本历史
-<boolean>
+process.report.reportOnSignal
 如果为 true，则当进程接收到 process.report.signal 指定的信号时生成诊断报告。
 
-import { report } from 'node:process';
-
-console.log(`Report on signal: ${report.reportOnSignal}`);
-process.report.reportOnUncaughtException#
-中英对照
-
-版本历史
-<boolean>
+process.report.reportOnUncaughtException
 如果为 true，则针对未捕获的异常生成诊断报告。
 
-import { report } from 'node:process';
-
-console.log(`Report on exception: ${report.reportOnUncaughtException}`);
-process.report.signal#
-中英对照
-
-版本历史
-<string>
+process.report.signal
 用于触发诊断报告创建的信号。 默认为 'SIGUSR2'。
 
-import { report } from 'node:process';
-
-console.log(`Report signal: ${report.signal}`);
-process.report.writeReport([filename][, err])#
-中英对照
-
-版本历史
+process.report.writeReport([filename][, err])
 filename <string> 写入报告的文件的名称。 这应该是相对路径，如果未指定，它将附加到 process.report.directory 中指定的目录或 Node.js 进程的当前工作目录。
-
 err <Error> 用于报告 JavaScript 堆栈的自定义错误。
-
-返回: <string> 返回生成的报告的文件名。
-
 将诊断报告写入文件。 如果未提供 filename，则默认文件名包括日期、时间、PID 和序列号。 报告的 JavaScript 堆栈跟踪取自 err（如果存在）。
 
-import { report } from 'node:process';
 
-report.writeReport();
-报告文档中提供了额外文档。
-
-process.resourceUsage()#
-中英对照
-
-新增于: v12.6.0
-返回: <Object> 当前进程的资源使用情况。 所有这些值都来自返回 uv_rusage_t struct 的 uv_getrusage 调用。
-userCPUTime <integer> 映射到以微秒计算的 ru_utime。 它与 process.cpuUsage().user 的值相同。
-systemCPUTime <integer> 映射到以微秒计算的 ru_stime。 它与 process.cpuUsage().system 的值相同。
-maxRSS <integer> 映射到 ru_maxrss，其以千字节为单位使用的最大驻留集大小。
-sharedMemorySize <integer> 映射到 ru_ixrss 但不受任何平台支持。
-unsharedDataSize <integer> 映射到 ru_idrss 但不受任何平台支持。
-unsharedStackSize <integer> 映射到 ru_isrss 但不受任何平台支持。
-minorPageFault <integer> 映射到 ru_minflt，这是进程的次要页面错误的数量，请参阅这篇文章了解更多详情。
-majorPageFault <integer> 映射到 ru_majflt，这是进程的主要页面错误的数量，请参阅这篇文章了解更多详情。 Windows 不支持此字段。
-swappedOut <integer> 映射到 ru_nswap 但不受任何平台支持。
-fsRead <integer> 映射到 ru_inblock，这是文件系统必须执行输入的次数。
-fsWrite <integer> 映射到 ru_oublock，这是文件系统必须执行输出的次数。
-ipcSent <integer> 映射到 ru_msgsnd 但不受任何平台支持。
-ipcReceived <integer> 映射到 ru_msgrcv 但不受任何平台支持。
-signalsCount <integer> 映射到 ru_nsignals 但不受任何平台支持。
-voluntaryContextSwitches <integer> 映射到 ru_nvcsw，这是由于进程在其时间片完成之前自愿放弃处理器而导致 CPU 上下文切换的次数（通常是为了等待资源的可用性）。 Windows 不支持此字段。
-involuntaryContextSwitches <integer> 映射到 ru_nivcsw，这是由于更高优先级的进程变得可运行或当前进程超过其时间片而导致 CPU 上下文切换的次数。 Windows 不支持此字段。
-import { resourceUsage } from 'node:process';
-
-console.log(resourceUsage());
-/*
-  Will output:
-  {
-    userCPUTime: 82872,
-    systemCPUTime: 4143,
-    maxRSS: 33164,
-    sharedMemorySize: 0,
-    unsharedDataSize: 0,
-    unsharedStackSize: 0,
-    minorPageFault: 2469,
-    majorPageFault: 0,
-    swappedOut: 0,
-    fsRead: 0,
-    fsWrite: 8,
-    ipcSent: 0,
-    ipcReceived: 0,
-    signalsCount: 0,
-    voluntaryContextSwitches: 79,
-    involuntaryContextSwitches: 1
-  }
-*/
-process.send(message[, sendHandle[, options]][, callback])#
-中英对照
-
-新增于: v0.5.9
-message <Object>
-sendHandle <net.Server> | <net.Socket>
-options <Object> 用于参数化某些类型句柄的发送。options 支持以下属性：
-keepOpen <boolean> 当传入 net.Socket 实例时可以使用的值。 当为 true 时，套接字在发送过程中保持打开状态。 默认值: false。
-callback <Function>
-返回: <boolean>
+process.send(message[, sendHandle[, options]][, callback])
 如果使用 IPC 通道衍生 Node.js，则可以使用 process.send() 方法向父进程发送消息。 消息将作为父对象 ChildProcess 对象上的 'message' 事件接收。
+*如果 Node.js 没有使用 IPC 通道衍生，则 process.send 将是 undefined。*
+*消息经过序列化和解析。 结果消息可能与最初发送的消息不同。*
 
-如果 Node.js 没有使用 IPC 通道衍生，则 process.send 将是 undefined。
-
-消息经过序列化和解析。 结果消息可能与最初发送的消息不同。
-
-process.setegid(id)#
-中英对照
-
-新增于: v2.0.0
-id <string> | <number> 群组名或 ID
+process.setegid(id)
 process.setegid() 方法设置进程的有效群组标识。 （请参阅 setegid(2)。）id 可以作为数字 ID 或群组名称字符串传入。 如果指定了群组名，则此方法在解析关联的数字 ID 时会阻塞。
+*此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。*
 
-import process from 'node:process';
+process.seteuid(id)
+process.setgid(id)
+process.setuid(id)
+与process.setegid(id)类似
 
-if (process.getegid && process.setegid) {
-  console.log(`Current gid: ${process.getegid()}`);
-  try {
-    process.setegid(501);
-    console.log(`New gid: ${process.getegid()}`);
-  } catch (err) {
-    console.log(`Failed to set gid: ${err}`);
-  }
-}
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
-
-process.seteuid(id)#
-中英对照
-
-新增于: v2.0.0
-id <string> | <number> 用户名或 ID
-process.seteuid() 方法设置进程的有效用户身份。 （请参阅 seteuid(2)。） id 可以作为数字 ID 或用户名字符串传入。 如果指定了用户名，则该方法在解析关联的数字 ID 时会阻塞。
-
-import process from 'node:process';
-
-if (process.geteuid && process.seteuid) {
-  console.log(`Current uid: ${process.geteuid()}`);
-  try {
-    process.seteuid(501);
-    console.log(`New uid: ${process.geteuid()}`);
-  } catch (err) {
-    console.log(`Failed to set uid: ${err}`);
-  }
-}
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
-
-process.setgid(id)#
-中英对照
-
-新增于: v0.1.31
-id <string> | <number> 群组名或 ID
-process.setgid() 方法设置进程的群组标识。 （请参阅 setgid(2)。）id 可以作为数字 ID 或群组名称字符串传入。 如果指定了群组名，则此方法在解析关联的数字 ID 时会阻塞。
-
-import process from 'node:process';
-
-if (process.getgid && process.setgid) {
-  console.log(`Current gid: ${process.getgid()}`);
-  try {
-    process.setgid(501);
-    console.log(`New gid: ${process.getgid()}`);
-  } catch (err) {
-    console.log(`Failed to set gid: ${err}`);
-  }
-}
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
-
-process.setgroups(groups)#
-中英对照
-
-新增于: v0.9.4
-groups <integer[]>
-process.setgroups() 方法为 Node.js 进程设置补充群组 ID。 这是一个特权操作，需要 Node.js 进程具有 root 或 CAP_SETGID 能力。
-
+process.setgroups(groups)
+process.setgroups() 方法为 Node.js 进程设置补充群组 ID。 
+*这是一个特权操作，需要 Node.js 进程具有 root 或 CAP_SETGID 能力。*
 groups 数组可以包含数字群组 ID、群组名称或两者。
-
-import process from 'node:process';
-
-if (process.getgroups && process.setgroups) {
-  try {
-    process.setgroups([501]);
-    console.log(process.getgroups()); // 新组
-  } catch (err) {
-    console.log(`Failed to set groups: ${err}`);
-  }
-}
 此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
 
-process.setuid(id)#
-中英对照
 
-新增于: v0.1.28
-id <integer> | <string>
-process.setuid(id) 方法设置进程的用户身份。 （请参阅 setuid(2)。） id 可以作为数字 ID 或用户名字符串传入。 如果指定了用户名，则该方法在解析关联的数字 ID 时会阻塞。
-
-import process from 'node:process';
-
-if (process.getuid && process.setuid) {
-  console.log(`Current uid: ${process.getuid()}`);
-  try {
-    process.setuid(501);
-    console.log(`New uid: ${process.getuid()}`);
-  } catch (err) {
-    console.log(`Failed to set uid: ${err}`);
-  }
-}
-此功能仅适用于 POSIX 平台（即不适用于 Windows 或安卓）。 此特性在 Worker 线程中不可用。
-
-process.setSourceMapsEnabled(val)#
-中英对照
-
-新增于: v16.6.0, v14.18.0
-稳定性: 1 - 实验
-val <boolean>
-此函数启用或禁用对堆栈跟踪的 Source Map v3 的支持。
-
-它提供与使用命令行选项 --enable-source-maps 启动 Node.js 进程相同的功能。
-
-只有在启用源映射后加载的 JavaScript 文件中的源映射才会被解析和加载。
-
-process.setUncaughtExceptionCaptureCallback(fn)#
-中英对照
-
-新增于: v9.3.0
+process.setUncaughtExceptionCaptureCallback(fn)
 fn <Function> | <null>
 process.setUncaughtExceptionCaptureCallback() 函数设置一个函数，当发生未捕获的异常时将调用该函数，该函数将接收异常值本身作为其第一个参数。
-
-如果设置了这样的函数，则不会触发 'uncaughtException' 事件。 如果 --abort-on-uncaught-exception 是从命令行传入的或通过 v8.setFlagsFromString() 设置的，则进程不会中止。 配置为对异常执行的操作（例如报告生成）也将受到影响
+*如果设置了这样的函数，则不会触发 'uncaughtException' 事件。 如果 --abort-on-uncaught-exception 是从命令行传入的或通过 v8.setFlagsFromString() 设置的，则进程不会中止。 配置为对异常执行的操作（例如报告生成）也将受到影响*
 
 要取消捕获功能，可以使用 process.setUncaughtExceptionCaptureCallback(null)。 在设置另一个捕获函数时使用非 null 参数调用此方法将引发错误。
 
-使用此函数与使用已弃用的 domain 内置模块是相互排斥的。
+*使用此函数与使用已弃用的 domain 内置模块是相互排斥的。*
 
-process.stderr#
-中英对照
-
-<Stream>
+process.stderr
 process.stderr 属性返回连接到 stderr (文件描述符 2) 的流。 它是 net.Socket（也就是 Duplex 流），除非文件描述符 2 指向文件，在这种情况下它是 Writable 流。
-
 process.stderr 在一些重要的方面不同于其他 Node.js 流。 有关更多信息，请参阅进程 I/O 的注意事项。
 
-process.stderr.fd#
-中英对照
-
-<number>
+process.stderr.fd
 该属性指的是 process.stderr 的底层文件描述符的值。 该值固定为 2。 在 Worker 线程中，该字段不存在。
 
-process.stdin#
-中英对照
-
-<Stream>
+process.stdin
 process.stdin 属性返回连接到 stdin (文件描述符 0) 的流。 它是 net.Socket（也就是 Duplex 流），除非文件描述符 0 指向文件，在这种情况下它是 Readable 流。
-
 有关如何从 stdin 读取的详细信息，请参阅 readable.read()。
+*在“旧”流模式下，stdin 流默认是暂停的，所以必须调用 process.stdin.resume() 来读取它。 另请注意，调用 process.stdin.resume() 本身会将流切换到“旧”模式。*
 
-作为 Duplex 流，process.stdin 还可以在为 Node.js v0.10 之前编写的脚本兼容的“旧”模式下使用。 有关更多信息，请参阅流的兼容。
-
-在“旧”流模式下，stdin 流默认是暂停的，所以必须调用 process.stdin.resume() 来读取它。 另请注意，调用 process.stdin.resume() 本身会将流切换到“旧”模式。
-
-process.stdin.fd#
-中英对照
-
-<number>
-该属性指的是 process.stdin 的底层文件描述符的值。 该值固定为 0。 在 Worker 线程中，该字段不存在。
-
-process.stdout#
-中英对照
-
-<Stream>
+process.stdout
 process.stdout 属性返回连接到 stdout (文件描述符 1) 的流。 它是 net.Socket（也就是 Duplex 流），除非文件描述符 1 指向文件，在这种情况下它是 Writable 流。
 
-例如，要将 process.stdin 复制到 process.stdout：
 
-import { stdin, stdout } from 'node:process';
-
-stdin.pipe(stdout);
-process.stdout 在一些重要的方面不同于其他 Node.js 流。 有关更多信息，请参阅进程 I/O 的注意事项。
-
-process.stdout.fd#
-中英对照
-
-<number>
-该属性指的是 process.stdout 的底层文件描述符的值。 该值固定为 1。 在 Worker 线程中，该字段不存在。
-
-进程 I/O 的注意事项#
-中英对照
+###### 进程 I/O 的注意事项
 
 process.stdout 和 process.stderr 在重要方面与其他 Node.js 流不同：
 
 它们分别由 console.log() 和 console.error() 内部使用。
-Writes may be synchronous depending on what the stream is connected to and whether the system is Windows or POSIX:
-文件：在 Windows 和 POSIX 上是_同步的_
-TTY（终端）: 在 Windows 上是_异步的_，在 POSIX 上是_同步的_
-管道（和套接字）: 在 Windows 上是_同步的_，在 POSIX 上是_异步的_
-这些行为部分是出于历史原因，因为更改它们会导致向后不兼容，但某些用户也期望它们。
+写入的区别：
+- 文件：在 Windows 和 POSIX 上是_同步的_
+- TTY（终端）: 在 Windows 上是_异步的_，在 POSIX 上是_同步的_
+- 管道（和套接字）: 在 Windows 上是_同步的_，在 POSIX 上是_异步的_
 
-同步写入避免了诸如使用 console.log() 或 console.error() 写入的输出意外交错的问题，或者如果在异步写入完成之前调用 process.exit() 则根本不写入。 有关详细信息，请参阅 process.exit()。
 
-警告：同步写入会阻塞事件循环，直到写入完成。 在输出到文件的情况下，这可能几乎是瞬时的，但在系统负载高、接收端未读取管道或终端或文件系统速度较慢的情况下，事件循环可能经常被阻塞足够长，足以对性能产生严重的负面影响。 这在写入交互式终端会话时可能不是问题，但在对流程输出流进行生产日志记录时要特别小心。
+**警告：同步写入会阻塞事件循环，直到写入完成。 在输出到文件的情况下，这可能几乎是瞬时的，但在系统负载高、接收端未读取管道或终端或文件系统速度较慢的情况下，事件循环可能经常被阻塞足够长，足以对性能产生严重的负面影响。 这在写入交互式终端会话时可能不是问题，但在对流程输出流进行生产日志记录时要特别小心。**
 
 要检查流是否连接到 TTY 上下文，请检查 isTTY 属性。
 
-例如：
 
-$ node -p "Boolean(process.stdin.isTTY)"
-true
-$ echo "foo" | node -p "Boolean(process.stdin.isTTY)"
-false
-$ node -p "Boolean(process.stdout.isTTY)"
-true
-$ node -p "Boolean(process.stdout.isTTY)" | cat
-false
-有关更多信息，请参阅 TTY 文档。
-
-process.throwDeprecation#
-中英对照
-
-新增于: v0.9.12
-<boolean>
-process.throwDeprecation 的初始值表示当前 Node.js 进程是否设置了 --throw-deprecation 标志。 process.throwDeprecation 是可变的，因此可能会在运行时更改弃用警告是否导致错误。 有关更多信息，请参阅 'warning' 事件和 emitWarning() 方法的文档。
-
-$ node --throw-deprecation -p "process.throwDeprecation"
-true
-$ node -p "process.throwDeprecation"
-undefined
-$ node
-> process.emitWarning('test', 'DeprecationWarning');
-undefined
-> (node:26598) DeprecationWarning: test
-> process.throwDeprecation = true;
-true
-> process.emitWarning('test', 'DeprecationWarning');
-Thrown:
-[DeprecationWarning: test] { name: 'DeprecationWarning' }
-process.title#
-中英对照
-
-新增于: v0.1.104
-<string>
+process.title
 process.title 属性返回当前进程标题（即返回 ps 的当前值）。 为 process.title 分配一个新值会修改 ps 的当前值。
 
-分配新值时，不同平台会对标题施加不同的最大长度限制。 通常这种限制是相当有限的。 例如，在 Linux 和 macOS 上，process.title 被限制为二进制名称的大小加上命令行参数的长度，因为设置 process.title 会覆盖进程的 argv 内存。 Node.js v0.8 通过覆盖 environ 内存允许更长的进程标题字符串，但这在某些（相当模糊的）情况下可能不安全和混乱。
+分配新值时，不同平台会对标题施加不同的最大长度限制。
 
 将值分配给 process.title 可能不会在进程管理器应用程序（例如 macOS 活动监视器或 Windows 服务管理器）中产生准确的标签。
 
-process.traceDeprecation#
-中英对照
 
-新增于: v0.8.0
-<boolean>
-process.traceDeprecation 属性指示是否在当前 Node.js 进程上设置了 --trace-deprecation 标志。 有关此标志行为的更多信息，请参阅 'warning' 事件和 emitWarning() 方法的文档。
-
-process.umask()#
-中英对照
-
-版本历史
-稳定性: 0 - 弃用. 不带参数调用 process.umask() 会导致进程范围的 umask 被写入两次。 这会在线程之间引入竞争条件，并且是一个潜在的安全漏洞。 没有安全的、跨平台的替代 API。
-process.umask() 返回 Node.js 进程的文件模式创建掩码。 子进程从父进程继承掩码。
-
-process.umask(mask)#
-中英对照
-
-新增于: v0.1.19
-mask <string> | <integer>
+process.umask(mask)
 process.umask(mask) 设置 Node.js 进程的文件模式创建掩码。 子进程从父进程继承掩码。 返回上一个掩码。
-
-import { umask } from 'node:process';
-
-const newmask = 0o022;
-const oldmask = umask(newmask);
-console.log(
-  `Changed umask from ${oldmask.toString(8)} to ${newmask.toString(8)}`
-);
 在 Worker 线程中，process.umask(mask) 会抛出异常。
 
-process.uptime()#
-中英对照
-
-新增于: v0.5.0
-返回: <number>
+process.uptime()
 process.uptime() 方法返回当前 Node.js 进程已经运行的秒数。
-
 返回值包括几分之一秒。 使用 Math.floor() 获得整秒。
 
-process.version#
-中英对照
-
-新增于: v0.1.3
-<string>
+process.version
 process.version 属性包含 Node.js 版本字符串。
-
-import { version } from 'node:process';
-
-console.log(`Version: ${version}`);
-// Version: v14.8.0
 要获取不带 v 的版本字符串，则使用 process.versions.node。
 
-process.versions#
-中英对照
+process.versions
+process.versions 属性返回对象，其中列出了 Node.js 的版本字符串及其依赖项。 
+process.versions.modules 表示当前的 ABI 版本，每当 C++ API 更改时都会增加。 Node.js 将拒绝加载针对不同模块 ABI 版本编译的模块。
 
-版本历史
-<Object>
-process.versions 属性返回对象，其中列出了 Node.js 的版本字符串及其依赖项。 process.versions.modules 表示当前的 ABI 版本，每当 C++ API 更改时都会增加。 Node.js 将拒绝加载针对不同模块 ABI 版本编译的模块。
-
-import { versions } from 'node:process';
-
-console.log(versions);
-将生成类似于以下内容的对象：
-
-{ node: '11.13.0',
-  v8: '7.0.276.38-node.18',
-  uv: '1.27.0',
-  zlib: '1.2.11',
-  brotli: '1.0.7',
-  ares: '1.15.0',
-  modules: '67',
-  nghttp2: '1.34.0',
-  napi: '4',
-  llhttp: '1.1.1',
-  openssl: '1.1.1b',
-  cldr: '34.0',
-  icu: '63.1',
-  tz: '2018e',
-  unicode: '11.0' }
-退出码#
-中英对照
-
+###### 退出码
 当没有更多异步操作挂起时，Node.js 通常会以 0 状态代码退出。 在其他情况下使用以下状态代码：
 
 1 未捕获的致命异常：存在未捕获的异常，并且其没有被域或 'uncaughtException' 事件句柄处理。

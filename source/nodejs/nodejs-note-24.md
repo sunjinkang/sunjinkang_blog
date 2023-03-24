@@ -5,150 +5,56 @@ tags: [node, readline 逐行读取, stream 流]
 ---
 
 #### readline 逐行读取
-InterfaceConstructor 类#
-中英对照
 
-新增于: v0.1.104
-继承自: <EventEmitter>
+###### InterfaceConstructor 类
 InterfaceConstructor 类的实例是使用 readlinePromises.createInterface() 或 readline.createInterface() 方法构造的。 每个实例都与单个 input 可读流和单个 output 可写流相关联。 output 流用于打印到达并从 input 流中读取的用户输入的提示。
 
-'close' 事件#
-中英对照
-
-新增于: v0.1.98
+'close' 事件
 发生以下情况之一时会触发 'close' 事件：
+- rl.close() 方法被调用，InterfaceConstructor 实例放弃了对 input 和 output 流的控制；
+- input 流接收到它的 'end' 事件；
+- input 流接收 Ctrl+D 以发出传输结束（EOT）的信号；
+- input 流接收 Ctrl+C 以发出 SIGINT 信号，并且在 InterfaceConstructor 实例上没有注册 'SIGINT' 事件监听器。
 
-rl.close() 方法被调用，InterfaceConstructor 实例放弃了对 input 和 output 流的控制；
-input 流接收到它的 'end' 事件；
-input 流接收 Ctrl+D 以发出传输结束（EOT）的信号；
-input 流接收 Ctrl+C 以发出 SIGINT 信号，并且在 InterfaceConstructor 实例上没有注册 'SIGINT' 事件监听器。
 调用监听器函数时不传入任何参数。
-
 一旦触发 'close' 事件，则 InterfaceConstructor 实例就完成了。
 
-'line' 事件#
-中英对照
 
-新增于: v0.1.98
+'line' 事件
 每当 input 流接收到行尾输入（\n、\r 或 \r\n）时，则会触发 'line' 事件。 这通常发生在用户按下 回车 或 返回 时。
-
 如果从流中读取了新数据并且该流在没有最终行尾标记的情况下结束，也会触发 'line' 事件。
-
 使用包含单行接收输入的字符串调用监听器函数。
 
-rl.on('line', (input) => {
-  console.log(`Received: ${input}`);
-});
-'history' 事件#
-中英对照
-
-新增于: v15.8.0, v14.18.0
+'history' 事件
 每当历史数组发生更改时，则会触发 'history' 事件。
-
 使用包含历史数组的数组调用监听器函数。 它将反映由于 historySize 和 removeHistoryDuplicates 引起的所有更改、添加的行和删除的行。
-
 主要目的是允许监听器保留历史记录。 监听器也可以更改历史对象。 这可能有助于防止将某些行添加到历史记录中，例如密码。
 
-rl.on('history', (history) => {
-  console.log(`Received: ${history}`);
-});
-'pause' 事件#
-中英对照
 
-新增于: v0.7.5
-发生以下情况之一时会触发 'pause' 事件：
-
-input 流已暂停。
-input 流没有暂停并接收 'SIGCONT' 事件。 （参见事件 'SIGTSTP' 和 'SIGCONT'。）
-调用监听器函数时不传入任何参数。
-
-rl.on('pause', () => {
-  console.log('Readline paused.');
-});
-'resume' 事件#
-中英对照
-
-新增于: v0.7.5
+'resume' 事件
 每当 input 流恢复时，则会触发 'resume' 事件。
-
 调用监听器函数时不传入任何参数。
 
-rl.on('resume', () => {
-  console.log('Readline resumed.');
-});
-'SIGCONT' 事件#
-中英对照
-
-新增于: v0.7.5
+'SIGCONT' 事件
 当之前使用 Ctrl+Z（即 SIGTSTP）移动到后台的 Node.js 进程然后使用 fg(1p) 返回到前台时，则会触发 'SIGCONT' 事件。
-
 如果 input 流在 SIGTSTP 请求之前暂停，则不会触发此事件。
-
-调用监听器函数时不传入任何参数。
-
-rl.on('SIGCONT', () => {
-  // `prompt` 会自动恢复流
-  rl.prompt();
-});
 Windows 不支持 'SIGCONT' 事件。
 
-'SIGINT' 事件#
-中英对照
-
-新增于: v0.3.0
+'SIGINT' 事件
 每当 input 流接收到 Ctrl+C 输入（通常称为 SIGINT）时，则会触发 'SIGINT' 事件。 如果在 input 流接收到 SIGINT 时没有注册 'SIGINT' 事件监听器，则将触发 'pause' 事件。
 
-调用监听器函数时不传入任何参数。
-
-rl.on('SIGINT', () => {
-  rl.question('Are you sure you want to exit? ', (answer) => {
-    if (answer.match(/^y(es)?$/i)) rl.pause();
-  });
-});
-'SIGTSTP' 事件#
-中英对照
-
-新增于: v0.7.5
-当 input 流接收到 Ctrl+Z 输入（通常称为 SIGTSTP）时，则会触发 'SIGTSTP' 事件。 如果 input 流接收到 SIGTSTP 时没有注册 'SIGTSTP' 事件监听器，则 Node.js 进程将被发送到后台。
-
-当使用 fg(1p) 恢复程序时，则将触发 'pause' 和 'SIGCONT' 事件。 这些可用于恢复 input 流。
-
-如果 input 在进程发送到后台之前暂停，则不会触发 'pause' 和 'SIGCONT' 事件。
-
-调用监听器函数时不传入任何参数。
-
-rl.on('SIGTSTP', () => {
-  // 这将覆盖 SIGTSTP 
-  // 并且阻止程序进入后台。
-  console.log('Caught SIGTSTP.');
-});
-Windows 不支持 'SIGTSTP' 事件。
-
-rl.close()#
-中英对照
-
-新增于: v0.1.98
+rl.close()
 rl.close() 方法关闭 InterfaceConstructor 实例并放弃对 input 和 output 流的控制。 当调用时，将触发 'close' 事件。
-
 调用 rl.close() 不会立即阻止其他由 InterfaceConstructor 实例触发的事件（包括 'line'）。
 
 rl.pause()#
-中英对照
-
-新增于: v0.3.4
 rl.pause() 方法暂停 input 流，允许它稍后在必要时恢复。
-
 调用 rl.pause() 不会立即暂停其他由 InterfaceConstructor 实例触发的事件（包括 'line'）。
 
-rl.prompt([preserveCursor])#
-中英对照
-
-新增于: v0.1.98
+rl.prompt([preserveCursor])
 preserveCursor <boolean> 如果为 true，则防止光标位置重置为 0。
 rl.prompt() 方法将配置为 prompt 的 InterfaceConstructor 实例写入 output 中的新行，以便为用户提供用于提供输入的新位置。
-
 当调用时，如果 rl.prompt() 流已暂停，则 rl.prompt() 将恢复 input 流。
-
 如果 InterfaceConstructor 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入提示。
 
 rl.question(query[, options], callback)#
@@ -162,50 +68,17 @@ callback <Function> 使用用户输入调用的回调函数以响应 query。
 rl.question() 方法通过将 query 写入 output 来显示 query，等待在 input 上提供用户输入，然后调用 callback 函数，将提供的输入作为第一个参数传入。
 
 当调用时，如果 rl.question() 流已暂停，则 rl.question() 将恢复 input 流。
-
 如果 InterfaceConstructor 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入 query。
-
 传给 rl.question() 的 callback 函数不遵循接受 Error 对象或 null 作为第一个参数的典型模式。 以提供的答案作为唯一参数调用 callback。
-
 在 rl.close() 之后调用 rl.question() 会报错。
 
-用法示例：
-
-rl.question('What is your favorite food? ', (answer) => {
-  console.log(`Oh, so your favorite food is ${answer}`);
-});
-使用 AbortController 取消问题。
-
-const ac = new AbortController();
-const signal = ac.signal;
-
-rl.question('What is your favorite food? ', { signal }, (answer) => {
-  console.log(`Oh, so your favorite food is ${answer}`);
-});
-
-signal.addEventListener('abort', () => {
-  console.log('The food question timed out');
-}, { once: true });
-
-setTimeout(() => ac.abort(), 10000);
-rl.resume()#
-中英对照
-
-新增于: v0.3.4
+rl.resume()
 如果 input 流已暂停，则 rl.resume() 方法会恢复该流。
 
-rl.setPrompt(prompt)#
-中英对照
-
-新增于: v0.1.98
-prompt <string>
+rl.setPrompt(prompt)
 rl.setPrompt() 方法设置了在调用 rl.prompt() 时将写入 output 的提示。
 
-rl.getPrompt()#
-中英对照
-
-新增于: v15.3.0, v14.17.0
-返回: <string> 当前的提示字符串
+rl.getPrompt()
 rl.getPrompt() 方法返回 rl.prompt() 使用的当前提示。
 
 rl.write(data[, key])#
@@ -218,10 +91,8 @@ ctrl <boolean> true 表示 Ctrl 键。
 meta <boolean> true 表示 Meta 键。
 shift <boolean> true 表示 Shift 键。
 name <string> 键的名称。
-rl.write() 方法会将 data 或由 key 标识的键序列写入 output。 仅当 output 是 TTY 文本终端时才支持 key 参数。 有关组合键的列表，请参阅 TTY 快捷键。
-
+rl.write() 方法会将 data 或由 key 标识的键序列写入 output。 仅当 output 是 TTY 文本终端时才支持 key 参数。 
 如果指定了 key，则忽略 data。
-
 当调用时，如果 rl.write() 流已暂停，则 rl.write() 将恢复 input 流。
 
 如果 InterfaceConstructor 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入 data 和 key。
