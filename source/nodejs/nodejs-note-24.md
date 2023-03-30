@@ -47,7 +47,7 @@ rl.close()
 rl.close() 方法关闭 InterfaceConstructor 实例并放弃对 input 和 output 流的控制。 当调用时，将触发 'close' 事件。
 调用 rl.close() 不会立即阻止其他由 InterfaceConstructor 实例触发的事件（包括 'line'）。
 
-rl.pause()#
+rl.pause()
 rl.pause() 方法暂停 input 流，允许它稍后在必要时恢复。
 调用 rl.pause() 不会立即暂停其他由 InterfaceConstructor 实例触发的事件（包括 'line'）。
 
@@ -57,13 +57,10 @@ rl.prompt() 方法将配置为 prompt 的 InterfaceConstructor 实例写入 outp
 当调用时，如果 rl.prompt() 流已暂停，则 rl.prompt() 将恢复 input 流。
 如果 InterfaceConstructor 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入提示。
 
-rl.question(query[, options], callback)#
-中英对照
-
-新增于: v0.3.3
+rl.question(query[, options], callback)
 query <string> 要写入 output 的语句或查询，位于提示之前。
 options <Object>
-signal <AbortSignal> 可选择允许使用 AbortController 取消 question()。
+- signal <AbortSignal> 可选择允许使用 AbortController 取消 question()。
 callback <Function> 使用用户输入调用的回调函数以响应 query。
 rl.question() 方法通过将 query 写入 output 来显示 query，等待在 input 上提供用户输入，然后调用 callback 函数，将提供的输入作为第一个参数传入。
 
@@ -81,413 +78,84 @@ rl.setPrompt() 方法设置了在调用 rl.prompt() 时将写入 output 的提�
 rl.getPrompt()
 rl.getPrompt() 方法返回 rl.prompt() 使用的当前提示。
 
-rl.write(data[, key])#
-中英对照
-
-新增于: v0.1.98
+rl.write(data[, key])
 data <string>
 key <Object>
-ctrl <boolean> true 表示 Ctrl 键。
-meta <boolean> true 表示 Meta 键。
-shift <boolean> true 表示 Shift 键。
-name <string> 键的名称。
+- ctrl <boolean> true 表示 Ctrl 键。
+- meta <boolean> true 表示 Meta 键。
+- shift <boolean> true 表示 Shift 键。
+- name <string> 键的名称。
 rl.write() 方法会将 data 或由 key 标识的键序列写入 output。 仅当 output 是 TTY 文本终端时才支持 key 参数。 
 如果指定了 key，则忽略 data。
 当调用时，如果 rl.write() 流已暂停，则 rl.write() 将恢复 input 流。
 
 如果 InterfaceConstructor 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入 data 和 key。
-
-rl.write('Delete this!');
-// 模拟 Ctrl+U 删除之前写的行
-rl.write(null, { ctrl: true, name: 'u' });
 rl.write() 方法将数据写入 readline Interface 的 input，就好像它是由用户提供的一样。
 
-rl[Symbol.asyncIterator]()#
-中英对照
-
-版本历史
-返回: <AsyncIterator>
+rl[Symbol.asyncIterator]()
 创建 AsyncIterator 对象，该对象遍历输入流中的每一行作为字符串。 此方法允许通过 for await...of 循环异步迭代 InterfaceConstructor 对象。
-
 输入流中的错误不会被转发。
+*如果循环以 break、throw 或 return 终止，则将调用 rl.close()。 换句话说，迭代 InterfaceConstructor 将始终完全消费输入流。*
+性能无法与传统的 'line' 事件 API 相提并论。 *对于性能敏感的应用程序，请改用 'line'。*
+*readline.createInterface() 将在调用后开始使用输入流。 在接口创建和异步迭代之间进行异步操作可能会导致丢失行。*
 
-如果循环以 break、throw 或 return 终止，则将调用 rl.close()。 换句话说，迭代 InterfaceConstructor 将始终完全消费输入流。
 
-性能无法与传统的 'line' 事件 API 相提并论。 对于性能敏感的应用程序，请改用 'line'。
+Promises API
 
-async function processLineByLine() {
-  const rl = readline.createInterface({
-    // ...
-  });
-
-  for await (const line of rl) {
-    // 逐行读取输入中的每一行
-    // 都将在此处作为 `line` 连续可用。
-  }
-}
-readline.createInterface() 将在调用后开始使用输入流。 在接口创建和异步迭代之间进行异步操作可能会导致丢失行。
-
-rl.line#
-中英对照
-
-版本历史
-<string>
-节点正在处理的当前输入数据。
-
-这可用于从 TTY 流中收集输入以检索迄今为止（在 line 事件触发之前）已处理的当前值。 一旦触发 line 事件，则此属性将是空字符串。
-
-请注意，如果 rl.cursor 也不受控制，则在实例运行时修改该值可能会产生意想不到的后果。
-
-如果不使用 TTY 流进行输入，则使用 'line' 事件。
-
-一个可能的用例如下：
-
-const values = ['lorem ipsum', 'dolor sit amet'];
-const rl = readline.createInterface(process.stdin);
-const showResults = debounce(() => {
-  console.log(
-    '\n',
-    values.filter((val) => val.startsWith(rl.line)).join(' ')
-  );
-}, 300);
-process.stdin.on('keypress', (c, k) => {
-  showResults();
-});
-rl.cursor#
-中英对照
-
-新增于: v0.1.98
-<number> | <undefined>
-相对于 rl.line 的光标位置。
-
-当从 TTY 流读取输入时，这将跟踪当前光标在输入字符串中的位置。 光标的位置决定了在处理输入时将被修改的输入字符串部分，以及将呈现终端插入符号的列。
-
-rl.getCursorPos()#
-中英对照
-
-新增于: v13.5.0, v12.16.0
-返回: <Object>
-rows <number> 光标当前所在的提示行
-cols <number> 光标当前所在的屏幕列
-返回光标相对于输入提示 + 字符串的实际位置。 长输入（换行）字符串以及多行提示都包含在计算中。
-
-Promises API#
-新增于: v17.0.0
-稳定性: 1 - 实验
-readlinePromises.Interface 类#
-中英对照
-
-新增于: v17.0.0
-继承自: <readline.InterfaceConstructor>
+readlinePromises.Interface 类
 readlinePromises.Interface 类的实例是使用 readlinePromises.createInterface() 方法构造的。 每个实例都与单个 input 可读流和单个 output 可写流相关联。 output 流用于打印到达并从 input 流中读取的用户输入的提示。
 
-rl.question(query[, options])#
-中英对照
-
-新增于: v17.0.0
+rl.question(query[, options])
 query <string> 要写入 output 的语句或查询，位于提示之前。
 options <Object>
-signal <AbortSignal> 可选择允许使用 AbortSignal 取消 question()。
+- signal <AbortSignal> 可选择允许使用 AbortSignal 取消 question()。
 返回: <Promise> 使用用户响应 query 的输入履行的 promise。
-rl.question() 方法通过将 query 写入 output 来显示 query，等待在 input 上提供用户输入，然后调用 callback 函数，将提供的输入作为第一个参数传入。
+*其他特性与rl.question(query[, options], callback)类似*
 
-当调用时，如果 rl.question() 流已暂停，则 rl.question() 将恢复 input 流。
 
-如果 readlinePromises.Interface 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入 query。
+readlinePromises.Readline 类
 
-如果问题在 rl.close() 之后被调用，则它返回被拒绝的 promise。
-
-用法示例：
-
-const answer = await rl.question('What is your favorite food? ');
-console.log(`Oh, so your favorite food is ${answer}`);
-使用 AbortSignal 取消问题。
-
-const signal = AbortSignal.timeout(10_000);
-
-signal.addEventListener('abort', () => {
-  console.log('The food question timed out');
-}, { once: true });
-
-const answer = await rl.question('What is your favorite food? ', { signal });
-console.log(`Oh, so your favorite food is ${answer}`);
-readlinePromises.Readline 类#
-新增于: v17.0.0
-new readlinePromises.Readline(stream[, options])#
-中英对照
-
-新增于: v17.0.0
+new readlinePromises.Readline(stream[, options])
 stream <stream.Writable> TTY 流。
 options <Object>
-autoCommit <boolean> 如果是 true，则不需要调用 rl.commit()。
-rl.clearLine(dir)#
-中英对照
+- autoCommit <boolean> 如果是 true，则不需要调用 rl.commit()。
 
-新增于: v17.0.0
+
+rl.clearLine(dir)
 dir <integer>
 -1: 从光标向左
 1: 从光标向右
 0: 整行
-返回: this
 rl.clearLine() 方法在待处理动作的内部列表中添加一个动作，该动作在 dir 标识的指定方向上清除关联 stream 的当前行。 调用 rl.commit() 看看这个方法的效果，除非 autoCommit: true 传给了构造函数。
 
-rl.clearScreenDown()#
-中英对照
 
-新增于: v17.0.0
-返回: this
-rl.clearScreenDown() 方法向待处理动作的内部列表添加一个动作，该动作从光标向下的当前位置清除关联流。 调用 rl.commit() 看看这个方法的效果，除非 autoCommit: true 传给了构造函数。
+rl.clearScreenDown()
+rl.clearScreenDown() 方法向待处理动作的内部列表添加一个动作，该动作从光标向下的当前位置清除关联流。 
 
-rl.commit()#
-中英对照
-
-新增于: v17.0.0
-返回: <Promise>
+rl.commit()
 rl.commit() 方法将所有待处理的操作发送到关联的 stream 并清除待处理操作的内部列表。
 
-rl.cursorTo(x[, y])#
-中英对照
-
-新增于: v17.0.0
-x <integer>
-y <integer>
-返回: this
-rl.cursorTo() 方法向待处理动作的内部列表添加一个动作，该动作将光标移动到相关 stream 中指定的位置。 调用 rl.commit() 看看这个方法的效果，除非 autoCommit: true 传给了构造函数。
-
-rl.moveCursor(dx, dy)#
-中英对照
-
-新增于: v17.0.0
-dx <integer>
-dy <integer>
-返回: this
-rl.moveCursor() 方法向待处理动作的内部列表添加一个动作，该动作相对于其在关联 stream 中的当前位置移动光标。 调用 rl.commit() 看看这个方法的效果，除非 autoCommit: true 传给了构造函数。
-
-rl.rollback()#
-中英对照
-
-新增于: v17.0.0
-返回: this
+rl.rollback()
 rl.rollback 方法清除内部待处理操作列表，而不将其发送到关联的 stream。
 
-readlinePromises.createInterface(options)#
-中英对照
+readlinePromises.createInterface(options)
 
-新增于: v17.0.0
-options <Object>
-input <stream.Readable> 要监听的可读流。 此选项是必需的。
-output <stream.Writable> 要将逐行读取的数据写入的可写流。
-completer <Function> 可选的用于制表符自动补全的函数。
-terminal <boolean> 如果 input 和 output 流应该被视为终端，并且写入了 ANSI/VT100 转义码，则为 true。 默认值: 在实例化时检查 output 流上的 isTTY。
-history <string[]> 历史行的初始列表。 仅当 terminal 由用户或内部的 output 检查设置为 true 时，此选项才有意义，否则历史缓存机制根本不会初始化。 默认值: []。
-historySize <number> 保留的最大历史行数。 要禁用历史记录，则将此值设置为 0。 仅当 terminal 由用户或内部的 output 检查设置为 true 时，此选项才有意义，否则历史缓存机制根本不会初始化。 默认值: 30。
-removeHistoryDuplicates <boolean> 如果为 true，则当添加到历史列表的新输入行与旧输入行重复时，这将从列表中删除旧行。 默认值: false。
-prompt <string> 要使用的提示字符串。 默认值: '> '。
-crlfDelay <number> 如果 \r 和 \n 之间的延迟超过 crlfDelay 毫秒，则 \r 和 \n 都将被视为单独的行尾输入。 crlfDelay 将被强制为不小于 100 的数字。 它可以设置为 Infinity，在这种情况下，\r 后跟 \n 将始终被视为单个换行符（这对于具有 \r\n 行分隔符的文件读取可能是合理的）。 默认值: 100。
-escapeCodeTimeout <number> readlinePromises 将等待字符的时长（当以毫秒为单位读取不明确的键序列时，既可以使用目前读取的输入形成完整的键序列，又可以采用额外的输入来完成更长的键序列）。 默认值: 500。
-tabSize <integer> 一个制表符等于的空格数（最小为 1）。 默认值: 8。
-返回: <readlinePromises.Interface>
-readlinePromises.createInterface() 方法创建新的 readlinePromises.Interface 实例。
-
-const readlinePromises = require('node:readline/promises');
-const rl = readlinePromises.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-一旦创建了 readlinePromises.Interface 实例，则最常见的场景就是监听 'line' 事件：
-
-rl.on('line', (line) => {
-  console.log(`Received: ${line}`);
-});
-如果此实例的 terminal 是 true，则如果它定义了 output.columns 属性，并且如果或当列发生变化时（process.stdout 会当其是终端时自动执行此操作）在 output 上触发 'resize' 事件，则 output 流将获得最佳的兼容性。
-
-completer 函数的使用#
-中英对照
-
+completer 函数的使用
 completer 函数将用户输入的当前行作为参数，并返回包含 2 个条目的 Array：
+- 使用匹配条目的 Array 补全。
+- 用于匹配的子字符串。
+completer 函数也可以返回 <Promise>，或者是异步的
 
-使用匹配条目的 Array 补全。
-用于匹配的子字符串。
-例如：[[substr1, substr2, ...], originalsubstring]。
+###### Callback API
 
-function completer(line) {
-  const completions = '.help .error .exit .quit .q'.split(' ');
-  const hits = completions.filter((c) => c.startsWith(line));
-  // 如果没有找到，则显示所有补全
-  return [hits.length ? hits : completions, line];
-}
-completer 函数也可以返回 <Promise>，或者是异步的：
-
-async function completer(linePartial) {
-  await someAsyncWork();
-  return [['123'], linePartial];
-}
-Callback API#
-新增于: v0.1.104
-readline.Interface 类#
-中英对照
-
-版本历史
+readline.Interface 类
 继承自: <readline.InterfaceConstructor>
 readline.Interface 类的实例是使用 readline.createInterface() 方法构造的。 每个实例都与单个 input 可读流和单个 output 可写流相关联。 output 流用于打印到达并从 input 流中读取的用户输入的提示。
 
-rl.question(query[, options], callback)#
-中英对照
 
-新增于: v0.3.3
-query <string> 要写入 output 的语句或查询，位于提示之前。
-options <Object>
-signal <AbortSignal> 可选择允许使用 AbortController 取消 question()。
-callback <Function> 使用用户输入调用的回调函数以响应 query。
-rl.question() 方法通过将 query 写入 output 来显示 query，等待在 input 上提供用户输入，然后调用 callback 函数，将提供的输入作为第一个参数传入。
-
-当调用时，如果 rl.question() 流已暂停，则 rl.question() 将恢复 input 流。
-
-如果 readline.Interface 是在 output 设置为 null 或 undefined 的情况下创建的，则不会写入 query。
-
-传给 rl.question() 的 callback 函数不遵循接受 Error 对象或 null 作为第一个参数的典型模式。 以提供的答案作为唯一参数调用 callback。
-
-在 rl.close() 之后调用 rl.question() 会报错。
-
-用法示例：
-
-rl.question('What is your favorite food? ', (answer) => {
-  console.log(`Oh, so your favorite food is ${answer}`);
-});
-使用 AbortController 取消问题。
-
-const ac = new AbortController();
-const signal = ac.signal;
-
-rl.question('What is your favorite food? ', { signal }, (answer) => {
-  console.log(`Oh, so your favorite food is ${answer}`);
-});
-
-signal.addEventListener('abort', () => {
-  console.log('The food question timed out');
-}, { once: true });
-
-setTimeout(() => ac.abort(), 10000);
-readline.clearLine(stream, dir[, callback])#
-中英对照
-
-版本历史
-stream <stream.Writable>
-dir <number>
--1: 从光标向左
-1: 从光标向右
-0: 整行
-callback <Function> 操作完成后调用。
-返回: <boolean> 如果 stream 希望调用代码在继续写入额外的数据之前等待 'drain' 事件被触发，则为 false；否则为 true。
-readline.clearLine() 方法在 dir 标识的指定方向上清除给定 TTY 流的当前行。
-
-readline.clearScreenDown(stream[, callback])#
-中英对照
-
-版本历史
-stream <stream.Writable>
-callback <Function> 操作完成后调用。
-返回: <boolean> 如果 stream 希望调用代码在继续写入额外的数据之前等待 'drain' 事件被触发，则为 false；否则为 true。
-readline.clearScreenDown() 方法从光标的当前位置向下清除给定的 TTY 流。
-
-readline.createInterface(options)#
-中英对照
-
-版本历史
-options <Object>
-input <stream.Readable> 要监听的可读流。 此选项是必需的。
-output <stream.Writable> 要将逐行读取的数据写入的可写流。
-completer <Function> 可选的用于制表符自动补全的函数。
-terminal <boolean> 如果 input 和 output 流应该被视为终端，并且写入了 ANSI/VT100 转义码，则为 true。 默认值: 在实例化时检查 output 流上的 isTTY。
-history <string[]> 历史行的初始列表。 仅当 terminal 由用户或内部的 output 检查设置为 true 时，此选项才有意义，否则历史缓存机制根本不会初始化。 默认值: []。
-historySize <number> 保留的最大历史行数。 要禁用历史记录，则将此值设置为 0。 仅当 terminal 由用户或内部的 output 检查设置为 true 时，此选项才有意义，否则历史缓存机制根本不会初始化。 默认值: 30。
-removeHistoryDuplicates <boolean> 如果为 true，则当添加到历史列表的新输入行与旧输入行重复时，这将从列表中删除旧行。 默认值: false。
-prompt <string> 要使用的提示字符串。 默认值: '> '。
-crlfDelay <number> 如果 \r 和 \n 之间的延迟超过 crlfDelay 毫秒，则 \r 和 \n 都将被视为单独的行尾输入。 crlfDelay 将被强制为不小于 100 的数字。 它可以设置为 Infinity，在这种情况下，\r 后跟 \n 将始终被视为单个换行符（这对于具有 \r\n 行分隔符的文件读取可能是合理的）。 默认值: 100。
-escapeCodeTimeout <number> readline 将等待字符的时长（当以毫秒为单位读取不明确的键序列时，既可以使用目前读取的输入形成完整的键序列，又可以采用额外的输入来完成更长的键序列）。 默认值: 500。
-tabSize <integer> 一个制表符等于的空格数（最小为 1）。 默认值: 8。
-signal <AbortSignal> 允许使用中止信号关闭接口。 中止信号将在内部调用接口上的 close。
-返回: <readline.Interface>
-readline.createInterface() 方法创建新的 readline.Interface 实例。
-
-const readline = require('node:readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-一旦创建了 readline.Interface 实例，则最常见的场景就是监听 'line' 事件：
-
-rl.on('line', (line) => {
-  console.log(`Received: ${line}`);
-});
-如果此实例的 terminal 是 true，则如果它定义了 output.columns 属性，并且如果或当列发生变化时（process.stdout 会当其是终端时自动执行此操作）在 output 上触发 'resize' 事件，则 output 流将获得最佳的兼容性。
-
-当使用 stdin 作为输入创建 readline.Interface 时，则程序在收到 EOF 字符之前不会终止。 要在不等待用户输入的情况下退出，则调用 process.stdin.unref()。
-
-completer 函数的使用#
-中英对照
-
-completer 函数将用户输入的当前行作为参数，并返回包含 2 个条目的 Array：
-
-使用匹配条目的 Array 补全。
-用于匹配的子字符串。
-例如：[[substr1, substr2, ...], originalsubstring]。
-
-function completer(line) {
-  const completions = '.help .error .exit .quit .q'.split(' ');
-  const hits = completions.filter((c) => c.startsWith(line));
-  // 如果没有找到，则显示所有补全
-  return [hits.length ? hits : completions, line];
-}
-如果 completer 函数接受两个参数，则可以异步地调用它：
-
-function completer(linePartial, callback) {
-  callback(null, [['123'], linePartial]);
-}
-readline.cursorTo(stream, x[, y][, callback])#
-中英对照
-
-版本历史
-stream <stream.Writable>
-x <number>
-y <number>
-callback <Function> 操作完成后调用。
-返回: <boolean> 如果 stream 希望调用代码在继续写入额外的数据之前等待 'drain' 事件被触发，则为 false；否则为 true。
-readline.cursorTo() 方法将光标移动到给定的 TTY stream 中的指定位置。
-
-readline.moveCursor(stream, dx, dy[, callback])#
-中英对照
-
-版本历史
-stream <stream.Writable>
-dx <number>
-dy <number>
-callback <Function> 操作完成后调用。
-返回: <boolean> 如果 stream 希望调用代码在继续写入额外的数据之前等待 'drain' 事件被触发，则为 false；否则为 true。
-readline.moveCursor() 方法相对于它在给定的 TTY stream 中的当前位置移动光标。
-
-readline.emitKeypressEvents(stream[, interface])#
-中英对照
-
-新增于: v0.7.7
-stream <stream.Readable>
-interface <readline.InterfaceConstructor>
-readline.emitKeypressEvents() 方法使给定的可读流开始触发与接收到的输入相对应的 'keypress' 事件。
-
-可选地，interface 指定 readline.Interface 实例，当检测到复制粘贴输入时禁用自动完成。
-
-如果 stream 是 TTY，则它必须处于原始模式。
-
-如果 input 是终端，则它会被其 input 上的任何逐行读取实例自动调用。 关闭 readline 实例不会阻止 input 触发 'keypress' 事件。
-
-readline.emitKeypressEvents(process.stdin);
-if (process.stdin.isTTY)
-  process.stdin.setRawMode(true);
-示例：微型 CLI#
-中英对照
-
+示例：微型 CLI
 下面的例子说明了使用 readline.Interface 类来实现一个微型的命令行界面：
-
+```javascript
 const readline = require('node:readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -511,11 +179,11 @@ rl.on('line', (line) => {
   console.log('Have a great day!');
   process.exit(0);
 });
-示例：逐行读取文件流#
-中英对照
+```
 
+示例：逐行读取文件流
 readline 的一个常见用例是每次一行地消费输入文件。 最简单的方式是利用 fs.ReadStream API 和 for await...of 循环：
-
+```javascript
 const fs = require('node:fs');
 const readline = require('node:readline');
 
@@ -534,10 +202,10 @@ async function processLineByLine() {
     console.log(`Line from file: ${line}`);
   }
 }
-
 processLineByLine();
+```
 或者，可以使用 'line' 事件：
-
+```javascript
 const fs = require('node:fs');
 const readline = require('node:readline');
 
@@ -549,8 +217,9 @@ const rl = readline.createInterface({
 rl.on('line', (line) => {
   console.log(`Line from file: ${line}`);
 });
+```
 目前，for await...of 循环可能会慢一点。 如果 async / await 流量和速度都必不可少，则可以应用混合方法：
-
+```javascript
 const { once } = require('node:events');
 const { createReadStream } = require('node:fs');
 const { createInterface } = require('node:readline');
@@ -573,39 +242,30 @@ const { createInterface } = require('node:readline');
     console.error(err);
   }
 })();
-
+```
 
 #### stream 流
-流的类型#
-中英对照
 
+流的类型
 Node.js 中有四种基本的流类型：
-
-Writable: 可以写入数据的流（例如，fs.createWriteStream()）。
-Readable: 可以从中读取数据的流（例如，fs.createReadStream()）。
-Duplex: Readable 和 Writable 的流（例如，net.Socket）。
-Transform: 可以在写入和读取数据时修改或转换数据的 Duplex 流（例如，zlib.createDeflate()）。
+- Writable: 可以写入数据的流（例如，fs.createWriteStream()）。
+- Readable: 可以从中读取数据的流（例如，fs.createReadStream()）。
+- Duplex: Readable 和 Writable 的流（例如，net.Socket）。
+- Transform: 可以在写入和读取数据时修改或转换数据的 Duplex 流（例如，zlib.createDeflate()）。
 此外，此模块还包括实用函数 stream.pipeline()、stream.finished()、stream.Readable.from() 和 stream.addAbortSignal()。
 
-流的 Promise API#
-中英对照
-
-新增于: v15.0.0
+流的 Promise API
 stream/promises API 为返回 Promise 对象（而不是使用回调）的流提供了一组替代的异步实用函数。 API 可通过 require('node:stream/promises') 或 require('node:stream').promises 访问。
 
-对象模式#
-中英对照
-
+对象模式
 Node.js API 创建的所有流都只对字符串和 Buffer（或 Uint8Array）对象进行操作。 但是，流的实现可以使用其他类型的 JavaScript 值（除了 null，它在流中具有特殊用途）。 这样的流被认为是在"对象模式"下运行的。
 
-流的实例在创建流时使用 objectMode 选项切换到对象模式。 尝试将现有的流切换到对象模式是不安全的。
+*流的实例在创建流时使用 objectMode 选项切换到对象模式。 尝试将现有的流切换到对象模式是不安全的。*
 
-缓冲#
-中英对照
-
+缓冲
 Writable 和 Readable 流都将数据存储在内部缓冲区中。
-
-可能缓冲的数据量取决于传给流的构造函数的 highWaterMark 选项。 对于普通的流，highWaterMark 选项指定字节的总数。 对于在对象模式下操作的流，highWaterMark 指定对象的总数。
+可能缓冲的数据量取决于传给流的构造函数的 highWaterMark 选项。 
+*对于普通的流，highWaterMark 选项指定字节的总数。 对于在对象模式下操作的流，highWaterMark 指定对象的总数。*
 
 当实现调用 stream.push(chunk) 时，数据缓存在 Readable 流中。 如果流的消费者没有调用 stream.read()，则数据会一直驻留在内部队列中，直到被消费。
 
@@ -621,11 +281,9 @@ highWaterMark 选项是阈值，而不是限制：它规定了流在停止请求
 
 内部缓冲的机制是内部的实现细节，可能随时更改。 但是，对于某些高级实现，可以使用 writable.writableBuffer 或 readable.readableBuffer 检索内部的缓冲区。 不鼓励使用这些未记录的属性。
 
-流消费者的 API#
-中英对照
-
+流消费者的 API
 几乎所有的 Node.js 应用程序，无论多么简单，都以某种方式使用流。 以下是在实现 HTTP 服务器的 Node.js 应用程序中使用流的示例：
-
+```javascript
 const http = require('node:http');
 
 const server = http.createServer((req, res) => {
@@ -665,6 +323,7 @@ server.listen(1337);
 // string
 // $ curl localhost:1337 -d "not json"
 // error: Unexpected token o in JSON at position 1
+```
 Writable 流（例如示例中的 res）暴露了用于将数据写入流的方法，例如 write() 和 end()。
 
 当数据可从流中读取时，Readable 流使用 EventEmitter API 来通知应用程序代码。 可以通过多种方式从流中读取可用数据。
@@ -677,89 +336,39 @@ Duplex 和 Transform 流都是 Writable 和 Readable。
 
 希望实现新类型的流的开发者应参考流实现者的 API 章节。
 
-可写流#
-中英对照
-
-可写流是数据写入目标的抽象。
-
+可写流
 Writable 流的示例包括：
-
-客户端上的 HTTP 请求
-服务器上的 HTTP 响应
-文件系统写入流
-压缩流
-加密流
-TCP 套接字
-子进程标准输入
-process.stdout、process.stderr
+- 客户端上的 HTTP 请求
+- 服务器上的 HTTP 响应
+- 文件系统写入流
+- 压缩流
+- 加密流
+- TCP 套接字
+- 子进程标准输入
+- process.stdout、process.stderr
 其中一些示例实际上是实现 Writable 接口的 Duplex 流。
 
 所有的 Writable 流都实现了 stream.Writable 类定义的接口。
 
 虽然 Writable 流的特定实例可能以各种方式不同，但所有的 Writable 流都遵循相同的基本使用模式，如下例所示：
 
-const myStream = getWritableStreamSomehow();
-myStream.write('some data');
-myStream.write('some more data');
-myStream.end('done writing data');
-stream.Writable 类#
-新增于: v0.9.4
-'close' 事件#
-中英对照
 
-版本历史
+stream.Writable 类
+
+'close' 事件
 当流及其任何底层资源（例如文件描述符）已关闭时，则会触发 'close' 事件。 该事件表明将不再触发更多事件，并且不会发生进一步的计算。
 
-如果 Writable 流是使用 emitClose 选项创建的，则始终会触发 'close' 事件。
+*如果 Writable 流是使用 emitClose 选项创建的，则始终会触发 'close' 事件。*
 
-'drain' 事件#
-中英对照
 
-新增于: v0.9.4
-如果对 stream.write(chunk) 的调用返回 false，则 'drain' 事件将在适合继续将数据写入流时触发。
-
-// 将数据写入提供的可写流一百万次。
-// 注意背压。
-function writeOneMillionTimes(writer, data, encoding, callback) {
-  let i = 1000000;
-  write();
-  function write() {
-    let ok = true;
-    do {
-      i--;
-      if (i === 0) {
-        // 最后一次！
-        writer.write(data, encoding, callback);
-      } else {
-        // 看看是应该继续，还是等待。
-        // 不要传入回调，因为还没有完成。
-        ok = writer.write(data, encoding);
-      }
-    } while (i > 0 && ok);
-    if (i > 0) {
-      // 必须早点停下来！
-      // 等它排空时再写一些。
-      writer.once('drain', write);
-    }
-  }
-}
-'error' 事件#
-中英对照
-
-新增于: v0.9.4
-<Error>
+'error' 事件
 如果在写入或管道数据时发生错误，则会触发 'error' 事件。 监听器回调在调用时传入单个 Error 参数。
-
 除非在创建流时将 autoDestroy 选项设置为 false，否则当触发 'error' 事件时将关闭流。
-
 在 'error' 之后，不应触发除 'close' 之外的其他事件（包括 'error' 事件）。
 
-'finish' 事件#
-中英对照
-
-新增于: v0.9.4
+'finish' 事件
 在调用 stream.end() 方法之后，并且所有数据都已刷新到底层系统，则触发 'finish' 事件。
-
+```javascript
 const writer = getWritableStreamSomehow();
 for (let i = 0; i < 100; i++) {
   writer.write(`hello, #${i}!\n`);
@@ -768,13 +377,12 @@ writer.on('finish', () => {
   console.log('All writes are now complete.');
 });
 writer.end('This is the end\n');
-'pipe' 事件#
-中英对照
+```
 
-新增于: v0.9.4
+'pipe' 事件
 src <stream.Readable> 管道到此可写流的源流
 当在可读流上调用 stream.pipe() 方法将此可写流添加到其目标集时，则触发 'pipe' 事件。
-
+```javascript
 const writer = getWritableStreamSomehow();
 const reader = getReadableStreamSomehow();
 writer.on('pipe', (src) => {
@@ -782,41 +390,24 @@ writer.on('pipe', (src) => {
   assert.equal(src, reader);
 });
 reader.pipe(writer);
-'unpipe' 事件#
-中英对照
+```
 
-新增于: v0.9.4
+'unpipe' 事件
 src <stream.Readable> 取消管道此可写流的源流
 当在 Readable 流上调用 stream.unpipe() 方法时，则会触发 'unpipe' 事件，从其目标集合中删除此 Writable。
-
 当 Readable 流管道进入它时，如果此 Writable 流触发错误，则这也会触发。
 
-const writer = getWritableStreamSomehow();
-const reader = getReadableStreamSomehow();
-writer.on('unpipe', (src) => {
-  console.log('Something has stopped piping into the writer.');
-  assert.equal(src, reader);
-});
-reader.pipe(writer);
-reader.unpipe(writer);
-writable.cork()#
-中英对照
-
-新增于: v0.11.2
+writable.cork()
 writable.cork() 方法强制所有写入的数据都缓存在内存中。 当调用 stream.uncork() 或 stream.end() 方法时，缓冲的数据将被刷新。
 
 writable.cork() 的主要目的是适应将几个小块快速连续写入流的情况。 writable.cork() 不是立即将它们转发到底层目标，而是缓冲所有块，直到 writable.uncork() 被调用，如果存在，writable.uncork() 会将它们全部传给 writable._writev()。 这可以防止在等待处理第一个小块时正在缓冲数据的行头阻塞情况。 但是，在不实现 writable._writev() 的情况下使用 writable.cork() 可能会对吞吐量产生不利影响。
 
-另请参阅：writable.uncork()、writable._writev()。
 
-writable.destroy([error])#
-中英对照
-
-版本历史
+writable.destroy([error])
 error <Error> 可选，与 'error' 事件一起触发的错误。
 返回: <this>
 销毁流 可选地触发 'error' 事件，并且触发 'close' 事件（除非 emitClose 设置为 false）。 在此调用之后，则可写流已结束，随后对 write() 或 end() 的调用将导致 ERR_STREAM_DESTROYED 错误。 这是销毁流的破坏性和直接的方式。 先前对 write() 的调用可能没有排空，并且可能触发 ERR_STREAM_DESTROYED 错误。 如果数据应该在关闭之前刷新，或者在销毁流之前等待 'drain' 事件，则使用 end() 而不是销毁。
-
+```javascript
 const { Writable } = require('node:stream');
 
 const myStream = new Writable();
@@ -824,12 +415,16 @@ const myStream = new Writable();
 const fooErr = new Error('foo error');
 myStream.destroy(fooErr);
 myStream.on('error', (fooErr) => console.error(fooErr.message)); // foo error
+
+
 const { Writable } = require('node:stream');
 
 const myStream = new Writable();
 
 myStream.destroy();
 myStream.on('error', function wontHappen() {});
+
+
 const { Writable } = require('node:stream');
 
 const myStream = new Writable();
@@ -837,71 +432,17 @@ myStream.destroy();
 
 myStream.write('foo', (error) => console.error(error.code));
 // ERR_STREAM_DESTROYED
+```
 一旦 destroy() 被调用，任何进一步的调用都将是空操作，除了来自 _destroy() 的其他错误可能不会作为 'error' 触发。
-
 实现者不应覆盖此方法，而应实现 writable._destroy()。
 
-writable.closed#
-中英对照
 
-新增于: v18.0.0
-<boolean>
-触发 'close' 之后为 true。
-
-writable.destroyed#
-中英对照
-
-新增于: v8.0.0
-<boolean>
-在调用 writable.destroy() 之后是 true。
-
-const { Writable } = require('node:stream');
-
-const myStream = new Writable();
-
-console.log(myStream.destroyed); // false
-myStream.destroy();
-console.log(myStream.destroyed); // true
-writable.end([chunk[, encoding]][, callback])#
-中英对照
-
-版本历史
-chunk <string> | <Buffer> | <Uint8Array> | <any> 可选的要写入的数据。 对于不在对象模式下操作的流，chunk 必须是字符串、Buffer 或 Uint8Array。 对于对象模式的流，chunk 可以是除 null 之外的任何 JavaScript 值。
-encoding <string> chunk 为字符串时的编码
-callback <Function> 流结束时的回调。
-返回: <this>
-调用 writable.end() 方法表示不再有数据写入 Writable。 可选的 chunk 和 encoding 参数允许在关闭流之前立即写入最后一个额外的数据块。
-
-在调用 stream.end() 之后调用 stream.write() 方法将引发错误。
-
-// 写入 'hello, ' 然后以 'world!' 结尾。
-const fs = require('node:fs');
-const file = fs.createWriteStream('example.txt');
-file.write('hello, ');
-file.end('world!');
-// 现在不允许写入更多！
-writable.setDefaultEncoding(encoding)#
-中英对照
-
-版本历史
-encoding <string> 新的默认编码
-返回: <this>
-writable.setDefaultEncoding() 方法为 Writable 流设置默认的 encoding。
-
-writable.uncork()#
-中英对照
-
-新增于: v0.11.2
+writable.uncork()
 writable.uncork() 方法会刷新自调用 stream.cork() 以来缓冲的所有数据。
 
 当使用 writable.cork() 和 writable.uncork() 管理写入流的缓冲时，使用 process.nextTick() 推迟对 writable.uncork() 的调用。 这样做允许对在给定 Node.js 事件循环阶段中发生的所有 writable.write() 调用进行批处理。
-
-stream.cork();
-stream.write('some ');
-stream.write('data ');
-process.nextTick(() => stream.uncork());
 如果在一个流上多次调用 writable.cork() 方法，则必须调用相同数量的 writable.uncork() 调用来刷新缓冲的数据。
-
+```javascript
 stream.cork();
 stream.write('some ');
 stream.cork();
@@ -911,146 +452,50 @@ process.nextTick(() => {
   // 在第二次调用 uncork() 之前不会刷新数据。
   stream.uncork();
 });
+```
 另见: writable.cork()。
 
-writable.writable#
-中英对照
 
-新增于: v11.4.0
-<boolean>
-如果调用 writable.write() 是安全的，则为 true，这意味着流没有被销毁、出错或结束。
-
-writable.writableAborted#
-中英对照
-
-新增于: v18.0.0
-稳定性: 1 - 实验
-<boolean>
-返回在触发 'finish' 之前流是被破销毁或出错。
-
-writable.writableEnded#
-中英对照
-
-新增于: v12.9.0
-<boolean>
-在调用 writable.end() 之后是 true。 此属性不指示数据是否已刷新，为此则使用 writable.writableFinished 代替。
-
-writable.writableCorked#
-中英对照
-
-新增于: v13.2.0, v12.16.0
-<integer>
+writable.writableCorked
 需要调用 writable.uncork() 以完全解开流的次数。
 
-writable.errored#
-中英对照
-
-新增于: v18.0.0
-<Error>
+writable.errored
 如果流因错误而被销毁，则返回错误。
 
-writable.writableFinished#
-中英对照
-
-新增于: v12.6.0
-<boolean>
-在触发 'finish' 事件之前立即设置为 true。
-
-writable.writableHighWaterMark#
-中英对照
-
-新增于: v9.3.0
-<number>
+writable.writableHighWaterMark
 返回创建此 Writable 时传入的 highWaterMark 的值。
 
-writable.writableLength#
-中英对照
-
-新增于: v9.4.0
-<number>
+writable.writableLength
 此属性包含队列中准备写入的字节数（或对象数）。 该值提供有关 highWaterMark 状态的内省数据。
 
-writable.writableNeedDrain#
-中英对照
 
-新增于: v15.2.0, v14.17.0
-<boolean>
-如果流的缓冲区已满并且流将触发 'drain'，则为 true。
-
-writable.writableObjectMode#
-中英对照
-
-新增于: v12.3.0
-<boolean>
-给定 Writable 流的属性 objectMode 的获取器。
-
-writable.write(chunk[, encoding][, callback])#
-中英对照
-
-版本历史
-chunk <string> | <Buffer> | <Uint8Array> | <any> 可选的要写入的数据。 对于不在对象模式下操作的流，chunk 必须是字符串、Buffer 或 Uint8Array。 对于对象模式的流，chunk 可以是除 null 之外的任何 JavaScript 值。
-encoding <string> | <null> 如果 chunk 为字符串，则为编码。 默认值: 'utf8'
-callback <Function> 当刷新此数据块时的回调。
-返回: <boolean> 如果流希望调用代码在继续写入其他数据之前等待 'drain' 事件被触发，则为 false；否则为 true。
-writable.write() 方法将一些数据写入流，并在数据完全处理后调用提供的 callback。 如果发生错误，则 callback 将使用错误作为其第一个参数进行调用。 callback 是异步地调用，并且在 'error' 触发之前。
-
-如果在接纳 chunk 后，内部缓冲区小于当创建流时配置的 highWaterMark，则返回值为 true。 如果返回 false，则应停止进一步尝试将数据写入流，直到触发 'drain' 事件。
-
-当流没有排空时，对 write() 的调用将缓冲 chunk，并返回 false。 一旦所有当前缓冲的块都被排空（操作系统接受交付），则将触发 'drain' 事件。 一旦 write() 返回 false，则在 'drain' 事件触发之前不要写入更多块。 虽然允许在未排空的流上调用 write()，但 Node.js 将缓冲所有写入的块，直到出现最大内存使用量，此时它将无条件中止。 即使在它中止之前，高内存使用量也会导致垃圾收集器性能不佳和高 RSS（通常不会释放回系统，即使在不再需要内存之后）。 由于如果远程对等方不读取数据，TCP 套接字可能永远不会排空，因此写入未排空的套接字可能会导致可远程利用的漏洞。
-
-在流未排空时写入数据对于 Transform 来说尤其成问题，因为 Transform 流是默认暂停，直到它们被管道传输、或添加 'data' 或 'readable' 事件句柄。
-
-如果要写入的数据可以按需生成或获取，则建议将逻辑封装成 Readable 并且使用 stream.pipe()。 但是，如果首选调用 write()，则可以使用 'drain' 事件遵守背压并避免内存问题：
-
-function write(data, cb) {
-  if (!stream.write(data)) {
-    stream.once('drain', cb);
-  } else {
-    process.nextTick(cb);
-  }
-}
-
-// 在执行任何其他写入之前等待回调被调用。
-write('hello', () => {
-  console.log('Write completed, do more writes now.');
-});
-对象模式下的 Writable 流将始终忽略 encoding 参数。
-
-可读流#
-中英对照
-
+可读流
 可读流是对被消费的数据的来源的抽象。
 
 Readable 流的示例包括：
-
-客户端上的 HTTP 响应
-服务器上的 HTTP 请求
-文件系统读取流
-压缩流
-加密流
-TCP 套接字
-子进程的标准输出和标准错误
-process.stdin
+- 客户端上的 HTTP 响应
+- 服务器上的 HTTP 请求
+- 文件系统读取流
+- 压缩流
+- 加密流
+- TCP 套接字
+- 子进程的标准输出和标准错误
+- process.stdin
 所有的 Readable 流都实现了 stream.Readable 类定义的接口。
 
-两种读取模式#
-中英对照
-
+两种读取模式
 Readable 流以两种模式之一有效地运行：流动和暂停。 这些模式与对象模式是分开的。 Readable 流可以处于或不处于对象模式，无论其是处于流动模式还是暂停模式。
 
 在流动模式下，数据会自动从底层系统读取，并通过 EventEmitter 接口使用事件尽快提供给应用程序。
-
 在暂停模式下，必须显式调用 stream.read() 方法以从流中读取数据块。
-
 所有的 Readable 流都以暂停模式开始，但可以通过以下方式之一切换到流动模式：
+- 添加 'data' 事件句柄。
+- 调用 stream.resume() 方法。
+- 调用 stream.pipe() 方法将数据发送到 Writable。
 
-添加 'data' 事件句柄。
-调用 stream.resume() 方法。
-调用 stream.pipe() 方法将数据发送到 Writable。
 Readable 可以使用以下方法之一切换回暂停模式：
-
-如果没有管道目标，则通过调用 stream.pause() 方法。
-如果有管道目标，则删除所有管道目标。 可以通过调用 stream.unpipe() 方法删除多个管道目标。
+- 如果没有管道目标，则通过调用 stream.pause() 方法。
+- 如果有管道目标，则删除所有管道目标。 可以通过调用 stream.unpipe() 方法删除多个管道目标。
 要记住的重要概念是，在提供消费或忽略该数据的机制之前，Readable 不会产生数据。 如果消费机制被禁用或移除，则 Readable 将尝试停止产生数据。
 
 出于向后兼容性的原因，删除 'data' 事件句柄不会自动暂停流。 此外，如果有管道目标，则调用 stream.pause() 将不能保证一旦这些目标排空并要求更多数据，流将保持暂停状态。
@@ -1059,20 +504,17 @@ Readable 可以使用以下方法之一切换回暂停模式：
 
 添加 'readable' 事件句柄会自动使流停止流动，并且必须通过 readable.read() 来消费数据。 如果删除了 'readable' 事件句柄，则如果有 'data' 事件句柄，流将再次开始流动。
 
-三种状态#
-中英对照
 
+三种状态
 Readable 流的操作的"两种模式"是对 Readable 流实现中发生的更复杂的内部状态管理的简化抽象。
-
 具体来说，在任何给定的时间点，每个 Readable 都处于三种可能的状态之一：
-
-readable.readableFlowing === null
-readable.readableFlowing === false
-readable.readableFlowing === true
+- readable.readableFlowing === null
+- readable.readableFlowing === false
+- readable.readableFlowing === true
 当 readable.readableFlowing 为 null 时，则不提供消费流数据的机制。 因此，流不会生成数据。 在此状态下，为 'data' 事件绑定监听器、调用 readable.pipe() 方法、或调用 readable.resume() 方法会将 readable.readableFlowing 切换到 true，从而使 Readable 在生成数据时开始主动触发事件。
 
 调用readable.pause()、readable.unpipe()、或者接收背压都会导致 readable.readableFlowing 被设置为 false，暂时停止事件的流动，但不会停止数据的生成。 在此状态下，为 'data' 事件绑定监听器不会将 readable.readableFlowing 切换到 true。
-
+```javascript
 const { PassThrough, Writable } = require('node:stream');
 const pass = new PassThrough();
 const writable = new Writable();
@@ -1084,176 +526,18 @@ pass.unpipe(writable);
 pass.on('data', (chunk) => { console.log(chunk.toString()); });
 pass.write('ok');  // 不会触发 'data'。
 pass.resume();     // 必须调用才能使流触发 'data'。
+```
 虽然 readable.readableFlowing 是 false，但数据可能会在流的内部缓冲区中累积。
 
-选择一种接口风格#
-中英对照
+选择一种接口风格
+*Readable 流的 API 跨越多个 Node.js 版本的演进，并提供了多种消费流数据的方法。 一般情况下，开发者应该选择其中一种消费数据的方式，切忌使用多种方式消费单一流中的数据。 具体来说，使用 on('data')、on('readable')、pipe() 或异步迭代器的组合可能会导致不直观的行为。*
 
-Readable 流的 API 跨越多个 Node.js 版本的演进，并提供了多种消费流数据的方法。 一般情况下，开发者应该选择其中一种消费数据的方式，切忌使用多种方式消费单一流中的数据。 具体来说，使用 on('data')、on('readable')、pipe() 或异步迭代器的组合可能会导致不直观的行为。
+stream.Readable 类
 
-stream.Readable 类#
-新增于: v0.9.4
-'close' 事件#
-中英对照
-
-版本历史
-当流及其任何底层资源（例如文件描述符）已关闭时，则会触发 'close' 事件。 该事件表明将不再触发更多事件，并且不会发生进一步的计算。
-
-如果 Readable 流是使用 emitClose 选项创建的，则始终会触发 'close' 事件。
-
-'data' 事件#
-中英对照
-
-新增于: v0.9.4
-chunk <Buffer> | <string> | <any> 数据块。 对于不在对象模式下操作的流，块将是字符串或 Buffer。 对于处于对象模式的流，块可以是除 null 之外的任何 JavaScript 值。
-每当流将数据块的所有权移交给消费者时，则会触发 'data' 事件。 每当通过调用 readable.pipe()、readable.resume()、或通过将监听器回调绑定到 'data' 事件而将流切换到流动模式时，就会发生这种情况。 每当调用 readable.read() 方法并且可以返回数据块时，也会触发 'data' 事件。
-
-将 'data' 事件监听器绑定到尚未显式暂停的流，则会将流切换到流动模式。 数据将在可用时立即传入。
-
-如果使用 readable.setEncoding() 方法为流指定了默认编码，则监听器回调将把数据块作为字符串传入；否则数据将作为 Buffer 传入。
-
-const readable = getReadableStreamSomehow();
-readable.on('data', (chunk) => {
-  console.log(`Received ${chunk.length} bytes of data.`);
-});
-'end' 事件#
-中英对照
-
-新增于: v0.9.4
-当流中没有更多数据可供消费时，则会触发 'end' 事件。
-
-除非数据被完全地消费，否则不会触发 'end' 事件。 这可以通过将流切换到流动模式来实现，或者通过重复调用 stream.read() 直到所有数据都被消费完。
-
-const readable = getReadableStreamSomehow();
-readable.on('data', (chunk) => {
-  console.log(`Received ${chunk.length} bytes of data.`);
-});
-readable.on('end', () => {
-  console.log('There will be no more data.');
-});
-'error' 事件#
-中英对照
-
-新增于: v0.9.4
-<Error>
-'error' 事件可以随时由 Readable 的实现触发。 通常，如果底层流由于底层内部故障而无法生成数据，或者当流实现尝试推送无效数据块时，可能会发生这种情况。
-
-监听器回调将传入单个 Error 对象。
-
-'pause' 事件#
-中英对照
-
-新增于: v0.9.4
-当调用 stream.pause() 并且 readableFlowing 不是 false 时，则会触发 'pause' 事件。
-
-'readable' 事件#
-中英对照
-
-版本历史
-当有可从流中读取的数据或已到达流的末尾时，则将触发 'readable' 事件。 实际上，'readable' 事件表明流有新的信息。 如果数据可用，则 stream.read() 将返回该数据。
-
-const readable = getReadableStreamSomehow();
-readable.on('readable', function() {
-  // 现在有一些数据要读取。
-  let data;
-
-  while ((data = this.read()) !== null) {
-    console.log(data);
-  }
-});
-如果已经到达流的末尾，则调用 stream.read() 将返回 null 并触发 'end' 事件。 如果从未读取任何数据，则也是如此。 例如，在以下示例中，foo.txt 是一个空文件：
-
-const fs = require('node:fs');
-const rr = fs.createReadStream('foo.txt');
-rr.on('readable', () => {
-  console.log(`readable: ${rr.read()}`);
-});
-rr.on('end', () => {
-  console.log('end');
-});
-运行此脚本的输出是：
-
-$ node test.js
-readable: null
-end
-在某些情况下，为 'readable' 事件绑定监听器会导致一些数据被读入内部缓冲区。
-
-一般来说，readable.pipe() 和 'data' 事件机制比 'readable' 事件更容易理解。 但是，处理 'readable' 可能会导致吞吐量增加。
-
-如果同时使用 'readable' 和 'data'，则 'readable' 优先控制流，即只有在调用 stream.read() 时才会触发 'data'。 readableFlowing 属性将变为 false。 如果在移除 'readable' 时有 'data' 个监听器，则流将开始流动，即 'data' 事件将在不调用 .resume() 的情况下触发。
-
-'resume' 事件#
-中英对照
-
-新增于: v0.9.4
-当调用 stream.resume() 并且 readableFlowing 不是 true 时，则会触发 'resume' 事件。
-
-readable.destroy([error])#
-中英对照
-
-版本历史
-error <Error> 将作为 'error' 事件中的有效负载传递的错误
-返回: <this>
-销毁流 可选地触发 'error' 事件，并且触发 'close' 事件（除非 emitClose 设置为 false）。 在此调用之后，可读流将释放任何内部资源，随后对 push() 的调用将被忽略。
-
-一旦 destroy() 被调用，任何进一步的调用都将是空操作，除了来自 _destroy() 的其他错误可能不会作为 'error' 触发。
-
-实现者不应覆盖此方法，而应实现 readable._destroy()。
-
-readable.closed#
-中英对照
-
-新增于: v8.0.0
-<boolean>
-触发 'close' 之后为 true。
-
-readable.destroyed#
-中英对照
-
-新增于: v18.0.0
-<boolean>
-在调用 readable.destroy() 之后是 true。
-
-readable.isPaused()#
-中英对照
-
-新增于: v0.11.14
-返回: <boolean>
-readable.isPaused() 方法返回 Readable 的当前运行状态。 这主要由作为 readable.pipe() 方法基础的机制使用。 在大多数典型情况下，没有理由直接使用此方法。
-
-const readable = new stream.Readable();
-
-readable.isPaused(); // === false
-readable.pause();
-readable.isPaused(); // === true
-readable.resume();
-readable.isPaused(); // === false
-readable.pause()#
-中英对照
-
-新增于: v0.9.4
-返回: <this>
-readable.pause() 方法将导致处于流动模式的流停止触发 'data' 事件，切换出流动模式。 任何可用的数据都将保留在内部缓冲区中。
-
-const readable = getReadableStreamSomehow();
-readable.on('data', (chunk) => {
-  console.log(`Received ${chunk.length} bytes of data.`);
-  readable.pause();
-  console.log('There will be no additional data for 1 second.');
-  setTimeout(() => {
-    console.log('Now data will start flowing again.');
-    readable.resume();
-  }, 1000);
-});
-如果有 'readable' 事件监听器，则 readable.pause() 方法不起作用。
-
-readable.pipe(destination[, options])#
-中英对照
-
-新增于: v0.9.4
-destination <stream.Writable> 写入数据的目标
-options <Object> 管道选项
-end <boolean> 当读取结束时结束写入。 默认值: true。
+readable.pipe(destination[, options])
+- destination <stream.Writable> 写入数据的目标
+- options <Object> 管道选项
+  - end <boolean> 当读取结束时结束写入。 默认值: true。
 返回: <stream.Writable> 目标，如果它是 Duplex 或 Transform 流，则允许使用管道链
 readable.pipe() 方法将 Writable 流绑定到 readable，使其自动切换到流动模式并将其所有数据推送到绑定的 Writable。 数据流将被自动管理，以便目标 Writable 流不会被更快的 Readable 流漫过。
 
