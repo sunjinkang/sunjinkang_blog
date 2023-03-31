@@ -28,7 +28,7 @@
 <meta property="og:description" content="使用module.createRequire创建的require和直接使用require有什么区别？？？  问题来源：nodejs module模块使用createRequire创建的require独立于直接使用的require，可以读取新文件，直接使用的require是从cache缓存中读取文件，不能及时读取到刚更新后的文件  Node.js 不能保证拷贝操作的原子性，是什么意思？  问题来源">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-22T10:11:10.000Z">
-<meta property="article:modified_time" content="2023-02-22T10:22:51.538Z">
+<meta property="article:modified_time" content="2023-03-24T05:32:07.925Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
 
@@ -204,6 +204,19 @@
 <li>beforeunload监听页面是否存在操作，存在操作时提示，需要鼠标点击页面事件才生效</li>
 </ul>
 <p><strong>一定要是手动操作、模拟执行的都不能使事件生效</strong></p>
+<p>Nagle 算法与ack机制</p>
+<p>为什么有的方法在文档中废弃了还有人用？</p>
+<p>怎么区分是否是注释中的中文？</p>
+<p>获取中文所在的行，通过抽象语法树ast，有其他方法吗？<br>readline</p>
+<p>ELU 类似于 CPU 使用率，不同之处在于它只测量事件循环统计信息而不是 CPU 使用率。 它表示事件循环在事件循环的事件提供者（例如 epoll_wait）之外花费的时间百分比。 不考虑其他 CPU 空闲时间。<br>ELU和CPU使用率不是同一概念，ELU高可能CPU使用率低</p>
+<p>performance高解析度毫秒时间戳是什么意思？<br>更精确细分的时间</p>
+<p>当执行观察时，应使用 performance.clearResourceTimings 手动从全局的性能时间轴中清除条目<br>之前的标记可能影响观察，先清除一下？？</p>
+<p>performanceEntry.duration值对所有性能条目类型都没有意义。</p>
+<p>句柄是什么意思？通过向 ‘warning’ 事件添加句柄来监听<br>句柄：事件处理？？</p>
+<p>IPC 通道衍生 Node.js 进程<br>nodejs中process.getegid 和process.getgid区别</p>
+<p>滴答队列和微任务队列</p>
+<p>事件句柄<br>就是时间发生时进行的操作，在javascript中，onclick,onload等这些就是事件句柄</p>
+<p>方法setPromat(promat) ，就是给每一行设置一个提示符，就好比window命令行的&gt; ，这里设置的是Test&gt;。<br>prompt()是最重要的方法，因为它体现了readline的核心作用，以行为单位读取数据，prompt方法就是在等待用户输入数据。<br>在‘line’事件中的r1.prompt()：监听了’line’ 事件，因为prompt方法调用一次就只会读取一次数据，所以，在这个方法又调用了一次prompt方法，这样就可以继续读取用户输入，从而达到一种命令行的效果。</p>
 
       </div>
       
