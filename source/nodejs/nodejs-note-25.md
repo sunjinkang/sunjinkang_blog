@@ -1,7 +1,7 @@
 ---
 title: nodejs基础知识(11)
 date: 2023-03-10 21:15:16
-tags: [node, timers 定时器]
+tags: [node, timers 定时器， test 测试]
 ---
 
 #### timers 定时器
@@ -155,3 +155,104 @@ for await (const startTime of setInterval(interval, Date.now())) {
 }
 console.log(Date.now());
 ```
+
+#### test 测试
+
+通过 test 模块创建的测试由单个函数组成，该函数以三种方式之一进行处理：
+- 同步的函数，如果抛出异常则认为失败，否则认为通过。
+- 返回 Promise 的函数，如果 Promise 拒绝，则认为该函数失败，如果 Promise 解决，则认为该函数通过。
+- 接收回调函数的函数。 如果回调接收到任何真值作为其第一个参数，则认为测试失败。 如果非真值作为第一个参数传给回调，则认为测试通过。 如果测试函数接收到回调函数并且还返回 Promise，则测试将失败。
+
+子测试
+测试上下文的 test() 方法允许创建子测试。 此方法的行为与顶层 test() 函数相同。
+*await 用于确保两个子测试均已完成。 这是必要的，因为父测试不会等待子测试完成。 当父测试完成时仍然未完成的任何子测试将被取消并视为失败。 任何子测试失败都会导致父测试失败。*
+```javascript
+test('top level test', async (t) => {
+  await t.test('subtest 1', (t) => {
+    assert.strictEqual(1, 1);
+  });
+
+  await t.test('subtest 2', (t) => {
+    assert.strictEqual(2, 2);
+  });
+});
+```
+
+跳过测试
+通过将 skip 选项传给测试，或调用测试上下文的 skip() 方法，可以跳过单个测试。
+```javascript
+test('top level test', {skip: true}, (t) => {
+  assert.strictEqual(1, 1);
+});
+test('top level test', {skip: 'skip message'}, (t) => {
+  assert.strictEqual(1, 1);
+});
+test('top level test', (t) => {
+  assert.strictEqual(1, 1);
+  t.skip();
+  assert.strictEqual(2, 2);
+});
+test('top level test', (t) => {
+  assert.strictEqual(1, 1);
+  t.skip('skip message');
+  assert.strictEqual(2, 2);
+});
+```
+
+describe/it 语法
+运行测试也可以使用 describe 来声明套件和 it 来声明测试。 套件用于将相关测试组织和分组在一起。 it 是 test 的别名.
+```javascript
+describe('test parent', () => {
+  it('first test', () => {
+    assert.strictEqual(1, 1);
+  });
+
+  it('second test', () => {
+    assert.strictEqual(2, 2);
+  });
+
+  describe('child test', () => {
+    it('grand test', () => {
+      assert.strictEqual(3, 3);
+    });
+  });
+});
+```
+
+only 测试
+如果 Node.js 使用 --test-only 命令行选项启动，则可以通过将 only 选项传给应该运行的测试来跳过除选定子集之外的所有顶层测试。 当运行带有 only 选项集的测试时，所有子测试也会运行。 测试上下文的 runOnly() 方法可用于在子测试级别实现相同的行为。
+```javascript
+test('this test is run', { only: true }, async (t) => {
+  // 在此测试中，默认运行所有子测试。
+  await t.test('running subtest');
+
+  // 可以使用 'only' 选项更新测试上下文以运行子测试。
+  t.runOnly(true);
+  await t.test('this subtest is now skipped');
+  await t.test('this subtest is run', { only: true });
+
+  // 切换上下文以执行所有测试。
+  t.runOnly(false);
+  await t.test('this subtest is now run');
+
+  // 显式地不要运行这些测试。
+  await t.test('skipped subtest 3', { only: false });
+  await t.test('skipped subtest 4', { skip: true });
+});
+
+// 未设置 'only' 选项，因此跳过此测试。
+test('this test is not run', () => {
+  // 此代码未运行。
+  throw new Error('fail');
+});
+```
+
+无关的异步活动
+一旦测试函数完成执行，则 TAP 结果会尽快输出，同时保持测试的顺序。 但是，测试函数可能会生成比测试本身寿命更长的异步活动。 测试运行器处理此类活动，但不会延迟报告测试结果以适应它。
+
+describe.skip([name][, options][, fn])
+跳过套件的简写，与 describe([name], { skip: true }[, fn]) 相同。
+
+describe.todo([name][, options][, fn])
+将套件标记为 TODO 的简写，与 describe([name], { todo: true }[, fn]) 相同。
+

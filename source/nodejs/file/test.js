@@ -802,28 +802,141 @@
 //  nghttp3: '0.7.0'
 // }
 
-import readline from 'node:readline';
-import process from 'node:process';
-var rl = readline.createInterface(process.stdin, process.stdout);
-// rl.setPrompt('Test');
-// rl.prompt();
-// rl.question('What is your favorite food? ', (answer) => {
+// import readline from 'node:readline';
+// import process from 'node:process';
+// var rl = readline.createInterface(process.stdin, process.stdout);
+// // rl.setPrompt('Test');
+// // rl.prompt();
+// // rl.question('What is your favorite food? ', (answer) => {
+// //   console.log(`Oh, so your favorite food is ${answer}`);
+// //   process.exit(0);
+// // });
+// const ac = new AbortController();
+// const signal = ac.signal;
+
+// rl.question('What is your favorite food? ', { signal }, (answer) => {
 //   console.log(`Oh, so your favorite food is ${answer}`);
-//   process.exit(0);
 // });
-const ac = new AbortController();
-const signal = ac.signal;
 
-rl.question('What is your favorite food? ', { signal }, (answer) => {
-  console.log(`Oh, so your favorite food is ${answer}`);
+// signal.addEventListener(
+//   'abort',
+//   () => {
+//     console.log('The food question timed out');
+//   },
+//   { once: true }
+// );
+
+// setTimeout(() => ac.abort(), 10000);
+
+// import test from 'node:test';
+// import assert from 'assert';
+// test('top level test', async (t) => {
+//   await t.test('subtest 1', (t) => {
+//     assert.strictEqual(1, 1);
+//   });
+
+//   await t.test('subtest 2', (t) => {
+//     assert.strictEqual(2, 2);
+//   });
+// });
+
+// test('top level test', { skip: true }, (t) => {
+//   assert.strictEqual(1, 1);
+// });
+// test('top level test', { skip: 'skip message' }, (t) => {
+//   assert.strictEqual(1, 1);
+// });
+// test('top level test', (t) => {
+//   assert.strictEqual(1, 1);
+//   t.skip();
+//   assert.strictEqual(2, 2);
+// });
+// test('top level test', (t) => {
+//   assert.strictEqual(1, 1);
+//   t.skip('skip message');
+//   assert.strictEqual(2, 2);
+// });
+
+import test from 'node:test';
+import assert from 'node:assert';
+// describe('test parent', () => {
+//   it('first test', () => {
+//     assert.strictEqual(1, 1);
+//   });
+
+//   it('second test', () => {
+//     assert.strictEqual(2, 2);
+//   });
+
+//   describe('child test', () => {
+//     it('grand test', () => {
+//       assert.strictEqual(3, 3);
+//     });
+//   });
+// });
+// describe('test parent', { only: true }, () => {
+//   it('first test', () => {
+//     assert.strictEqual(1, 1);
+//   });
+
+//   it('second test', async (t) => {
+//     assert.strictEqual(2, 2);
+//   });
+//   describe('child test', () => {
+//     it('grand test', () => {
+//       assert.strictEqual(3, 3);
+//     });
+//   });
+// });
+// describe('qwe123', () => {
+//   it('first test', () => {
+//     assert.strictEqual(1, 1);
+//   });
+
+//   it('second test', () => {
+//     assert.strictEqual(2, 2);
+//   });
+
+//   describe('child test', () => {
+//     it('grand test', () => {
+//       assert.strictEqual(3, 3);
+//     });
+//   });
+// });
+// test('this test is run', { only: true }, async (t) => {
+//   // 在此测试中，默认运行所有子测试。
+//   await t.test('running subtest');
+
+//   // 可以使用 'only' 选项更新测试上下文以运行子测试。
+//   t.runOnly(true);
+//   await t.test('this subtest is now skipped');
+//   await t.test('this subtest is run', { only: true });
+
+//   // 切换上下文以执行所有测试。
+//   t.runOnly(false);
+//   await t.test('this subtest is now run');
+
+//   // 显式地不要运行这些测试。
+//   await t.test('skipped subtest 3', { only: false });
+//   await t.test('skipped subtest 4', { skip: true });
+// });
+
+// // 未设置 'only' 选项，因此跳过此测试。
+// test('this test is not run', () => {
+//   // 此代码未运行。
+//   throw new Error('fail');
+// });
+
+test('a test that creates asynchronous activity', (t) => {
+  setImmediate(() => {
+    t.test('subtest that is created too late', (t) => {
+      throw new Error('error1');
+    });
+  });
+
+  setImmediate(() => {
+    throw new Error('error2');
+  });
+
+  // 此行之后测试结束。
 });
-
-signal.addEventListener(
-  'abort',
-  () => {
-    console.log('The food question timed out');
-  },
-  { once: true }
-);
-
-setTimeout(() => ac.abort(), 10000);
