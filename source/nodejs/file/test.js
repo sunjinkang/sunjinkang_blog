@@ -857,8 +857,8 @@
 //   assert.strictEqual(2, 2);
 // });
 
-import test from 'node:test';
-import assert from 'node:assert';
+// import test from 'node:test';
+// import assert from 'node:assert';
 // describe('test parent', () => {
 //   it('first test', () => {
 //     assert.strictEqual(1, 1);
@@ -927,16 +927,123 @@ import assert from 'node:assert';
 //   throw new Error('fail');
 // });
 
-test('a test that creates asynchronous activity', (t) => {
-  setImmediate(() => {
-    t.test('subtest that is created too late', (t) => {
-      throw new Error('error1');
-    });
-  });
+// test('a test that creates asynchronous activity', (t) => {
+//   setImmediate(() => {
+//     t.test('subtest that is created too late', (t) => {
+//       throw new Error('error1');
+//     });
+//   });
 
-  setImmediate(() => {
-    throw new Error('error2');
-  });
+//   setImmediate(() => {
+//     throw new Error('error2');
+//   });
 
-  // 此行之后测试结束。
-});
+//   // 此行之后测试结束。
+// });
+
+// import url from 'node:url';
+// console.log(url.URL === globalThis.URL);
+
+// const myURL = new URL('https://example.org:8888');
+// console.log(myURL.port);
+// // 打印 8888
+
+// // 默认端口自动转换为空字符串
+// //（HTTPS 协议的默认端口是 443）
+// myURL.port = '443';
+// console.log(myURL.port);
+// // 打印空字符串
+// console.log(myURL.href);
+// // 打印 https://example.org/
+
+// myURL.port = 1234;
+// console.log(myURL.port);
+// // 打印 1234
+// console.log(myURL.href);
+// // 打印 https://example.org:1234/
+
+// // 完全无效的端口字符串被忽略
+// myURL.port = 'abcd';
+// console.log(myURL.port);
+// // 打印 1234
+
+// // 前导数字被视为端口号
+// myURL.port = '5678abcd';
+// console.log(myURL.port);
+// // 打印 5678
+
+// // 非整数被截断
+// myURL.port = 1234.5678;
+// console.log(myURL.port);
+// // 打印 1234
+
+// // 未用科学计数法表示的超出范围的数字将被忽略。
+// myURL.port = 1e10; // 10000000000，将按如下所述进行范围检查
+// console.log(myURL.port);
+// // 打印 1234
+
+// myURL.port = 4.567e21;
+// console.log(myURL.port);
+// // 打印 4（因为它是字符串 '4.567e21' 中的前导数字）
+
+// const u = new URL('http://example.org');
+// u.protocol = 'https';
+// console.log(u.href);
+// https://example.org
+
+// const u = new URL('http://example.org');
+// u.protocol = 'fish';
+// console.log(u.href);
+// http://example.org
+
+// const u = new URL('fish://example.org');
+// u.protocol = 'http';
+// console.log(u.href);
+// fish://example.org
+
+// const myURLs = [
+//   new URL('https://www.example.com'),
+//   new URL('https://test.example.org'),
+// ];
+// console.log(JSON.stringify(myURLs));
+// console.log(new URL('https://www.example.com').toJSON());
+
+// let params;
+
+// // 使用数组
+// params = new URLSearchParams([
+//   ['user', 'abc'],
+//   ['query', 'first'],
+//   ['query', 'second'],
+// ]);
+// console.log(params.toString());
+// // 打印 'user=abc&query=first&query=second'
+
+// // 使用 Map 对象
+// const map = new Map();
+// map.set('user', 'abc');
+// map.set('query', 'xyz');
+// params = new URLSearchParams(map);
+// console.log(params.toString());
+// // 打印 'user=abc&query=xyz'
+
+// // 使用生成器函数
+// function* getQueryPairs() {
+//   yield ['user', 'abc'];
+//   yield ['query', 'first'];
+//   yield ['query', 'second'];
+// }
+// params = new URLSearchParams(getQueryPairs());
+// console.log(params.toString());
+// // 打印 'user=abc&query=first&query=second'
+
+// // 每个键值对必须恰好有两个元素
+// param = new URLSearchParams([['user', 'abc', 'error']]);
+// console.log(params.toString());
+// // 抛出 TypeError [ERR_INVALID_TUPLE]:
+// //        Each query pair must be an iterable [name, value] tuple
+
+import { urlToHttpOptions } from 'node:url';
+const myURL = new URL('https://a:b@測試?abc#foo');
+
+console.log(urlToHttpOptions(myURL));

@@ -50,3 +50,9 @@ nodejs中process.getegid 和process.getgid区别
 方法setPromat(promat) ，就是给每一行设置一个提示符，就好比window命令行的> ，这里设置的是Test>。
 prompt()是最重要的方法，因为它体现了readline的核心作用，以行为单位读取数据，prompt方法就是在等待用户输入数据。
 在‘line’事件中的r1.prompt()：监听了’line’ 事件，因为prompt方法调用一次就只会读取一次数据，所以，在这个方法又调用了一次prompt方法，这样就可以继续读取用户输入，从而达到一种命令行的效果。
+
+
+什么是分布式？
+拒绝服务攻击（DoS）
+
+Node.js 和底层 V8 引擎使用 Unicode 国际组件（ICU）
