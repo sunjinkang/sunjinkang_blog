@@ -222,3 +222,9 @@ console.log(arr);
 
 ###### 参考文献
 [MDN: 生成器函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/function*)
+
+issue:
+- co,执行生成器函数的库
+- 生成器函数的回收机制
+- 实现异步的操作，生成器函数比较鸡肋，使用async、await
+- 生成器函数是目前js中唯一可以实现暂停执行的方法
