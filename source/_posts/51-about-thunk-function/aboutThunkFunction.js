@@ -44,6 +44,7 @@ function size(file) {
   return function (fn) {
     fs.stat(file, function (err, stat) {
       if (err) return fn(err);
+      console.log(`size: ${stat.size}`);
       fn(null, stat.size);
     });
   };
