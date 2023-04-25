@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -178,7 +178,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/31/17-about-dom/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/18/49-typed-array/typedArray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/31/17-about-dom/" class="post-title-link" itemprop="url">javascript DOM编程艺术阅读笔记</a>
+          <a href="/2023/04/18/49-typed-array/typedArray/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -206,15 +206,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-07-31 13:42:45" itemprop="dateCreated datePublished" datetime="2022-07-31T13:42:45+08:00">2022-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-30 18:54:33" itemprop="dateModified" datetime="2022-08-30T18:54:33+08:00">2022-08-30</time>
+      <time title="Created: 2023-04-18 18:56:48 / Modified: 19:00:34" itemprop="dateCreated datePublished" datetime="2023-04-18T18:56:48+08:00">2023-04-18</time>
     </span>
 
   
@@ -227,43 +221,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h4><p>1、DOM<br>DOM是一套对文档的内容进行抽象和概念化的方法。</p>
-<p>第0级DOM(DOM Level 0)<br>试验性质的初级DOM，在还未形成统一标准的初期阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。</p>
-<p>第1级DMO(DOM Level 1)<br>Netscape、微软和其他一些浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第1级DOM”(DOM Level 1) 。</p>
-<p>2、浏览器战争<br>2.1 DHTML<br>DHTML是“Dynamic HTML”(动态HTML)的简称。DHTML并不是一项新技术，而是描述HTML、CSS和.JavaScript技术组合的术语。背后含义:<br>(1)利用HTML把网页标记为各种元素;<br>(2)利用CSS设置元素样式和它们的显示位置;<br>(3)利用JavaScript实时地操控页面和改变样式。</p>
-<h4 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h4><p>循环语句<br>1、while循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>do…while循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure>
-<p>  2、for循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (initial condition; test condition; alter condition)&#123;</span><br><span class="line">  statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          const bufferArray = new ArrayBuffer(16);
+console.log(Array.isArray(bufferArray));
+// bufferArray.push(1);
+bufferArray.pop(1);
 
-<p>函数<br>1、变量的作用域<br>全局变量(global variable)可以在脚本中的任何位置被引用。一旦你在某个脚本里声明了一个全局变量，就可以从这个脚本中的任何位置―一包括函数内部—―引用它。全局变量的作用域是整个脚本。<br>局部变量(local variable）只存在于声明它的那个函数的内部，在那个函数的外部是无法引用它的。局部变量的作用域仅限于某个特定的函数。</p>
-<p>对象<br>对象（object）是一种非常重要的数据类型，但此前我们还没有认真对待它。对象是自包含的数据集合，包含在对象里的数据可以通过两种形式访问——属性（property)和方法(method) :<br>-属性是隶属于某个特定对象的变量<br>-方法是只有某个特定对象才能调用的函数<br>对象就是由一些属性和方法组合在一起而构成的一个数据实体</p>
-<p>1、用户定义对象(user-defined object)<br>由程序员自行创建的对象</p>
-<p>2、内建对象(native object)<br>JavaScript提供了一系列预先定义好的对象，这些可以拿来就用的对象称为内建对象( native object)<br>Array、Math、Date等</p>
-<p>3、宿主对象(host object)<br>由浏览器提供的预定义对象被称为宿主对象(host object )<br>宿主对象包括document、Form、Image和Element等。我们可以通过这些对象获得关于网页上表单、图像和各种表单元素等信息</p>
-<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>1、文档:DOM中的’D’<br>如果没有document(文档），DOM也就无从谈起。当创建了一个网页并把它加载到Web浏览器中时，DOM就在幕后悄然而生。它把你编写的网页文档转换为一个文档对象</p>
-<p>2、对象:DOM中的’O’<br>如上对象</p>
-<p>3、模型:DOM中的’M’<br>DOM中的“M”代表着“Model”(模型)，但说它代表着“Map”(地图）也未尝不可。模型也好，地图也罢，它们的含义都是某种事物的表现形式。就像一个模型火车代表着一列真正的火车、一张城市街道图代表着一个实际存在的城市那样，DOM代表着加载到浏览器窗口的当前网页。浏览器提供了网页的地图（或者说模型)，可以通过JavaScript去读取这张地图</p>
-<p>4、节点<br>(1)元素节点<br>(2)文本节点<br>(3)属性节点<br>(4)CSS<br>(5)获取元素<br>-getElementById 返回一个对象<br>-getElementsByTagName 返回一个对象数组，使用通配符（*）获取文档中总共有多少元素节点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>) ;</span><br><span class="line"><span class="keyword">var</span> items = shopping.getElementsByTagName(<span class="string">&quot;*&quot;</span>) ;</span><br></pre></td></tr></table></figure>
-<p>-getElementsByClassName 返回一个对象数组<br>使用这个方法还可以查找那些带有多个类名的元素。要指定多个类名，只要在字符串参数中用空格分隔类名即可<br>注意，即使在元素的class属性中，类名的顺序和参数中指定的不一样，也照样会匹配该元素。不仅类名的实际顺序不重要，就算元素还带有更多类名也没有关系。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">&quot;purchases&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> sales = shopping.getElementsByClassName(<span class="string">&quot;sale&quot;</span>);</span><br></pre></td></tr></table></figure>
+// const bufferArray = [1, 2];
+// console.log(Array.isArray(bufferArray));
+// bufferArray.push(1);
+// bufferArray.push(4, 3);
+// bufferArray.pop(1);
+// console.log(bufferArray);
 
-<p>5、获取和设置属性<br>(1)getAttribute 只能通过元素节点调用<br>(2)setAttribute 只能通过元素节点调用，修改属性值<br>细节:通过setAttribute对文档做出修改后，在通过浏览器的viewsource(查看源代码）选项去查看文档的源代码时看到的仍将是改变前的属性值，也就是说，setAttribute做出的修改不会反映在文档本身的源代码里。这种“表里不一”的现象源自DOM的工作模式:先加载文档的静态内容，再动态刷新，动态刷新不影响文档的静态内容。这正是DOM的真正威力:对页面内容进行刷新却不需要在浏览器里刷新页面。</p>
-<h4 id="案例研究：JavaScript图片库"><a href="#案例研究：JavaScript图片库" class="headerlink" title="案例研究：JavaScript图片库"></a>案例研究：JavaScript图片库</h4><p>DOM是一种适用于多种环境和多种程序设计语言的通用型API。如果想把DOM技巧运用在Web浏览器以外的应用环境里，严格遵守“第1级DOM”能够避免与兼容性有关的任何问题。<br>1、childNodes属性 用来获取任何一个元素的所有子元素<br>2、nodeType属性 共有12中可取值<br>以下3种具有实用价值：<br>-元素节点的nodeType属性值是1<br>-属性节点的nodeType属性值是2<br>-文本节点的nodeType属性值是3<br>3、nodeValue属性 得到和设置节点的值<br>4、firstChild和lastChild</p>
-<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>1、平稳退化<br>平稳退化(graceful degradation)，虽然某些功能无法使用，但最基本的操作仍能顺利完成<br>2、“javascript:”伪协议<br>“真”协议用来在因特网上的计算机之间传输数据包，如HTTP协议(http://) 、FTP协议（ftp://)等，伪协议则是一种非标准化的协议<br>“javascript:”伪协议让我们通过一个链接来调用JavaScript函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;javascript:popUp(&#x27;http://www.example.com/&#x27;);&quot;</span>&gt;Example&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p>3、CSS<br>结构与样式分离<br>渐进增强，用一些额外的信息层去包裹原始数据<br>4、分离javascript<br>5、向后兼容<br>(1)对象检测：检测浏览器对JavaScript的支持程度<br>(2)浏览器嗅探技术<br>通过提取浏览器供应商提供的信息来解决向后兼容问题。从理论上讲，可以通过JavaScript代码检索关于浏览器品牌和版本的信息，这些信息可以用来改善JavaScript脚本代码的向后兼容性，但这是一种风险非常大的技术。<br>首先，浏览器有时会“撒谎”。因为历史原因，有些浏览器会把自己报告为另外一种浏览器，还有一些浏览器允许用户任意修改这些信息<br>其次，为了适用于多种不同的浏览器，浏览器嗅探脚本会变得越来越复杂。如果想让浏览器嗅探脚本能够跨平台工作，就必须测试所有可能出现的供应商和版本号组合。这是一个无穷尽的任务，测试的组合情况越多，代码就越复杂和冗长<br>最后，许多浏览器嗅探脚本在进行这类测试时要求浏览器的版本号必须得到精确的匹配。因此，每当市场上出现新版本时，就不得不修改这些脚本<br>6、性能考虑<br>(1)尽量少访问DOM和尽量减少标记<br>(2)合并和放置脚本<br>多个脚本合并，减少请求次数<br>把所有/<script>标签都放到文档的末尾，/&lt;/body/&gt;标记之前，就可以让页面变得更快<br>(3)压缩脚本<br>压缩工具：<br>-Douglas Crockford的JSMin (<a target="_blank" rel="noopener" href="http://www.crockford.com/javascript/jsmin.html">http://www.crockford.com/javascript/jsmin.html</a>)<br>-雅虎的YUI Compressor (<a target="_blank" rel="noopener" href="http://developer.yahoo.com/yui/compressor">http://developer.yahoo.com/yui/compressor</a>)<br>-谷歌的Closure Compiler (<a target="_blank" rel="noopener" href="http://closure-compiler.appspot.com/home">http://closure-compiler.appspot.com/home</a>)</p>
-<h4 id="动态创建标记"><a href="#动态创建标记" class="headerlink" title="动态创建标记"></a>动态创建标记</h4><p>1、document.write &amp; innerHTML属性<br>2、DOM方法<br>(1)createElement<br>(1)appendChild<br>(1)createTextNode<br>(1)insertBefore<br>3、Ajax<br>(1)XMLHttpRequest对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHTTPObject</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest == <span class="string">&quot;undefined&quot;</span>) xMLHttpRequest =<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> Activexobject ( <span class="string">&quot;Msxm12.XMLHTTP.6.0&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject (<span class="string">&quot;Msxm12.XMLHTTP.3.0&quot;</span>);)<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> ActivexObject ( <span class="string">&quot;Msxm12.XMLHTTP&quot;</span>); )<span class="keyword">catch</span> (e) &#123; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest ( ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>XHTML5<br>本质上是使用严格的XML规则编写的HTML5。从技术角度说，Web浏览器应该将任何XHTML5文档都视为XML文档，而不是HTML文档。而在现实中，你还得在文档的头部发送正确的MIME类型，即application/xhtml+xml。有些浏览器不认识这个MIME类型，因而一般要在服务器端对浏览器进行探查后再发送。否则最坏的情况，页面很可能根本不会在浏览器中呈现。因此，绝大多数XHTML页面仍然是以HTML类型发送的。</p>
-<h4 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h4><p>1、三位一体的网页<br>(1)结构层<br>网页的结构层(structural layer)由HTML或XHTML之类的标记语言负责创建<br>(2)表示层<br>表示层(presentation layer)由CSS负责完成。CSS描述页面内容应该如何呈现<br>(3)行为层<br>行为层(behavior layer)负责内容应该如何响应事件这一问题。这是JavaScript语言和DOM主宰的领域<br>(4)分离<br>-使用(X)HTML去搭建文档的结构<br>-使用CSS去设置文档的呈现效果<br>-使用DOM脚本去实现文档的行为<br>2、style属性<br>在外部样式表里声明的样式不会进入style对象，在文档的<head>部分里声明的样式也是如此<br>style对象只包含在HTML代码里用style属性声明的样式<br>3、何时该使用DOM脚本设置样式<br>(1)根据元素在节点树里的位置来设置样式<br>(2)根据某种条件反复设置某种样式<br>(3)响应事件<br>4、className属性</p>
-<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><p>1、canvas<br>2、video和audio</p>
-<p>疑问点：<br>1、遇到的知识点觉得掌握了，没有记录，后面又忘了<br>重要的知识点都记录，不管有没有掌握<br>2、任务拆分评估时间不准<br>更深入的了解项目代码和业务逻辑<br>3、看书遇到问题的时候，先记录继续阅读，还是先解决问题在阅读？<br>先记录继续阅读，看后面是否有解答<br>4、原型链<br>不建议研究__proto__这种知识点，可以看看es6中新的关于原型链的继承<br>理解知识的时候，不要添加太多概念，避免混乱</p>
-</script></p>
       
     </div>
 
@@ -289,7 +258,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/16-origin-type-and-reference-type/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/18/49-typed-array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -307,7 +276,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/19/16-origin-type-and-reference-type/" class="post-title-link" itemprop="url">js-基本类型与引用类型</a>
+          <a href="/2023/04/18/49-typed-array/" class="post-title-link" itemprop="url">js类型化数组</a>
         </h2>
 
         <div class="post-meta-container">
@@ -317,15 +286,331 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-07-19 16:23:28" itemprop="dateCreated datePublished" datetime="2022-07-19T16:23:28+08:00">2022-07-19</time>
+      <time title="Created: 2023-04-18 18:17:14 / Modified: 19:00:50" itemprop="dateCreated datePublished" datetime="2023-04-18T18:17:14+08:00">2023-04-18</time>
     </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="什么是类型化数组（Typed-Array）"><a href="#什么是类型化数组（Typed-Array）" class="headerlink" title="什么是类型化数组（Typed Array）?"></a>什么是类型化数组（Typed Array）?</h6><blockquote>
+<p>JavaScript 类型化数组（typed array）是一种类似数组的对象，并提供了一种用于在内存缓冲区中访问原始二进制数据的机制。</p>
+</blockquote>
+<p><em>JavaScript 类型化数组中的每一个元素都是原始二进制值，而二进制值采用多种支持的格式之一（从 8 位整数到 64 位浮点数）。</em></p>
+<p><strong>注意：类型数组和普通数组不一样，使用Array.isArray()判断类型数组返回false，此外，一些在普通数组上使用的方法，在类型数组上无法使用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bufferArray = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(<span class="number">16</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">isArray</span>(bufferArray));</span><br><span class="line"><span class="comment">// false</span></span><br><span class="line">bufferArray.<span class="title function_">push</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// TypeError: bufferArray.push is not a function</span></span><br><span class="line">bufferArray.<span class="title function_">pop</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// TypeError: bufferArray.pop is not a function</span></span><br></pre></td></tr></table></figure>
+<h6 id="类型化数组的语法"><a href="#类型化数组的语法" class="headerlink" title="类型化数组的语法"></a>类型化数组的语法</h6><h6 id="类型化数组的特性、方法、使用场景"><a href="#类型化数组的特性、方法、使用场景" class="headerlink" title="类型化数组的特性、方法、使用场景"></a>类型化数组的特性、方法、使用场景</h6><h6 id="类型化数组的局限性、限制"><a href="#类型化数组的局限性、限制" class="headerlink" title="类型化数组的局限性、限制"></a>类型化数组的局限性、限制</h6>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/13/47-about-generate-function/generateFunction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/13/47-about-generate-function/generateFunction/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:14:27" itemprop="dateModified" datetime="2022-08-10T11:14:27+08:00">2022-08-10</time>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-13 10:14:08 / Modified: 17:42:32" itemprop="dateCreated datePublished" datetime="2023-04-13T10:14:08+08:00">2023-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          // 1、简单举例
+// function* generator(i) {
+//   return i + 1;
+// }
+// const gen = generator(3);
+// console.log(gen.next());
+// {value: 4, done: true}
+
+// 2、构造函数
+// function* Test() {
+//   // some operation
+// }
+// const newTest = new Test();
+// TypeError: Test is not a constructor
+
+// 3、yield关键字
+// function* testYield() {
+//   for (let num = 0; num < 3; num++) {
+//     yield num;
+//   }
+// }
+// const result = testYield();
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// { value: 0, done: false }
+// { value: 1, done: false }
+// { value: 2, done: false }
+// { value: undefined, done: true }
+
+// 3.1 return
+// function* testYield() {
+//   for (let num = 0; num < 3; num++) {
+//     yield num;
+//     return 45;
+//   }
+// }
+// const result = testYield();
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// { value: 0, done: false }
+// { value: 45, done: true }
+// { value: undefined, done: true }
+// { value: undefined, done: true }
+
+// 3.2 throw
+// function* testYield() {
+//   for (let num = 0; num < 3; num++) {
+//     yield num;
+//   }
+// }
+// const result = testYield();
+// console.log(result.next());
+// console.log(result.throw(new Error('1')));
+// console.log(result.next());
+// console.log(result.next());
+// { value: 0, done: false }
+// Error: 1
+
+// 4 next传参
+// function* testYield() {
+//   let num = 0;
+//   while (true) {
+//     const result = yield num;
+//     console.log(result);
+//   }
+// }
+// const result = testYield();
+// console.log(result.next(2)); // nothing return
+// console.log(result.next(3)); // result: 3
+// console.log(result.next(6)); // result: 6
+// console.log(result.next());
+
+// 5 yield*
+// function* testOne() {
+//   yield 2;
+//   yield 3;
+// }
+
+// function* testTwo() {
+//   yield 1;
+//   yield* testOne();
+//   yield 4;
+// }
+// const result = testTwo();
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// { value: 1, done: false }
+// { value: 2, done: false }
+// { value: 3, done: false }
+// { value: 4, done: false }
+// { value: undefined, done: true }
+
+// 5.1 yield* 迭代
+// function* test() {
+//   yield* [1, 2];
+//   yield* '3,4';
+//   yield* arguments;
+// }
+// const result = test(5, 6);
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+// { value: 1, done: false }
+// { value: 2, done: false }
+// { value: '3', done: false }
+// { value: ',', done: false }
+// { value: '4', done: false }
+// { value: 5, done: false }
+// { value: 6, done: false }
+// { value: undefined, done: true }
+
+// 6
+// function* test() {
+//   yield 1;
+//   const x = yield 'one';
+//   yield x;
+// }
+
+// var result = test();
+// console.log(result.next());
+// console.log(result.next());
+// console.log(result.next(100));
+// console.log(result.next());
+// { value: 1, done: false }
+// { value: 'one', done: false }
+// { value: 100, done: false }
+// { value: undefined, done: true }
+
+// 7
+// function* iterArr(arr) {
+//   if (Array.isArray(arr)) {
+//     for (let i = 0; i < arr.length; i++) {
+//       yield* iterArr(arr[i]);
+//     }
+//   } else {
+//     yield arr;
+//   }
+// }
+// let arr = ['a', ['b', ['c', ['d', 'e']]]];
+// const result = iterArr(arr);
+// arr = [...result];
+// console.log(arr);
+
+// 8
+function getCallSettings() {
+  utils.ajax({
+    url: '/dialer/dialerSetting',
+    method: 'GET',
+    success: (res) => {
+      it.next(res.dialerSetting); // 将res.dialerSetting传给yield表达式
+    },
+    error: (err) => {
+      it.throw(err); // 抛出错误
+    },
+  });
+}
+function* dealData() {
+  try {
+    let settingInfo = yield getCallSettings();
+    // do something……
+  } catch (err) {
+    console.log(err); // 接收错误
+  }
+}
+let it = dealData();
+it.next(); // 启动生成器
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/06/48-difference-about-require-import/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/06/48-difference-about-require-import/" class="post-title-link" itemprop="url">import、import()、require的区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-06 10:42:59 / Modified: 10:43:38" itemprop="dateCreated datePublished" datetime="2023-04-06T10:42:59+08:00">2023-04-06</time>
     </span>
 
   
@@ -364,7 +649,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/15-js-transform/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/03/31/47-about-generate-function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -382,7 +667,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/19/15-js-transform/" class="post-title-link" itemprop="url">js-类型转换</a>
+          <a href="/2023/03/31/47-about-generate-function/" class="post-title-link" itemprop="url">生成器函数和yield关键字</a>
         </h2>
 
         <div class="post-meta-container">
@@ -393,14 +678,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-07-19 15:59:15" itemprop="dateCreated datePublished" datetime="2022-07-19T15:59:15+08:00">2022-07-19</time>
+      <time title="Created: 2023-03-31 14:00:46" itemprop="dateCreated datePublished" datetime="2023-03-31T14:00:46+08:00">2023-03-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:11:17" itemprop="dateModified" datetime="2022-08-10T11:11:17+08:00">2022-08-10</time>
+      <time title="Modified: 2023-04-14 16:11:37" itemprop="dateModified" datetime="2023-04-14T16:11:37+08:00">2023-04-14</time>
     </span>
 
   
@@ -413,466 +698,62 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在开始之前，先说一下为什么会说这个，之前在看一篇文章的时候，提到 == 和 === 的区别。<br>== ：比较两个数据是否相等，允许进行类型转化<br>比如：1==true、’1’==true，结果都是true<br>===：严格比较两个数据是否是否相等，包括比较类型是否相同，类型不匹配返回false<br>比如：1===true、’1’===true，结果为false</p>
-<h4 id="数学运算符中的类型转换"><a href="#数学运算符中的类型转换" class="headerlink" title="数学运算符中的类型转换"></a>数学运算符中的类型转换</h4><p>1、减、乘、除运算<br><strong>非Number类型的使用减、乘、除(-、*、/)运算符时，会先将非Number类型转换为Number类型</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0, true先转换乘1，然后执行 1 - 1</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">false</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">undefined</span> <span class="comment">// NaN, undefined转换为数字为 NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">&#x27;5&#x27;</span>] <span class="comment">// 10, [&#x27;5&#x27;]先变成&#x27;5&#x27;（这一步涉及拆箱操作）,然后变成数字5</span></span><br></pre></td></tr></table></figure>
-<a class="btn" href="/2022/08/09/devan-operation/">拆箱操作</a>
-
-<p>2、加运算<br><strong>js中的加法运算，还可以用来拼接字符串</strong></p>
-<ul>
-<li>加号一侧为String类型，则加法运算被识别为拼接字符串操作，并会优先将另一侧转换为字符串类型</li>
-<li>加号一侧为Number类型，另一侧为原始类型，则将原始类型转换为Number类型</li>
-<li>加号一侧为Number类型，另一侧为引用类型，将引用类型和Number类型转换成字符串后进行拼接</li>
-<li><em>以上三点，优先级从高到低</em>*</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">&#x27;123&#x27;</span> <span class="comment">// &#x27;123123&#x27; (规则1)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">null</span> <span class="comment">//  123 (规则2)</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">true</span> <span class="comment">//  124 (规则2)</span></span><br><span class="line"><span class="number">123</span> + &#123;&#125;   <span class="comment">//  &#x27;123[object Object]&#x27; (规则3)</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="逻辑运算中的类型转换"><a href="#逻辑运算中的类型转换" class="headerlink" title="逻辑运算中的类型转换"></a>逻辑运算中的类型转换</h4><p>1、单个变量<br>先将变量转换为Boolean值<br><strong>只有null、undefined、’’、NaN、0、false的boolean值是false，其他情况都是true，比如：{}、[]</strong></p>
-<p>2、使用 == 比较中的5条规则<br><strong>建议使用 ===</strong></p>
-<ul>
-<li>规则1：NaN和其他任何类型比较永远返回false(包括和他自己)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
-<li>规则2：boolean和其他任何类型比较，Boolean首先被转换成Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// false,先将true转换为1，而不是把&#x27;2&#x27;变成true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;1&#x27;</span>] <span class="comment">// true, 先将true转换为1，[&#x27;1&#x27;]拆箱成&#x27;1&#x27;,在参考规则3</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;2&#x27;</span>] <span class="comment">// false, 同上</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false, 首先false变成0，然后参考规则4</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure></li>
-<li>String和Number比较，先将String转换为Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="string">&#x27;123&#x27;</span> <span class="comment">// true, &#x27;123&#x27;会变成123</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="number">0</span> <span class="comment">// true，&#x27;&#x27;会变成 0</span></span><br></pre></td></tr></table></figure></li>
-<li>null == undefined 比较结果是true，除此之外，null、undefined和其他任何结果的比较值都为false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>  <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
-<li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换为原始类型</li>
-<li><em>ToPrimitive规则是引用类型向原始类型转变的规则，它遵循先 valueOf后 toString的模式期望得到一个原始类型，如果无法得到一个原始类型，就会抛出TypeError</em>*<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; <span class="comment">// true, 对象和字符串比较，对象通过toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// true, [1,2,3]通过toString得到一个基本类型</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/15-js-transform/convert-table.png" alt="类型转换对照表"></p>
-<h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
-<a class="btn" href="/"><i class="fa fa-home"></i></a>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/12/14-about-fe-theory/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/14-about-fe-theory/" class="post-title-link" itemprop="url">前端概念相关-渐进增强与优雅降级</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-12 10:37:56" itemprop="dateCreated datePublished" datetime="2022-07-12T10:37:56+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-18 13:47:25" itemprop="dateModified" datetime="2022-07-18T13:47:25+08:00">2022-07-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="渐进增强-Progressive-Enhancement-相当于向上兼容"><a href="#渐进增强-Progressive-Enhancement-相当于向上兼容" class="headerlink" title="渐进增强(Progressive Enhancement)(相当于向上兼容)"></a>渐进增强(Progressive Enhancement)(相当于向上兼容)</h4><p>一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验</p>
-<h4 id="优雅降级-Graceful-Degradation-相当于向下兼容"><a href="#优雅降级-Graceful-Degradation-相当于向下兼容" class="headerlink" title="优雅降级(Graceful Degradation)(相当于向下兼容)"></a>优雅降级(Graceful Degradation)(相当于向下兼容)</h4><p>一开始就构建站点的完整功能，然后针对浏览器测试和修复。比如一开始使用 CSS3 的特性构建了一个应用，然后逐步针对各大浏览器进行 hack 使其可以在低版本浏览器上正常浏览</p>
-<p>向下兼容指的是高版本支持低版本的或者说后期开发的版本支持和兼容早期开发的版本，向上兼容的很少<br>大多数软件都是向下兼容的</p>
-<h4 id="渐进增强与优雅降级的区别"><a href="#渐进增强与优雅降级的区别" class="headerlink" title="渐进增强与优雅降级的区别"></a>渐进增强与优雅降级的区别</h4><p>优雅降级和渐进增强都关注于同一网站在不同设备以及不同浏览器下的表现程度<br>关键的区别则在于它们各自关注于何处，以及这种关注如何影响工作的流程</p>
-<p>优雅降级观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨 (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。</p>
-<p>渐进增强观点则认为应关注于内容本身。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.transition &#123; <span class="comment">/*渐进增强写法*/</span></span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">          transition: all .5s;</span><br><span class="line">&#125;</span><br><span class="line">.transition &#123; <span class="comment">/*优雅降级写法*/</span></span><br><span class="line">          <span class="attr">transition</span>: all .5s;</span><br><span class="line">       -o-transition: all .5s;</span><br><span class="line">     -moz-transition: all .5s;</span><br><span class="line">  -webkit-transition: all .5s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>前缀CSS3（-webkit-* / -moz-* / -o-*）和正常CSS3在浏览器中的支持情况是这样的：</p>
-<p>1、很久以前：浏览器前缀CSS3和正常CSS3都不支持；<br>2、不久之前：浏览器只支持前缀CSS3，不支持正常CSS3；<br>3、现在：浏览器既支持前缀CSS3，又支持正常CSS3；<br>4、未来：浏览器不支持前缀CSS3，仅支持正常CSS3.</p>
-<p>渐进增强的写法，优先考虑老版本浏览器的可用性，最后才考虑新版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，正常CSS3会覆盖前缀CSS3。优雅降级的写法，优先考虑新版本浏览器的可用性，最后才考虑老版本的可用性。在时期3前缀CSS3和正常CSS3都可用的情况下，前缀CSS3会覆盖正常的CSS3。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/05/13-document-location/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/13-document-location/" class="post-title-link" itemprop="url">各类文档地址</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-05 16:17:32" itemprop="dateCreated datePublished" datetime="2022-07-05T16:17:32+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-25 15:04:14" itemprop="dateModified" datetime="2022-10-25T15:04:14+08:00">2022-10-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a target="_blank" rel="noopener" href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p>
-<h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a target="_blank" rel="noopener" href="https://chromestatus.com/features">chrome status</a></p>
-<h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p>
-<h4 id="css层叠样式表"><a href="#css层叠样式表" class="headerlink" title="css层叠样式表"></a>css层叠样式表</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade">官方文档</a></p>
-<h4 id="Recoil"><a href="#Recoil" class="headerlink" title="Recoil"></a>Recoil</h4><p><a target="_blank" rel="noopener" href="https://recoiljs.org/">官方文档</a></p>
-<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p><a target="_blank" rel="noopener" href="https://reactjs.org/">官方文档</a></p>
-<h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><p><a target="_blank" rel="noopener" href="https://vuejs.org/">官方文档</a></p>
-<h4 id="VueUse–vue使用的hooks库"><a href="#VueUse–vue使用的hooks库" class="headerlink" title="VueUse–vue使用的hooks库"></a>VueUse–vue使用的hooks库</h4><p><a target="_blank" rel="noopener" href="https://vueuse.org/">官方文档</a></p>
-<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/">官方文档</a></p>
-<h4 id="testing-library-react"><a href="#testing-library-react" class="headerlink" title="testing-library/react"></a>testing-library/react</h4><p><a target="_blank" rel="noopener" href="https://testing-library.com/">官方文档</a></p>
-<h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h4><p><a target="_blank" rel="noopener" href="https://nodejs.org/dist/latest-v16.x/docs/api/documentation.html">官方文档-英文版</a><br><a target="_blank" rel="noopener" href="https://www.nodeapp.cn/assert.html">中文文档</a></p>
-<h4 id="ahooks"><a href="#ahooks" class="headerlink" title="ahooks"></a>ahooks</h4><p><a target="_blank" rel="noopener" href="https://ahooks.js.org/">官方文档</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/12-create-github-tokens/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/30/12-create-github-tokens/" class="post-title-link" itemprop="url">github生成令牌(Personal_access_tokens)操作步骤</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-30 11:23:56 / Modified: 13:18:19" itemprop="dateCreated datePublished" datetime="2022-06-30T11:23:56+08:00">2022-06-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="github生成令牌"><a href="#github生成令牌" class="headerlink" title="github生成令牌"></a>github生成令牌</h4><p>(1)登录<a target="_blank" rel="noopener" href="https://github.com/">GitHub网站</a><br>(2)找到setting页面 -&gt; Developer setting<br>(3)选择 Personal access tokens ，点击 Generate new token 按钮<br>(4)需要填写token的权限范围<br>(5)<strong><font color="Red">注意：生成的token只在生成后可以看一次，一定要记得保存！！！</font></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/11-github-push-insert-password/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/30/11-github-push-insert-password/" class="post-title-link" itemprop="url">github推送代码弹窗应该怎么输入？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-30 10:45:15 / Modified: 13:22:12" itemprop="dateCreated datePublished" datetime="2022-06-30T10:45:15+08:00">2022-06-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="github推送代码弹窗应该怎么输入"><a href="#github推送代码弹窗应该怎么输入" class="headerlink" title="github推送代码弹窗应该怎么输入?"></a>github推送代码弹窗应该怎么输入?</h4><p>当本地修改代码后，需要推送到github仓库时，由于本地未记录用户名与密码，导致push时，先后出现GitHub登录弹窗，以及一个小弹窗，<br>鉴于在输入实际操作中，两次输入username和password不知道应该怎么输入，做个记录，避免遗忘。</p>
-<p>(1)本地修改代码，提交。本文仅从git push开始记录，之前的命令和操作如果不知道怎么办，请自行百度或Google。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>—- 注意：有时推送代码时，会出现超时等情况，可能是网络问题，可多试几次或稍后再试</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line"><span class="attr">fatal</span>: unable to access <span class="string">&#x27;https://github.com/sunjinkang/test_vue3_sql.git/&#x27;</span>: Failed to connect to github.com port <span class="number">443</span>: Timed out</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------</span></span><br><span class="line">$ git push</span><br><span class="line"><span class="attr">fatal</span>: unable to access <span class="string">&#x27;https://github.com/sunjinkang/test_vue3_sql.git/&#x27;</span>: OpenSSL SSL_read: Connection was aborted, errno <span class="number">10053</span></span><br></pre></td></tr></table></figure>
-<p>(2)第一个GitHub登录弹窗<br><img src alt="github_login"><br>该弹窗中 <strong>username为github的登录邮箱，password为GitHub的登录密码</strong><br>—- 注意：本次输入完成后，虽然输入的均为正确信息，但是由于GitHub不在支持用户名密码推送，改为使用令牌，导致输入后悔提示登录失败</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logon failed, use ctrl+c to cancel basic credential prompt.</span><br><span class="line"><span class="attr">remote</span>: Support <span class="keyword">for</span> password authentication was removed on August <span class="number">13</span>, <span class="number">2021.</span> Please use a personal access token instead.</span><br></pre></td></tr></table></figure>
-<p>(3)第二个登录弹窗<br>![login_insert]<br>该弹窗会出现两次，第一次输入username，第二次输入password，<strong>username为GitHub的登录邮箱，<font color="Red">password为GitHub网站的连接令牌(Personal access tokens)(如何生成token可以查看文章<a href="/2022/06/30/github%E7%94%9F%E6%88%90%E4%BB%A4%E7%89%8C-Personal-access-tokens-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4/">github生成令牌</a>)</font></strong><br>—- 注意：如果password输入错误，会导致无法提交</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line">Logon failed, use ctrl+c to cancel basic credential prompt.</span><br><span class="line"><span class="attr">remote</span>: Support <span class="keyword">for</span> password authentication was removed on August <span class="number">13</span>, <span class="number">2021.</span> Please use a personal access token instead.</span><br><span class="line"><span class="attr">remote</span>: Please see https:<span class="comment">//github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.</span></span><br><span class="line">fatal: Authentication failed <span class="keyword">for</span> <span class="string">&#x27;https://github.com/xxxxxxx.git/&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>当username和password输入完成后，就可以正常push代码啦</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/28/10-about-meta/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/28/10-about-meta/" class="post-title-link" itemprop="url">meta标签的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-28 22:16:30" itemprop="dateCreated datePublished" datetime="2022-06-28T22:16:30+08:00">2022-06-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-21 15:48:28" itemprop="dateModified" datetime="2022-07-21T15:48:28+08:00">2022-07-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="meta标签的使用"><a href="#meta标签的使用" class="headerlink" title="meta标签的使用"></a>meta标签的使用</h4><h6 id="文档级元数据元素"><a href="#文档级元数据元素" class="headerlink" title="文档级元数据元素"></a><meta>文档级元数据元素</h6><p>meta标签一般放在HTML页面的head里面，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta">MDN</a>定义：</p>
-<blockquote>
-<p>HTML <meta> 元素表示那些不能由其它 HTML 元相关（meta-related）元素（(&lt;base&gt;,&lt;link&gt;,&lt;script&gt;,&lt;style&gt; 或 &lt;title&gt;）之一表示的任何元数据信息。</p>
+          <h6 id="什么是生成器函数？"><a href="#什么是生成器函数？" class="headerlink" title="什么是生成器函数？"></a>什么是生成器函数？</h6><blockquote>
+<p>function* 这种声明方式 (function关键字后跟一个星号）会定义一个生成器函数 (generator function)，它返回一个 Generator 对象。<br>也可以使用构造函数 GeneratorFunction 或 function* expression 定义**生成器函数 **</p>
 </blockquote>
-<h6 id="meta定义的元数据类型"><a href="#meta定义的元数据类型" class="headerlink" title="meta定义的元数据类型"></a>meta定义的元数据类型</h6><p>(1)name属性：meta元素提供文档级别元数据，应用于整个页面<br>– name和content一起使用，name表示元数据名称，content表示元数据的值<br>—- name=”author”，表示网页作者的名字，例如某个组织或机构</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mate name=&quot;author&quot; content=&quot;xxx@mail.com&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">name</span>(<span class="params">[param[, param[, ... param]]]</span>) &#123; statements &#125;</span><br><span class="line"><span class="comment">// name: 函数名</span></span><br><span class="line"><span class="comment">// param: 参数</span></span><br><span class="line"><span class="comment">// statements: 执行语句</span></span><br><span class="line"><span class="comment">// 声明方式可以为：function* name()&#123;&#125; 或者 function *name()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>—- name=”description”，是一段简短而精确的，对页面内容的描述</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//淘宝网页的meta</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;description&quot;</span> content=<span class="string">&quot;淘宝网 - 亚洲较大的网上交易平台，提供各类服饰、美容、家居、数码、话费/点卡充值… 数亿优质商品，同时提供担保交易(先收货后付款)等安全交易保障服务，并由商家提供退货承诺、破损补寄等消费者保障服务，让你安心享受网上购物乐趣！&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="简单举例"><a href="#简单举例" class="headerlink" title="简单举例"></a>简单举例</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">generator</span>(<span class="params">i</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>  i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> gen = <span class="title function_">generator</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(gen.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123;value: 4, done: true&#125;</span></span><br></pre></td></tr></table></figure>
+<p><em>生成器函数不能作为构造函数使用</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title class_">Test</span>() &#123;</span><br><span class="line"> <span class="comment">// some operation</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newTest = <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br></pre></td></tr></table></figure>
 
-<p>—- name=”keywords”，与页面内容相关的关键词，使用逗号分隔，需要注意某些搜索引擎会用这些关键词对文档进行分类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//淘宝网页的meta</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;keyword&quot;</span> content=<span class="string">&quot;淘宝,掏宝,网上购物,C2C,在线交易,交易市场,网上交易,交易市场,网上买,网上卖,购物网站,团购,网上贸易,安全购物,电子商务,放心买,供应,买卖信息,网店,一口价,拍卖,网上开店,网络购物,打折,免费开店,网购,频道,店铺&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="生成器函数的特性"><a href="#生成器函数的特性" class="headerlink" title="生成器函数的特性"></a>生成器函数的特性</h6><p>1、调用一个生成器函数并不会马上执行它里面的语句，而是返回一个这个生成器的 迭代器 （ iterator ）对象。通过next()方法获取返回值</p>
+<p>2、next()方法返回一个对象，这个对象包含两个属性：value 和 done, done为true表示函数完成，为false函数未完成，可继续调用next方法</p>
+<h6 id="生成器函数的相关特性"><a href="#生成器函数的相关特性" class="headerlink" title="生成器函数的相关特性"></a>生成器函数的相关特性</h6><p>1、yield<br>yield 关键字用于暂停和恢复生成器函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">testYield</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> num = <span class="number">0</span>; num &lt; <span class="number">3</span>; num++) &#123;</span><br><span class="line">    <span class="keyword">yield</span> num;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">testYield</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 0, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>—- name=”viewport”，为viewport（视口）的初始大小提供指示，目前仅用于移动设备</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>width：用来设置viewport的宽度为设备宽度，常用值：device-width、？？？？<br>initial-scale：为设备宽度与viewport大小之间的缩放比例<br>maximum-scale：？？？？<br>minimum-scale：？？？？<br>user-scalable：？？？？<br>minimal-ui：？？？？</p>
-<p>—- name=”robots”，表示爬虫对此页面的处理行为，或者说，应当遵守的规则，是用来做搜索引擎抓取的<br>content类型：<br>all：搜索引擎将索引此网页，并继续通过此网页的链接索引文件将被检索<br>none：搜索引擎将忽略此网页<br>index：搜索引擎索引此网页<br>follow：搜索引擎继续通过此网页的链接索引搜索其它的网页</p>
-<p>—- name=”renderer”，用来指定双核浏览器的渲染方式，比如360浏览器，我们可以通过这个设置来指定360浏览器的渲染方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">&quot;renderer&quot;</span> content=<span class="string">&quot;webkit&quot;</span>&gt; <span class="comment">//默认webkit内核</span></span><br><span class="line">&lt;meta name=&quot;renderer&quot; content=&quot;ie-comp&quot;&gt; //默认IE兼容模式</span><br><span class="line">&lt;meta name=&quot;renderer&quot; content=&quot;ie-stand&quot;&gt; //默认IE标准模式</span><br></pre></td></tr></table></figure>
-<p>content类型：<br>？？？？</p>
-<p>—- name=”spm-id”，？？？？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;spm-id&quot;</span> content=<span class="string">&quot;a21bo&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>—- name=”aplus-xplug”，？？？？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝网</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;aplus-xplug&quot;</span> content=<span class="string">&quot;NONE&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>yield 关键字使生成器函数执行暂停，yield 关键字后面的表达式的值返回给生成器的调用者，即表达式的值为返回对象中的value。它可以被认为是一个基于生成器的版本的 return 关键字。</p>
+<p>返回：</p>
+<ul>
+<li>IteratorResult 对象<ul>
+<li>value</li>
+<li>done</li>
+</ul>
+</li>
+</ul>
+<p>一旦遇到 yield 表达式，生成器的代码将被暂停运行，直到生成器的 next() 方法被调用。每次调用生成器的 next() 方法时，生成器都会恢复执行，直到达到以下某个值：</p>
+<ul>
+<li>yield：导致生成器再次暂停并返回生成器的新值。下一次调用 next() 时，在 yield 之后紧接着的语句继续执行。</li>
+<li>throw：用于从生成器中抛出异常。这让生成器完全停止执行，并在调用者中继续执行，正如通常情况下抛出异常一样。</li>
+<li>到达生成器函数的结尾.在这种情况下，生成器的执行结束，并且 IteratorResult 给调用者返回 value 的值是 undefined 并且 done 为 true。</li>
+<li>到达 return 语句。在这种情况下，生成器的执行结束，并将 IteratorResult 返回给调用者，其 value 的值是由 return 语句指定的，并且 done 为 true。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// throw</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">testYield</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> num = <span class="number">0</span>; num &lt; <span class="number">3</span>; num++) &#123;</span><br><span class="line">    <span class="keyword">yield</span> num;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">testYield</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="keyword">throw</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;1&#x27;</span>)));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 0, done: false &#125;</span></span><br><span class="line"><span class="comment">// Error: 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// return</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">testYield</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> num = <span class="number">0</span>; num &lt; <span class="number">3</span>; num++) &#123;</span><br><span class="line">    <span class="keyword">yield</span> num;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">45</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">testYield</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 0, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 45, done: true &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+如果将参数传递给生成器的 next() 方法，则该值将成为生成器当前 yield 操作返回的值</li>
+</ul>
+<p><em>注意：第一个next只是为了启动生成器，传递的参数不起作用</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">testYield</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">yield</span> num;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">testYield</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>(<span class="number">2</span>)); <span class="comment">// no result return</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>(<span class="number">3</span>)); <span class="comment">// result: 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>(<span class="number">6</span>)); <span class="comment">// result: 6</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br></pre></td></tr></table></figure>
 
+<p>2、yield*<br>用于委托给另一个generator或可迭代对象</p>
+<ul>
+<li>yield* 表达式迭代操作数，并产生它返回的每个值。</li>
+<li>yield* 表达式本身的值是当迭代器关闭时返回的值（即done为true时）。</li>
+<li>yield* 还可以 yield 其他任意的可迭代对象，比如说数组、字符串、arguments 对象等等。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eg:one</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">testOne</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">testTwo</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line"> <span class="keyword">yield</span>* <span class="title function_">testOne</span>();</span><br><span class="line"> <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">testTwo</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 4, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// eg:two</span></span><br><span class="line"><span class="keyword">function</span>* test () &#123;</span><br><span class="line"> <span class="keyword">yield</span>* [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"> <span class="keyword">yield</span>* <span class="string">&#x27;3,4&#x27;</span>;</span><br><span class="line"> <span class="keyword">yield</span>* <span class="variable language_">arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">test</span>(<span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: &#x27;3&#x27;, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: &#x27;,&#x27;, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: &#x27;4&#x27;, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 5, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 6, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><em>调用 next()方法时，如果传入了参数，那么这个参数会传给上一条执行的 yield 语句左边的变量</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> x = <span class="keyword">yield</span> <span class="string">&#x27;one&#x27;</span>;</span><br><span class="line">  <span class="keyword">yield</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = <span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>(<span class="number">100</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="title function_">next</span>());</span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: &#x27;one&#x27;, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 100, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>(2)http-equiv属性：meta元素是编译指令，提供的信息与类似命名的http头部相同<br>– http-equiv和content一起使用，http-equiv表示元数据名称，content表示元数据的值<br>– http-equiv所有允许的值都是特定http头部的名称<br>—- http-equiv=”X-UA-Compatible”</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淘宝网</span></span><br><span class="line">&lt;meta http-equiv=<span class="string">&quot;X-UA-Compatible&quot;</span> content=<span class="string">&quot;IE=10,chrome=1&quot;</span>&gt;<span class="comment">//IE浏览器适配</span></span><br></pre></td></tr></table></figure>
-<p>IE=10告诉浏览器，以当前浏览器支持的最新版本来渲染。<br>chrome=1告诉浏览器，如果当前IE浏览器安装了Google Chrome Frame插件，就以chrome内核来渲染页面。<br>两者都存在的情况：如果有chrome插件，就以chrome内核渲染，如果没有，就以当前浏览器支持的最高版本渲染。<br>另外，这个属性支持的范围是IE8-IE11<br>如果在http头部中也设置了这个属性，并且和meta中设置的有冲突，开发者偏好（meta元素）优先于Web服务器设置（HTTP头）。</p>
-<p>—- http-equiv=”content-type”，用来声明文档类型和字符集</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">&quot;content-type&quot;</span> content=<span class="string">&quot;text/html;charset=utf-8&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="生成器函数的作用"><a href="#生成器函数的作用" class="headerlink" title="生成器函数的作用"></a>生成器函数的作用</h6><p>生成器函数是ES6引入的新特性</p>
+<p>延迟执行：生成器可以在需要时逐个生成值，而不是一次性生成所有值。这种延迟执行可以节省内存和提高性能。<br>无限序列：生成器可以用来创建无限序列，如斐波那契数列或素数序列，这些序列通常很难使用常规方法来实现。<br>异步编程：生成器可以用来实现异步编程，通过使用生成器来实现异步函数，可以更方便地处理异步调用和异步错误。<br>迭代器：生成器可以用来创建迭代器，使得对集合的遍历变得更加方便和可读。<br>生成器协程：生成器可以用作协程，在 JavaScript 中实现类似线程的功能，从而实现更高级的并发和并行编程。</p>
+<p><em>举例</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">iterArr</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(arr)) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">          <span class="keyword">yield</span>* <span class="title function_">iterArr</span>(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">yield</span> arr;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [ <span class="string">&#x27;a&#x27;</span>, [<span class="string">&#x27;b&#x27;</span>,[ <span class="string">&#x27;c&#x27;</span>, [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]]]];</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">iterArr</span>(arr);</span><br><span class="line">arr = [...result];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span></span><br></pre></td></tr></table></figure>
 
-<p>—- http-equiv=”x-dns-prefetch-control”<br>一般来说，HTML页面中的a标签会自动启用DNS提前解析来提升网站性能，但是在使用https协议的网站中失效了，我们可以如下设置打开对a标签的提前解析：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">&quot;x-dns-prefetch-control&quot;</span> content=<span class="string">&quot;on&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>—- cache-control、Pragma、Expires，和缓存相关的设置，但是遗憾的是这些往往不生效，我们一般都通过http headers来设置缓存策略  ？？？？</p>
-<p>(3)charset属性：meta元素是一个字符集声明，告诉文档使用哪种字符编码<br>(4)itemprop属性：meta元素提供用户定义的元数据</p>
+<h6 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h6><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/function*">MDN: 生成器函数</a></p>
+<p>issue:</p>
+<ul>
+<li>co,执行生成器函数的库</li>
+<li>生成器函数的回收机制</li>
+<li>实现异步的操作，生成器函数比较鸡肋，使用async、await</li>
+<li>生成器函数是目前js中唯一可以实现暂停执行的方法</li>
+</ul>
 
       
     </div>
@@ -899,7 +780,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/27/9-text-type-about-markdown/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/01/17/46-linux-process/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -917,7 +798,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/27/9-text-type-about-markdown/" class="post-title-link" itemprop="url">MarkDown语法及示例</a>
+          <a href="/2023/01/17/46-linux-process/" class="post-title-link" itemprop="url">linux系统进程相关笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -927,15 +808,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-06-27 10:43:07" itemprop="dateCreated datePublished" datetime="2022-06-27T10:43:07+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-14 11:01:44" itemprop="dateModified" datetime="2022-10-14T11:01:44+08:00">2022-10-14</time>
+      <time title="Created: 2023-01-17 10:45:24 / Modified: 11:22:41" itemprop="dateCreated datePublished" datetime="2023-01-17T10:45:24+08:00">2023-01-17</time>
     </span>
 
   
@@ -948,108 +823,402 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="MarkDown语法及示例"><a href="#MarkDown语法及示例" class="headerlink" title="MarkDown语法及示例"></a>MarkDown语法及示例</h4><h6 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h6><p>```javascript<br>const name = ‘eric’;<br>….<br>``` </p>
-<h6 id="加粗字体"><a href="#加粗字体" class="headerlink" title="加粗字体"></a>加粗字体</h6><p>**文字**<br>__文字__</p>
-<h6 id="倾斜字体"><a href="#倾斜字体" class="headerlink" title="倾斜字体"></a>倾斜字体</h6><p>*文字*<br>_文字_</p>
-<h6 id="斜体加粗"><a href="#斜体加粗" class="headerlink" title="斜体加粗"></a>斜体加粗</h6><p>***文字***<br>___文字___</p>
-<h6 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h6><p>~~文字~~</p>
-<h6 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h6><table>
-<thead>
-<tr>
-<th>表头1</th>
-<th>表头2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>文字1</td>
-<td>文字2</td>
-</tr>
-</tbody></table>
-<h6 id="文字颜色"><a href="#文字颜色" class="headerlink" title="文字颜色"></a>文字颜色</h6><p><font color="red">文字</font></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;font color=<span class="string">&quot;red&quot;</span>&gt;文字&lt;/font&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;blue&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+          <h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><p>ps<br><img src="/.io//ps.png" alt="ps"></p>
+<p>ps aux<br><img src="/.io//ps-aux.png" alt="ps-aux"></p>
+<p>ps -elf<br><img src="/.io//ps-elf.png" alt="ps-elf"></p>
+<p>字段说明：</p>
+<ul>
+<li>USER：启动该进程的用户账号名称 </li>
+<li>PID：该进程的ID号，在当前系统中是唯一的 </li>
+<li>%CPU：CPU占用的百分比 </li>
+<li>%MEM：内存占用的百分比</li>
+<li>VSZ：占用虚拟内存（swap空间）的大小 </li>
+<li>RSS：占用常驻内存（物理内存）的大小</li>
+<li>TTY：该进程在哪个终端上运行。“？”表未知或不需要终端 </li>
+<li>STAT：显示了进程当前的状态，<ul>
+<li>S（休眠）: 进程在等待事件完成，如socket连接，等待信号量唤醒等等，也叫可中断睡眠。</li>
+<li>R（运行）: 进程要么在运行，要么在运行队列中，等待被OS分配时间片（调度）</li>
+<li>Z（僵死）: 子程序已停止，父程序无法读取子程序结束信息, <em>对处于僵死状态的进程应予以手动终止。</em></li>
+<li>D（休眠）: 不可中断的状态，又叫不可中断睡眠状态，通常等待I/O结束并告知其</li>
+<li>T（停止）: 目前进程正在侦测或停止，可以通过发送 SIGSTOP 信号给进程来停止（T）进程。这个被暂停的进程可以通过发送 SIGCONT 信号让进程继续运行。</li>
+<li>X（死亡）: 只是一个返回状态，你不会在任务列表里看到这个状态。当父进程读取子进程的返回结果时，子进程立刻释放资源。死亡状态是非常短暂的，几乎不可能通过ps命令捕捉到。</li>
+<li>&lt;（高优先级）</li>
+<li>N（低优先级）</li>
+<li>L（进程有页面文件锁定在进程中）</li>
+<li>s（进程为控制进程，如systemd进程）</li>
+<li>+（前台进程，后台运行在命令之后加 &amp;）</li>
+<li>I（多线程）</li>
+</ul>
+</li>
+<li>START：启动该进程的时间 </li>
+<li>TIME：该进程占用CPU时间 </li>
+<li>COMMAND：启动该进程的命令的名称</li>
+<li>PPID为父进程的PID</li>
+</ul>
+<p>top<br><img src="/.io//top.png" alt="top"></p>
+<ul>
+<li>Tasks（系统任务）信息：<ul>
+<li>total，总进程数；</li>
+<li>running，正在运行的进程数；</li>
+<li>sleeping，休眠的进程数；</li>
+<li>stopped，中止的进程数；</li>
+<li>zombie，僵死无响应的进程数。</li>
+</ul>
+</li>
+<li>CPU信息：<ul>
+<li>us，用户占用；</li>
+<li>sy，内核占用；</li>
+<li>ni，优先级调度占用；</li>
+<li>id，空闲CPU；<em>了解空闲的CPU百分比，主要看%id部分</em></li>
+<li>wa，I/O等待占用；</li>
+<li>hi，硬件中断占用；</li>
+<li>si，软件中断占用；</li>
+<li>st，虚拟化占用。</li>
+</ul>
+</li>
+<li>Mem（内存）信息：<ul>
+<li>total，总内存空间；</li>
+<li>used，已用内存；</li>
+<li>free，空闲内存；</li>
+<li>buffers，缓存区域。</li>
+</ul>
+</li>
+<li>Swap（交换空间）信息：<ul>
+<li>total，总交换空间；</li>
+<li>used，已用交换空间；</li>
+<li>free，空闲交换空间；</li>
+<li>cached，缓存空间。</li>
+</ul>
+</li>
+</ul>
 
-<h6 id="文字大小"><a href="#文字大小" class="headerlink" title="文字大小"></a>文字大小</h6><p><font size="10">文字</font></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;font size=<span class="string">&quot;10&quot;</span>&gt;文字&lt;/font&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">&quot;14&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+      
+    </div>
 
-<h6 id="文字字体"><a href="#文字字体" class="headerlink" title="文字字体"></a>文字字体</h6><p><font face="黑体">文字</font></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;font face=<span class="string">&quot;黑体&quot;</span>&gt;文字&lt;/font&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">&quot;微软雅黑&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+    
+    
+    
 
-<h6 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h6><p><mark style="bgcolor:red">文字</mark></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mark style=<span class="string">&quot;bgcolor:red&quot;</span>&gt;文字&lt;/mark&gt;</span><br></pre></td></tr></table></figure>
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
-<h6 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h6><ul>
-<li>第一行</li>
-<li>第二行</li>
-<li>第三行</li>
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/01/17/45-linux-common-command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/17/45-linux-common-command/" class="post-title-link" itemprop="url">linux系统常见操作命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-17 10:17:43 / Modified: 10:59:45" itemprop="dateCreated datePublished" datetime="2023-01-17T10:17:43+08:00">2023-01-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>查看进程</strong><br>ps</p>
+<p>ps aux</p>
+<ul>
+<li>a：显示当前终端下的所有进程信息，包括其他用户的进程。</li>
+<li>u：使用以用户为主的格式输出进程信息。</li>
+<li>x：显示当前用户在所有终端下的进程。</li>
+</ul>
+<p>ps -elf</p>
+<ul>
+<li>-e：显示系统内的所有进程信息。</li>
+<li>-l：使用长（long）格式显示进程信息。</li>
+<li>-f：使用完整的（full）格式显示进程信息。</li>
+</ul>
+<p>top<br>以全屏交互式的界面显示进程排名，及时跟踪包括CPU、内存等系统资源占用情况，默认情况下每三秒刷新一次</p>
+<p>pstree<br>pstree -aup<br>以树状图的方式展现进程之间的派生关系，显示效果比较直观。 </p>
+<ul>
+<li>-a：显示每个程序的完整指令，包含路径，参数或是常驻服务的标示； </li>
+<li>-c：不使用精简标示法； </li>
+<li>-G：使用VT100终端机的列绘图字符； </li>
+<li>-h：列出树状图时，特别标明现在执行的程序； </li>
+<li>-H&lt;程序识别码&gt;：此参数的效果和指定”-h”参数类似，但特别标明指定的程序； </li>
+<li>-l：采用长列格式显示树状图； </li>
+<li>-n：用程序识别码排序。预设是以程序名称来排序； </li>
+<li>-p：显示程序识别码； </li>
+<li>-u：显示用户名称；</li>
+</ul>
+<p><strong>带筛选条件查看进程</strong><br>ps aux | grep xxxxx</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/01/03/44-about-grid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/03/44-about-grid/" class="post-title-link" itemprop="url">关于grid布局的相关内容</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-03 15:28:21 / Modified: 16:17:58" itemprop="dateCreated datePublished" datetime="2023-01-03T15:28:21+08:00">2023-01-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="什么是grid布局？"><a href="#什么是grid布局？" class="headerlink" title="什么是grid布局？"></a>什么是grid布局？</h6><h6 id="怎么实现grid布局？"><a href="#怎么实现grid布局？" class="headerlink" title="怎么实现grid布局？"></a>怎么实现grid布局？</h6><h6 id="grid布局的好处"><a href="#grid布局的好处" class="headerlink" title="grid布局的好处"></a>grid布局的好处</h6><h6 id="grid布局中一些常用设置说明"><a href="#grid布局中一些常用设置说明" class="headerlink" title="grid布局中一些常用设置说明"></a>grid布局中一些常用设置说明</h6><ul>
+<li>grid-row: grid-row-start / grid-row-end;<ul>
+<li>grid-row-start    指定在哪一行开始显示网格元素。</li>
+<li>grid-row-end    指定停止显示网格元素的行，或要跨越多少行。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 设置 &quot;item1&quot; 在第 1 行开始，在第 4 行前结束 */</span></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span> / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 可以参考行号来设置网格元素，也可以使用关键字 &quot;span&quot; 来定义元素将跨越的行数。 */</span></span><br><span class="line"><span class="comment">/* 设置 &quot;item1&quot; 跨越两行 */</span></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span> / span <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>grid-template-columns<ul>
+<li>规定网格布局中的列数（和宽度）<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 设置三列，每列10px */</span></span><br><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 设置四列，每列宽度自适应 */</span></span><br><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: auto auto auto auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>repeat()<ul>
+<li>函数表示轨道列表的重复片段，允许以更紧凑的形式写入大量显示重复模式的列或行。</li>
+<li>该函数可以用于 CSS Grid 属性中 grid-template-columns 和 grid-template-rows。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* repeat(4, 1fr) */</span></span><br><span class="line"><span class="comment">/* 设置四列，每列均分 */</span></span><br><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">4</span>, <span class="number">1</span>fr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>fr<ul>
+<li>一种新的长度单位 fr(fraction)。它表示 Grid 布局中中剩余空间(leftover space)的一部分(fraction)。</li>
+<li>一般来说 1fr 的意思是“100%的剩余空间”, .25fr 意味着“25%的剩余空间”。当时当 fr 大于 1 的时候，则会重新计算比例来分配</li>
+<li>一般都建议使用 fr&gt;=1 的情况, 比如说 1fr 2fr 就比 .33fr .67fr 可读性更强。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/12/08/43-compress-picture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/08/43-compress-picture/" class="post-title-link" itemprop="url">前端压缩图片方法-canvas.toDataURL & canvas.toBlob</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-08 16:48:13" itemprop="dateCreated datePublished" datetime="2022-12-08T16:48:13+08:00">2022-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-12-09 09:43:39" itemprop="dateModified" datetime="2022-12-09T09:43:39+08:00">2022-12-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="为什么压缩图片？"><a href="#为什么压缩图片？" class="headerlink" title="为什么压缩图片？"></a>为什么压缩图片？</h6><p>浏览器在加载页面的时候，图片也是影响请求前端用户体验的一环：如果图片较大，请求耗时越长，那页面会长时间处于加载中或者白屏状态，导致用户体验较差。所以压缩图片就成了一种比较常用的优化前端性能的手段。</p>
+<h6 id="压缩图片方法"><a href="#压缩图片方法" class="headerlink" title="压缩图片方法"></a>压缩图片方法</h6><ul>
+<li>第一种：将图片传给后端，后端进行压缩</li>
+<li>第二种：使用canvas压缩图片<br>思路：</li>
 </ul>
 <ul>
-<li>第一行</li>
-<li>第二行</li>
-<li>第三行</li>
+<li>通过<input type="file">获取二进制图片</li>
+<li>使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象</li>
+<li>把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）</li>
+<li>将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）</li>
 </ul>
+<h6 id="toDataURL"><a href="#toDataURL" class="headerlink" title="toDataURL"></a>toDataURL</h6><ul>
+<li>canvas对象的一种方法，用于将canvas对象转换为base64位编码.</li>
+<li>转化实现：将图片绘制到canvas中，然后将canvas对象转换为base64编码，从而实现图片转为base64编码；</li>
+<li>转换为base64位编码的好处：<ul>
+<li>将图片转换为base64位编码后，图片会跟随代码（html、css、js）一起请求加载，不会再单独进行请求加载；</li>
+<li>可以防止由于图片路径错误导致图片加载失败的问题；</li>
+</ul>
+</li>
+<li>注意事项：<ul>
+<li>如果画布的高度或宽度是 0，那么会返回字符串“data:,”</li>
+</ul>
+</li>
+<li>参数：toDataURL(type, encoderOptions)<ul>
+<li>type指定转换为base64编码后图片的格式，如：image/png、image/jpeg、image/webp等等，默认为image/png格式；</li>
+<li>encoderOptions用于设置转换为base64编码后图片的质量，在指定图片格式为 image/jpeg 或 image/webp 的情况下，取值范围为0-1，超出取值范围用默认值0.92代替；<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL">MDN HTMLCanvasElement.toDataURL()</a></li>
+</ul>
+</li>
+</ul>
+<h6 id="toBlob"><a href="#toBlob" class="headerlink" title="toBlob"></a>toBlob</h6><ul>
+<li>创造 Blob 对象，用以展示 canvas 上的图片</li>
+<li>参数：toBlob(callback, type, quality)<ul>
+<li>callback：回调函数，可获得一个单独的 Blob 对象参数。如果图像未被成功创建，可能会获得 null 值</li>
+<li>type(可选): DOMString 类型，指定图片格式，默认格式（未指定或不支持）为 image/png</li>
+<li>quality(可选): Number 类型，值在 0 与 1 之间，当请求图片格式为 image/jpeg 或者 image/webp 时用来指定图片展示质量。如果这个参数的值不在指定类型与范围之内，则使用默认值，其余参数将被忽略<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob">MDN HTMLCanvasElement.toBlob()</a></li>
+</ul>
+</li>
+</ul>
+<h6 id="toDataURL和toBlob的差异与共同点"><a href="#toDataURL和toBlob的差异与共同点" class="headerlink" title="toDataURL和toBlob的差异与共同点"></a>toDataURL和toBlob的差异与共同点</h6><ul>
+<li><p>差异</p>
 <ul>
-<li>第一行</li>
-<li>第二行</li>
-<li>第三行<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* 第一行</span><br><span class="line">* 第二行</span><br><span class="line">* 第三行</span><br><span class="line"></span><br><span class="line">+ 第一行</span><br><span class="line">+ 第二行</span><br><span class="line">+ 第三行</span><br><span class="line"></span><br><span class="line">- 第一行</span><br><span class="line">- 第二行</span><br><span class="line">- 第三行</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h6><ol>
-<li>第一行</li>
-<li>第二行</li>
-<li>第三行</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 第一行</span><br><span class="line"><span class="number">2.</span> 第二行</span><br><span class="line"><span class="number">3.</span> 第三行</span><br></pre></td></tr></table></figure>
-
-<h6 id="嵌套列表-列表嵌套只需在子列表中的选项前面添加两个或四个空格即可"><a href="#嵌套列表-列表嵌套只需在子列表中的选项前面添加两个或四个空格即可" class="headerlink" title="嵌套列表: 列表嵌套只需在子列表中的选项前面添加两个或四个空格即可"></a>嵌套列表: 列表嵌套只需在子列表中的选项前面添加两个或四个空格即可</h6><ul>
-<li>第一行<ul>
-<li>1-1</li>
+<li>绘制处理图片的过程不同：<ul>
+<li>toBlob是直接将canvas中绘制的图形转换成Blob实例对象，再将Blob实例对象转成File实例对象即可</li>
+<li>toDataURL则是将canvas中绘制的图形转成base64编码的字符串，然后再将base64编码的字符串转成File的实例对象</li>
 </ul>
 </li>
-<li>第二行<ul>
-<li>2-1</li>
+<li>结果不同：<ul>
+<li>toBlob无返回值，通过传参中的回调函数，可获得一个单独的 Blob 对象参数</li>
+<li>toDataURL返回一个包含 data URI 的DOMString</li>
 </ul>
 </li>
-<li>第三行<ul>
-<li>3-1</li>
+<li>执行不同：<ul>
+<li>toDataURL是同步执行的，执行操作的时候会阻止UI</li>
+<li>toBlob通过回调函数获取返回值，非阻塞方式进行图像格式转换</li>
 </ul>
 </li>
+<li>toDataURL结果比toBlob占用更多的内存，toDataURL包含在base64中压缩的完整二进制数据，base64编码本身意味着二进制数据比现在大37％</li>
 </ul>
+</li>
+<li><p>共同点</p>
 <ul>
-<li>第一行<ol>
-<li>1-1</li>
-</ol>
-</li>
-<li>第二行<ol>
-<li>2-1</li>
-</ol>
-</li>
-<li>第三行<ol>
-<li>3-1</li>
-</ol>
+<li>canvas方法，在指定图片格式为 image/jpeg 或 image/webp 的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92</li>
+</ul>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">* 第一行</span><br><span class="line">  - <span class="number">1</span>-<span class="number">1</span></span><br><span class="line">* 第二行</span><br><span class="line">  - <span class="number">2</span>-<span class="number">1</span></span><br><span class="line">* 第三行</span><br><span class="line">  - <span class="number">3</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">* 第一行</span><br><span class="line">  <span class="number">1.</span> <span class="number">1</span>-<span class="number">1</span></span><br><span class="line">* 第二行</span><br><span class="line">  <span class="number">1.</span> <span class="number">2</span>-<span class="number">1</span></span><br><span class="line">* 第三行</span><br><span class="line">  <span class="number">1.</span> <span class="number">3</span>-<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="区块：区块引用是在段落开头使用-gt-符号-，然后后面紧跟一个空格符号"><a href="#区块：区块引用是在段落开头使用-gt-符号-，然后后面紧跟一个空格符号" class="headerlink" title="区块：区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号"></a>区块：区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号</h6><p>&gt; 区块</p>
-<blockquote>
-<p>区块1<br>区块2</p>
-</blockquote>
-<p>区块是可以嵌套的，一个 &gt; 符号是最外层，两个 &gt; 符号是第一层嵌套，以此类推</p>
-<blockquote>
-<p>1</p>
-<blockquote>
-<p>2</p>
-<blockquote>
-<p>3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h6 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h6><p>[链接名称](链接地址) 或 &lt;链接地址&gt;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[百度](www.baidu.com)</span><br><span class="line">&lt;www.baidu.com&gt;</span><br></pre></td></tr></table></figure>
-
-<h6 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h6><p>![alt 属性文本](图片地址)</p>
-<h6 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h6><p>$ 数学公式 $​​​​​​​<br>$$ 数学公式 $$​</p>
-<h6 id="指数和下标可以用-和-后加相应字符来实现-如果上下标的内容多于一个字符，需要用-将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。"><a href="#指数和下标可以用-和-后加相应字符来实现-如果上下标的内容多于一个字符，需要用-将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。" class="headerlink" title="指数和下标可以用^和_后加相应字符来实现,如果上下标的内容多于一个字符，需要用 {} 将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。"></a>指数和下标可以用^和_后加相应字符来实现,如果上下标的内容多于一个字符，需要用 {} 将这些内容括成一个整体。上下标可以嵌套，也可以同时使用。</h6><p>a^1<br>a_1<br>$$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$</p>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// toBlob</span></span><br><span class="line">canvas.<span class="title function_">toBlob</span>(</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">b</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> compressUrl = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(b); <span class="comment">//压缩后的文件url</span></span><br><span class="line">    <span class="keyword">let</span> fileName =</span><br><span class="line">      imgFile.<span class="property">name</span>.<span class="title function_">substring</span>(<span class="number">0</span>, imgFile.<span class="property">name</span>.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>)) +</span><br><span class="line">      <span class="string">&#x27;.&#x27;</span> +</span><br><span class="line">      imgType.<span class="title function_">split</span>(<span class="string">&#x27;/&#x27;</span>)[<span class="number">1</span>]; <span class="comment">//重构文件名</span></span><br><span class="line">    <span class="keyword">let</span> file = <span class="title function_">blobToFile</span>(b, fileName, imgType); <span class="comment">//Blob实例转成File实例</span></span><br><span class="line">    <span class="title function_">resolve</span>(&#123;</span><br><span class="line">      <span class="attr">url</span>: compressUrl,</span><br><span class="line">      <span class="attr">file</span>: file,</span><br><span class="line">    &#125;);</span><br><span class="line">    imgCanvas = <span class="literal">null</span>; <span class="comment">//释放内存</span></span><br><span class="line">  &#125;,</span><br><span class="line">  imgType,</span><br><span class="line">  quality</span><br><span class="line">);</span><br><span class="line"><span class="comment">// toDataURL</span></span><br><span class="line">canvas.<span class="title function_">toDataURL</span>(imgType, quality);</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1075,7 +1244,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/27/8-create-fixed-length-array/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/11/10/42-scrollInToView-params/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -1093,7 +1262,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/27/8-create-fixed-length-array/" class="post-title-link" itemprop="url">js-新建固定长度数据</a>
+          <a href="/2022/11/10/42-scrollInToView-params/" class="post-title-link" itemprop="url">scrollIntoView参数项说明</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1103,15 +1272,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-06-27 10:20:46" itemprop="dateCreated datePublished" datetime="2022-06-27T10:20:46+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-10 11:12:26" itemprop="dateModified" datetime="2022-08-10T11:12:26+08:00">2022-08-10</time>
+      <time title="Created: 2022-11-10 10:39:52 / Modified: 11:09:05" itemprop="dateCreated datePublished" datetime="2022-11-10T10:39:52+08:00">2022-11-10</time>
     </span>
 
   
@@ -1124,22 +1287,56 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="新建固定长度数组"><a href="#新建固定长度数组" class="headerlink" title="新建固定长度数组"></a>新建固定长度数组</h4><h6 id="使用primitives填充数组"><a href="#使用primitives填充数组" class="headerlink" title="使用primitives填充数组"></a>使用primitives填充数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [3, 3, 3]</span></span><br></pre></td></tr></table></figure>
-<p>Array(length).fill(initialValue) 是一种创建具有所需长度并使用原始值（数字、字符串、布尔值）初始化的数组的便捷方法</p>
-<h6 id="使用对象填充数组"><a href="#使用对象填充数组" class="headerlink" title="使用对象填充数组"></a>使用对象填充数组</h6><p>(1)使用Array().fill()创建数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).fill(&#123; <span class="attr">value</span>: <span class="number">0</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br></pre></td></tr></table></figure>
-<p>Array(length).fill({ value: 0 })创建一个 length 数组3，并为每个项目分配{ value: 0 }，要注意的是：分配相同的对象实例。<br>这种方法创建了一个具有相同对象实例的数组。如果碰巧修改了数组中的任何一项，那么数组中的每一项都会受到影响:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).fill(&#123; <span class="attr">value</span>: <span class="number">0</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br><span class="line">newArray[<span class="number">1</span>].value = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 2&#125;, &#123;value: 2&#125;, &#123;value: 2&#125;]</span></span><br></pre></td></tr></table></figure>
-<p>(2)使用Array.from()创建数组<br>Array.from() 方法对一个数组或可迭代对象创建一个新的，浅拷贝的数组实例。<br>因此利用 Array.from() 方法可以轻松地创建和初始化具有不同对象实例的数组:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>(<span class="number">3</span>), <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br></pre></td></tr></table></figure>
-<p>如果修改数组中的任何项目，则只有该项目会受到影响，其他项目不受影响：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>(<span class="number">3</span>), <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br><span class="line">newArray[<span class="number">1</span>].value = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 2&#125;, &#123;value: 0&#125;]</span></span><br></pre></td></tr></table></figure>
-<p>(3)使用Array.map()结合Array.fill()创建数组<br>注意：不要直接使用map新建数组，<strong>array.map()跳过 empty 元素</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).map(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [empty x 3]</span></span><br></pre></td></tr></table></figure>
-<p>解决方法很简单，将 empty 数组 fill null 即可：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="literal">null</span>).map(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br></pre></td></tr></table></figure>
-<p>注意：使用这种方法创建的数组，修改某一项时不影响其他项：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="literal">null</span>).map(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 0&#125;, &#123;value: 0&#125;]</span></span><br><span class="line">newArray[<span class="number">1</span>].value = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newArray);  <span class="comment">// [&#123;value: 0&#125;, &#123;value: 2&#125;, &#123;value: 0&#125;]</span></span><br></pre></td></tr></table></figure>
+          <h6 id="scrollIntoView作用"><a href="#scrollIntoView作用" class="headerlink" title="scrollIntoView作用"></a>scrollIntoView作用</h6><p><em>element.scrollIntoView</em><br>滚动元素的父容器，使被调用scrollIntoView的元素对用户可见2，即滚动到可视区域</p>
+<h6 id="scrollIntoView用法"><a href="#scrollIntoView用法" class="headerlink" title="scrollIntoView用法"></a>scrollIntoView用法</h6><p><em>element.scrollIntoView()</em><br>等同于element.scrollIntoView(true)</p>
+<p><em>element.scrollIntoView(boolean)</em></p>
+<ul>
+<li>boolean为true<ul>
+<li>元素的顶端将和其所在滚动区域的可视区域的顶端对齐</li>
+<li>与element.scrollIntoView({ block: “start”, inline: ‘nearest’})等价</li>
+</ul>
+</li>
+<li>boolean为false<ul>
+<li>元素的底端将和其所在滚定区域的可视区域的底端对齐</li>
+<li>与element.scrollIntoView({ block: “end”, inline: ‘nearest’})等价</li>
+</ul>
+</li>
+</ul>
+<p><em>element.scrollIntoView(options)</em><br>options为一个对象，属性如下：</p>
+<ul>
+<li>behavior<ul>
+<li>定义动画过渡效果</li>
+<li>值为：<ul>
+<li>auto(默认值)，无平滑滚动效果</li>
+<li>smooth，有平滑的滚动效果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>block<ul>
+<li>定义垂直方向的对齐</li>
+<li>值为：<ul>
+<li>start: 默认值，顶端对齐</li>
+<li>center：中间对齐</li>
+<li>end：底端对齐</li>
+<li>nearest：如果元素完全在可视区域内，则垂直方向不发生滚动。如果元素未能完全在可视区域内，则根据最短滚动距离原则，垂直方向滚动父级容器，使元素完全在可视区域内。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>inline<ul>
+<li>定义水平方向的对齐</li>
+<li>值为：<ul>
+<li>start：左端对齐</li>
+<li>center：中间对齐</li>
+<li>end：右端对齐</li>
+<li>nearest: 默认值，如果元素完全在可视区域内，则水平方向不发生滚动。如果元素未能完全在可视区域内，则根据最短滚动距离原则，水平方向滚动父级容器，使元素完全在可视区域内。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：取决于其他元素的布局情况，此元素可能不会完全滚动到顶端或底端</strong></p>
 
       
     </div>
@@ -1159,7 +1356,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/default-index/page/5/">5</a><a class="extend next" rel="next" href="/default-index/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/default-index/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><a class="extend next" rel="next" href="/default-index/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

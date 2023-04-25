@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="求值策略在介绍Thunk函数之前，需要先介绍一下什么叫做求值策略，即函数的参数应该什么时候求值。 1234function test(num) &amp;#123; return num+1;&amp;#125;test(2+3); 类似上面这样将一个表达式作为参数传入函数，表达式应该什么时候计算？实际上可以分为两种情况：  一种是**传值调用(call by value)**，即表达式在传入函数之前就已经进行了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thunk函数">
+<meta property="og:url" content="https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/index.html">
+<meta property="og:site_name" content="Sun ...something">
+<meta property="og:description" content="求值策略在介绍Thunk函数之前，需要先介绍一下什么叫做求值策略，即函数的参数应该什么时候求值。 1234function test(num) &amp;#123; return num+1;&amp;#125;test(2+3); 类似上面这样将一个表达式作为参数传入函数，表达式应该什么时候计算？实际上可以分为两种情况：  一种是**传值调用(call by value)**，即表达式在传入函数之前就已经进行了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sunjinkang.github.io/.io//thunkify.png">
+<meta property="og:image" content="https://sunjinkang.github.io/.io//promiseToThunk.png">
+<meta property="og:image" content="https://sunjinkang.github.io/.io//thunkToPromise.png">
+<meta property="article:published_time" content="2023-04-19T09:00:23.000Z">
+<meta property="article:modified_time" content="2023-04-20T10:24:47.490Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/.io//thunkify.png">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/","path":"2023/04/19/51-about-thunk-function/","title":"Thunk函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Thunk函数 | Sun ...something</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun ...something</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
+      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">求值策略</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFThunk%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">什么是Thunk函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JavaScript%E4%B8%AD%E7%9A%84Thunk%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">JavaScript中的Thunk函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Thunkify%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">Thunkify模块</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Thunk%E5%87%BD%E6%95%B0%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">5.</span> <span class="nav-text">Thunk函数的用途</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#co-Generator-Thunk"><span class="nav-number">6.</span> <span class="nav-text">co+Generator+Thunk</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Thunk函数 | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Thunk函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-19 17:00:23" itemprop="dateCreated datePublished" datetime="2023-04-19T17:00:23+08:00">2023-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-20 18:24:47" itemprop="dateModified" datetime="2023-04-20T18:24:47+08:00">2023-04-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h6 id="求值策略"><a href="#求值策略" class="headerlink" title="求值策略"></a>求值策略</h6><p>在介绍Thunk函数之前，需要先介绍一下什么叫做求值策略，即函数的参数应该什么时候求值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">num</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> num+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="number">2</span>+<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>类似上面这样将一个表达式作为参数传入函数，表达式应该什么时候计算？实际上可以分为两种情况：</p>
+<ul>
+<li>一种是**传值调用(call by value)**，即表达式在传入函数之前就已经进行了计算，test(2+3)就相当于test(5)，js、C语言、JAVA等语言使用的是这种策略。</li>
+<li>一种是**传名调用(call by name)**，即直接将表达式传入函数，只在需要的时候进行表达式的运算，Haskell(哈斯克尔)使用的是这种策略。<br>传值调用比较简单和便于理解，但是在没有用到的时候，先进行了计算，可能造成性能浪费。<h6 id="什么是Thunk函数"><a href="#什么是Thunk函数" class="headerlink" title="什么是Thunk函数"></a>什么是Thunk函数</h6><blockquote>
+<p>将表达式参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做 Thunk 函数。<br>它是”传名调用”的一种实现策略，用来替换某个表达式。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">num</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> num+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testValue</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">2</span>+<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="title function_">testValue</span>());</span><br><span class="line"><span class="comment">// testValue 函数就是Thunk函数</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="JavaScript中的Thunk函数"><a href="#JavaScript中的Thunk函数" class="headerlink" title="JavaScript中的Thunk函数"></a>JavaScript中的Thunk函数</h6><p>在 JavaScript 语言中，Thunk 函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。</p>
+<p>要点：多参数函数</p>
+<ul>
+<li>函数接受多个参数</li>
+<li>函数的最后一个参数是回调函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> testThunk = <span class="title class_">Thunk</span>(a, b);</span><br><span class="line"><span class="title function_">testThunk</span>(callback);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Thunk</span> = <span class="keyword">function</span> (<span class="params">a, b</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">callback</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">test</span>(a, b, callback);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的函数经过转换器处理，它变成了一个单参数函数，只接受回调函数作为参数。这个单参数版本，就叫做 Thunk 函数。<br>任何函数，只要参数有回调函数，就能写成 Thunk 函数的形式。下面是一个简单的 Thunk 函数转换器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toThunk = <span class="keyword">function</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">callback</span>)&#123;</span><br><span class="line">      args.<span class="title function_">push</span>(callback);</span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用上面的转换器之后，可将上述的例子修改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testThunk = <span class="title function_">toThunk</span>(test);</span><br><span class="line"><span class="title function_">testThunk</span>(a, b)(callback)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Thunkify模块"><a href="#Thunkify模块" class="headerlink" title="Thunkify模块"></a>Thunkify模块</h6><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/tj/node-thunkify">https://github.com/tj/node-thunkify</a><br>使用举例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> read = <span class="title function_">thunkify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">read</span>(<span class="string">&#x27;package.json&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>)(<span class="keyword">function</span>(<span class="params">err, str</span>)&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><em>注意：thunkify中存在一个检查机制，回调函数只运行一次。</em><br><img src="/.io//thunkify.png" alt="thunkify源码"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> thunkify <span class="keyword">from</span> <span class="string">&#x27;thunkify&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = a + b;</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thunkTest = <span class="title function_">thunkify</span>(test);</span><br><span class="line"><span class="title function_">thunkTest</span>(<span class="number">1</span>, <span class="number">2</span>)(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h6 id="Thunk函数的用途"><a href="#Thunk函数的用途" class="headerlink" title="Thunk函数的用途"></a>Thunk函数的用途</h6><p>Thunk函数可以和Generator结合使用，Thunk 函数作为在 Generator 中要迭代的值，通过 co 来对 Generator 进行流程控制。<br>Generator函数中可以使用yield将程序的执行权移出，然后通过Thunk函数的回调函数，再将执行权还给Generator函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> thunkify <span class="keyword">from</span> <span class="string">&#x27;thunkify&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = a + b;</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thunkTest = <span class="title function_">thunkify</span>(test);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">gen</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">thunkTest</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">thunkTest</span>(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Thunk函数处理</span></span><br><span class="line"><span class="keyword">const</span> genTest = <span class="title function_">gen</span>();</span><br><span class="line"><span class="keyword">const</span> genValue = genTest.<span class="title function_">next</span>();</span><br><span class="line">genValue.<span class="title function_">value</span>(<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">  <span class="keyword">const</span> genValue1 = genTest.<span class="title function_">next</span>(data);</span><br><span class="line">  genValue1.<span class="title function_">value</span>(<span class="keyword">function</span> (<span class="params">data1</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data1);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改为递归方式调用</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">genFn</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> gen = <span class="title function_">fn</span>();</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">next</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="keyword">const</span> genValue = gen.<span class="title function_">next</span>(data);</span><br><span class="line">    <span class="keyword">if</span> (genValue.<span class="property">done</span>) <span class="keyword">return</span>;</span><br><span class="line">    genValue.<span class="title function_">value</span>(next);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">next</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">genFn</span>(gen);</span><br></pre></td></tr></table></figure>
+
+<h6 id="co-Generator-Thunk"><a href="#co-Generator-Thunk" class="headerlink" title="co+Generator+Thunk"></a>co+Generator+Thunk</h6><p>可以通过co控制Generator函数中的Thunk函数的执行流程<br>co地址：<a target="_blank" rel="noopener" href="https://github.com/tj/co">https://github.com/tj/co</a></p>
+<p><em>注意：co从4.0.0开始返回的是promise，之前返回的是thunk函数，4.0.0之前会把promise转成thunk函数</em></p>
+<p><img src="/.io//promiseToThunk.png" alt="promiseToThunk"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="comment">// 这里的thunk函数也可以自己实现</span></span><br><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> get = <span class="title function_">thunkify</span>(request.<span class="property">get</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *<span class="title function_">results</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">get</span>(<span class="string">&#x27;http://ign.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">yield</span> [a, b, c]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="comment">// 3 concurrent requests at a time</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 6 concurrent requests</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">yield</span> [results, results]);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.io//thunkToPromise.png" alt="thunkToPromise"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> co <span class="keyword">from</span> <span class="string">&#x27;co&#x27;</span>;</span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span>* () &#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">yield</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="literal">true</span>);</span><br><span class="line">  <span class="comment">// var result = yield Promise.reject(&#x27;errorInfo&#x27;);</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`then: <span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/19/50-try-catch-return/tryCatchReturn/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/20/51-about-thunk-function/aboutThunkFunction/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

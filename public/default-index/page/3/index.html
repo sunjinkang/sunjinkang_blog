@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -178,7 +178,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/05/30-some-convenient-code/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/Readme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -196,84 +196,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/05/30-some-convenient-code/" class="post-title-link" itemprop="url">开发中使用的便捷代码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-05 13:24:10 / Modified: 13:42:03" itemprop="dateCreated datePublished" datetime="2022-09-05T13:24:10+08:00">2022-09-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h6 id="基于条件设置对象属性"><a href="#基于条件设置对象属性" class="headerlink" title="基于条件设置对象属性"></a>基于条件设置对象属性</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="comment">// 非空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;test_name&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; name: &#x27;test_name&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="无中间变量交换变量值"><a href="#无中间变量交换变量值" class="headerlink" title="无中间变量交换变量值"></a>无中间变量交换变量值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> one = <span class="string">&#x27;12&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> two = <span class="string">&#x27;34&#x27;</span>;</span><br><span class="line">[one, two] = [two, one];</span><br><span class="line"><span class="built_in">console</span>.log(one); <span class="comment">// &#x27;34&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(two); <span class="comment">// &#x27;12&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="过滤Boolean值为false的值"><a href="#过滤Boolean值为false的值" class="headerlink" title="过滤Boolean值为false的值"></a>过滤Boolean值为false的值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">0</span>, <span class="literal">false</span>, <span class="number">12</span>, <span class="literal">true</span>, <span class="string">&#x27;12&#x27;</span>, <span class="literal">undefined</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">8</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="keyword">const</span> result = array.filter(<span class="built_in">Boolean</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [12, true, &#x27;12&#x27;, 8]</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="转换元素类型"><a href="#转换元素类型" class="headerlink" title="转换元素类型"></a>转换元素类型</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将Number类型转换为String</span></span><br><span class="line"><span class="keyword">const</span> string = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">12</span>].map(<span class="built_in">String</span>);</span><br><span class="line"><span class="built_in">console</span>.log(string); <span class="comment">// [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;12&#x27;]</span></span><br><span class="line"><span class="comment">// 将String类型转换为Number</span></span><br><span class="line"><span class="keyword">const</span> string = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;12&#x27;</span>].map(<span class="built_in">Number</span>);</span><br><span class="line"><span class="built_in">console</span>.log(string); <span class="comment">// [1, 2, 3, 12]</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> repeatArray = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">23</span>,<span class="number">45</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> result = [...new <span class="built_in">Set</span>(repeatArray)];</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [1, 3, 5, 6, 7, 8, 9, 23, 45, 2]</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/04/24-about-design-model1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/04/24-about-design-model1/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(2)</a>
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/Readme/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -284,14 +207,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-09-04 21:29:09" itemprop="dateCreated datePublished" datetime="2022-09-04T21:29:09+08:00">2022-09-04</time>
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-22 17:16:30" itemprop="dateModified" datetime="2022-09-22T17:16:30+08:00">2022-09-22</time>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
     </span>
 
   
@@ -304,26 +227,79 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h4><p>创建型设计模式是一类处理对象创建的设计模式，通过某种方式控制对象的创建来避免基本对象创建时可能导致设计上的问题或增加设计上的复杂度</p>
-<h6 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h6><p>(1)简单工厂模式(Simple Factory):又叫静态工厂方法，由一个工厂对象决定创建某一种产品对象类的实例。主要用来创建同一类对象。<br><img src="/2022/09/04/24-about-design-model1/simple-factory1.png" alt="simple-factory1"><br><img src="/2022/09/04/24-about-design-model1/simple-factory2.png" alt="simple-factory2"></p>
-<p>(2)一个对象有时也可代替许多类<br><img src="/2022/09/04/24-about-design-model1/create-pop.png" alt="create-pop"></p>
-<p>第一种是通过类实例化对象创建的，第二种是通过创建一个新对象然后包装增强其属性和功能来实现的。他们之间的差异性也造成前面通过类创建的对象,如果这些类继承同一父类，那么他们的父类原型上的方法是可以共用的。而后面寄生方式创建的对象都是一个新的个体，所以他们的方法就不能共用了</p>
-<h6 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h6><p>安全模式类：可以屏蔽使用这对类的错误使用造成的错误<br><img src="/2022/09/04/24-about-design-model1/safe-model-class.png" alt="safe-model-class"><br><img src="/2022/09/04/24-about-design-model1/safe-factory-model.png" alt="safe-factory-model"></p>
-<h6 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h6><p>抽象工厂模式(Abstract Factory):通过对类的工厂抽象使其业务用于对产品类簇的创建，而不负责创建某一类产品的实例</p>
-<p>(1)抽象类<br>抽象类是一种声明但不能使用的类<br><img src="/2022/09/04/24-about-design-model1/abstract-car.png" alt="abstract-car"><br>创建的这个car类其实什么都不能做，创建时没有任何属性，然而原型prototype上的方法也不能使用，否则会报错。但在继承上却是很有用的，因为定义了一种类,并定义了该类所必备的方法，如果在子类中没有重写这些方法，那么当调用时能找到这些方法便会报错。这一特点是很有必要的，因为在一些大型应用中，总会有一些子类去继承另一些父类，这些父类经常会定义一些必要的方法，却没有具体的实现，如 car类中的 getPrice()和getSpeed()方法，那么一旦用子类创建了一个对象，该对象总是应该具备一些必要的方法，但如果这些必要的方法从父类中继承过来而没有具体去重写实现,那么实例化对象便会调用父类<br>中的这些方法，如果父类能有一个友好提示，那么对于忘记重写子类的这些错误遗漏的避免是很有帮助的。这也是抽象类的一个作用，即定义一个产品簇，并声明一些必备的方法，如果子类中没有去重写就会抛出错误。</p>
-<p>(2)抽象工厂模式：一般用它来作为父类创建一些子类<br><img src="/2022/09/04/24-about-design-model1/abstract-factory1.png" alt="abstract-factory1"><br><img src="/2022/09/04/24-about-design-model1/abstract-factory2.png" alt="abstract-factory2"><br>抽象工厂其实是一个实现子类继承父类的方法，在这个方法中需要通过传递子类以及要继承父类(抽象类)的名称，并且在抽象工厂方法中又增加了一次对抽象类存在性的一次判断，如果存在，则将子类继承父类的方法。然后子类通过寄生式继承。继承父类过程中有一个地方需要注意，就是在对过渡类的原型继承时，不是继承父类的原型，而是通过new关键字复制的父类的一个实例，这么做是因为过渡类不应仅仅继承父类的原型方法，还要继承父类的对象属性，所以要通过new关键字将父类的构造函数执行一遍来复制构造函数中的属性和方法。对抽象工厂添加抽象类也很特殊,因为抽象工厂是个方法不需要实例化对象，故只需要一份，因此直接为抽象工厂添加类的属性即可，于是就可以通过点语法在抽象工厂上添加需要的三个汽车簇抽象类Car、Bus、Truck<br><img src="/2022/09/04/24-about-design-model1/abstract-factory3.png" alt="abstract-factory3"></p>
-<h6 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h6><p>建造者模式(Builder):将一个复杂对象的构建层与其表示层相互分离，同样的构建过程可采用不同的表示</p>
-<p>工厂模式主要是为了创建对象实例或者类簇(抽象工厂)，关心的是最终产出(创建)的是什么。不关心你创建的整个过程，仅仅需要知道你最终创建的结果。所以通过工厂模式我们得到的都是对象实例或者类簇。<br>建造者模式在创建对象时要更为复杂一些，虽然其目的也是为了创建对象，但是它更多关心的是创建这个对象的整个过程，甚至于创建对象的每一个细节<br><img src="/2022/09/04/24-about-design-model1/human.png" alt="human"><br><img src="/2022/09/04/24-about-design-model1/name.png" alt="name"><br><img src="/2022/09/04/24-about-design-model1/work.png" alt="work"><br><img src="/2022/09/04/24-about-design-model1/person.png" alt="person"></p>
-<p>工厂模式创建出来的是一个对象，它追求的是创建的结果<br>建造者模式不仅仅可得到创建的结果，也参与了创建的具体过程，对于创建的具体实现的细节也参与了干涉，这种模式创建的对象是一个复合对象</p>
-<p><strong>注意：这种方式对于整体对象类的拆分无形中增加了结构的复杂性，因此如果对象粒度很小，或者模块间的复用率很低并且变动不大，最好还是创建整体对象</strong></p>
-<h6 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h6><p>原型模式(Prototype):用原型实例指向创建对象的类，使用于创建新的对象的类共享原型对象的属性以及方法</p>
-<p>原型模式就是将可复用的、可共享的、耗时大的从基类中提出来然后放在其原型中，然后子类通过组合继承或者寄生组合式继承而将方法和属性继承下来，对于子类中那些需要重写的方法进行重写,这样子类创建的对象既具有子类的属性和方法也共享了基类的原型方法<br><img src="/2022/09/04/24-about-design-model1/prototype-model.png" alt="prototype-model"><br>原型模式有一个特点就是在任何时候都可以对基类或者子类进行方法的拓展，而且所有被实例化的对象或者类都能获取这些方法</p>
-<p>(1)原型继承<br>原型模式更多的是用在对对象的创建上。比如创建一个实例对象的构造函数比较复杂，或者耗时比较长，或者通过创建多个对象来实现。此时最好不要用new关键字去复制这些基类，但可以通过对这些对象属性或者方法进行复制来实现创建，这是原型模式的最初思想。如果涉及多个对象，也可以通过原型模式来实现对新对象的创建。那么首先要有一个原型模式的对象复制方法<br><img src="/2022/09/04/24-about-design-model1/prototype-inherit1.png" alt="prototype-inherit1"><br><img src="/2022/09/04/24-about-design-model1/prototype-inherit2.png" alt="prototype-inherit2"></p>
-<p><strong>原型对象更适合在创建复杂的对象时，对于那些需求一直在变化而导致对象结构不停地改变时，将那些比较稳定的属性与方法共用而提取的继承的实现</strong></p>
-<h6 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h6><p>单例模式(Singleton):又被称为单体模式，是只允许实例化一次的对象类。有时我们也用一个对象来规划一个命名空间，井井有条地管理对象上的属性与方法</p>
-<p>(1)命名空间<br>命名空间就是人们所说的namespace，有人也叫它名称空间。<br>它解决这么一类问题:为了让代码更易懂，人们常常用单词或者拼音定义变量或者方法，但由于人们可用的单词或者汉字拼音是有限的，所以不同的人定义的变量使用的单词名称很有可能重复，此时就需要用命名空间来约束每个人定义的变量来解决这类问题</p>
-<p>(2)静态变量<br><img src="/2022/09/04/24-about-design-model1/static-param.png" alt="static-param"></p>
-<p>(3)惰性单例<br><img src="/2022/09/04/24-about-design-model1/lazy-single-instance.png" alt="lazy-single-instance"></p>
+          <h1 id="Co"><a href="#Co" class="headerlink" title="Co"></a>Co</h1><p>  <a target="_blank" rel="noopener" href="https://travis-ci.org/visionmedia/co"><img src="https://travis-ci.org/visionmedia/co.svg?branch=master" alt="Build Status"></a></p>
+<p>  Generator based flow-control goodness for nodejs and the browser, using<br>  thunks <em>or</em> promises, letting you write non-blocking code in a nice-ish<br>  way.</p>
+<p>  Co is careful to relay any errors that occur back to the generator, including those<br>  within the thunk, or from the thunk’s callback. “Uncaught” exceptions in the generator<br>  are passed to <code>co()</code>‘s thunk.</p>
+<p>  Make sure to view the <a target="_blank" rel="noopener" href="https://github.com/visionmedia/co/tree/master/examples">examples</a>.</p>
+<h2 id="Platform-Compatibility"><a href="#Platform-Compatibility" class="headerlink" title="Platform Compatibility"></a>Platform Compatibility</h2><p>  When using node 0.11.x or greater, you must use the <code>--harmony-generators</code><br>  flag or just <code>--harmony</code> to get access to generators.</p>
+<p>  When using node 0.10.x and lower or browsers without generator support,<br>  you must use <a target="_blank" rel="noopener" href="https://github.com/TooTallNate/gnode">gnode</a> and/or <a target="_blank" rel="noopener" href="http://facebook.github.io/regenerator/">regenerator</a>.</p>
+<p>  When using node 0.8.x and lower or browsers without <code>setImmediate</code>,<br>  you must include a <code>setImmediate</code> polyfill.<br>  For a really simple polyfill, you may use <a target="_blank" rel="noopener" href="https://github.com/component/setimmediate.js">component/setimmediate.js</a>.<br>  For a more robust polyfill, you may use <a target="_blank" rel="noopener" href="https://github.com/YuzuJS/setImmediate">YuzuJS/setImmediate</a>.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install co</span><br></pre></td></tr></table></figure>
+
+<h2 id="Associated-libraries"><a href="#Associated-libraries" class="headerlink" title="Associated libraries"></a>Associated libraries</h2><p>  View the <a target="_blank" rel="noopener" href="https://github.com/visionmedia/co/wiki">wiki</a> for libraries that<br>  work well with Co.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> get = <span class="title function_">thunkify</span>(request.<span class="property">get</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;http://cloudup.com&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a[<span class="number">0</span>].<span class="property">statusCode</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(b[<span class="number">0</span>].<span class="property">statusCode</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(c[<span class="number">0</span>].<span class="property">statusCode</span>);</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">get</span>(<span class="string">&#x27;http://cloudup.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> res = <span class="keyword">yield</span> [a, b, c];</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Error handling</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> res = <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;http://badhost.invalid&#x27;</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">code</span>) <span class="comment">// ENOTFOUND</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Yieldables"><a href="#Yieldables" class="headerlink" title="Yieldables"></a>Yieldables</h2><p>  The “yieldable” objects currently supported are:</p>
+<ul>
+<li>promises</li>
+<li>thunks (functions)</li>
+<li>array (parallel execution)</li>
+<li>objects (parallel execution)</li>
+<li>generators (delegation)</li>
+<li>generator functions (delegation)</li>
+</ul>
+<p>To convert a regular node function that accepts a callback into one which returns a thunk you may want to use <a target="_blank" rel="noopener" href="https://github.com/visionmedia/node-thunkify">thunkify</a> or similar.</p>
+<h2 id="Thunks-vs-promises"><a href="#Thunks-vs-promises" class="headerlink" title="Thunks vs promises"></a>Thunks vs promises</h2><p>  While co supports promises, you may return “thunks” from your functions,<br>  which otherwise behaves just like the traditional node-style callback<br>  with a signature of: <code>(err, result)</code>.</p>
+<p>  For example take <code>fs.readFile</code>, we all know the signature is:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">readFile</span>(path, encoding, <span class="keyword">function</span>(<span class="params">err, result</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>  To work with Co we need a function to return another function of<br>  the same signature:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">readFile</span>(path, encoding)(<span class="keyword">function</span>(<span class="params">err, result</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>  Which basically looks like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">read</span>(<span class="params">path, encoding</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">cb</span>)&#123;</span><br><span class="line">    fs.<span class="title function_">readFile</span>(path, encoding, cb);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  or to execute immediately like this (see <a target="_blank" rel="noopener" href="https://github.com/visionmedia/node-thunkify"><code>thunkify</code></a>):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">read</span>(<span class="params">path, encoding</span>) &#123;</span><br><span class="line">  <span class="comment">// call fs.readFile immediately, store result later</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">cb</span>)&#123;</span><br><span class="line">    <span class="comment">// cb(err, result) or when result ready</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Receiver-propagation"><a href="#Receiver-propagation" class="headerlink" title="Receiver propagation"></a>Receiver propagation</h2><p>  When <code>co</code> is invoked with a receiver it will propagate to most yieldables,<br>  allowing you to alter <code>this</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ctx = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">assert</span>(<span class="variable language_">this</span> == ctx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="title function_">assert</span>(<span class="variable language_">this</span> == ctx);</span><br><span class="line">  <span class="keyword">yield</span> foo;</span><br><span class="line">&#125;).<span class="title function_">call</span>(ctx)</span><br></pre></td></tr></table></figure>
+
+<p>  You also pass arguments through the generator:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *(a)&#123;</span><br><span class="line">  <span class="title function_">assert</span>(<span class="variable language_">this</span> == ctx);</span><br><span class="line">  <span class="title function_">assert</span>(<span class="string">&#x27;yay&#x27;</span> == a);</span><br><span class="line">  <span class="keyword">yield</span> foo;</span><br><span class="line">&#125;).<span class="title function_">call</span>(ctx, <span class="string">&#x27;yay&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="co-fn"><a href="#co-fn" class="headerlink" title="co(fn)"></a>co(fn)</h3><p>  Pass a generator <code>fn</code> and return a thunk. The thunk’s signature is<br>  <code>(err, result)</code>, where <code>result</code> is the value passed to the <code>return</code><br>  statement.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">read</span>(<span class="params">file</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">    fs.<span class="title function_">readFile</span>(file, <span class="string">&#x27;utf8&#x27;</span>, fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> <span class="title function_">read</span>(<span class="string">&#x27;.gitignore&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> <span class="title function_">read</span>(<span class="string">&#x27;Makefile&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="keyword">yield</span> <span class="title function_">read</span>(<span class="string">&#x27;package.json&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> [a, b, c];</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  You may also yield <code>Generator</code> objects to support nesting:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">size</span>(<span class="params">file</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">    fs.<span class="title function_">stat</span>(file, <span class="keyword">function</span>(<span class="params">err, stat</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="title function_">fn</span>(err);</span><br><span class="line">      <span class="title function_">fn</span>(<span class="literal">null</span>, stat.<span class="property">size</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *<span class="title function_">foo</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;.gitignore&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;Makefile&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;package.json&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> [a, b, c];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *<span class="title function_">bar</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;examples/parallel.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;examples/nested.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="keyword">yield</span> <span class="title function_">size</span>(<span class="string">&#x27;examples/simple.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> [a, b, c];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> results = <span class="keyword">yield</span> [<span class="title function_">foo</span>(), <span class="title function_">bar</span>()];</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(results);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  Or if the generator functions do not require arguments, simply <code>yield</code> the function:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> get = <span class="title function_">thunkify</span>(request.<span class="property">get</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *<span class="title function_">results</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">get</span>(<span class="string">&#x27;http://ign.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">yield</span> [a, b, c]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="comment">// 3 concurrent requests at a time</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 6 concurrent requests</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">yield</span> [results, results]);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  If a thunk is written to execute immediately you may achieve parallelism<br>  by simply <code>yield</code>-ing <em>after</em> the call. The following are equivalent if<br>  each call kicks off execution immediately:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">size</span>(<span class="string">&#x27;package.json&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">size</span>(<span class="string">&#x27;Readme.md&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">size</span>(<span class="string">&#x27;Makefile&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">yield</span> a, <span class="keyword">yield</span> b, <span class="keyword">yield</span> c];</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  Or:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">size</span>(<span class="string">&#x27;package.json&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">size</span>(<span class="string">&#x27;Readme.md&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">size</span>(<span class="string">&#x27;Makefile&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">yield</span> [a, b, c];</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  You can also pass arguments into the generator. The last argument, <code>done</code>, is<br>  the callback function. Here’s an example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;co-exec&#x27;</span>);</span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *(cmd) &#123;</span><br><span class="line">  <span class="keyword">var</span> res = <span class="keyword">yield</span> <span class="title function_">exec</span>(cmd);</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;)(<span class="string">&#x27;pwd&#x27;</span>, done);</span><br></pre></td></tr></table></figure>
+
+<h3 id="yield-array"><a href="#yield-array" class="headerlink" title="yield array"></a>yield array</h3><p>  By yielding an array of thunks you may “join” them all into a single thunk which executes them all concurrently,<br>  instead of in sequence. Note that the resulting array ordering <em>is</em> retained.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">size</span>(<span class="params">file</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">    fs.<span class="title function_">stat</span>(file, <span class="keyword">function</span>(<span class="params">err, stat</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="title function_">fn</span>(err);</span><br><span class="line">      <span class="title function_">fn</span>(<span class="literal">null</span>, stat.<span class="property">size</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">size</span>(<span class="string">&#x27;.gitignore&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">size</span>(<span class="string">&#x27;index.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">size</span>(<span class="string">&#x27;Makefile&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> res = <span class="keyword">yield</span> [a, b, c];</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">  <span class="comment">// =&gt; [ 13, 1687, 129 ]</span></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>Nested arrays may also be expressed as simple nested arrays:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>),</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>),</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://ign.com&#x27;</span>)</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = [</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>),</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>),</span><br><span class="line">  <span class="title function_">get</span>(<span class="string">&#x27;http://ign.com&#x27;</span>)</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">yield</span> [a, b]);</span><br></pre></td></tr></table></figure>
+
+<h3 id="yield-object"><a href="#yield-object" class="headerlink" title="yield object"></a>yield object</h3><p>  Yielding an object behaves much like yielding an array, however recursion is supported:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> user = <span class="keyword">yield</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: &#123;</span><br><span class="line">      <span class="attr">first</span>: <span class="title function_">get</span>(<span class="string">&#x27;name.first&#x27;</span>),</span><br><span class="line">      <span class="attr">last</span>: <span class="title function_">get</span>(<span class="string">&#x27;name.last&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>  Here is the sequential equivalent without yielding an object:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="keyword">var</span> user = &#123;</span><br><span class="line">    <span class="attr">name</span>: &#123;</span><br><span class="line">      <span class="attr">first</span>: <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;name.first&#x27;</span>),</span><br><span class="line">      <span class="attr">last</span>: <span class="keyword">yield</span> <span class="title function_">get</span>(<span class="string">&#x27;name.last&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h3><p>  On my machine 30,000 sequential stat()s takes an avg of 570ms,<br>  while the same number of sequential stat()s with <code>co()</code> takes<br>  610ms, aka the overhead introduced by generators is <em>extremely</em> negligible.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>  MIT</p>
 
       
     </div>
@@ -350,7 +326,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/02/29-es6-object-strong/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/package/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -368,104 +344,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/02/29-es6-object-strong/" class="post-title-link" itemprop="url">es6对象增强</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-02 10:42:05 / Modified: 13:49:32" itemprop="dateCreated datePublished" datetime="2022-09-02T10:42:05+08:00">2022-09-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="对象字面量语法扩展"><a href="#对象字面量语法扩展" class="headerlink" title="对象字面量语法扩展"></a>对象字面量语法扩展</h4><p>(1)属性赋值简写：给一个属性赋变量值时，如果变量和属性的名称相同，可以省略冒号、变量名，直接写属性名即可，js 引擎执行代码时，会自动查找与属性名相同的变量进行属性赋值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123;name: &#x27;test&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>(2)简化属性方法定义：给一个属性赋匿名函数方法时，可以使用更简洁的方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">const</span> es5Obj = &#123;</span><br><span class="line">  <span class="attr">testFunction</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;es5&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es5Obj.testFunction()); <span class="comment">// es5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// es6</span></span><br><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  <span class="function"><span class="title">testFunction</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;es6&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj.testFunction()); <span class="comment">// es6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// **注意：只有赋值的是匿名函数，才可以使用简介语法**</span></span><br><span class="line"><span class="keyword">const</span> es6Obj1 = &#123;</span><br><span class="line">  <span class="attr">testFunction</span>: <span class="function"><span class="keyword">function</span> <span class="title">Hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj1.testFunction()); <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>常见给函数取名字的情况：(1)递归，自己调用自己；(2)debugger 的时候，方便问题定位</strong></p>
-<p>(3)计算属性名：属性可以动态生成，需要把动态属性用[]包括起来</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  [<span class="string">&#x27;first&#x27;</span> + <span class="string">&#x27;second&#x27;</span>]: <span class="string">&#x27;hanmeimei&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj[<span class="string">&#x27;first&#x27;</span> + <span class="string">&#x27;second&#x27;</span>]); <span class="comment">// hanmeimei</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> first = <span class="string">&#x27;first&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> es6Obj1 = &#123;</span><br><span class="line">  [first + <span class="string">&#x27;second&#x27;</span>]: <span class="string">&#x27;hanmeimei&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj[first + <span class="string">&#x27;second&#x27;</span>]); <span class="comment">// hanmeimei</span></span><br></pre></td></tr></table></figure>
-
-<p>(4)重复属性名的处理：es5 中，给对象赋值，如果存在相同的属性名，会报错；es6 中，不会报错，相同属性名的最后一个，会覆盖之前的属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> es6Obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;first&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;second&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(es6Obj); <span class="comment">// &#123;name: &#x27;second&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="新方法"><a href="#新方法" class="headerlink" title="新方法"></a>新方法</h4><p>(1)Object.is()<br>作用：判断两个数是否相等，与===基本一致，不过有两点不同：+0 不等于-0；NaN 等于 NaN</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(+<span class="number">0</span> == -<span class="number">0</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(+<span class="number">0</span>, -<span class="number">0</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>(2)Object.assign()<br>作用：将所有可枚举属性从一个或多个源对象复制到目标对象，并返回目标对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object.assign(target, ...sources);  target为目标对象  sources为源对象</span></span><br><span class="line"><span class="keyword">const</span> target = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> source = &#123; <span class="attr">b</span>: <span class="number">4</span>, <span class="attr">c</span>: <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> returnedTarget = <span class="built_in">Object</span>.assign(target, source);</span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// Object &#123; a: 1, b: 4, c: 5 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(returnedTarget); <span class="comment">// Object &#123; a: 1, b: 4, c: 5 &#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>(3)Object.setPrototypeOf()<br>作用：设置对象的原型对象，有两个参数，一个是对象，一个是对象要链接到的原型对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object.setPrototypeOf(object, prototypeObject);</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="comment">// obj 链接到person</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// hello</span></span><br><span class="line"><span class="comment">// obj 链接到dog</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woof</span></span><br></pre></td></tr></table></figure>
-<p>当在对象上有某个方法时，会直接调用对象上的方法，不会去原型链上找</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// obj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// obj</span></span><br></pre></td></tr></table></figure>
-<p>在obj 对象中定义的方法，可能使用到原型对象上的同名方法， 只要调用原型对象上面的方法再进行一下组装就可以达到要求了。ES6 提供了super 关键词，它就指向原型对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// helloobj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woofobj</span></span><br></pre></td></tr></table></figure>
-<p>对象方法的定义只能使用简洁的语法形式，否则报错:Uncaught SyntaxError: ‘super’ keyword unexpected here<br><strong>为什么？？</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下写法报错：Uncaught SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line"> <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">greeting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"> <span class="comment">// 以下方法可以正常运行</span></span><br><span class="line"> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.greeting() + <span class="string">&#x27;obj&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, person);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// helloobj</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, dog);</span><br><span class="line"><span class="built_in">console</span>.log(obj.greeting()); <span class="comment">// woofobj</span></span><br></pre></td></tr></table></figure>
-<p><strong>在ES6 中，如果一个对象中定义了方法，这个方法自动获取到一个内置的属性[[HomeObject]], 来指向这个对象。super 呢，就是通过Object.getPrototypeOf([[HomeObject]]) 来获取到原型对象。obj.greeting() greeting() 方法中的[[HomeObject]] 就指向了obj.  那里面的super 就是Object.getPrototypeOf(obj), 那就是person 或dog 了，super.greeting() 就相当于person.greeting()了， 更为准确的说是 person.greeting.call(this).  因为如果person中的greenting有this, 我们还要给它指定this 指向， 不能让里面的this 指向别的对象， 只能让this 指向 obj 了。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/20/23-about-design-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/20/23-about-design-model/" class="post-title-link" itemprop="url">JavaScript设计模式读书笔记(1)</a>
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/package/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -476,14 +355,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-08-20 14:47:46" itemprop="dateCreated datePublished" datetime="2022-08-20T14:47:46+08:00">2022-08-20</time>
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-22 17:15:58" itemprop="dateModified" datetime="2022-09-22T17:15:58+08:00">2022-09-22</time>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
     </span>
 
   
@@ -496,32 +375,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>一、面向过程与面向对象<br>面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里<br>二、封装<br>1、使用原型(prototype)为类添加属性和方法的两种方式(<strong>注意两种不能混用</strong>)：<br>(1)为原型对象属性赋值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype.display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(2)将一个对象赋值给类的原型对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book.prototype = &#123;</span><br><span class="line">  display = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、使用this和原型(prototype)为类添加属性和方法的区别：<br>(1)使用this添加的属性和方法是在当前对象上添加的，每次通过类创建新对象时，this指向的属性和方法都会得到相应的创建<br>(2)通过prototype继承的属性和方法是每个对象通过prototype访问到的，新创建对象时，不会再新创建属性和方法</p>
-<p>3、constructor是什么？<br>constructor是一个属性，当创建一个函数或者对象时都会为其创建一个原型对象prototype，在 prototype对象中又会像函数中创建 this一样创建一个constructor属性，那么constructor属性指向的就是拥有整个原型对象的函数或对象。<br><img src="/2022/08/20/23-about-design-model/prototype.png" alt="prototype"></p>
-<p>4、属性与方法的封装<br>(1)私有属性与私有方法<br>由于JavaScript的函数级作用域，声明在函数内部的变量以及方法在外界是访问不到的,通过此特性创建类的私有变量以及私有方法<br>(2)共有属性和共有方法<br>在函数内部通过 this创建的属性和方法，在类创建对象时，每个对象自身都拥有一份并且可以在外部访问到。因此通过this创建的属性可看作是对象共有属性和对象共有方法<br>(3)特权方法(类的构造器)<br>通过this创建的方法，不但可以访问这些对象的共有属性与共有方法，而且还能访问到类（创建时）或对象自身的私有属性和私有方法，由于这些方法权利比较大，所以我们又将它看作特权方法。在对象创建时通过使用这些特权方法我们可以初始化实例对象的一些属性,因此这些在创建对象时调用的特权方法还可以看作是类的构造器<br><img src="/2022/08/20/23-about-design-model/public-and-private.png" alt="public-and-private"></p>
-<p>5、在类的外部通过点语法定义的属性和方法以及在外部通过 prototype定义的属性和方法作用<br>(1)类的外部通过点语法定义的属性和方法：通过new关键字创建新对象时，由于类外面通过点语法添加的属性和方法没有执行到,所以新创建的对象中无法获取他们，但是可以通过类来使用。因此在类外面通过点语法定义的属性以及方法被称为类的静态共有属性和类的静态共有方法<br>(2)外部通过 prototype定义的属性和方法: 类通过prototype创建的属性或者方法在类实例的对象中是可以通过 this访问到的，所以我们将prototype对象中的属性和方法称为共有属性和共有方法<br><img src="/2022/08/20/23-about-design-model/static-and-public.png" alt="static-and-public"><br>通过new关键字创建的对象实质是对新对象 this 的不断赋值，并将prototype指向类的prototype所指向的对象，而类的构造函数外面通过点语法定义的属性方法是不会添加到新创建的对象上去的。因此要想在新创建的对象中使用 isChinese就得通过Book类使用而不能通过this，如 Book.isChinese，而类的原型 prototype 上定义的属性在新对象里就可以直接使用，这是因为新对象的prototype和类的prototype指向的是同一个对象。</p>
-<p>6、闭包<br>闭包是有权访问另外一个函数作用域中变量的函数，即在一个函数内部创建另外一个函数。我们将这个闭包作为创建对象的构造函数，这样它既是闭包又是可实例对象的函数，即可访问到类函数作用域中的变量</p>
-<p>7、创建对象的安全模式<br>new关键字的作用可以看作是对当前对象的this不停地赋值,没有用new，所以就会直接执行函数，而函数在全局作用域中执行所以在全局作用域中 this指向的当前对象自然就是全局变量<br><img src="/2022/08/20/23-about-design-model/safe-model.png" alt="safe-model"></p>
-<p>三、继承<br>1、子类的原型对象 - 类式继承<br><img src="/2022/08/20/23-about-design-model/class-inherit.png" alt="class-inherit"><br>声明2个类而已，类式继承需要将第一个类的实例赋值给第二个类的原型<br>类的原型对象的作用就是为类的原型添加共有方法,但类不能直接访问这些属性和方法,必须通过原型prototype来访问。而我们实例化一个父类的时候，新创建的对象复制了父类的构造函数内的属性与方法并且将原型_proto_指向了父类的原型对象，这样就拥有了父类的原型对象上的属性与方法，并且这个新创建的对象可直接访问到父类原型对象上的属性与方法。如果我们将这个新创建的对象赋值给子类的原型，那么子类的原型就可以访问到父类的原型属性和方法。<br>新创建的对象不仅仅可以访问父类原型上的属性和方法，同样也可访问从父类构造函数中复制的属性和方法。将这个对象赋值给子类的原型,那么这个子类的原型同样可以访问父类原型上的属性和方法与从父类构造函数中复制的属性和方法。这是类式继承的原理</p>
-<p>(1)可以使用instanceof来检测某个对象是否是某个类的实例，或者说某个对象是否继承了某个类<br>注意：instanceof是通过判断对象的 prototype链来确定这个对象是否是某个类的实例，而不关心对象与类的自身结构<br><strong>instanceof是判断前面的对象是否是后面类(对象)的实例，它并不表示两者的继承，在实现上面的 subClass 继承superClass时是通过将 superClass的实例赋值给subClass 的原型prototype，所以说SubClass.prototype继承了superClass</strong></p>
-<p>(2)类式继承的缺点<br>其一：由于子类通过其原型prototype对父类实例化，继承了父类。所以说父类中的共有属性要是引用类型，就会在子类中被所有实例共用,因此一个子类的实例更改子类原型从父类构造函数中继承来的共有属性就会直接影响到其他子类<br>其二：由于子类实现的继承是靠其原型prototype对父类的实例化实现的，因此在创建父类的时候，是无法向父类传递参数的,因而在实例化父类的时候也无法对父类构造函数内的属性进行初始化</p>
-<p>2、创建即继承 - 构造函数继承<br><img src="/2022/08/20/23-about-design-model/constructor-inherit.png" alt="constructor-inherit"><br>SuperClass.call(this，id);这条语句是构造函数式继承的精华，由于 call这个方法可以更改函数的作用环境，因此在子类中，对superClass调用这个方法就是将子类中的变量在父类中执行一遍，由于父类中是给this绑定属性的，因此子类自然也就继承了父类的共有属性。由于这种类型的继承没有涉及原型prototype，所以父类的原型方法自然不会被子类继承，而如果要想被子类继承就必须要放在构造函数中，这样创建出来的每个实例都会单独拥有一份而不能共用，这样就违背了代码复用的原则</p>
-<p>3、将优点为我所用 - 组合继承<br>(1)类式继承是通过子类的原型prototype对父类实例化来实现的,构造函数式继承是通过在子类的构造函数作用环境中执行一次父类的构造函数来实现的<br><img src="/2022/08/20/23-about-design-model/combination-inherit.png" alt="combination-inherit"><br>在子类构造函数中执行父类构造函数，在子类原型上实例化父类就是组合模式<br>(2)缺点<br>在使用构造函数继承时执行了一遍父类的构造函数，而在实现子类原型的类式继承时又调用了一遍父类构造函数。因此父类构造函数调用了两遍</p>
-<p>4、洁净的继承者 - 原型式继承<br><img src="/2022/08/20/23-about-design-model/prototype-inherit.png" alt="prototype-inherit"><br>对类式继承的一个封装，其实其中的过渡对象就相当于类式继承中的子类，只不过在原型式中作为一个过渡对象出现的，目的是为了创建要返回的新的实例化对象<br><img src="/2022/08/20/23-about-design-model/test-prototype-inherit.png" alt="test-prototype-inherit"></p>
-<p>5、如虎添翼 - 寄生式继承<br><img src="/2022/08/20/23-about-design-model/parasitic-inherit.png" alt="parasitic-inherit"><br>寄生式继承就是对原型继承的第二次封装，并且在这第二次封装过程中对继承的对象进行了拓展,这样新创建的对象不仅仅有父类中的属性和方法而且还添加新的属性和方法</p>
-<p>6、终极继承者 - 寄生组合式继承<br>寄生式继承和构造函数继承</p>
-<p>寄生式继承的改造<br><img src="/2022/08/20/23-about-design-model/parasitic-inherit-change.png" alt="parasitic-inherit-change"></p>
-<p><img src="/2022/08/20/23-about-design-model/parasitic-combination-inherit.png" alt="parasitic-combination-inherit"></p>
-<p><img src="/2022/08/20/23-about-design-model/how-to-inherit.png" alt="how-to-inherit"></p>
-<p><strong>子类再想添加原型方法必须通过 prototype.对象，通过点语法的形式一个一个添加方法了，否则直接赋予对象就会覆盖掉从父类原型继承的对象</strong></p>
-<p>四、多继承<br>单继承(extend)：对对象中的属性的一个浅复制过程，只能复制值类型的属性，无法复制引用类型属性<br><img src="/2022/08/20/23-about-design-model/multiple-inherit.png" alt="multiple-inherit"></p>
-<p>五、多态<br>同一个方法多种调用方式<br><img src="/2022/08/20/23-about-design-model/multiple-status.png" alt="multiple-status"></p>
-
+          {"name":"co","version":"3.1.0","description":"generator async flow control goodness","keywords":["async","flow","generator","coro","coroutine"],"devDependencies":{"should":"^3.0.0","mocha":"^1.12.0","bluebird":"^2.0.0","thunkify":"^2.0.0","request":"^2.36.0","matcha":"~0.5.0"},"scripts":{"test":"make test"},"files":["index.js"],"license":"MIT","repository":{"type":"git","url":"https://github.com/visionmedia/co.git"}}
       
     </div>
 
@@ -547,7 +401,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/19/22-about-symbol/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -565,193 +419,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/19/22-about-symbol/" class="post-title-link" itemprop="url">基本数据类型-Symbol</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-19 13:37:24 / Modified: 13:42:42" itemprop="dateCreated datePublished" datetime="2022-08-19T13:37:24+08:00">2022-08-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="什么是Symbol"><a href="#什么是Symbol" class="headerlink" title="什么是Symbol?"></a>什么是Symbol?</h4><h4 id="有什么用处？"><a href="#有什么用处？" class="headerlink" title="有什么用处？"></a>有什么用处？</h4><h4 id="Symbol的属性"><a href="#Symbol的属性" class="headerlink" title="Symbol的属性"></a>Symbol的属性</h4><h4 id="Symbol的方法"><a href="#Symbol的方法" class="headerlink" title="Symbol的方法"></a>Symbol的方法</h4>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/11/15-js-transform/js-transform/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/11/15-js-transform/js-transform/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-11 13:19:34 / Modified: 17:29:33" itemprop="dateCreated datePublished" datetime="2022-08-11T13:19:34+08:00">2022-08-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      console.log(`1 - true: ${1 - true}`);
-      console.log(`1 - false: ${1 - false}`);
-      console.log(`1 - null: ${1 - null}`);
-      console.log(`1 - undefined: ${1 - undefined}`);
-      console.log(`2 * ['5']: ${2 * ['5']}`);
-
-      console.log(`123 + '123': ${123 + '123'}`);
-      console.log(`123 + null: ${123 + null}`);
-      console.log(`123 + true: ${123 + true}`);
-      console.log(`123 + {}: ${123 + {}}`);
-
-      console.log(`NaN == NaN: ${NaN == NaN}`);
-
-      console.log(`true == 1: ${true == 1}`);
-      console.log(`true == '2': ${true == '2'}`);
-      console.log(`true == ['1']: ${true == ['1']}`);
-      console.log(`true == ['2']: ${true == ['2']}`);
-      console.log(`undefined == false: ${undefined == false}`);
-      console.log(`null == false: ${null == false}`);
-
-      console.log(`123 == '123': ${123 == '123'}`);
-      console.log(`'' == 0: ${'' == 0}`);
-
-      console.log(`null == undefined: ${null == undefined}`); // true
-      console.log(`null == '': ${null == ''}`); // false
-      console.log(`null == 0: ${null == 0}`); // false
-      console.log(`null == false: ${null == false}`); // false
-      console.log(`undefined == '': ${undefined == ''}`); // false
-      console.log(`undefined == 0: ${undefined == 0}`); // false
-      console.log(`undefined == false: ${undefined == false}`); // false
-
-      console.log(`'[object Object]' == {}: ${'[object Object]' == {}}`); // true
-      console.log(`'1,2,3' == [1, 2, 3]: ${'1,2,3' == [1, 2, 3]}`); // true
-
-      console.log(`'10' > '2': ${'10' > '2'}`); // false
-    </script>
-  </body>
-</html>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/09/21-devan-operation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun ...something">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/09/21-devan-operation/" class="post-title-link" itemprop="url">装箱拆箱操作</a>
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/index/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -762,14 +430,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-08-09 13:43:57" itemprop="dateCreated datePublished" datetime="2022-08-09T13:43:57+08:00">2022-08-09</time>
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-18 15:29:53" itemprop="dateModified" datetime="2022-08-18T15:29:53+08:00">2022-08-18</time>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
     </span>
 
   
@@ -782,39 +450,301 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。</p>
-<h4 id="什么是装箱拆箱？"><a href="#什么是装箱拆箱？" class="headerlink" title="什么是装箱拆箱？"></a>什么是装箱拆箱？</h4><p>装箱：把基本数据类型转化为对应的引用类型的操作<br>拆箱：把引用类型转化为基本数据类型的操作</p>
-<p>基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symbol<br>引用数据类型：对象(Object)、数组(Array)、函数(Function)<br>四个基本的包装类型 String、Number、Boolean、Symbol</p>
-<p>什么是包装类型？<br>在 JavaScript 中的字符串、数值、布尔具有对象的使用特征，如具有属性和方法，之所以具有对象特征的原因是字符串、数值、布尔类型数据是JavaScript 底层使用 Object 构造函数“包装”来的，被称为包装类型</p>
-<h4 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h4><p>装箱分为显式装箱和隐式装箱</p>
-<h6 id="显式装箱"><a href="#显式装箱" class="headerlink" title="显式装箱"></a>显式装箱</h6><p>通过基本包装类型对象对基本类型进行显式装箱，即通过new的方式声明数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> number = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>显式装箱可以对声明的对象进行属性和方法的添加，这是因为通过new创建的实例，在执行流离开当前作用域之前一直保留在内存中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line">string.name = <span class="string">&#x27;for test&#x27;</span>;</span><br><span class="line">string.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this is test string&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(string.name); <span class="comment">// for test</span></span><br><span class="line">string.sayHi(); <span class="comment">// this is test string</span></span><br></pre></td></tr></table></figure>
+          
+/**
+ * slice() reference.
+ */
 
-<h6 id="隐式装箱"><a href="#隐式装箱" class="headerlink" title="隐式装箱"></a>隐式装箱</h6><p>隐式装箱是引擎自动执行的<br>基本类型不能添加属性和方法，添加会报错。但是常常在使用的时候，可以直接调用方法，比如：’test_string’.substring()、’test_string’.indexOf()等，这是由于浏览器在内部做了隐式装箱。</p>
-<p>下面以一个例子进行说明：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一步</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 第二步</span></span><br><span class="line"><span class="keyword">var</span> result = string.substring(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// _string</span></span><br></pre></td></tr></table></figure>
-<p>在上面这段代码里面实际的执行步骤是：<br>1、先创建一个String类型的一个实例<br>2、在实例中调用方法<br>3、销毁这个实例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> newString = <span class="keyword">new</span> <span class="built_in">String</span>(string);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> result = newString.substring(<span class="number">4</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">newString = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>基于以上的隐式装箱操作，我们可以在基本类型上使用方法<br>隐式装箱当读取一个基本类型值时，后台会创建一个该基本类型所对应的基本包装类型对象。在这个基本类型的对象上调用方法，其实就是在这个基本类型对象上调用方法。这个基本包装类型的对象是临时的，它只存在于方法调用那一行代码执行的瞬间，执行方法后立即被销毁。这也是在基本类型上添加属性和方法会不识别或报错的原因了</p>
-<p>显式装箱可以添加属性和方法，隐式装箱不能添加属性和方法</p>
-<p>引用类型与基本包装类型的主要区别就是对象的生存期，使用new创建的引用类型实例当执行流离开当前作用域之前，都一直保存在内存中，而自动创建的基本包装类型的对象，则只存在于一行代码执行的瞬间，然后就被销毁。这就意味着我们不能给基本包装类型添加属性和方法。</p>
-<h4 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h4><p>拆箱是和装箱相反的操作，即把引用类型转换成基本的数据类型。通常通过引用类型的valueOf()和toString()方法来实现，toString()返回字符串，valueOf()返回对象本身。<br>需要注意的是，toString() 和 valueOf() 返回的值有一定差别</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberObj = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">64</span>);</span><br><span class="line"><span class="keyword">var</span> stringObj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;64&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj); <span class="comment">// object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj); <span class="comment">// object</span></span><br><span class="line"><span class="comment">// 拆箱</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObj.valueOf()); <span class="comment">// 64</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj.valueOf()); <span class="comment">// number 基本的数字类型</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObj.toString()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObj.toString()); <span class="comment">// string 基本的字符类型</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(stringObj.valueOf()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj.valueOf()); <span class="comment">// string 基本的数据类型</span></span><br><span class="line"><span class="built_in">console</span>.log(stringObj.toString()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> stringObj.toString()); <span class="comment">// string 基本的数据类型</span></span><br></pre></td></tr></table></figure>
-<p>在进行拆箱操作的时候，toString()和valueOf()先执行哪个？在回答这个问题之前，我们先暂停一下，看一下包装类型中的symbol。</p>
-<p>这里简单介绍一下Symbol，感兴趣的可以自己去学习。</p>
-<h6 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h6><p>Symbol 是 ECMAScript 2015 中新添加的特性，生成一个唯一标识符，可用于属性名称、也可用于属性值。目的是消除属性名称冲突<br>创建Symbol</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>注意：<br>1、每次调用Symbol都会创建新的symbol<br>2、不可以用new 创建Symbol（围绕原始数据类型创建一个显式包装器对象从 ECMAScript 6 开始不再被支持。 然而，现有的原始包装器对象，如 new Boolean、new String以及new Number，因为遗留原因仍可被创建。）<br>3、symbol的参数可以不传，这个参数是用于描述symbol，可以用于调试但不是用于访问symbol本身<br>4、创建Symbol包装器对象，可以使用Object()函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>) === <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>); <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> sym = <span class="keyword">new</span> <span class="built_in">Symbol</span>(); <span class="comment">// TypeError: Symbol is not a constructor</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br><span class="line"><span class="keyword">typeof</span> sym2; <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">let</span> sym2Obj = <span class="built_in">Object</span>(sym2);</span><br><span class="line"><span class="keyword">typeof</span> sym2Obj; <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol的文档</a>中，有一个属性<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">Symbol.toPrimitive</a>。文档中关于它的介绍是：</p>
-<p>Symbol.toPrimitive 是一个内置的 Symbol 值，它是作为对象的函数值属性存在的，当一个对象转换为对应的原始值时，会调用此函数。该函数被调用时，会被传递一个字符串参数 hint ，表示要转换到的原始值的预期类型。 hint 参数的取值是 “number”、”string” 和 “default” 中的任意一个。</p>
-<p>我们看一下这个属性是怎么干扰一个对象转换为原始值的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个没有提供 Symbol.toPrimitive 属性的对象，参与运算时的输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(+obj1);     <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj1&#125;</span>`</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 接下面声明一个对象，手动赋予了 Symbol.toPrimitive 属性，再来查看输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](hint) &#123;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(+obj2);     <span class="comment">// 10      -- hint 参数值是 &quot;number&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj2&#125;</span>`</span>); <span class="comment">// &quot;hello&quot; -- hint 参数值是 &quot;string&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;true&quot;  -- hint 参数值是 &quot;default&quot;</span></span><br></pre></td></tr></table></figure>
-<p>注意：<br>hint 取值为：<br>‘number’:该场合需要转成数值，<br>‘string’:该场合需要转成字符串，<br>‘default’:该场合可以转成数值，也可以转成字符串。</p>
-<h4 id="对象转换成原始值的方法及执行顺序"><a href="#对象转换成原始值的方法及执行顺序" class="headerlink" title="对象转换成原始值的方法及执行顺序"></a>对象转换成原始值的方法及执行顺序</h4><p>以下优先级从上到下依次降低<br>1、先判断对象中是否有/[Symbol.toPrimitive/]/(hint/)方法，如果有的话，优先执行该方法<br>2、如果预期被转化成字符串类型时，则优先执行toString()方法<br>3、如果预期被转化成默认类型或数字类型时，则优先执行valueOf()方法<br>注意：若没有valueOf()方法，但是定义了toString()方法，则会执行toString()方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](hint) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(hint);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;symbol&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj)); <span class="comment">// string symbol</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj)); <span class="comment">// number NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj1)); <span class="comment">// string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj1)); <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj2)); <span class="comment">// &#x27;1&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj2)); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="function"><span class="title">valueOf</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(obj3)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(obj3)); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
+var slice = Array.prototype.slice;
+
+/**
+ * Expose `co`.
+ */
+
+module.exports = co;
+
+/**
+ * Wrap the given generator `fn` and
+ * return a thunk.
+ *
+ * @param {Function} fn
+ * @return {Function}
+ * @api public
+ */
+
+function co(fn) {
+  var isGenFun = isGeneratorFunction(fn);
+
+  return function (done) {
+    var ctx = this;
+
+    // in toThunk() below we invoke co()
+    // with a generator, so optimize for
+    // this case
+    var gen = fn;
+
+    // we only need to parse the arguments
+    // if gen is a generator function.
+    if (isGenFun) {
+      var args = slice.call(arguments), len = args.length;
+      var hasCallback = len && 'function' == typeof args[len - 1];
+      done = hasCallback ? args.pop() : error;
+      gen = fn.apply(this, args);
+    } else {
+      done = done || error;
+    }
+
+    next();
+
+    // #92
+    // wrap the callback in a setImmediate
+    // so that any of its errors aren't caught by `co`
+    function exit(err, res) {
+      setImmediate(function(){
+        done.call(ctx, err, res);
+      });
+    }
+
+    function next(err, res) {
+      var ret;
+
+      // multiple args
+      if (arguments.length > 2) res = slice.call(arguments, 1);
+
+      // error
+      if (err) {
+        try {
+          ret = gen.throw(err);
+        } catch (e) {
+          return exit(e);
+        }
+      }
+
+      // ok
+      if (!err) {
+        try {
+          ret = gen.next(res);
+        } catch (e) {
+          return exit(e);
+        }
+      }
+
+      // done
+      if (ret.done) return exit(null, ret.value);
+
+      // normalize
+      ret.value = toThunk(ret.value, ctx);
+
+      // run
+      if ('function' == typeof ret.value) {
+        var called = false;
+        try {
+          ret.value.call(ctx, function(){
+            if (called) return;
+            called = true;
+            next.apply(ctx, arguments);
+          });
+        } catch (e) {
+          setImmediate(function(){
+            if (called) return;
+            called = true;
+            next(e);
+          });
+        }
+        return;
+      }
+
+      // invalid
+      next(new TypeError('You may only yield a function, promise, generator, array, or object, '
+        + 'but the following was passed: "' + String(ret.value) + '"'));
+    }
+  }
+}
+
+/**
+ * Convert `obj` into a normalized thunk.
+ *
+ * @param {Mixed} obj
+ * @param {Mixed} ctx
+ * @return {Function}
+ * @api private
+ */
+
+function toThunk(obj, ctx) {
+
+  if (isGeneratorFunction(obj)) {
+    return co(obj.call(ctx));
+  }
+
+  if (isGenerator(obj)) {
+    return co(obj);
+  }
+
+  if (isPromise(obj)) {
+    return promiseToThunk(obj);
+  }
+
+  if ('function' == typeof obj) {
+    return obj;
+  }
+
+  if (isObject(obj) || Array.isArray(obj)) {
+    return objectToThunk.call(ctx, obj);
+  }
+
+  return obj;
+}
+
+/**
+ * Convert an object of yieldables to a thunk.
+ *
+ * @param {Object} obj
+ * @return {Function}
+ * @api private
+ */
+
+function objectToThunk(obj){
+  var ctx = this;
+  var isArray = Array.isArray(obj);
+
+  return function(done){
+    var keys = Object.keys(obj);
+    var pending = keys.length;
+    var results = isArray
+      ? new Array(pending) // predefine the array length
+      : new obj.constructor();
+    var finished;
+
+    if (!pending) {
+      setImmediate(function(){
+        done(null, results)
+      });
+      return;
+    }
+
+    // prepopulate object keys to preserve key ordering
+    if (!isArray) {
+      for (var i = 0; i < pending; i++) {
+        results[keys[i]] = undefined;
+      }
+    }
+
+    for (var i = 0; i < keys.length; i++) {
+      run(obj[keys[i]], keys[i]);
+    }
+
+    function run(fn, key) {
+      if (finished) return;
+      try {
+        fn = toThunk(fn, ctx);
+
+        if ('function' != typeof fn) {
+          results[key] = fn;
+          return --pending || done(null, results);
+        }
+
+        fn.call(ctx, function(err, res){
+          if (finished) return;
+
+          if (err) {
+            finished = true;
+            return done(err);
+          }
+
+          results[key] = res;
+          --pending || done(null, results);
+        });
+      } catch (err) {
+        finished = true;
+        done(err);
+      }
+    }
+  }
+}
+
+/**
+ * Convert `promise` to a thunk.
+ *
+ * @param {Object} promise
+ * @return {Function}
+ * @api private
+ */
+
+function promiseToThunk(promise) {
+  return function(fn){
+    promise.then(function(res) {
+      fn(null, res);
+    }, fn);
+  }
+}
+
+/**
+ * Check if `obj` is a promise.
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isPromise(obj) {
+  return obj && 'function' == typeof obj.then;
+}
+
+/**
+ * Check if `obj` is a generator.
+ *
+ * @param {Mixed} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isGenerator(obj) {
+  return obj && 'function' == typeof obj.next && 'function' == typeof obj.throw;
+}
+
+/**
+ * Check if `obj` is a generator function.
+ *
+ * @param {Mixed} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isGeneratorFunction(obj) {
+  return obj && obj.constructor && 'GeneratorFunction' == obj.constructor.name;
+}
+
+/**
+ * Check for plain object.
+ *
+ * @param {Mixed} val
+ * @return {Boolean}
+ * @api private
+ */
+
+function isObject(val) {
+  return val && Object == val.constructor;
+}
+
+/**
+ * Throw `err` in a new stack.
+ *
+ * This is used when co() is invoked
+ * without supplying a callback, which
+ * should only be for demonstrational
+ * purposes.
+ *
+ * @param {Error} err
+ * @api private
+ */
+
+function error(err) {
+  if (!err) return;
+  setImmediate(function(){
+    throw err;
+  });
+}
+
       
     </div>
 
@@ -840,7 +770,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/05/20-create-vscode-plugin/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/History/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -858,7 +788,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/05/20-create-vscode-plugin/" class="post-title-link" itemprop="url">开发一个vscode插件的流程</a>
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/History/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -868,9 +798,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-08-05 10:33:23 / Modified: 14:08:56" itemprop="dateCreated datePublished" datetime="2022-08-05T10:33:23+08:00">2022-08-05</time>
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
     </span>
 
   
@@ -883,11 +819,84 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="vscode中文手册"><a href="#vscode中文手册" class="headerlink" title="vscode中文手册"></a>vscode中文手册</h4><p><a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/CN-VScode-Docs/README.md">https://www.bookstack.cn/read/CN-VScode-Docs/README.md</a></p>
-<h4 id="vscode插件脚手架"><a href="#vscode插件脚手架" class="headerlink" title="vscode插件脚手架"></a>vscode插件脚手架</h4><p>安装脚手架和代码生成器</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yo generator-code</span><br></pre></td></tr></table></figure>
-<p>生成vscode脚手架项目</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo code</span><br></pre></td></tr></table></figure>
+          <h1 id="3-1-0-2014-06-30"><a href="#3-1-0-2014-06-30" class="headerlink" title="3.1.0 / 2014-06-30"></a>3.1.0 / 2014-06-30</h1><ul>
+<li>remove <code>setImmediate()</code> shim for node 0.8. semi-backwards breaking.<br>Users are expected to shim themselves. Also returns CommonJS browser support.</li>
+<li>added key order preservation for objects. thanks @greim</li>
+<li>replace <code>q</code> with <code>bluebird</code> in benchmarks and tests</li>
+</ul>
+<h1 id="3-0-6-2014-05-03"><a href="#3-0-6-2014-05-03" class="headerlink" title="3.0.6 / 2014-05-03"></a>3.0.6 / 2014-05-03</h1><ul>
+<li>add <code>setImmediate()</code> fallback to <code>process.nextTick</code></li>
+<li>remove duplicate code in toThunk</li>
+<li>update thunkify</li>
+</ul>
+<h1 id="3-0-5-2014-03-17"><a href="#3-0-5-2014-03-17" class="headerlink" title="3.0.5 / 2014-03-17"></a>3.0.5 / 2014-03-17</h1><ul>
+<li>fix object/array test failure which tries to enumerate dates. Closes #98</li>
+<li>fix final callback error propagation. Closes #92</li>
+</ul>
+<h1 id="3-0-4-2014-02-17"><a href="#3-0-4-2014-02-17" class="headerlink" title="3.0.4 / 2014-02-17"></a>3.0.4 / 2014-02-17</h1><ul>
+<li>fix toThunk object check regression. Closes #89</li>
+</ul>
+<h1 id="3-0-3-2014-02-08"><a href="#3-0-3-2014-02-08" class="headerlink" title="3.0.3 / 2014-02-08"></a>3.0.3 / 2014-02-08</h1><ul>
+<li>refactor: arrayToThunk @AutoSponge #88</li>
+</ul>
+<h1 id="3-0-2-2014-01-01"><a href="#3-0-2-2014-01-01" class="headerlink" title="3.0.2 / 2014-01-01"></a>3.0.2 / 2014-01-01</h1><ul>
+<li>fixed: nil arguments replaced with error fn</li>
+</ul>
+<h1 id="3-0-1-2013-12-19"><a href="#3-0-1-2013-12-19" class="headerlink" title="3.0.1 / 2013-12-19"></a>3.0.1 / 2013-12-19</h1><ul>
+<li>fixed: callback passed as an argument to generators</li>
+</ul>
+<h1 id="3-0-0-2013-12-19"><a href="#3-0-0-2013-12-19" class="headerlink" title="3.0.0 / 2013-12-19"></a>3.0.0 / 2013-12-19</h1><ul>
+<li>fixed: callback passed as an argument to generators</li>
+<li>change: <code>co(function *()&#123;&#125;)</code> now returns a reusable thunk</li>
+<li>change: <code>this</code> must now be passed through the returned thunk, ex. <code>co(function *()&#123;&#125;).call(this)</code></li>
+<li>fix “generator already finished” errors</li>
+</ul>
+<h1 id="2-3-0-2013-11-12"><a href="#2-3-0-2013-11-12" class="headerlink" title="2.3.0 / 2013-11-12"></a>2.3.0 / 2013-11-12</h1><ul>
+<li>add <code>yield object</code> support</li>
+</ul>
+<h1 id="2-2-0-2013-11-05"><a href="#2-2-0-2013-11-05" class="headerlink" title="2.2.0 / 2013-11-05"></a>2.2.0 / 2013-11-05</h1><ul>
+<li>change: make the <code>isGenerator()</code> function more generic</li>
+</ul>
+<h1 id="2-1-0-2013-10-21"><a href="#2-1-0-2013-10-21" class="headerlink" title="2.1.0 / 2013-10-21"></a>2.1.0 / 2013-10-21</h1><ul>
+<li>add passing of arguments into the generator. closes #33.</li>
+</ul>
+<h1 id="2-0-0-2013-10-14"><a href="#2-0-0-2013-10-14" class="headerlink" title="2.0.0 / 2013-10-14"></a>2.0.0 / 2013-10-14</h1><ul>
+<li>remove callback in favour of thunk-only co(). Closes #30 [breaking change]</li>
+<li>remove <code>co.wrap()</code> [breaking change]</li>
+</ul>
+<h1 id="1-5-2-2013-09-02"><a href="#1-5-2-2013-09-02" class="headerlink" title="1.5.2 / 2013-09-02"></a>1.5.2 / 2013-09-02</h1><ul>
+<li>fix: preserve receiver with co.wrap()</li>
+</ul>
+<h1 id="1-5-1-2013-08-11"><a href="#1-5-1-2013-08-11" class="headerlink" title="1.5.1 / 2013-08-11"></a>1.5.1 / 2013-08-11</h1><ul>
+<li>remove setImmediate() usage - ~110% perf increase. Closes #14</li>
+</ul>
+<h1 id="0-5-0-2013-08-10"><a href="#0-5-0-2013-08-10" class="headerlink" title="0.5.0 / 2013-08-10"></a>0.5.0 / 2013-08-10</h1><ul>
+<li>add receiver propagation support</li>
+<li>examples: update streams.js example to use <code>http.get()</code> and streams2 API</li>
+</ul>
+<h1 id="1-4-1-2013-07-01"><a href="#1-4-1-2013-07-01" class="headerlink" title="1.4.1 / 2013-07-01"></a>1.4.1 / 2013-07-01</h1><ul>
+<li>fix gen.next(val) for latest v8. Closes #8</li>
+</ul>
+<h1 id="1-4-0-2013-06-21"><a href="#1-4-0-2013-06-21" class="headerlink" title="1.4.0 / 2013-06-21"></a>1.4.0 / 2013-06-21</h1><ul>
+<li>add promise support to joins</li>
+<li>add <code>yield generatorFunction</code> support</li>
+<li>add <code>yield generator</code> support</li>
+<li>add nested join support</li>
+</ul>
+<h1 id="1-3-0-2013-06-10"><a href="#1-3-0-2013-06-10" class="headerlink" title="1.3.0 / 2013-06-10"></a>1.3.0 / 2013-06-10</h1><ul>
+<li>add passing of arguments</li>
+</ul>
+<h1 id="1-2-1-2013-06-08"><a href="#1-2-1-2013-06-08" class="headerlink" title="1.2.1 / 2013-06-08"></a>1.2.1 / 2013-06-08</h1><ul>
+<li>fix join() of zero thunks</li>
+</ul>
+<h1 id="1-2-0-2013-06-08"><a href="#1-2-0-2013-06-08" class="headerlink" title="1.2.0 / 2013-06-08"></a>1.2.0 / 2013-06-08</h1><ul>
+<li>add array yielding support. great suggestion by @domenic</li>
+</ul>
+<h1 id="1-1-0-2013-06-06"><a href="#1-1-0-2013-06-06" class="headerlink" title="1.1.0 / 2013-06-06"></a>1.1.0 / 2013-06-06</h1><ul>
+<li>add promise support</li>
+<li>change nextTick to setImmediate</li>
+</ul>
+
       
     </div>
 
@@ -913,7 +922,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/04/19-about-map/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/component/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -931,7 +940,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/04/19-about-map/" class="post-title-link" itemprop="url">Map 结构</a>
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/component/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -941,9 +950,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-08-04 14:07:12 / Modified: 15:31:23" itemprop="dateCreated datePublished" datetime="2022-08-04T14:07:12+08:00">2022-08-04</time>
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
     </span>
 
   
@@ -956,36 +971,167 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="什么是Map"><a href="#什么是Map" class="headerlink" title="什么是Map?"></a>什么是Map?</h4><p>由ES6提供的一种数据结构。它类似于对象，也是键值对的集合，但和对象不同的是，对象的键只能是字符串，map的键可以是各种类型的值（包括对象）。即，Object提供了 字符串-值 的对应，map提供了 值-值 的对应，是一种更完善的Hash结构实现。</p>
-<h4 id="怎么创建map？"><a href="#怎么创建map？" class="headerlink" title="怎么创建map？"></a>怎么创建map？</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
-<p>map可以使用一个对象作为键</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">const</span> o = &#123; <span class="attr">p</span>: <span class="string">&#x27;string&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line">map.set(o, <span class="string">&#x27;text&#x27;</span>);</span><br><span class="line">map.get(o); <span class="comment">// text</span></span><br><span class="line"></span><br><span class="line">map.has(o); <span class="comment">// true</span></span><br><span class="line">map.delete(o);</span><br></pre></td></tr></table></figure>
-<p>map还可以接受一个数组作为参数，该数组成员是一个个表示键值对的数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;Tom&#x27;</span>], [<span class="string">&#x27;age&#x27;</span>, <span class="number">12</span>]]);</span><br><span class="line">map.size; <span class="comment">// 2</span></span><br><span class="line">map.has(<span class="string">&#x27;name&#x27;</span>); <span class="comment">// true</span></span><br><span class="line">map.get(<span class="string">&#x27;age&#x27;</span>); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+          {"name":"co","version":"3.1.0","description":"generator async flow control goodness","keywords":["async","flow","generator","coro","coroutine"],"repo":"visionmedia/co","scripts":["index.js"],"licence":"MIT"}
+      
+    </div>
 
-<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><p>如果对同一个键多次赋值，后面的值将覆盖前面的值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.set(<span class="number">1</span>, <span class="string">&#x27;qw&#x27;</span>).set(<span class="number">1</span>, <span class="string">&#x27;sdf&#x27;</span>);</span><br><span class="line">map.get(<span class="number">1</span>); <span class="comment">// sdf</span></span><br></pre></td></tr></table></figure>
+    
+    
+    
 
-<h4 id="map的实例属性和方法"><a href="#map的实例属性和方法" class="headerlink" title="map的实例属性和方法"></a>map的实例属性和方法</h4><p>1、size<br>用法：map.size<br>作用：获取map结构的大小<br>返回：map结构的长度大小</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.size; <span class="comment">// 0</span></span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.size; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
-<p>2、set()<br>用法：map.set(key, value)<br>作用：向map中添加或修改map的数据<br>返回：修改后的map</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br></pre></td></tr></table></figure>
 
-<p>3、get()<br>用法：map.get(key)<br>作用：获取对应key的value值<br>返回：map结构中key对应的值，不存在对应key时，返回undefined</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.get(<span class="number">1</span>); <span class="comment">// 12</span></span><br><span class="line">map.get(<span class="number">2</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
-<p>4、has()<br>用法：map.has(key)<br>作用：判断map中是否有对应的key<br>返回：true/false，依据map中是否有对应的key，返回true或false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.has(<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">map.has(<span class="number">2</span>); <span class="comment">// has</span></span><br></pre></td></tr></table></figure>
 
-<p>5、delete()<br>用法：map.delete(key)<br>作用：删除map中对应的key及value<br>返回：true/false，删除成功返回true，删除失败返回false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.delete(<span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">map.delete(<span class="number">2</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+    
 
-<p>6、clear()<br>用法：map.clear()<br>作用：清空map中的数据<br>返回：undefined</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">map.clear(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="map的遍历方法"><a href="#map的遍历方法" class="headerlink" title="map的遍历方法"></a>map的遍历方法</h4><p>1、keys()<br>2、values()<br>3、entries()<br>4、forEach()</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/93b5a5940de8">https://www.jianshu.com/p/93b5a5940de8</a></p>
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/co-3.1.0/benchmark/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/20/51-about-thunk-function/co-3.1.0/benchmark/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-20 18:43:06" itemprop="dateCreated datePublished" datetime="2023-04-20T18:43:06+08:00">2023-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2014-07-01 10:48:07" itemprop="dateModified" datetime="2014-07-01T10:48:07+08:00">2014-07-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+var co = require('./');
+var bluebird = require('bluebird');
+
+
+function fun(done) {
+  done();
+}
+
+function *gen() {
+
+}
+
+function getPromise(val, err) {
+  return new bluebird(function (resolve, reject) {
+    if (err) reject(err);
+    else resolve(val);
+  });
+}
+
+suite('co()', function(){
+  set('mintime', process.env.MINTIME | 0 || 2000)
+
+  bench('promises', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield getPromise(1);
+      yield getPromise(2);
+      yield getPromise(3);
+    })(done);
+  })
+
+  bench('thunks', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield fun;
+      yield fun;
+      yield fun;
+    })(done);
+  })
+
+  bench('arrays', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield [fun, fun, fun];
+    })(done);
+  })
+
+  bench('objects', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield {
+        a: fun,
+        b: fun,
+        c: fun
+      };
+    })(done);
+  })
+
+  bench('generators', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield gen();
+      yield gen();
+      yield gen();
+    })(done);
+  })
+
+  bench('generators delegated', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield* gen();
+      yield* gen();
+      yield* gen();
+    })(done);
+  })
+
+  bench('generator functions', function(done){
+    co(function *(){
+      yield setImmediate;
+      yield gen;
+      yield gen;
+      yield gen;
+    })(done);
+  })
+})
 
       
     </div>
@@ -1012,7 +1158,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/04/18-fake-array/">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/20/51-about-thunk-function/aboutThunkFunction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -1030,7 +1176,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/04/18-fake-array/" class="post-title-link" itemprop="url">伪数组</a>
+          <a href="/2023/04/20/51-about-thunk-function/aboutThunkFunction/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1040,9 +1186,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-08-04 10:57:14 / Modified: 15:17:36" itemprop="dateCreated datePublished" datetime="2022-08-04T10:57:14+08:00">2022-08-04</time>
+      <time title="Created: 2023-04-20 13:36:05" itemprop="dateCreated datePublished" datetime="2023-04-20T13:36:05+08:00">2023-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-21 13:26:33" itemprop="dateModified" datetime="2023-04-21T13:26:33+08:00">2023-04-21</time>
     </span>
 
   
@@ -1055,15 +1207,450 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/2022/08/04/18-fake-array/document.png" alt="document获取的伪数组"></p>
-<h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
-<h4 id="判断一个数组是不是伪数组的方法"><a href="#判断一个数组是不是伪数组的方法" class="headerlink" title="判断一个数组是不是伪数组的方法"></a>判断一个数组是不是伪数组的方法</h4><p>1、Array.isArray</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(fakeArray); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(array); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>2、instanceof</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+          // import thunkify from 'thunkify';
 
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/2022/08/04/18-fake-array/prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/2022/08/04/18-fake-array/slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/2022/08/04/18-fake-array/array_from.png" alt="array.from转换"></p>
+// function test(a, b, callback) {
+//   const result = a + b;
+//   callback(result);
+//   callback(result);
+//   callback(result);
+// }
+
+// const thunkTest = thunkify(test);
+// // thunkTest(1, 2)(console.log);
+
+// function* gen() {
+//   const first = yield thunkTest(1, 2);
+//   const second = yield thunkTest(3, 4);
+// }
+
+// const genTest = gen();
+// const genValue = genTest.next();
+// genValue.value(function (data) {
+//   console.log(data);
+//   const genValue1 = genTest.next(data);
+//   genValue1.value(function (data1) {
+//     console.log(data1);
+//     genTest.next(data1);
+//   });
+// });
+// function genFn(fn) {
+//   const gen = fn();
+//   function next(data) {
+//     console.log(data);
+//     const genValue = gen.next(data);
+//     if (genValue.done) return;
+//     genValue.value(next);
+//   }
+//   next();
+// }
+// genFn(gen);
+
+import co from 'co';
+import fs from 'fs';
+// 这里的thunk函数也可以自己实现
+function size(file) {
+  return function (fn) {
+    fs.stat(file, function (err, stat) {
+      if (err) return fn(err);
+      console.log(`size: ${stat.size}`);
+      fn(null, stat.size);
+    });
+  };
+}
+co(function* () {
+  var a = size('../../../package.json');
+  var b = size('../../../yarn.lock');
+  return [yield a, yield b];
+})();
+
+// import co from 'co';
+// co(function* () {
+//   var result = yield Promise.resolve(true);
+//   // var result = yield Promise.reject('errorInfo');
+//   return result;
+// })
+//   .then(function (value) {
+//     console.log(`then: ${value}`);
+//   })
+//   .catch(function (err) {
+//     console.error(err);
+//   });
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/19/51-about-thunk-function/" class="post-title-link" itemprop="url">Thunk函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-19 17:00:23" itemprop="dateCreated datePublished" datetime="2023-04-19T17:00:23+08:00">2023-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-20 18:24:47" itemprop="dateModified" datetime="2023-04-20T18:24:47+08:00">2023-04-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="求值策略"><a href="#求值策略" class="headerlink" title="求值策略"></a>求值策略</h6><p>在介绍Thunk函数之前，需要先介绍一下什么叫做求值策略，即函数的参数应该什么时候求值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">num</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> num+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="number">2</span>+<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>类似上面这样将一个表达式作为参数传入函数，表达式应该什么时候计算？实际上可以分为两种情况：</p>
+<ul>
+<li>一种是**传值调用(call by value)**，即表达式在传入函数之前就已经进行了计算，test(2+3)就相当于test(5)，js、C语言、JAVA等语言使用的是这种策略。</li>
+<li>一种是**传名调用(call by name)**，即直接将表达式传入函数，只在需要的时候进行表达式的运算，Haskell(哈斯克尔)使用的是这种策略。<br>传值调用比较简单和便于理解，但是在没有用到的时候，先进行了计算，可能造成性能浪费。<h6 id="什么是Thunk函数"><a href="#什么是Thunk函数" class="headerlink" title="什么是Thunk函数"></a>什么是Thunk函数</h6><blockquote>
+<p>将表达式参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做 Thunk 函数。<br>它是”传名调用”的一种实现策略，用来替换某个表达式。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">num</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> num+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testValue</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">2</span>+<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="title function_">testValue</span>());</span><br><span class="line"><span class="comment">// testValue 函数就是Thunk函数</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="JavaScript中的Thunk函数"><a href="#JavaScript中的Thunk函数" class="headerlink" title="JavaScript中的Thunk函数"></a>JavaScript中的Thunk函数</h6><p>在 JavaScript 语言中，Thunk 函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。</p>
+<p>要点：多参数函数</p>
+<ul>
+<li>函数接受多个参数</li>
+<li>函数的最后一个参数是回调函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> testThunk = <span class="title class_">Thunk</span>(a, b);</span><br><span class="line"><span class="title function_">testThunk</span>(callback);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Thunk</span> = <span class="keyword">function</span> (<span class="params">a, b</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">callback</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">test</span>(a, b, callback);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的函数经过转换器处理，它变成了一个单参数函数，只接受回调函数作为参数。这个单参数版本，就叫做 Thunk 函数。<br>任何函数，只要参数有回调函数，就能写成 Thunk 函数的形式。下面是一个简单的 Thunk 函数转换器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toThunk = <span class="keyword">function</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">callback</span>)&#123;</span><br><span class="line">      args.<span class="title function_">push</span>(callback);</span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用上面的转换器之后，可将上述的例子修改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testThunk = <span class="title function_">toThunk</span>(test);</span><br><span class="line"><span class="title function_">testThunk</span>(a, b)(callback)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Thunkify模块"><a href="#Thunkify模块" class="headerlink" title="Thunkify模块"></a>Thunkify模块</h6><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/tj/node-thunkify">https://github.com/tj/node-thunkify</a><br>使用举例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> read = <span class="title function_">thunkify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">read</span>(<span class="string">&#x27;package.json&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>)(<span class="keyword">function</span>(<span class="params">err, str</span>)&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><em>注意：thunkify中存在一个检查机制，回调函数只运行一次。</em><br><img src="/.io//thunkify.png" alt="thunkify源码"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> thunkify <span class="keyword">from</span> <span class="string">&#x27;thunkify&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = a + b;</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thunkTest = <span class="title function_">thunkify</span>(test);</span><br><span class="line"><span class="title function_">thunkTest</span>(<span class="number">1</span>, <span class="number">2</span>)(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h6 id="Thunk函数的用途"><a href="#Thunk函数的用途" class="headerlink" title="Thunk函数的用途"></a>Thunk函数的用途</h6><p>Thunk函数可以和Generator结合使用，Thunk 函数作为在 Generator 中要迭代的值，通过 co 来对 Generator 进行流程控制。<br>Generator函数中可以使用yield将程序的执行权移出，然后通过Thunk函数的回调函数，再将执行权还给Generator函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> thunkify <span class="keyword">from</span> <span class="string">&#x27;thunkify&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = a + b;</span><br><span class="line">  <span class="title function_">callback</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thunkTest = <span class="title function_">thunkify</span>(test);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">gen</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">thunkTest</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">thunkTest</span>(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Thunk函数处理</span></span><br><span class="line"><span class="keyword">const</span> genTest = <span class="title function_">gen</span>();</span><br><span class="line"><span class="keyword">const</span> genValue = genTest.<span class="title function_">next</span>();</span><br><span class="line">genValue.<span class="title function_">value</span>(<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">  <span class="keyword">const</span> genValue1 = genTest.<span class="title function_">next</span>(data);</span><br><span class="line">  genValue1.<span class="title function_">value</span>(<span class="keyword">function</span> (<span class="params">data1</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data1);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改为递归方式调用</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">genFn</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> gen = <span class="title function_">fn</span>();</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">next</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="keyword">const</span> genValue = gen.<span class="title function_">next</span>(data);</span><br><span class="line">    <span class="keyword">if</span> (genValue.<span class="property">done</span>) <span class="keyword">return</span>;</span><br><span class="line">    genValue.<span class="title function_">value</span>(next);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">next</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">genFn</span>(gen);</span><br></pre></td></tr></table></figure>
+
+<h6 id="co-Generator-Thunk"><a href="#co-Generator-Thunk" class="headerlink" title="co+Generator+Thunk"></a>co+Generator+Thunk</h6><p>可以通过co控制Generator函数中的Thunk函数的执行流程<br>co地址：<a target="_blank" rel="noopener" href="https://github.com/tj/co">https://github.com/tj/co</a></p>
+<p><em>注意：co从4.0.0开始返回的是promise，之前返回的是thunk函数，4.0.0之前会把promise转成thunk函数</em></p>
+<p><img src="/.io//promiseToThunk.png" alt="promiseToThunk"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">&#x27;co&#x27;</span>);</span><br><span class="line"><span class="comment">// 这里的thunk函数也可以自己实现</span></span><br><span class="line"><span class="keyword">var</span> thunkify = <span class="built_in">require</span>(<span class="string">&#x27;thunkify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> get = <span class="title function_">thunkify</span>(request.<span class="property">get</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *<span class="title function_">results</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="title function_">get</span>(<span class="string">&#x27;http://google.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> b = <span class="title function_">get</span>(<span class="string">&#x27;http://yahoo.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> c = <span class="title function_">get</span>(<span class="string">&#x27;http://ign.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">yield</span> [a, b, c]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span> *()&#123;</span><br><span class="line">  <span class="comment">// 3 concurrent requests at a time</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> results;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 6 concurrent requests</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">yield</span> [results, results]);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.io//thunkToPromise.png" alt="thunkToPromise"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> co <span class="keyword">from</span> <span class="string">&#x27;co&#x27;</span>;</span><br><span class="line"><span class="title function_">co</span>(<span class="keyword">function</span>* () &#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">yield</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="literal">true</span>);</span><br><span class="line">  <span class="comment">// var result = yield Promise.reject(&#x27;errorInfo&#x27;);</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`then: <span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/50-try-catch-return/tryCatchReturn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/19/50-try-catch-return/tryCatchReturn/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-19 11:06:10 / Modified: 15:32:57" itemprop="dateCreated datePublished" datetime="2023-04-19T11:06:10+08:00">2023-04-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          // function test() {
+//   for (let i = 0; i < 4; i++) {
+//     console.log(`before: ${i}`);
+//     if (i === 2) return;
+//     console.log(`after: ${i}`);
+//   }
+//   console.log(`result`);
+// }
+// test();
+// before: 0
+// after: 0
+// before: 1
+// after: 1
+// before: 2
+
+// function test() {
+//  return
+//  1+2;
+// }
+// console.log(test());
+
+// try {
+//   a + 3;
+// } catch (error) {
+//   console.log(error);
+// }
+// ReferenceError: a is not defined
+
+// try {
+//   try {
+//     try {
+//       try {
+//         a + 3;
+//       } finally {
+//       }
+//     } finally {
+//     }
+//   } finally {
+//   }
+// } catch (err) {
+//   console.log(`outer: ${err}`);
+// }
+
+// try {
+//   // a + 3;
+//   test();
+// } catch (err) {
+//   if (err.toString().includes('not defined')) {
+//     console.log(`not defined error: ${err}`);
+//   } else {
+//     console.log(err);
+//   }
+// }
+
+// function test() {
+//   try {
+//     try {
+//       a + 3;
+//     } catch (err) {
+//       console.log(`inner error: ${err}`);
+//       return;
+//     } finally {
+//       console.log(`inner finally`);
+//       return;
+//     }
+//   } finally {
+//     console.log(`finally`);
+//   }
+// }
+// test();
+// inner error: ReferenceError: a is not defined
+// inner finally
+// finally
+
+function test() {
+  try {
+    try {
+      return 3;
+    } catch (err) {
+      console.log(`inner error: ${err}`);
+      return;
+    } finally {
+      // console.log(`inner finally`);
+      return 'finally';
+    }
+  } finally {
+    // console.log(`outer finally`);
+    return 'outer finally';
+  }
+}
+const result = test();
+console.log(result);
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/50-try-catch-return/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun ...something">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/19/50-try-catch-return/" class="post-title-link" itemprop="url">try...catch和return</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-19 10:42:04 / Modified: 15:33:37" itemprop="dateCreated datePublished" datetime="2023-04-19T10:42:04+08:00">2023-04-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h6 id="关于return"><a href="#关于return" class="headerlink" title="关于return"></a>关于return</h6><blockquote>
+<p>return 语句终止函数的执行，并返回一个指定的值给函数调用者</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`before: <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`after: <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`result`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="comment">// before: 0</span></span><br><span class="line"><span class="comment">// after: 0</span></span><br><span class="line"><span class="comment">// before: 1</span></span><br><span class="line"><span class="comment">// after: 1</span></span><br><span class="line"><span class="comment">// before: 2</span></span><br></pre></td></tr></table></figure>
+<p>注意：自动分号补全规则会影响 return 语句。在 return 关键字和被返回的表达式之间不允许使用换行符。</p>
+<p><em>自动分号补全(ASI)</em><br>在JavaScript中，行尾的分号有一种自动插入机制，如果新起了一行，并且这新的一行不能追加到当前语句时，会自动追加一个分号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span></span><br><span class="line"><span class="number">1</span>;</span><br><span class="line"><span class="comment">// return会因为自动分号补全自动添加一个分号</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="关于try…catch"><a href="#关于try…catch" class="headerlink" title="关于try…catch"></a>关于try…catch</h6><blockquote>
+<p>try…catch 语句标记要尝试的语句块，并指定一个出现异常时抛出的响应。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  a + <span class="number">3</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>try…catch语法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> try_statements</span><br><span class="line">&#125;</span><br><span class="line">[<span class="keyword">catch</span> (exception_var_1 <span class="keyword">if</span> condition_1) &#123; <span class="comment">// non-standard</span></span><br><span class="line">   catch_statements_1</span><br><span class="line">&#125;]</span><br><span class="line">...</span><br><span class="line">[<span class="keyword">catch</span> (exception_var_2) &#123;</span><br><span class="line">   catch_statements_2</span><br><span class="line">&#125;]</span><br><span class="line">[<span class="keyword">finally</span> &#123;</span><br><span class="line">   finally_statements</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></li>
+<li>使用方式<ul>
+<li>try…catch</li>
+<li>try…finally</li>
+<li>try…catch…finally<br>catch子句包含try块中抛出异常时要执行的语句。如果在try块中有任何一个语句（或者从try块中调用的函数）抛出异常，控制立即转向catch子句。如果在try块中没有异常抛出，会跳过catch子句。</li>
+</ul>
+</li>
+</ul>
+<p>finally子句在try块和catch块之后执行但是在下一个try声明之前执行。无论是否有异常抛出或捕获它总是执行。</p>
+<p><em>你可以嵌套一个或者更多的try语句。如果内部的try语句没有catch子句，那么将会进入包裹它的try语句的catch子句。</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    a + <span class="number">3</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`outer: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// inner: ReferenceError: a is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    a + <span class="number">3</span>;</span><br><span class="line">  &#125; <span class="keyword">finally</span>&#123;&#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`outer: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// outer: ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无条件的catch语句<br>即catch捕获错误，进行处理，常用的一般是这种，不再赘述</li>
+<li>有条件的catch语句<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  a + <span class="number">3</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="keyword">if</span> (err.<span class="title function_">toString</span>().<span class="title function_">includes</span>(<span class="string">&#x27;not defined&#x27;</span>)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`not defined error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// not defined error: ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+<h6 id="try…catch中使用return"><a href="#try…catch中使用return" class="headerlink" title="try…catch中使用return"></a>try…catch中使用return</h6></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">   a+<span class="number">3</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">   <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`finally`</span>)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="comment">// inner error: ReferenceError: a is not defined</span></span><br><span class="line"><span class="comment">// finally</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      a + <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner finally`</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`finally`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="comment">// inner error: ReferenceError: a is not defined</span></span><br><span class="line"><span class="comment">// inner finally</span></span><br><span class="line"><span class="comment">// finally</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner finally`</span>);</span><br><span class="line">      <span class="comment">// return &#x27;finally&#x27;;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`outer finally`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// inner finally</span></span><br><span class="line"><span class="comment">// outer finally</span></span><br><span class="line"><span class="comment">// if inner finally not return something, result is 3, else result is the inner finally return.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`inner error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;finally&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;outer finally&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// outer finally</span></span><br></pre></td></tr></table></figure>
+
+<p><em>如果从finally块中返回一个值，那么这个值将会成为整个try-catch-finally的返回值，无论是否有return语句在try和catch中。这包括在catch块里抛出的异常。</em></p>
 
       
     </div>
@@ -1083,7 +1670,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><a class="page-number" href="/default-index/page/5/">5</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

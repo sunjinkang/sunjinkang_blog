@@ -142,7 +142,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -231,9 +231,9 @@
 </ul>
 <p>mocha的BDD风格示例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">describe(&#x27;Array&#x27;, function()&#123; </span><br><span class="line"> before(function()&#123; </span><br><span class="line"> // ... </span><br><span class="line"> &#125;); </span><br><span class="line"> describe(&#x27;#indexOf()&#x27;, function()&#123; </span><br><span class="line"> it(&#x27;should return -1 when not present&#x27;, function()&#123; </span><br><span class="line"> [1,2,3].indexOf(4).should.equal(-1); </span><br><span class="line"> &#125;); </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;); </span><br></pre></td></tr></table></figure>
-<p>BDD对测试用例的组织主要采用describe和it进行组织。describe可以描述多层级的结构，具体到测试用例时，用it。另外，它还提供before、after、beforeEach和afterEach这4个钩子方法，用于协助describe中测试用例的准备、安装、卸载和回收等工作。before和after分别在进入和退出describe时触发执行，beforeEach和afterEach则分别在describe中每一个测试用例（it）执行前和执行后触发执行<br><img src="/nodejs/images/test.png" alt="单测"><br>mocha的TDD风格示例</p>
+<p>BDD对测试用例的组织主要采用describe和it进行组织。describe可以描述多层级的结构，具体到测试用例时，用it。另外，它还提供before、after、beforeEach和afterEach这4个钩子方法，用于协助describe中测试用例的准备、安装、卸载和回收等工作。before和after分别在进入和退出describe时触发执行，beforeEach和afterEach则分别在describe中每一个测试用例（it）执行前和执行后触发执行<br><img src="./images/test.png" alt="单测"><br>mocha的TDD风格示例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">suite(&#x27;Array&#x27;, function()&#123; </span><br><span class="line"> setup(function()&#123; </span><br><span class="line"> // ... </span><br><span class="line"> &#125;); </span><br><span class="line"> suite(&#x27;#indexOf()&#x27;, function()&#123; </span><br><span class="line"> test(&#x27;should return -1 when not present&#x27;, function()&#123; </span><br><span class="line"> assert.equal(-1, [1,2,3].indexOf(4)); </span><br><span class="line"> &#125;); </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>TDD对测试用例的组织主要采用suite和test完成。suite也可以实现多层级描述，测试用例用test。它提供的钩子函数仅包含setup和teardown，对应BDD中的before和after。<br><img src="/nodejs/images/test-1.png" alt="单测"></p>
+<p>TDD对测试用例的组织主要采用suite和test完成。suite也可以实现多层级描述，测试用例用test。它提供的钩子函数仅包含setup和teardown，对应BDD中的before和after。<br><img src="./images/test-1.png" alt="单测"></p>
 <p>测试报告<br>mocha提供了相当丰富的报告格式，调用mocha –reporters即可查看所有的报告格式<br>默认的报告格式为dot，其他比较常用的格式有spec、json、html-cov等。执行mocha -R <reporter>命令即可采用这些报告。json报告因为其格式非常通用，多用于将结果传递给其他程序进行处理，而html-cov则用于可视化地观察代码覆盖率</reporter></p>
 <p>测试用例<br>测试用例最少需要通过正向测试和反向测试来保证测试对功能的覆盖，这是最基本的测试用例。对于Node而言，不仅有这样简单的方法调用，还有异步代码和超时设置需要关注</p>
 <ul>
@@ -293,7 +293,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
 <li>Transfer rate：表示传输率，等于传输的大小除以传输时间，这个值受网卡的带宽限制。</li>
 <li>Connection Times：连接时间，它包括客户端向服务器端建立连接、服务器端处理请求、等待报文响应的过程。</li>
 </ul>
-<h6 id="基准测试驱动开发"><a href="#基准测试驱动开发" class="headerlink" title="基准测试驱动开发"></a>基准测试驱动开发</h6><p>简称也是BDD，全称为Benchmark Driven Development，即基准测试驱动开发，其中主要分为如下几步:<br>(1) 写基准测试。<br>(2) 写/改代码。<br>(3) 收集数据。<br>(4) 找出问题。<br>(5)回到第(2)步<br><img src="/nodejs/images/test-2.png" alt="单测"></p>
+<h6 id="基准测试驱动开发"><a href="#基准测试驱动开发" class="headerlink" title="基准测试驱动开发"></a>基准测试驱动开发</h6><p>简称也是BDD，全称为Benchmark Driven Development，即基准测试驱动开发，其中主要分为如下几步:<br>(1) 写基准测试。<br>(2) 写/改代码。<br>(3) 收集数据。<br>(4) 找出问题。<br>(5)回到第(2)步<br><img src="./images/test-2.png" alt="单测"></p>
 <h4 id="产-品-化"><a href="#产-品-化" class="headerlink" title="产 品 化"></a>产 品 化</h4><h6 id="项目工程化"><a href="#项目工程化" class="headerlink" title="项目工程化"></a>项目工程化</h6><p>所谓的工程化，可以理解为项目的组织能力。体现在文件上，就是文件的组织能力</p>
 <ul>
 <li><p>目录结构</p>
@@ -325,7 +325,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
 <li>将模型简化。</li>
 <li>将风险分离</li>
 </ul>
-<p><em>动静分离</em><br>将图片、脚本、样式表和多媒体等静态文件都引导到专业的静态文件服务器上，让Node只处理动态请求即可。这个过程可以用Nginx或者专业的CDN来处理<br><img src="/nodejs/images/product.png" alt="动静分离"></p>
+<p><em>动静分离</em><br>将图片、脚本、样式表和多媒体等静态文件都引导到专业的静态文件服务器上，让Node只处理动态请求即可。这个过程可以用Nginx或者专业的CDN来处理<br><img src="./images/product.png" alt="动静分离"></p>
 <p><em>启用缓存</em><br>提升性能其实差不多只有两个途经，一是提升服务的速度，二是避免不必要的计算。前者提升的性能在海量流量面前终有瓶颈，但后者却能够在访问量越大时收益越多。避免不必要的计算，应用场景最多的就是缓存</p>
 <p><em>多进程架构</em><br><em>读写分离</em></p>
 <h6 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h6><p><em>访问日志</em><br>访问日志一般用来记录每个客户端对应用的访问。在Web应用中，主要记录HTTP请求中的关键数据。<br>中间件框架Connect在其众多中间件中提供了一个日志中间件，通过它可以将关键数据按一定格式输出到日志文件中。</p>
@@ -366,7 +366,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
 
 <p>短信或电话报警。一些短信服务平台提供短信接入服务，可以在监控系统中接入此类服务时，一旦线上出现到达阈值的异常时，就将信息发送给应用相关的责任人。</p>
 <h6 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h6><ul>
-<li>多机器：多机器部署应用带来的好处是能利用更多的硬件资源，为更多的请求服务。同时能够在有故障时，继续服务用户请求，保证整体系统的高可用性。但是一旦出现分布式，就需要考虑负载均衡、状态共享和数据一致性等问题。<br><img src="/nodejs/images/product-1.png" alt="负载均衡"></li>
+<li>多机器：多机器部署应用带来的好处是能利用更多的硬件资源，为更多的请求服务。同时能够在有故障时，继续服务用户请求，保证整体系统的高可用性。但是一旦出现分布式，就需要考虑负载均衡、状态共享和数据一致性等问题。<br><img src="./images/product-1.png" alt="负载均衡"></li>
 <li>多机房：多机房部署是比多机器部署更高层次的部署，目的是为了解决地理位置给用户访问带来的延迟等问题。在容灾方面，机房与机房之间可以互为备份</li>
 <li>容灾备份：在多机房和多机器的部署结构下，十分容易通过备份的方式进行容灾，任何一台机器或者一个机房停止了服务，都能有其余的服务器来接替新的任务</li>
 </ul>

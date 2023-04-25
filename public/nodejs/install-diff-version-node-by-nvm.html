@@ -139,7 +139,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,12 +199,12 @@
       
       <div class="post-body">
           <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><p>大家在日常开发中，偶尔会遇到因为node不兼容导致的问题，这时候怎么办？相信大家常用的解决手段是卸载当前用的node，去<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">官网</a>重新下一个新的可兼容的版本重新安装。确实，这种方法可以解决遇到的问题，但是如果兼容版本是低版本怎么办？切换一个项目，兼容版本又不兼容了怎么办？或许会有人说再卸载再换。。。。。。但是不觉得这样太繁琐了吗？下面为大家介绍一种使用版本管理工具，安装不同版本的方式，实现不用手动卸载，紧靠命令即可下载、安装、切换、卸载不同版本的node。</p>
-<h6 id="nvm–node版本管理工具"><a href="#nvm–node版本管理工具" class="headerlink" title="nvm–node版本管理工具"></a>nvm–node版本管理工具</h6><p><strong>注意：安装nvm之前一定要先将原本安装的node卸载，删除node相关文件</strong><br>1、下载nvm<br><a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">nvm下载地址</a><br><img src="/nodejs/images/nvm-download.png" alt="下载nvm"><br>github上有不同的安装包，大家可以根据自己的需要进行下载安装</p>
+<h6 id="nvm–node版本管理工具"><a href="#nvm–node版本管理工具" class="headerlink" title="nvm–node版本管理工具"></a>nvm–node版本管理工具</h6><p><strong>注意：安装nvm之前一定要先将原本安装的node卸载，删除node相关文件</strong><br>1、下载nvm<br><a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">nvm下载地址</a><br><img src="images/nvm-download.png" alt="下载nvm"><br>github上有不同的安装包，大家可以根据自己的需要进行下载安装</p>
 <p>2、安装nvm<br><em>注意：安装目录不能出现中文、空格等，否则可能导致安装失败或者安装后找不到nvm等问题</em></p>
-<p>安装成功之后，使用cmd打开命令提示符，输入nvm，出现下图中的信息，表示安装成功<br><img src="/nodejs/images/nvm-install.png" alt="安装成功"></p>
-<p>3、修改配置<br>找到nvm的安装目录，找到setting.txt文件，打开文件后，将下面的地址增加到文件中<br><img src="/nodejs/images/nvm-setting.png" alt="配置文件"></p>
+<p>安装成功之后，使用cmd打开命令提示符，输入nvm，出现下图中的信息，表示安装成功<br><img src="images/nvm-install.png" alt="安装成功"></p>
+<p>3、修改配置<br>找到nvm的安装目录，找到setting.txt文件，打开文件后，将下面的地址增加到文件中<br><img src="images/nvm-setting.png" alt="配置文件"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node_mirror: https://npm.taobao.org/mirrors/node/</span><br><span class="line">npm_mirror: https://npm.taobao.org/mirrors/npm/</span><br></pre></td></tr></table></figure>
-<p><img src="/nodejs/images/nvm-setting-content.png" alt="配置文件内容"></p>
+<p><img src="images/nvm-setting-content.png" alt="配置文件内容"></p>
 <p>4、使用nvm</p>
 <ul>
 <li>安装指定版本node<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvm install [--version]</span><br><span class="line"><span class="comment">// eg: nvm install 18.12</span></span><br></pre></td></tr></table></figure></li>

@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="Sun ...something">
 <meta property="og:description" content="在开始之前，先说一下为什么会说这个，之前在看一篇文章的时候，提到 &#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D; 的区别。&#x3D;&#x3D; ：比较两个数据是否相等，允许进行类型转化比如：1&#x3D;&#x3D;true、’1’&#x3D;&#x3D;true，结果都是true&#x3D;&#x3D;&#x3D;：严格比较两个数据是否是否相等，包括比较类型是否相同，类型不匹配返回false比如：1&#x3D;&#x3D;&#x3D;true、’1’&#x3D;&#x3D;&#x3D;true，结果为false 数学运算符中的类型转换1、减、乘、除运算非Number类">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/2022/07/19/15-js-transform/convert-table.png">
+<meta property="og:image" content="https://sunjinkang.github.io/.io//convert-table.png">
 <meta property="article:published_time" content="2022-07-19T07:59:15.000Z">
 <meta property="article:modified_time" content="2022-08-10T03:11:17.050Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/2022/07/19/15-js-transform/convert-table.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/.io//convert-table.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/07/19/15-js-transform/">
@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -252,14 +252,14 @@
 <h4 id="逻辑运算中的类型转换"><a href="#逻辑运算中的类型转换" class="headerlink" title="逻辑运算中的类型转换"></a>逻辑运算中的类型转换</h4><p>1、单个变量<br>先将变量转换为Boolean值<br><strong>只有null、undefined、’’、NaN、0、false的boolean值是false，其他情况都是true，比如：{}、[]</strong></p>
 <p>2、使用 == 比较中的5条规则<br><strong>建议使用 ===</strong></p>
 <ul>
-<li>规则1：NaN和其他任何类型比较永远返回false(包括和他自己)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+<li>规则1：NaN和其他任何类型比较永远返回false(包括和他自己)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">NaN</span> == <span class="title class_">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
 <li>规则2：boolean和其他任何类型比较，Boolean首先被转换成Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// false,先将true转换为1，而不是把&#x27;2&#x27;变成true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;1&#x27;</span>] <span class="comment">// true, 先将true转换为1，[&#x27;1&#x27;]拆箱成&#x27;1&#x27;,在参考规则3</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;2&#x27;</span>] <span class="comment">// false, 同上</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false, 首先false变成0，然后参考规则4</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure></li>
 <li>String和Number比较，先将String转换为Number类型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="string">&#x27;123&#x27;</span> <span class="comment">// true, &#x27;123&#x27;会变成123</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="number">0</span> <span class="comment">// true，&#x27;&#x27;会变成 0</span></span><br></pre></td></tr></table></figure></li>
 <li>null == undefined 比较结果是true，除此之外，null、undefined和其他任何结果的比较值都为false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>  <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
 <li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换为原始类型</li>
 <li><em>ToPrimitive规则是引用类型向原始类型转变的规则，它遵循先 valueOf后 toString的模式期望得到一个原始类型，如果无法得到一个原始类型，就会抛出TypeError</em>*<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; <span class="comment">// true, 对象和字符串比较，对象通过toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// true, [1,2,3]通过toString得到一个基本类型</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/2022/07/19/15-js-transform/convert-table.png" alt="类型转换对照表"></p>
+<h4 id="类型转换表"><a href="#类型转换表" class="headerlink" title="类型转换表"></a>类型转换表</h4><p><img src="/.io//convert-table.png" alt="类型转换对照表"></p>
 <h4 id="类型转换对照网站"><a href="#类型转换对照网站" class="headerlink" title="类型转换对照网站"></a>类型转换对照网站</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">https://dorey.github.io/JavaScript-Equality-Table/</a></p>
 <a class="btn" href="/"><i class="fa fa-home"></i></a>
     </div>
