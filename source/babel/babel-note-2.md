@@ -306,3 +306,120 @@ plugins
 presets
 注意:预设的格式与插件相同，除了名称规范化期望“preset-”而不是“plugin-”，并且预设不能是plugin的实例。
 
+* Output targets
+
+targets(v7.13.0)
+允许在Babel的编程选项中，或者在加载的“configFile”中。编程选项将覆盖配置文件选项。
+描述项目支持的环境。
+这可以是一个与浏览器列表兼容的查询(带有警告):
+```js
+// babel.config.json
+{
+  "targets": "> 0.25%, not dead"
+}
+```
+也可以是一个最小支持环境版本的对象
+```js
+// babel.config.json
+{
+  "targets": {
+    "chrome": "58",
+    "ie": "11"
+  }
+}
+```
+支持的环境有：android, chrome, deno, edge, electron, firefox, ie, ios, node, opera, rhino, safari, samsung.
+如果没有指定次要版本，babel将会按照MAJOR.0解析，比如："node":12 将会被解析为node.js 12.0
+
+No targets
+未指定targets时，babel将假定target为尽可能老的浏览器版本。例如：@babel/preset-env 将会把所有的 ES2015-ES2020 代码编译为 ES5兼容版本。
+> 建议设置target以减小打包的代码大小。
+babel的操作和browserslist不一致：在babel或者browserslist配置中，如果没有找到targets，不会使用defaults作为默认配置，如果想要使用default，需要将defaults设置为target
+```js
+// babel.config.json
+{
+  "targets": "defaults"
+}
+```
+注意：这一点有可能在babel的v8中做出修改。
+
+targets.esmodules
+你也可以标记支持ES模块的浏览器(https://www.ecma-international.org/ecma-262/6.0/#sec-modules)。当esmodules的target被指定时，它将与browser的target和browserslist的target相交。您可以将此方法与<script type="module"></script>结合使用，以便有条件地为用户提供较小的脚本(https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility)。
+> 注意：当同时指定browsers和esmodules的target，他们将会相交。
+```js
+// babel.config.json
+{
+  "targets": {
+    "esmodules": true
+  }
+}
+```
+
+targets.node
+如果想编译当前版本node，可以设置"node": true 或者 "node": "current", 和 "node": process.versions.node 的作用是一样的
+也可以在browserslist里面指定node版本（不推荐）
+```js
+// babel.config.json
+{
+  "targets": "node 12" // not recommended
+}
+```
+在这种情况下，browserslist将把它解析为node-releases库中可用的最新版本。由于Node.js可能在次要版本中支持新的语言特性，因此为Node.js 12.22生成的程序可能会在Node.js 12.0上抛出语法错误。我们建议你在使用browserslist节点查询时总是指定一个次要版本:
+```js
+// babel.config.json
+{
+  "targets": "node 12.0"
+}
+```
+
+targets.safari
+如果你想编译Safari的技术预览版本，你可以指定" Safari ": "tp"。
+
+targets.browsers
+使用browserslist选择浏览器(例如: last 2 versions, > 5%, safari tp)的查询。
+注意，浏览器的结果会被来自targets的显式项覆盖。
+
+targets.deno
+最小的deno支持版本为1.0
+```js
+// babel.config.json
+{
+  "targets": {
+    "deno": "1.9"
+  }
+}
+```
+
+browserslistConfigFile(默认值：true，7.13.0)
+允许在Babel的编程选项中，或者在加载的配置文件中。
+切换是否使用browserslist配置源，包括搜索任何browserslist文件或引用package.json中的browserslist键。这对于使用browserslist配置文件的项目很有用，这些文件不会用Babel编译。
+
+如果指定了字符串，它必须表示browserslist配置文件的路径。相对路径是相对于指定该选项的配置文件解析的，或者当它作为编程选项的一部分传递时，相对路径是相对于cwd解析的。
+
+browserslistEnv(默认值：undefined，7.13.0)
+允许在Babel的编程选项中，或者在加载的配置文件中。
+使用的 Browserslist 环境。（https://github.com/browserslist/browserslist#configuring-for-different-environments）
+
+
+* Config Merging options
+
+extends
+不允许放在presets里面
+配置文件可以“扩展”其他配置文件。当前配置中的配置字段将合并到扩展文件的配置之上。
+
+env
+不能嵌套在另一个env块中。
+允许整个嵌套配置选项，只有当envKey与envName选项匹配时才会启用。
+注意:env[envKey]选项将合并在根对象中指定的选项之上。
+
+overrides
+不能嵌套在另一个overrides对象中，或者在一个env块中。
+允许用户提供一个选项数组，这些选项将一次一个地合并到当前配置中。该特性最好与“test”/“include”/“exclude”选项一起使用，以提供应该应用覆盖的条件。
+```js
+// JavaScript
+overrides: [{
+  test: "./vendor/large.min.js",
+  compact: true,
+}],
+```
+可以用来为一个已知是大文件和小文件的特定文件启用compact选项，并告诉Babel不要费心尝试打印该文件。
