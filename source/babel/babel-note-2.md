@@ -423,3 +423,186 @@ overrides: [{
 }],
 ```
 可以用来为一个已知是大文件和小文件的特定文件启用compact选项，并告诉Babel不要费心尝试打印该文件。
+
+test
+当所有匹配失败时，当前配置对象被认为不起作用，并在处理中被忽略。该项在overrides配置项内最有用，但也允许使用在其他地方。
+注意:这些切换不会影响之前区块中的编程和配置加载选项，因为它们在准备合并的配置之前就已经被添加进去了。
+
+include
+该项是 test 的同义项。
+
+exclude
+当任意匹配成功时，当前配置对象被认为不起作用，并在处理中被忽略。该项在overrides配置项内最有用，但也允许使用在其他地方。
+注意:这些切换不会影响之前区块中的编程和配置加载选项，因为它们在准备合并的配置之前就已经被添加进去了。
+
+ignore
+不允许放在presets里面。
+当任意匹配成功时，babel将会立即停止当前build中的所有处理。比如：用户想要禁用lib文件夹中babel的编译可以设置如下配置：
+```js
+// JavaScript
+ignore: ["./lib"];
+```
+注意:此选项禁用文件的所有Babel处理。虽然这有其用途，但作为一种不那么激进的选择，“exclude”选项也值得考虑。
+
+only
+不允许放在presets里面。
+当任意匹配失败时，babel将会立即停止当前build中的所有处理。比如：用户想要禁用除src文件夹中以外其他地方的babel的编译可以设置如下配置：
+```js
+// JavaScript
+only: ["./src"];
+```
+注意:此选项禁用文件的所有Babel处理。虽然这有其用途，但作为一种不那么激进的选择，"test"/"include" 选项也值得考虑。
+
+* Source Map options
+
+inputSourceMap(默认值：true)
+如果文件存在 //# sourceMappingURL=... 注释且设置为true时，会尝试从文件本身加在输入sourcemap。如果找不到map或者map加载解析失败，它将被无声地丢弃
+如果提供的是object，它将会被当做source map的object
+
+sourceMaps(默认值： false)
+- 设置为true时，会为代码生成sourcemap，并包含在结果对象中。
+- 设置为"inline"时，会为代码生成sourcemap，并将其作为一个data url追加到代码里面，但是不会包含在结果对象中。
+- 设置为"both"时，和‘inline’的表现一致，但是map会包含在结果对象中。
+@babel/cli加载这些也会影响map写入磁盘：
+- 设置为true时，会在磁盘上写入一个.map文件
+- 设置为"inline"时，将会直接写入文件，但在map中会有一个 data:
+- 设置为"both"时，会写入包含data: url的文件和一个.map文件
+注意:这些选项有点奇怪，因此根据您的用例，使用true并在您自己的代码中处理其余部分可能是最有意义的。
+
+sourceMap
+sourceMaps的同义项，推荐使用sourceMaps
+
+sourceFileName(默认值：可用时为 path.basename(opts.filenameRelative), 或者为 "unknown")
+这是source map对象中的文件名。
+
+sourceRoot
+要在生成的源映射中设置的sourceRoot字段(如果需要的话)。
+
+* Misc options
+
+sourceType(默认值：module)
+- "script" - 使用 ECMAScript Script 语法解析文件。不允许使用 import/export 语句, 同时文件不是‘strict’ 模式。
+- "module" - 使用 ECMAScript Module 语法解析文件。文件自动设置‘strict’ 模式，并且允许使用 import/export 语句。
+- "unambiguous" - 当文件中有 import/export 语句时，作为"module"解析，否则作为"script"解析。
+unambiguous在type未知时十分有用，但是可能由于module没有使用import/export 语句导致匹配失败，因为它是完全匹配的
+这个选项很重要，因为当前文件的类型既会影响输入文件的解析，也会影响可能希望向当前文件添加 import/require 用法的某些转换。
+
+例如：@babel/plugin-transform-runtime 依据当前文件的type判定插入import 语句还是require语句。@babel/preset-env 的"useBuiltIns"配置项也是一样的。自从Babel 默认将文件作为ES modules, 这些plugins/presets 也默认插入import语句。这是正确的sourceType非常重要，因为设置了错误的type会导致babel向原本是CommonJS的文件插入import语句。这在需要编译node_modules依赖项的项目中尤为重要，因为插入import语句可能会导致Webpack和其他工具将文件视为ES模块，从而破坏了本来可以正常工作的CommonJS文件。
+注意:此选项不会影响.mjs文件的解析，因为它们目前是硬编码的，总是解析为“模块”文件。
+
+assumptions(默认值:{}, 7.13.0)
+允许在编程选项、配置文件和预设中使用。
+设定Babel可以做出的假设，以产生较小的输出:
+```js
+// babel.config.json
+{
+  "assumptions": {
+    "iterableIsArray": true
+  },
+  "presets": ["@babel/preset-env"]
+}
+```
+
+highlightCode(默认值：true)
+突出显示Babel错误消息中的代码片段中的标记，使它们更容易阅读。
+
+wrapPluginVisitorMethod（Type: (key: string, nodeType: string, fn: Function) => Function）
+允许用户在每个访问者上添加一个包装器，以便在Babel执行插件时检查访问者进程。
+Key是一个简单的不透明字符串，表示正在执行的插件。
+nodeType是正在访问的AST代码类型
+fn是访问者函数
+用户可以返回一个替换函数，该函数应该在执行他们希望执行的任何日志记录和分析之后调用原始函数。
+
+parserOpts
+一个不透明的对象，其中包含要传递给正在使用的解析器的选项。
+有关可用的解析器选项，请参见解析器选项。
+
+generatorOpts
+一个不透明的对象，包含要传递给代码生成器的选项，可以查看Code Generator Options。
+
+* Code Generator options
+
+retainLines（默认值：false）
+babel尝试将源文件中同一行的代码经过生成器后仍在同一行。这个选项的存在是为了让不能使用源映射的用户可以得到模糊有用的错误行号，但这只是最好的选择，并不能保证在所有插件的所有情况下都适用。
+
+compact(默认值："auto")
+"auto"通过计算代码长度大于500_000设置值。
+在紧凑模式下生成代码时，所有可选的换行符和空格都将被省略。
+
+minified(Default: false)
+包括compact: true，省略块尾分号，在可能的情况下从new Foo()中省略()，并可能输出更短版本的文字。
+
+auxiliaryCommentBefore
+允许指定在原始文件中不存在的代码段之前插入前缀注释。
+注意:原始文件中存在和不存在的定义可能有点难看，因此不建议使用此选项。如果你需要以某种方式注释代码，最好使用Babel插件。
+
+auxiliaryCommentAfter
+作用与auxiliaryCommentBefore类似，不过是在代码段之后插入前缀注释
+
+comments(默认值：true)
+如果没有给出函数，则为shouldPrintComment提供默认注释状态。有关更多信息，请参阅该选项的默认值。
+
+shouldPrintComment
+Type: (value: string) => boolean
+Default without minified: (val) => opts.comments || /@license|@preserve/.test(val)
+Default with minified: () => opts.comments
+决定给定的注释是否包含在babel输出的代码中。
+
+* AMD / UMD / SystemJS module options
+
+moduleIds(默认值：!!opts.moduleId)
+启用模块ID生成功能。
+
+moduleId
+用于模块的硬编码ID。不能与getModuleId一起使用。
+
+getModuleId
+Type: (name: string) => string
+依据babel生成的模块name，返回要使用的name。返回false值将使用原始名称。
+
+moduleRoot
+要包含在生成的模块名中的根路径。
+
+* Options Concepts
+
+MatchPattern
+Type: string | RegExp | (filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string ) => boolean
+几个Babel选项对文件路径执行测试。通常，这些选项支持一种公共模式方法，其中单个模式可以是：
+- string - 一个文件路径，简单地支持*和**作为完整的分段匹配。任何与模式匹配的文件或父文件夹都被视为匹配。路径遵循Node的正常路径逻辑，因此在POSIX上必须以/-分隔，但在Windows上/和\都被支持。
+- RegExp - 与规范化文件名匹配的正则表达式。在POSIX上，路径RegExp将在 / 分隔的路径上运行，而在Windows上，它将在 \ 分隔的路径上运行。
+重要的是，如果使用这两个选项中的任何一个，Babel要求文件名选项存在，否则将认为它是错误的。
+- (filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string }) => boolean 是一个通用回调，它应该返回一个布尔值来指示是否匹配。该函数传递文件名，如果没有给Babel，则未定义。它还传递了当前的envName和调用者选项，这些选项是由对Babel的顶级调用指定的，而dirname是配置文件的目录或当前工作目录(如果以编程方式调用转换)。
+
+Plugin/Preset entries
+PluginEntry / PresetEntry
+单个插件/预置项可以有几个不同的结构:
+- EntryTarget - 单个插件
+- [EntryTarget, EntryOptions] - 单个插件 w/ 选项
+- [EntryTarget, EntryOptions, string] - 带有选项和名称的单个插件(有关名称的更多信息，请参阅合并)
+- ConfigItem - 一个由babel.createConfigItem()创建的插件配置项。
+同一个EntryTarget可以被多次使用，除非每个都被赋予不同的名称，但是这样做会导致重复插件/预设错误。
+同时这样做会造成阅读困难：
+```js
+plugins: [
+  // EntryTarget
+  '@babel/plugin-transform-classes',
+
+  // [EntryTarget, EntryOptions]
+  ['@babel/plugin-transform-arrow-functions', { spec: true }],
+
+  // [EntryTarget, EntryOptions, string]
+  ['@babel/plugin-transform-for-of', { loose: true }, "some-name"],
+
+  // ConfigItem
+  babel.createConfigItem(require("@babel/plugin-transform-spread")),
+],
+```
+
+
+
+
+
+
+
+不透明字符串(https://www.w3.org/html/ig/zh/wiki/File#.E4.B8.8D.E9.80.8F.E6.98.8E.E5.AD.97.E7.AC.A6.E4.B8.B2)
+不得包含任何未经百分号编码[RFC3986]规定的保留字符，这些字符必须通过百分号编码。不透明字符串必须是全球唯一的。此类字符串应当只使用在U+002A至U+002B、U+002D至U+002E、U+0030至U+0039、U+0041至U+005A, U+005E至U+007E[Unicode]这些范围内的字符，并且应当至少由36个字符组成。UUID是一个潜在的用作[Blob URI]的不透明字符串的可选项，同时强烈推荐使用UUID。UUID由[RFC4122]定义，UUID的ABNF可参见附录A。
