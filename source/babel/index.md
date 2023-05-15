@@ -19,3 +19,6 @@ javascript duck-typing接口
 
 lebab：https://github.com/lebab/lebab
 和babel作用相反
+
+css中使用 white-space: pre-wrap;如果行位存在空格的话会挂起，使用white-space: break-spaces;时行位空格会保留
+这个挂起是什么意思？挂起和保留的区别是什么？

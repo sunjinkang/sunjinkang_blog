@@ -598,10 +598,55 @@ plugins: [
 ],
 ```
 
+EntryTarget
+来自不同来源的插件或预置的target:
+string - 需求样式的路径或插件/预置标识符。标识符将通过名称规范化传递。
+{} | Function - 一个实际的插件/预设对象或函数在被require()后。
+EntryOptions
+每个插件或预置执行时的选项。undefined将被视作空对象。
+False表示条目完全禁用。这在排序很重要的上下文中很有用，但是需要一个单独的条件来决定是否启用了某些内容。
+```js
+plugins: [
+  'one',
+  ['two', false],
+  'three',
+],
+overrides: [{
+  test: "./src",
+  plugins: [
+    'two',
+  ]
+}]
+```
+上面的设置将为src中的文件启用插件two，但插件two仍然会在插件1和插件3之间执行。
 
-
-
-
+*名称规范化*
+默认情况下，Babel希望插件的名称中有一个 babel-plugin- 或 babel-preset- 前缀。为了避免重复，Babel有一个名称规范化阶段，将在加载项时自动添加这些前缀。这可以归结为几个基本规则:
+- 传入的绝对路径不受影响
+- 以./开头的相对路径不受影响
+- 包内的文件引用不受影响
+- 任何以module:为前缀的标识符都将删除前缀，但除此之外不受影响
+- plugin-/preset- will be injected at the start of any @babel-scoped package that doesn't have it as a prefix.
+- babel-plugin-/babel-preset- will be injected as a prefix any unscoped package that doesn't have it as a prefix.
+- babel-plugin-/babel-preset- will be injected as a prefix any @-scoped package that doesn't have it anywhere in their name.
+- babel-plugin/babel-preset will be injected as the package name if only the @-scope name is given.
+举例如下：
+| Input |	Normalized |
+| "/dir/plugin.js" |	"/dir/plugin.js" |
+| "./dir/plugin.js"	| "./dir/plugin.js" |
+| "mod" |	"babel-plugin-mod" |
+| "mod/plugin" |	"mod/plugin" |
+| "babel-plugin-mod" |	"babel-plugin-mod" |
+| "@babel/mod" |	"@babel/plugin-mod" |
+| "@babel/plugin-mod"	| "@babel/plugin-mod" |
+| "@babel/mod/plugin" |	"@babel/mod/plugin" |
+| "@scope"	| "@scope/babel-plugin" |
+| "@scope/babel-plugin"	| "@scope/babel-plugin" |
+| "@scope/mod" |	"@scope/babel-plugin-mod" |
+| "@scope/babel-plugin-mod" |	"@scope/babel-plugin-mod" |
+| "@scope/prefix-babel-plugin-mod" |	"@scope/prefix-babel-plugin-mod" |
+| "@scope/mod/plugin" |	"@scope/mod/plugin" |
+| "module:foo" |	"foo" |
 
 
 不透明字符串(https://www.w3.org/html/ig/zh/wiki/File#.E4.B8.8D.E9.80.8F.E6.98.8E.E5.AD.97.E7.AC.A6.E4.B8.B2)
