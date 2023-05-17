@@ -80,3 +80,155 @@ module.exports = function(api) {
   };
 };
 ```
+
+*@babel/plugin-transform-runtime*
+作用一：自动移除语法转换后内联的辅助函数（inline Babel helpers），使用@babel/runtime/helpers里的辅助函数来替代
+相关文章：https://www.jiangruitao.com/babel/transform-runtime/
+
+*@babel/register*
+@babel/register只有一个功能，就是重写node的require方法。@babel/register在底层改写了node的require方法，在代码里引入@babel/register模块后，所有通过require引入并且以.es6, .es, .jsx 和 .js为后缀名的模块都会经过babel的转译。
+```js
+require("@babel/register")({
+  // Array of ignore conditions, either a regex or a function. (Optional)
+  // File paths that match any condition are not compiled.
+  ignore: [
+    // When a file path matches this regex then it is **not** compiled
+    /regex/,
+
+    // The file's path is also passed to any ignore functions. It will
+    // **not** be compiled if `true` is returned.
+    function(filepath) {
+      return filepath !== "/path/to/es6-file.js";
+    },
+  ],
+
+  // Array of accept conditions, either a regex or a function. (Optional)
+  // File paths that match all conditions are compiled.
+  only: [
+    // File paths that **don't** match this regex are not compiled
+    /my_es6_folder/,
+
+    // File paths that **do not** return true are not compiled
+    function(filepath) {
+      return filepath === "/path/to/es6-file.js";
+    }
+  ],
+
+  // Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`, `.mjs`
+  // and .js so you'll have to add them back if you want them to be used again.
+  extensions: [".es6", ".es", ".jsx", ".js", ".mjs"],
+
+  // Setting this to false will disable the cache.
+  cache: true,
+});
+```
+注意:@babel/register不支持动态编译本地Node.js ES模块，因为目前还没有稳定的API来拦截ES模块加载。
+
+*@babel/preset-env*
+@babel/preset-env是一个智能预设，允许您使用最新的JavaScript，而无需微观管理目标环境需要哪些语法转换(以及可选的浏览器填充)。这既使您的生活更轻松，又使JavaScript包更小!
+
+Browserslist Integration
+对于browser- or Electron-based的项目，我们建议使用.browserslistrc文件来指定目标。你可能已经有了这个配置文件，因为它被生态系统中的许多工具所使用，比如autoprefixer、stylelint、eslint-plugin-compat和许多其他工具。
+
+默认情况下，@babel/preset-env将使用browserslist配置源，除非设置了targets或ignoreBrowserslistConfig选项。
+
+例如，只包含浏览器市场份额>0.25%的用户所需的填充和代码转换(忽略没有安全更新的浏览器，如IE 10和BlackBerry):
+```js
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ]
+  ]
+}
+
+// browserslist
+> 0.25%
+not dead
+
+// package.json
+"browserslist": "> 0.25%, not dead"
+```
+
+*@babel/preset-flow*
+包含插件
+- @babel/plugin-transform-flow-strip-types
+
+```js
+// In
+function foo(one: any, two: number, three?): string {}
+
+// Out
+function foo(one, two, three) {}
+```
+配置项：
+all（默认值为 false）
+
+如果文件顶部有@flow pragma，或者在.flowconfig中设置了all选项，那么Flow只会解析特定于Flow的特性。
+如果您在Flow配置中使用all选项，请确保将此选项设置为true以获得匹配的行为。
+例如，如果没有上述集合中的任何一个，下面的调用表达式带有类型参数:
+```js
+// In
+f<T>(e)
+
+// Out
+f < T > e;
+```
+
+*@babel/preset-react*
+包含插件：
+- @babel/plugin-syntax-jsx
+- @babel/plugin-transform-react-jsx
+- @babel/plugin-transform-react-display-name
+使用development选项时:
+- @babel/plugin-transform-react-jsx-self
+- @babel/plugin-transform-react-jsx-source
+在v7中不再启用流语法支持。为此，您需要添加Flow预设。
+
+选项：
+pragma(默认值：React.createElement)
+
+pragmaFrag(默认值：React.Fragment)
+
+useBuiltIns(默认值：false)
+Will use the native built-in instead of trying to polyfill behavior for any plugins that require one.
+
+development(默认值：false)
+用于切换开发的插件，比如： @babel/plugin-transform-react-jsx-self 和 @babel/plugin-transform-react-jsx-source.
+这在与env选项配置或js配置文件结合使用时非常有用。
+
+throwIfNamespace(默认值：true)
+切换是否在使用XML名称空间标记名时抛出错误。比如：<f:image />
+虽然JSX规范允许这样做，但由于React的JSX目前不支持，因此默认情况下是禁用的
+```js
+// .babelrc.js
+module.exports = {
+  presets: [
+    [
+      "@babel/preset-react",
+      {
+        development: process.env.BABEL_ENV === "development",
+      },
+    ],
+  ],
+};
+```
+
+*@babel/preset-typescript*
+包含插件：
+- @babel/plugin-transform-typescript
+需要为 @babel/cli 和 @babel/node 处理 .ts 文件指定 --extensions ".ts"
+
+选项：
+isTSX（默认值：false）
+强制启用jsx解析。否则，尖括号将被视为typescript的遗留类型断言var foo = <string>bar;
+同时，isTSX: true 要求 allExtensions: true.
+
+jsxPragma（默认值：React）
+替换编译JSX表达式时使用的函数。这样我们就知道导入不是类型导入，不应该被删除。
+
+allExtensions(默认值：false)
+指示每个文件应解析为TS或TSX(取决于isTSX选项)。
