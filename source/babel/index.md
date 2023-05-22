@@ -13,6 +13,14 @@ Babel 是一个通用的多功能的 JavaScript 编译器，是一种从源码�
 1、新的页面在在线转换网页中转换处理一下，看需要处理的是否都已处理
 2、另写一个脚本，去做比较，看看两边的结果是否一致，或原有的转换之后，另一个脚本是否又做了处理
 
+- [babel笔记1](/babel/babel-note-1.html)
+- [babel笔记2](/babel/babel-note-2.html)
+- [babel笔记3](/babel/babel-note-3.html)
+- [babel笔记4](/babel/babel-note-4.html)
+- [babel笔记5](/babel/babel-note-5.html)
+
+babel插件练习：https://github.com/sunjinkang/custom_replace_babel_plugin
+
 
 
 javascript duck-typing接口
