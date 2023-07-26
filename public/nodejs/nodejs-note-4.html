@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="构建Web应用cookie告知客户端的方式是通过响应报文实现的，响应的Cookie值在Set-Cookie字段中。它的格式与请求中的格式不太相同，规范中对它的定义如下所示：Set-Cookie: name&#x3D;value; Path&#x3D;&#x2F;; Expires&#x3D;Sun, 23-Apr-23 09:01:35 GMT; Domain&#x3D;.domain.com;其中name&#x3D;value是必须包含的部分，其余部分皆">
-<meta property="og:type" content="website">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="深入浅出nodejs阅读笔记(4)">
 <meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-4.html">
-<meta property="og:site_name" content="Sun ...something">
+<meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="构建Web应用cookie告知客户端的方式是通过响应报文实现的，响应的Cookie值在Set-Cookie字段中。它的格式与请求中的格式不太相同，规范中对它的定义如下所示：Set-Cookie: name&#x3D;value; Path&#x3D;&#x2F;; Expires&#x3D;Sun, 23-Apr-23 09:01:35 GMT; Domain&#x3D;.domain.com;其中name&#x3D;value是必须包含的部分，其余部分皆">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/cache.png">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/mvc.png">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/middle.png">
@@ -54,10 +54,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-4.html","path":"nodejs/nodejs-note-4.html","title":"深入浅出nodejs阅读笔记(4)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-4.html","path":"nodejs/nodejs-note-4.html","title":"深入浅出nodejs阅读笔记(4)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>深入浅出nodejs阅读笔记(4) | Sun ...something
+<title>深入浅出nodejs阅读笔记(4) | Sun with no word
 </title>
   
 
@@ -68,17 +68,17 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
-
+  <div id="id-post-top" class="post-top-background"></div>
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -89,11 +89,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Sun ...something</p>
+      <p class="site-title">Sun with no word</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
-      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
   </div>
 
   <div class="site-nav-right">
@@ -105,7 +104,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -126,10 +125,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -150,9 +149,9 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/archives/">
+        <a href="/archives">
           <span class="site-state-item-count">52</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -181,7 +180,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="Back to top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -200,7 +199,7 @@
     
     
     
-    <div class="post-block" lang="en"><header class="post-header">
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
 <h1 class="post-title" itemprop="name headline">深入浅出nodejs阅读笔记(4)
 </h1>
@@ -244,7 +243,7 @@
 <li>配置 ETags。</li>
 <li>让Ajax 可缓存</li>
 </ul>
-<p><img src="./images/cache.png" alt="缓存"></p>
+<p><img src="/nodejs/images/cache.png" alt="缓存"></p>
 <p>时间戳有一些缺陷存在:</p>
 <ul>
 <li>文件的时间戳改动但内容并不一定改动。</li>
@@ -305,7 +304,7 @@
 <li>模型（Model），数据相关的操作和封装。</li>
 <li>视图（View），视图的渲染。</li>
 </ul>
-<p><img src="./images/mvc.png" alt="MVC"><br>这是目前最为经典的分层模式，大致而言，它的工作模式如下说明。</p>
+<p><img src="/nodejs/images/mvc.png" alt="MVC"><br>这是目前最为经典的分层模式，大致而言，它的工作模式如下说明。</p>
 <ul>
 <li>路由解析，根据URL寻找到对应的控制器和行为。</li>
 <li>行为调用相关的模型，进行数据操作。</li>
@@ -320,7 +319,7 @@
 <p>自然映射这种路由方式在PHP的MVC框架CodeIgniter中应用十分广泛，设计十分简洁，在Node中实现它也十分容易。与手工映射相比，如果URL变动，它的文件也需要发生变动，手工映射只需要改动路由映射即可。</p>
 <p><em>RESTful</em><br>REST的全称是Representational State Transfer，中文含义为表现层状态转化。符合REST规范的设计，我们称为RESTful设计。它的设计哲学主要将服务器端提供的内容实体看作一个资源，并表现在URL上</p>
 <p>RESTful与MVC设计并不冲突，而且是更好的改进。相比MVC，RESTful只是将HTTP请求方法也加入了路由的过程，以及在URL路径上体现得更资源化</p>
-<h6 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h6><p><img src="./images/middle.png" alt="中间件"></p>
+<h6 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h6><p><img src="/nodejs/images/middle.png" alt="中间件"></p>
 <p><em>异常处理</em></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var handle = function (req, res, stack) &#123; </span><br><span class="line"> var next = function (err) &#123; </span><br><span class="line"> if (err) &#123; </span><br><span class="line"> return handle500(err, req, res, stack); </span><br><span class="line"> &#125; </span><br><span class="line"> // 从stack数组中取出中间件并执行</span><br><span class="line"> var middleware = stack.shift(); </span><br><span class="line"> if (middleware) &#123; </span><br><span class="line"> // 传入next()函数自身，使中间件能够执行结束后递归</span><br><span class="line"> try &#123; </span><br><span class="line"> middleware(req, res, next); </span><br><span class="line"> &#125; catch (ex) &#123; </span><br><span class="line"> next(err); </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> &#125;; </span><br><span class="line"> // 启动执行</span><br><span class="line"> next(); </span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
 
@@ -347,7 +346,7 @@
 <ul>
 <li>页面布局框架（无数据的）。</li>
 <li>后端持续性的数据输出。</li>
-<li>前端渲染<br><img src="./images/bigpipe.png" alt="bigpipe"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">var cache = &#123;&#125;; </span><br><span class="line">var layout = &#x27;layout.html&#x27;; </span><br><span class="line">app.get(&#x27;/profile&#x27;, function (req, res) &#123; </span><br><span class="line"> if (!cache[layout]) &#123; </span><br><span class="line"> cache[layout] = fs.readFileSync(path.join(VIEW_FOLDER, layout), &#x27;utf8&#x27;); </span><br><span class="line"> &#125; </span><br><span class="line"> res.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/html&#x27;&#125;); </span><br><span class="line"> res.write(render(complie(cache[layout]))); </span><br><span class="line"> // TODO </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.get(&#x27;/profile&#x27;, function (req, res) &#123; </span><br><span class="line"> if (!cache[layout]) &#123; </span><br><span class="line"> cache[layout] = fs.readFileSync(path.join(VIEW_FOLDER, layout), &#x27;utf8&#x27;); </span><br><span class="line"> &#125; </span><br><span class="line"> res.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/html&#x27;&#125;); </span><br><span class="line"> res.write(render(complie(cache[layout]))); </span><br><span class="line"> ep.all(&#x27;users&#x27;, &#x27;articles&#x27;, function () &#123; </span><br><span class="line"> res.end(); </span><br><span class="line"> &#125;); </span><br><span class="line"> ep.fail(function (err) &#123; </span><br><span class="line"> res.end(); </span><br><span class="line"> &#125;); </span><br><span class="line"> db.getData(&#x27;sql1&#x27;, function (err, data) &#123; </span><br><span class="line"> data = err ? &#123;&#125; : data; </span><br><span class="line"> res.write(&#x27;&lt;script&gt;bigpipe.set(&quot;articles&quot;, &#x27; + JSON.stringify(data) + &#x27;);&lt;/script&gt;&#x27;; </span><br><span class="line"> &#125;); </span><br><span class="line"> db.getData(&#x27;sql2&#x27;, function (err, data) &#123; </span><br><span class="line"> data = err ? &#123;&#125; : data; </span><br><span class="line"> res.write(&#x27;&lt;script&gt;bigpipe.set(&quot;copyright&quot;, &#x27; + JSON.stringify(data) + &#x27;);&lt;/script&gt;&#x27;; </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var Bigpipe = function () &#123; </span><br><span class="line"> this.callbacks = &#123;&#125;; </span><br><span class="line">&#125;; </span><br><span class="line">Bigpipe.prototype.ready = function (key, callback) &#123; </span><br><span class="line"> if (!this.callbacks[key]) &#123; </span><br><span class="line"> this.callbacks[key] = []; </span><br><span class="line"> &#125; </span><br><span class="line"> this.callbacks[key].push(callback); </span><br><span class="line">&#125;; </span><br><span class="line">Bigpipe.prototype.set = function (key, data) &#123; </span><br><span class="line"> var callbacks = this.callbacks[key] || []; </span><br><span class="line"> for (var i = 0; i &lt; callbacks.length; i++) &#123; </span><br><span class="line"> callbacks[i].call(this, data); </span><br><span class="line"> &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li>前端渲染<br><img src="/nodejs/images/bigpipe.png" alt="bigpipe"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">var cache = &#123;&#125;; </span><br><span class="line">var layout = &#x27;layout.html&#x27;; </span><br><span class="line">app.get(&#x27;/profile&#x27;, function (req, res) &#123; </span><br><span class="line"> if (!cache[layout]) &#123; </span><br><span class="line"> cache[layout] = fs.readFileSync(path.join(VIEW_FOLDER, layout), &#x27;utf8&#x27;); </span><br><span class="line"> &#125; </span><br><span class="line"> res.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/html&#x27;&#125;); </span><br><span class="line"> res.write(render(complie(cache[layout]))); </span><br><span class="line"> // TODO </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.get(&#x27;/profile&#x27;, function (req, res) &#123; </span><br><span class="line"> if (!cache[layout]) &#123; </span><br><span class="line"> cache[layout] = fs.readFileSync(path.join(VIEW_FOLDER, layout), &#x27;utf8&#x27;); </span><br><span class="line"> &#125; </span><br><span class="line"> res.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/html&#x27;&#125;); </span><br><span class="line"> res.write(render(complie(cache[layout]))); </span><br><span class="line"> ep.all(&#x27;users&#x27;, &#x27;articles&#x27;, function () &#123; </span><br><span class="line"> res.end(); </span><br><span class="line"> &#125;); </span><br><span class="line"> ep.fail(function (err) &#123; </span><br><span class="line"> res.end(); </span><br><span class="line"> &#125;); </span><br><span class="line"> db.getData(&#x27;sql1&#x27;, function (err, data) &#123; </span><br><span class="line"> data = err ? &#123;&#125; : data; </span><br><span class="line"> res.write(&#x27;&lt;script&gt;bigpipe.set(&quot;articles&quot;, &#x27; + JSON.stringify(data) + &#x27;);&lt;/script&gt;&#x27;; </span><br><span class="line"> &#125;); </span><br><span class="line"> db.getData(&#x27;sql2&#x27;, function (err, data) &#123; </span><br><span class="line"> data = err ? &#123;&#125; : data; </span><br><span class="line"> res.write(&#x27;&lt;script&gt;bigpipe.set(&quot;copyright&quot;, &#x27; + JSON.stringify(data) + &#x27;);&lt;/script&gt;&#x27;; </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var Bigpipe = function () &#123; </span><br><span class="line"> this.callbacks = &#123;&#125;; </span><br><span class="line">&#125;; </span><br><span class="line">Bigpipe.prototype.ready = function (key, callback) &#123; </span><br><span class="line"> if (!this.callbacks[key]) &#123; </span><br><span class="line"> this.callbacks[key] = []; </span><br><span class="line"> &#125; </span><br><span class="line"> this.callbacks[key].push(callback); </span><br><span class="line">&#125;; </span><br><span class="line">Bigpipe.prototype.set = function (key, data) &#123; </span><br><span class="line"> var callbacks = this.callbacks[key] || []; </span><br><span class="line"> for (var i = 0; i &lt; callbacks.length; i++) &#123; </span><br><span class="line"> callbacks[i].call(this, data); </span><br><span class="line"> &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网页提前渲染好了，其随着数据输出的过程逐步渲染页面，使得用户能够感知到页面是活的。这远比一开始给出空白页面，然后在某个时候突然渲染好带给用户的体验更好</li>
 </ul>
 <h4 id="玩转进程"><a href="#玩转进程" class="headerlink" title="玩转进程"></a>玩转进程</h4><h6 id="服务模型的变迁"><a href="#服务模型的变迁" class="headerlink" title="服务模型的变迁"></a>服务模型的变迁</h6><p><em>石器时代：同步</em><br>最早的服务器，其执行模型是同步的，它的服务模式是一次只为一个请求服务，所有请求都得按次序等待服务。这意味除了当前的请求被处理外，其余请求都处于耽误的状态。<br>它的处理能力相当低下，假设每次响应服务耗用的时间稳定为N秒，这类服务的QPS为1/N</p>
@@ -356,7 +355,7 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
 <p><em>黄金时代：事件驱动</em><br>基于事件的服务模型存在的两个问题：CPU的利用率和进程的健壮性</p>
 <h6 id="多进程架构"><a href="#多进程架构" class="headerlink" title="多进程架构"></a>多进程架构</h6><p>面对单进程单线程对多核使用不足的问题，前人的经验是启动多进程即可。理想状态下每个进程各自利用一个CPU，以此实现多核CPU的利用。所幸，Node提供了child_process模块，并且也提供了child_process.fork()函数供我们实现进程的复制。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// worker.js</span><br><span class="line">var http = require(&#x27;http&#x27;); </span><br><span class="line">http.createServer(function (req, res) &#123; </span><br><span class="line"> res.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/plain&#x27;&#125;); </span><br><span class="line"> res.end(&#x27;Hello World\n&#x27;); </span><br><span class="line">&#125;).listen(Math.round((1 + Math.random()) * 1000), &#x27;127.0.0.1&#x27;); </span><br><span class="line"></span><br><span class="line">var fork = require(&#x27;child_process&#x27;).fork; </span><br><span class="line">var cpus = require(&#x27;os&#x27;).cpus(); </span><br><span class="line">for (var i = 0; i &lt; cpus.length; i++) &#123; </span><br><span class="line"> fork(&#x27;./worker.js&#x27;); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-<p><img src="./images/master-slave.png" alt="主从模式"><br>Master-Worker模式，又称主从模式。进程分为两种：主进程和工作进程。这是典型的分布式架构中用于并行处理业务的模式，具备较好的可伸缩性和稳定性。主进程不负责具体的业务处理，而是负责调度或管理工作进程，它是趋向于稳定的。工作进程负责具体的业务处理，因为业务的多种多样，甚至一项业务由多人开发完成，所以工作进程的稳定性值得开发者关注。</p>
+<p><img src="/nodejs/images/master-slave.png" alt="主从模式"><br>Master-Worker模式，又称主从模式。进程分为两种：主进程和工作进程。这是典型的分布式架构中用于并行处理业务的模式，具备较好的可伸缩性和稳定性。主进程不负责具体的业务处理，而是负责调度或管理工作进程，它是趋向于稳定的。工作进程负责具体的业务处理，因为业务的多种多样，甚至一项业务由多人开发完成，所以工作进程的稳定性值得开发者关注。</p>
 <p><em>通过fork()复制的进程都是一个独立的进程，这个进程中有着独立而全新的V8实例。它需要至少30毫秒的启动时间和至少10 MB的内存。尽管Node提供了fork()供我们复制进程使每个CPU内核都使用上，但是依然要切记fork()进程是昂贵的</em></p>
 <p><em>创建子进程</em><br>child_process模块给予Node可以随意创建子进程（child_process）的能力。它提供了4个方法用于创建子进程。</p>
 <ul>
@@ -366,15 +365,15 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
 <li>fork()：与spawn()类似，不同点在于它创建Node的子进程只需指定要执行的JavaScript文<br>件模块即可。<br>spawn()与exec()、execFile()不同的是，后两者创建时可以指定timeout属性设置超时时间，一旦创建的进程运行超过设定的时间将会被杀死。<br>exec()与execFile()不同的是，exec()适合执行已有的命令，execFile()适合执行文件</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var cp = require(&#x27;child_process&#x27;); </span><br><span class="line">cp.spawn(&#x27;node&#x27;, [&#x27;worker.js&#x27;]); </span><br><span class="line">cp.exec(&#x27;node worker.js&#x27;, function (err, stdout, stderr) &#123; </span><br><span class="line"> // some code </span><br><span class="line">&#125;); </span><br><span class="line">cp.execFile(&#x27;worker.js&#x27;, function (err, stdout, stderr) &#123; </span><br><span class="line"> // some code </span><br><span class="line">&#125;); </span><br><span class="line">cp.fork(&#x27;./worker.js&#x27;);</span><br></pre></td></tr></table></figure>
-<p><img src="./images/fork.png" alt="fork"></p>
+<p><img src="/nodejs/images/fork.png" alt="fork"></p>
 <p><em>进程间通信</em><br>通过fork()或者其他API，创建子进程之后，为了实现父子进程之间的通信，父进程与子进程之间将会创建IPC通道。通过IPC通道，父子进程之间才能通过message和send()传递消息</p>
 <ul>
-<li>进程间通信原理<br>IPC的全称是Inter-Process Communication，即进程间通信。进程间通信的目的是为了让不同的进程能够互相访问资源并进行协调工作。实现进程间通信的技术有很多，如命名管道、匿名管道、socket、信号量、共享内存、消息队列、Domain Socket等。Node中实现IPC通道的是管道（pipe）技术<br><img src="./images/pipe.png" alt="pipe"><br>父进程在实际创建子进程之前，会创建IPC通道并监听它，然后才真正创建出子进程，并通过环境变量（NODE_CHANNEL_FD）告诉子进程这个IPC通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个已存在的IPC通道，从而完成父子进程之间的连接<br><img src="./images/pipe-1.png" alt="pipe"></li>
+<li>进程间通信原理<br>IPC的全称是Inter-Process Communication，即进程间通信。进程间通信的目的是为了让不同的进程能够互相访问资源并进行协调工作。实现进程间通信的技术有很多，如命名管道、匿名管道、socket、信号量、共享内存、消息队列、Domain Socket等。Node中实现IPC通道的是管道（pipe）技术<br><img src="/nodejs/images/pipe.png" alt="pipe"><br>父进程在实际创建子进程之前，会创建IPC通道并监听它，然后才真正创建出子进程，并通过环境变量（NODE_CHANNEL_FD）告诉子进程这个IPC通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个已存在的IPC通道，从而完成父子进程之间的连接<br><img src="/nodejs/images/pipe-1.png" alt="pipe"></li>
 </ul>
 <p><em>句柄传递</em><br>通过代理，可以避免端口不能重复监听的问题，甚至可以在代理进程上做适当的负载均衡，使得每个子进程可以较为均衡地执行任务。</p>
 <p>child.send(message, [sendHandle])<br>句柄是一种可以用来标识资源的引用，它的内部包含了指向对象的文件描述符。比如句柄可以用来标识一个服务器端socket对象、一个客户端socket对象、一个UDP套接字、一个管道等</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var child = require(&#x27;child_process&#x27;).fork(&#x27;child.js&#x27;); </span><br><span class="line">// Open up the server object and send the handle </span><br><span class="line">var server = require(&#x27;net&#x27;).createServer(); </span><br><span class="line">server.on(&#x27;connection&#x27;, function (socket) &#123; </span><br><span class="line"> socket.end(&#x27;handled by parent\n&#x27;); </span><br><span class="line">&#125;); </span><br><span class="line">server.listen(1337, function () &#123; </span><br><span class="line"> child.send(&#x27;server&#x27;, server); </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">process.on(&#x27;message&#x27;, function (m, server) &#123; </span><br><span class="line"> if (m === &#x27;server&#x27;) &#123; </span><br><span class="line"> server.on(&#x27;connection&#x27;, function (socket) &#123; </span><br><span class="line"> socket.end(&#x27;handled by child\n&#x27;); </span><br><span class="line"> &#125;); </span><br><span class="line"> &#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><img src="./images/pipe-2.png" alt="pipe"><br>主进程发送完句柄并关闭监听之后<br><img src="./images/pipe-3.png" alt="pipe"></p>
+<p><img src="/nodejs/images/pipe-2.png" alt="pipe"><br>主进程发送完句柄并关闭监听之后<br><img src="/nodejs/images/pipe-3.png" alt="pipe"></p>
 <p>句柄发送与还原<br>目前子进程对象send()方法可以发送的句柄类型包括如下几种。</p>
 <ul>
 <li>net.Socket。TCP套接字。</li>
@@ -383,7 +382,7 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
 <li>dgram.Socket。UDP套接字。</li>
 <li>dgram.Native。C++层面的UDP套接字。<br>send()方法在将消息发送到IPC管道前，将消息组装成两个对象，一个参数是handle，另一个是message。message参数如下所示：<br>{<br>cmd: ‘NODE_HANDLE’,<br>type: ‘net.Server’,<br>msg: message<br>} </li>
 </ul>
-<p>连接了IPC通道的子进程可以读取到父进程发来的消息，将字符串通过JSON.parse()解析还原为对象后，才触发message事件将消息体传递给应用层使用。在这个过程中，消息对象还要被进行过滤处理，message.cmd的值如果以NODE_为前缀，它将响应一个内部事件internalMessage如果message.cmd值为NODE_HANDLE，它将取出message.type值和得到的文件描述符一起还原出一个对应的对象。<br><img src="./images/pipe-4.png" alt="pipe"></p>
+<p>连接了IPC通道的子进程可以读取到父进程发来的消息，将字符串通过JSON.parse()解析还原为对象后，才触发message事件将消息体传递给应用层使用。在这个过程中，消息对象还要被进行过滤处理，message.cmd的值如果以NODE_为前缀，它将响应一个内部事件internalMessage如果message.cmd值为NODE_HANDLE，它将取出message.type值和得到的文件描述符一起还原出一个对应的对象。<br><img src="/nodejs/images/pipe-4.png" alt="pipe"></p>
 <p>Node进程之间只有消息传递，不会真正地传递对象，这种错觉是抽象封装的结果</p>
 <p>端口共同监听<br>多个应用监听相同端口时，文件描述符同一时间只能被某个进程所用。换言之就是网络请求向服务器端发送时，只有一个幸运的进程能够抢到连接，也就是说只有它能为这个请求进行服务。这些进程服务是抢占式的</p>
 <h6 id="集群稳定之路"><a href="#集群稳定之路" class="headerlink" title="集群稳定之路"></a>集群稳定之路</h6><p><em>进程事件</em><br>除了message事件外，Node还有如下这些事件。</p>
@@ -405,8 +404,8 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
 <p>为 此 Node在 v0.11中提供了一种新的策略使得负载均衡更合理，这种新的策略叫Round-Robin，又叫轮叫调度。轮叫调度的工作方式是由主进程接受连接，将其依次分发给工作进程。分发的策略是在N个工作进程中，每次选择第i = (i + 1) mod n个进程来发送连接</p>
 <p><em>状态共享</em></p>
 <ul>
-<li>第三方数据存储<br>这种方式存在的问题是如果数据发生改变，还需要一种机制通知到各个子进程，使得它们的内部状态也得到更新。<br>实现状态同步的机制有两种，一种是各个子进程去向第三方进行定时轮询<br>定时轮询带来的问题是轮询时间不能过密，如果子进程过多，会形成并发处理，如果数据没有发生改变，这些轮询会没有意义，白白增加查询状态的开销。如果轮询时间过长，数据发生改变时，不能及时更新到子进程中，会有一定的延迟<br><img src="./images/loop.png" alt="轮询"></li>
-<li>主动通知<br>一种改进的方式是当数据发生更新时，主动通知子进程。当然，即使是主动通知，也需要一种机制来及时获取数据的改变。这个过程仍然不能脱离轮询，但我们可以减少轮询的进程数量，我们将这种用来发送通知和查询状态是否更改的进程叫做通知进程。<br><img src="./images/loop-1.png" alt="轮询"><br>这种推送机制如果按进程间信号传递，在跨多台服务器时会无效，是故可以考虑采用TCP或UDP的方案。进程在启动时从通知服务处除了读取第一次数据外，还将进程信息注册到通知服务处。一旦通过轮询发现有数据更新后，根据注册信息，将更新后的数据发送给工作进程</li>
+<li>第三方数据存储<br>这种方式存在的问题是如果数据发生改变，还需要一种机制通知到各个子进程，使得它们的内部状态也得到更新。<br>实现状态同步的机制有两种，一种是各个子进程去向第三方进行定时轮询<br>定时轮询带来的问题是轮询时间不能过密，如果子进程过多，会形成并发处理，如果数据没有发生改变，这些轮询会没有意义，白白增加查询状态的开销。如果轮询时间过长，数据发生改变时，不能及时更新到子进程中，会有一定的延迟<br><img src="/nodejs/images/loop.png" alt="轮询"></li>
+<li>主动通知<br>一种改进的方式是当数据发生更新时，主动通知子进程。当然，即使是主动通知，也需要一种机制来及时获取数据的改变。这个过程仍然不能脱离轮询，但我们可以减少轮询的进程数量，我们将这种用来发送通知和查询状态是否更改的进程叫做通知进程。<br><img src="/nodejs/images/loop-1.png" alt="轮询"><br>这种推送机制如果按进程间信号传递，在跨多台服务器时会无效，是故可以考虑采用TCP或UDP的方案。进程在启动时从通知服务处除了读取第一次数据外，还将进程信息注册到通知服务处。一旦通过轮询发现有数据更新后，根据注册信息，将更新后的数据发送给工作进程</li>
 </ul>
 <h6 id="Cluster-模块"><a href="#Cluster-模块" class="headerlink" title="Cluster 模块"></a>Cluster 模块</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// cluster.js </span><br><span class="line">var cluster = require(&#x27;cluster&#x27;); </span><br><span class="line">cluster.setupMaster(&#123; </span><br><span class="line"> exec: &quot;worker.js&quot; </span><br><span class="line">&#125;); </span><br><span class="line">var cpus = require(&#x27;os&#x27;).cpus(); </span><br><span class="line">for (var i = 0; i &lt; cpus.length; i++) &#123; </span><br><span class="line"> cluster.fork(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">var cluster = require(&#x27;cluster&#x27;); </span><br><span class="line">var http = require(&#x27;http&#x27;); </span><br><span class="line">var numCPUs = require(&#x27;os&#x27;).cpus().length; </span><br><span class="line">if (cluster.isMaster) &#123; </span><br><span class="line"> // Fork workers </span><br><span class="line"> for (var i = 0; i &lt; numCPUs; i++) &#123; </span><br><span class="line"> cluster.fork(); </span><br><span class="line"> &#125; </span><br><span class="line"> cluster.on(&#x27;exit&#x27;, function(worker, code, signal) &#123; </span><br><span class="line"> console.log(&#x27;worker &#x27; + worker.process.pid + &#x27; died&#x27;); </span><br><span class="line"> &#125;); </span><br><span class="line">&#125; else &#123; </span><br><span class="line"> // Workers can share any TCP connection </span><br><span class="line"> // In this case its a HTTP server </span><br><span class="line"> http.createServer(function(req, res) &#123; </span><br><span class="line"> res.writeHead(200); </span><br><span class="line"> res.end(&quot;hello world\n&quot;); </span><br><span class="line"> &#125;).listen(8000); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -450,7 +449,21 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:24</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -460,7 +473,7 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
 
   
 
@@ -475,4 +488,6 @@ Bigpipe将网页布局和数据渲染分离，使得用户在视觉上觉得网�
 
 
 </body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
 </html>

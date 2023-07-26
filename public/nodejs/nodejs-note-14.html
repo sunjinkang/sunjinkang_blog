@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径 1node inspect test.js 在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点 123const a &#x3D; 1;debugger;const b &#x3D; 2; repl 命令用于运行代码">
-<meta property="og:type" content="website">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="nodejs基础知识(7)">
 <meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-14.html">
-<meta property="og:site_name" content="Sun ...something">
+<meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径 1node inspect test.js 在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点 123const a &#x3D; 1;debugger;const b &#x3D; 2; repl 命令用于运行代码">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/dns-resolve.png">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/dns-resolveany.png">
 <meta property="article:published_time" content="2023-01-06T06:52:33.000Z">
@@ -44,10 +44,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-14.html","path":"nodejs/nodejs-note-14.html","title":"nodejs基础知识(7)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-14.html","path":"nodejs/nodejs-note-14.html","title":"nodejs基础知识(7)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>nodejs基础知识(7) | Sun ...something
+<title>nodejs基础知识(7) | Sun with no word
 </title>
   
 
@@ -58,17 +58,17 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
-
+  <div id="id-post-top" class="post-top-background"></div>
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -79,11 +79,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Sun ...something</p>
+      <p class="site-title">Sun with no word</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
-      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
   </div>
 
   <div class="site-nav-right">
@@ -95,7 +94,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -116,10 +115,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -140,9 +139,9 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/archives/">
+        <a href="/archives">
           <span class="site-state-item-count">52</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -171,7 +170,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="Back to top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -190,7 +189,7 @@
     
     
     
-    <div class="post-block" lang="en"><header class="post-header">
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
 <h1 class="post-title" itemprop="name headline">nodejs基础知识(7)
 </h1>
@@ -310,7 +309,7 @@
 <li>rrtype <string> 资源记录类型. 默认: ‘A’.</string></li>
 <li>callback <Function><ul>
 <li>err <Error></Error></li>
-<li>records &lt;string[]&gt; | &lt;Object[]&gt; | <Object><br>使用DNS协议来解析一个主机名(e.g. ‘nodejs.org’)为一个资源记录的数组。回调函数的参数为(err, records)。当成功时，records将是一个资源记录的数组。它的类型和结构取决于rrtype<br><img src="./images/dns-resolve.png" alt="dns.resolve"><br>出错时，err是一个[Error][] object，err.code是DNS error codes的一种。</Object></li>
+<li>records &lt;string[]&gt; | &lt;Object[]&gt; | <Object><br>使用DNS协议来解析一个主机名(e.g. ‘nodejs.org’)为一个资源记录的数组。回调函数的参数为(err, records)。当成功时，records将是一个资源记录的数组。它的类型和结构取决于rrtype<br><img src="/nodejs/images/dns-resolve.png" alt="dns.resolve"><br>出错时，err是一个[Error][] object，err.code是DNS error codes的一种。</Object></li>
 </ul>
 </Function></li>
 </ul>
@@ -380,7 +379,7 @@
 <li>hostname <string></string></li>
 <li>callback <Function><ul>
 <li>err <Error></Error></li>
-<li>ret &lt;Object[]&gt;<br>使用DNS协议解析所有记录(也称为ANY或 * query)。传递给回调函数的ret参数将是一个包含各种类型记录的数组。每个对象都有一个属性类型，用于指示当前记录的类型。根据类型的不同，额外的属性会出现在对象上:<br><img src="./images/dns-resolveany.png" alt="dns-resolveany"></li>
+<li>ret &lt;Object[]&gt;<br>使用DNS协议解析所有记录(也称为ANY或 * query)。传递给回调函数的ret参数将是一个包含各种类型记录的数组。每个对象都有一个属性类型，用于指示当前记录的类型。根据类型的不同，额外的属性会出现在对象上:<br><img src="/nodejs/images/dns-resolveany.png" alt="dns-resolveany"></li>
 </ul>
 </Function></li>
 </ul>
@@ -447,7 +446,21 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:24</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -457,7 +470,7 @@
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
 
   
 
@@ -472,4 +485,6 @@
 
 
 </body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
 </html>

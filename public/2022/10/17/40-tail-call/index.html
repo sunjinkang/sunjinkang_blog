@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,31 +19,31 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="什么是尾调用？某个函数的最后一步调用另一个函数 1234567891011121314151617181920212223242526function call1(a) &amp;#123; return call2(a);&amp;#125;&#x2F;&#x2F; 以下三种情况不属于尾调用！！！&#x2F;&#x2F; 函数调用后还有其他操作function call1(a) &amp;#123; const x &#x3D; call2(a); return x;">
-<meta property="og:type" content="article">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="尾调用与尾递归">
 <meta property="og:url" content="https://sunjinkang.github.io/2022/10/17/40-tail-call/index.html">
-<meta property="og:site_name" content="Sun ...something">
+<meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="什么是尾调用？某个函数的最后一步调用另一个函数 1234567891011121314151617181920212223242526function call1(a) &amp;#123; return call2(a);&amp;#125;&#x2F;&#x2F; 以下三种情况不属于尾调用！！！&#x2F;&#x2F; 函数调用后还有其他操作function call1(a) &amp;#123; const x &#x3D; call2(a); return x;">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//call-stack.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/10/17/40-tail-call/call-stack.png">
 <meta property="article:published_time" content="2022-10-17T02:26:13.000Z">
 <meta property="article:modified_time" content="2023-07-24T09:24:46.454Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//call-stack.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/10/17/40-tail-call/call-stack.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/10/17/40-tail-call/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/2022/10/17/40-tail-call/","path":"2022/10/17/40-tail-call/","title":"尾调用与尾递归"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2022/10/17/40-tail-call/","path":"2022/10/17/40-tail-call/","title":"尾调用与尾递归"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>尾调用与尾递归 | Sun ...something</title>
+<title>尾调用与尾递归 | Sun with no word</title>
   
 
 
@@ -53,17 +53,17 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
-
+  <div id="id-post-top" class="post-top-background"></div>
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -74,11 +74,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Sun ...something</p>
+      <p class="site-title">Sun with no word</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
-      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
   </div>
 
   <div class="site-nav-right">
@@ -90,7 +89,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -111,10 +110,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -135,9 +134,9 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/archives/">
+        <a href="/archives">
           <span class="site-state-item-count">52</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -166,7 +165,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="Back to top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -189,7 +188,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/17/40-tail-call/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -198,12 +197,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun ...something">
+      <meta itemprop="name" content="Sun with no word">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="尾调用与尾递归 | Sun ...something">
+      <meta itemprop="name" content="尾调用与尾递归 | Sun with no word">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -217,19 +216,34 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2022-10-17 10:26:13" itemprop="dateCreated datePublished" datetime="2022-10-17T10:26:13+08:00">2022-10-17</time>
+      <time title="创建时间：2022-10-17 10:26:13" itemprop="dateCreated datePublished" datetime="2022-10-17T10:26:13+08:00">2022-10-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-07-24 17:24:46" itemprop="dateModified" datetime="2023-07-24T17:24:46+08:00">2023-07-24</time>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-24 17:24:46" itemprop="dateModified" datetime="2023-07-24T17:24:46+08:00">2023-07-24</time>
     </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>937</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -244,7 +258,7 @@
 
 <h6 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h6><p><em>注意：尾调用优化是否方便可行取决于运行环境对此类优化的支持度</em></p>
 <p>函数调用会在内存中形成一个‘调用记录’，又称为‘调用帧’。用来保存调用位置和内存变量等信息。如果A函数内部调用B函数，在A的调用记录上，会生成一个B的调用记录，等到B运行结束，将结果返回给A，B的调用记录才会消失。如果B的内部还调用C，那么在B上面会形成一个C的调用记录，以此类推。所有的调用记录，形成了一个‘调用栈’(call stack)。</p>
-<p><img src="/.io//call-stack.png" alt="call-stack"></p>
+<p><img src="/2022/10/17/40-tail-call/call-stack.png" alt="call-stack"></p>
 <p>但是，尾调用由于是函数调用的最后一步操作，所以不需要保存外部函数的调用记录，因为调用位置、内部变量等信息都不会再用到，只要直接用内层函数的调用记录，取代外层函数调用记录就可以了。所以，如果所有函数都是尾调用，那么每次执行的时候，只需要记录一项调用记录，从而节省大量内存，即‘尾调用优化’。</p>
 <p><em>注意：只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行‘尾调用优化’</em></p>
 <h6 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h6><p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>
@@ -311,7 +325,21 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:24</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -321,7 +349,7 @@
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
 
   
 
@@ -336,4 +364,6 @@
 
 
 </body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
 </html>

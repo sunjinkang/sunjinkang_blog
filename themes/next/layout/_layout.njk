@@ -13,7 +13,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage"{% if theme.motion.enable %} class="use-motion"{% endif %}>
   <div class="headband"></div>
-
+  <div id="id-post-top" class="post-top-background"></div>
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner">
@@ -49,4 +49,6 @@
 
   {{- next_inject('bodyEnd') }}
 </body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
 </html>

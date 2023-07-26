@@ -52,6 +52,11 @@ const name = 'eric';
 <font face="微软雅黑">文字</font>
 ```
 
+###### 文字居中
+```js
+<center>文字</center>
+```
+
 ###### 背景色
 <mark style="bgcolor:red">文字</mark>
 ```javascript
@@ -146,6 +151,9 @@ const name = 'eric';
 
 ###### 图片
 !\[alt 属性文本\]\(图片地址\)
+
+###### 图片居中
+!\[alt 属性文本\]\(图片地址\#pic_center)
 
 
 ###### 插入公式

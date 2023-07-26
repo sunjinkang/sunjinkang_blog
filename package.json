@@ -27,6 +27,7 @@
     "hexo-renderer-swig": "^1.1.0",
     "hexo-server": "^2.0.0",
     "hexo-theme-landscape": "^0.0.3",
+    "hexo-word-counter": "^0.1.0",
     "thunkify": "^2.1.2"
   },
   "type": "module"

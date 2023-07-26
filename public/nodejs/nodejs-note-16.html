@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="fs (文件系统)通过 require(‘fs’) 使用该模块。所有的方法都有异步和同步的形式。  异步方法的最后一个参数都是一个回调函数。 传给回调函数的参数取决于具体方法，但回调函数的第一个参数都会保留给异常。 如果操作成功完成，则第一个参数会是 null 或 undefined。   使用同步方法，任何异常都会被立即抛出。 可以使用 try&#x2F;catch 来处理异常，或让异常向上冒泡。1234">
-<meta property="og:type" content="website">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="nodejs基础知识(9)">
 <meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-16.html">
-<meta property="og:site_name" content="Sun ...something">
+<meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="fs (文件系统)通过 require(‘fs’) 使用该模块。所有的方法都有异步和同步的形式。  异步方法的最后一个参数都是一个回调函数。 传给回调函数的参数取决于具体方法，但回调函数的第一个参数都会保留给异常。 如果操作成功完成，则第一个参数会是 null 或 undefined。   使用同步方法，任何异常都会被立即抛出。 可以使用 try&#x2F;catch 来处理异常，或让异常向上冒泡。1234">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/file-mode.png">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/permission-number.png">
 <meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/fs-const-access.png">
@@ -48,10 +48,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-16.html","path":"nodejs/nodejs-note-16.html","title":"nodejs基础知识(9)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-16.html","path":"nodejs/nodejs-note-16.html","title":"nodejs基础知识(9)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>nodejs基础知识(9) | Sun ...something
+<title>nodejs基础知识(9) | Sun with no word
 </title>
   
 
@@ -62,17 +62,17 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Sun ...something" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
-
+  <div id="id-post-top" class="post-top-background"></div>
   <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -83,11 +83,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Sun ...something</p>
+      <p class="site-title">Sun with no word</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">about what I have learned and some interesting things</p>
-      <img class="custom-logo-image" src="/images/logo.jpeg" alt="Sun ...something">
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
   </div>
 
   <div class="site-nav-right">
@@ -99,7 +98,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-vue"><a href="/vue/" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -120,10 +119,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -144,9 +143,9 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/archives/">
+        <a href="/archives">
           <span class="site-state-item-count">52</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -175,7 +174,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="Back to top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -194,7 +193,7 @@
     
     
     
-    <div class="post-block" lang="en"><header class="post-header">
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
 <h1 class="post-title" itemprop="name headline">nodejs基础知识(9)
 </h1>
@@ -317,7 +316,7 @@ file 可能是一个被打开用来追加数据的数字文件描述符（通过
 <li>callback <Function></Function></li>
 <li>err <Error><br>异步地改变文件的权限。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
-<h6 id="File-modes"><a href="#File-modes" class="headerlink" title="File modes"></a>File modes</h6><p>mode 参数会在 fs.chmod() 和 fs.chmodSync()方法中用到，它是用下面的常量进行逻辑或(logical OR)操作后的数字掩码：<br><img src="./images/file-mode.png" alt="file mode"><br>一个构造 mode 的更简单的方式是使用3位八进制串（比如，765）。最左侧的数字（例中的7）代表了文件所有者的权限。中间一位（例中的6）代表了组的权限。最右侧的数字（例中的5）代表其他人的权限。<br><img src="./images/permission-number.png" alt="permission number"><br>例如，八进制值 0o765 表示：</p>
+<h6 id="File-modes"><a href="#File-modes" class="headerlink" title="File modes"></a>File modes</h6><p>mode 参数会在 fs.chmod() 和 fs.chmodSync()方法中用到，它是用下面的常量进行逻辑或(logical OR)操作后的数字掩码：<br><img src="/nodejs/images/file-mode.png" alt="file mode"><br>一个构造 mode 的更简单的方式是使用3位八进制串（比如，765）。最左侧的数字（例中的7）代表了文件所有者的权限。中间一位（例中的6）代表了组的权限。最右侧的数字（例中的5）代表其他人的权限。<br><img src="/nodejs/images/permission-number.png" alt="permission number"><br>例如，八进制值 0o765 表示：</p>
 <ul>
 <li>文件所有者可以进行读、写和执行。</li>
 <li>文件所属组可以读和写。</li>
@@ -432,10 +431,10 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
 <p>fs.write(fd, buffer[, offset[, length[, position]]], callback)<br>注意，多次对同一文件使用 fs.write 且不等待回调，是不安全的。 对于这种情况，强烈推荐使用 fs.createWriteStream。<br>在 Linux 上，当文件以追加模式打开时，指定位置的写入是不起作用的。 内核会忽略位置参数，并总是将数据追加到文件的末尾。</p>
 <p>fs.writeFile(file, data[, options], callback)<br>注意，多次对同一文件使用 fs.writeFile 且不等待回调，是不安全的。 对于这种情况，强烈推荐使用 fs.createWriteStream。<br>注意：如果 file 指定为一个文件描述符，则它不会被自动关闭。</p>
 <p>fs 常量<br>以下常量由 fs.constants 输出。<br>注意：不是所有的常量在每一个操作系统上都是可用的。</p>
-<p>文件访问常量：以下常量用于 fs.access()。<br><img src="./images/fs-const-access.png" alt="文件访问常量"></p>
-<p>文件打开常量<br>以下常量用于 fs.open()。<br><img src="./images/fs-const-open-1.png" alt="文件打开常量"><br><img src="./images/fs-const-open-2.png" alt="文件打开常量"></p>
-<p>文件类型常量<br>以下常量用于 fs.Stats 对象中用于决定一个文件的类型的 mode 属性。<br><img src="./images/fs-const-mode.png" alt="文件类型常量"></p>
-<p>文件模式常量<br>以下常量用于 fs.Stats 对象中用于决定一个文件访问权限的 mode 属性。<br><img src="./images/fs-const-mode-1.png" alt="文件模式常量"></p>
+<p>文件访问常量：以下常量用于 fs.access()。<br><img src="/nodejs/images/fs-const-access.png" alt="文件访问常量"></p>
+<p>文件打开常量<br>以下常量用于 fs.open()。<br><img src="/nodejs/images/fs-const-open-1.png" alt="文件打开常量"><br><img src="/nodejs/images/fs-const-open-2.png" alt="文件打开常量"></p>
+<p>文件类型常量<br>以下常量用于 fs.Stats 对象中用于决定一个文件的类型的 mode 属性。<br><img src="/nodejs/images/fs-const-mode.png" alt="文件类型常量"></p>
+<p>文件模式常量<br>以下常量用于 fs.Stats 对象中用于决定一个文件访问权限的 mode 属性。<br><img src="/nodejs/images/fs-const-mode-1.png" alt="文件模式常量"></p>
 
       </div>
       
@@ -462,7 +461,21 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
   </span>
   <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:24</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -472,7 +485,7 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
 
   
 
@@ -487,4 +500,6 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
 
 
 </body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
 </html>
