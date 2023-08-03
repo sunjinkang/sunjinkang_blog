@@ -12,6 +12,21 @@ tags:
 *预置说明*
 content与attr（PS: 本文仅针对需要的使用方式进行说明，不做详细说明，感兴趣的可以前往[mdn的attr](https://developer.mozilla.org/zh-CN/docs/Web/CSS/attr)进行查看）
 
+content
+CSS 的 content CSS 属性用于在元素的 ::before 和 ::after 伪元素中插入内容。使用 content 属性插入的内容都是匿名的可替换元素。
+```js
+<a href="http://www.mozilla.org/en-US/">Home Page</a>
+
+a::before {
+  content: url(http://www.mozilla.org/favicon.ico) " MOZILLA: ";
+  font:
+    x-small Arial,
+    freeSans,
+    sans-serif;
+  color: gray;
+}
+```
+
 常见用法：
 > content: attr(属性名);
 

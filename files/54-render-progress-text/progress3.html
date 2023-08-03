@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .progress-wrapper {
+        overflow: hidden;
+        white-space: pre;
+        width: 300px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 16px;
+        border: 1px solid #333;
+        position: relative;
+        text-align: center;
+      }
+      .progress-bottom {
+        display: inline-block;
+        color: lightblue;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .progress-top {
+        background-color: lightblue;
+        color: #fff;
+        width: 19%;
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        left: 50%;
+        margin-left: -56px;
+      }
+      .progress-bar {
+        background-color: lightblue;
+        color: #fff;
+        width: 50%;
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-wrapper">
+      <div class="progress-bottom">当前进度：50%</div>
+      <div class="progress-bar"></div>
+      <div class="progress-top">当前进度：50%</div>
+    </div>
+    <input type="number" id="percent" />
+    <button class="button">修改</button>
+  </body>
+  <script>
+    function renderProgress() {
+      const number = document.querySelector('#percent').value;
+      getPercent(Number(number));
+    }
+
+    function getPercent(data) {
+      const progress = document.querySelector('.progress-wrapper');
+      const progressTop = document.querySelector('.progress-top');
+      const topComputedStyle = getStyle(progressTop);
+      const computedStyle = getStyle(progress);
+      const topMarginLeft = topComputedStyle.marginLeft.includes('px')
+        ? topComputedStyle.marginLeft.split('px')?.[0]
+        : topComputedStyle.marginLeft;
+      const width = computedStyle.width.includes('px')
+        ? computedStyle.width.split('px')?.[0]
+        : computedStyle.width;
+      const topMinPercent = Math.round(
+        (Math.abs(Number(topMarginLeft)) / Number(width)) * 100
+      );
+      console.log(topMinPercent); //19
+      console.log(data < 50 - topMinPercent);
+      if (data < 50 - topMinPercent) {
+        document.querySelector('.progress-bar').style.width = `${data}%`;
+        document.querySelector('.progress-top').style.width = `${0}%`;
+      } else {
+        const current = data - topMinPercent;
+        document.querySelector('.progress-bar').style.width = `${
+          50 - topMinPercent + 1
+        }%`;
+        document.querySelector('.progress-top').style.width = `${current}%`;
+      }
+      document.querySelector('.progress-top').innerHTML = `当前进度：${data}%`;
+      document.querySelector(
+        '.progress-bottom'
+      ).innerHTML = `当前进度：${data}%`;
+    }
+
+    function getStyle(element) {
+      return getComputedStyle(element, null);
+    }
+
+    document.querySelector('.button').onclick = function (e) {
+      renderProgress();
+    };
+  </script>
+</html>
