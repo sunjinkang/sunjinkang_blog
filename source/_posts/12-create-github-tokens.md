@@ -10,3 +10,5 @@ tags:
 (3)选择 Personal access tokens ，点击 Generate new token 按钮
 (4)需要填写token的权限范围
 (5)**<font color="Red">注意：生成的token只在生成后可以看一次，一定要记得保存！！！</font>**
+
+<!-- more -->

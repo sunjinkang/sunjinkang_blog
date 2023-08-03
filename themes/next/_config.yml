@@ -37,8 +37,8 @@ custom_file_path:
 # Schemes
 # scheme: Muse
 # scheme: Mist
-scheme: Pisces
-# scheme: Gemini
+# scheme: Pisces
+scheme: Gemini
 
 # Dark Mode
 darkmode: true
@@ -49,7 +49,7 @@ darkmode: true
 
 favicon:
   small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
+  medium: /images/favicon.ico
   apple_touch_icon: /images/apple-touch-icon-next.png
   safari_pinned_tab: /images/logo.svg
   #android_manifest: /manifest.json
@@ -370,7 +370,7 @@ codeblock:
   copy_button:
     enable: true
     # Available values: default | flat | mac
-    style:
+    style: mac
 
 back2top:
   enable: true
@@ -840,7 +840,7 @@ motion:
 # Progress bar in the top during page loading.
 # For more information: https://github.com/CodeByZach/pace
 pace:
-  enable: false
+  enable: true
   # All available colors:
   # black | blue | green | orange | pink | purple | red | silver | white | yellow
   color: blue
@@ -883,3 +883,30 @@ vendors:
 css: css
 js: js
 images: images
+
+# 鼠标点击动画 Fireworks
+fireworks: false
+
+# Canvas-nest
+# Dependencies: https://github.com/theme-next/theme-next-canvas-nest
+# For more information: https://github.com/hustcc/canvas-nest.js
+# canvas_nest
+canvas_nest: true # 开启动画 老版的不能用enable: true
+# canvas_nest: false # 关闭动画
+
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-<你喜欢的模型名字>
+  display:
+    position: right
+    # width: 150 # 大小根据模型结构自己调整合适的
+    # height: 300
+  mobile:
+    show: true # 是否在手机端显示

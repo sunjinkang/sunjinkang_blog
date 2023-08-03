@@ -10,6 +10,7 @@ tags:
 meta标签一般放在HTML页面的head里面，[MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta)定义：
 >HTML <meta> 元素表示那些不能由其它 HTML 元相关（meta-related）元素（(\<base\>,\<link\>,\<script\>,\<style\> 或 \<title\>）之一表示的任何元数据信息。
 
+<!-- more -->
 ###### meta定义的元数据类型
 (1)name属性：meta元素提供文档级别元数据，应用于整个页面
 -- name和content一起使用，name表示元数据名称，content表示元数据的值

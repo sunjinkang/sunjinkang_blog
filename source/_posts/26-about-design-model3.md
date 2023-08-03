@@ -11,7 +11,7 @@ tags:
 模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。
 
 多用于归一化组件
-
+<!-- more -->
 ![basic-model](basic-model.png)
 ![inherit-model](inherit-model.png)
 ![inherit-as-basic-model](inherit-as-basic-model.png)

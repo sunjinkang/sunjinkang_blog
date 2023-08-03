@@ -15,4 +15,6 @@ console.log(c,window.c);    // 1 undefined
 ```
 let声明的变量或const声明的常量会挂载到Script下，var会挂载到Global下（window类似于Global的代理）。可查看文章[let和const声明的变量到底去哪里了？](https://zhuanlan.zhihu.com/p/114128108)
 
+<!-- more -->
+
 #### 2、

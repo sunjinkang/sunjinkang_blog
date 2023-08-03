@@ -102,6 +102,12 @@
       {{ partial('_partials/post/post-related.njk') }}
     {%- endif %}
 
+    <div>
+      {% if not is_index %}
+        {% include 'passage-end-tag.swig' %}
+      {% endif %}
+    </div>
+
     <footer class="post-footer">
       {%- if is_index %}
         <div class="post-eof"></div>

@@ -15,7 +15,7 @@ tags:
 - 使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象
 - 把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）
 - 将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）
-
+<!-- more -->
 ###### toDataURL
 * canvas对象的一种方法，用于将canvas对象转换为base64位编码.
 * 转化实现：将图片绘制到canvas中，然后将canvas对象转换为base64编码，从而实现图片转为base64编码；

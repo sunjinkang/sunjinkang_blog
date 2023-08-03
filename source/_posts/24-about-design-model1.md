@@ -12,6 +12,7 @@ tags:
 ![simple-factory1](simple-factory1.png)
 ![simple-factory2](simple-factory2.png)
 
+<!-- more -->
 (2)一个对象有时也可代替许多类
 ![create-pop](create-pop.png)
 

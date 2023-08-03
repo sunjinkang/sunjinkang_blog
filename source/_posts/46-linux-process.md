@@ -7,7 +7,7 @@ tags:
 #### 查看进程
 ps
 ![ps](ps.png)
-
+<!-- more -->
 ps aux
 ![ps-aux](ps-aux.png)
 

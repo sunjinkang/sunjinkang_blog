@@ -16,7 +16,7 @@ function* name([param[, param[, ... param]]]) { statements }
 // statements: 执行语句
 // 声明方式可以为：function* name(){} 或者 function *name(){}
 ```
-
+<!-- more -->
 ###### 简单举例
 ```javascript
 function* generator(i) {

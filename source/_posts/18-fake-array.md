@@ -13,6 +13,8 @@ ArrayLike，也叫作类数组。是一种按照索引存储数据且具有lengt
 3、不具有数组的方法，如push、pop等
 ![document获取的伪数组](document.png)
 
+<!-- more -->
+
 #### 有哪些常见的伪数组
 1、function的arguments对象
 2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象

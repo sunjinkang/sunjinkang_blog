@@ -10,7 +10,7 @@ tags:
 
 **冒泡排序**
 冒泡排序(_复杂度是 O(n2)_)比较所有相邻的两个项，如果第一个比第二个大，则交换它们。元素项向上移动至正确的顺序，就好像气泡升至表面一样，冒泡排序因此得名。
-
+<!-- more -->
 ```javascript
 function defaultCompare(a, b) {
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;

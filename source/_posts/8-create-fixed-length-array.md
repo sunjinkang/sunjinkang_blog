@@ -13,6 +13,8 @@ console.log(newArray);  // [3, 3, 3]
 ```
 Array(length).fill(initialValue) 是一种创建具有所需长度并使用原始值（数字、字符串、布尔值）初始化的数组的便捷方法
 
+<!-- more -->
+
 ###### 使用对象填充数组
 (1)使用Array().fill()创建数组
 ```javascript

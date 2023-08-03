@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .progress-bar {
+        display: inline-block;
+        font-size: 16px;
+        line-height: 20px;
+        color: lightblue;
+        position: relative;
+        overflow: hidden;
+        white-space: pre;
+        width: 300px;
+        height: 20px;
+        border: 1px solid #333;
+      }
+
+      .progress-bar:before {
+        position: absolute;
+        top: 0;
+        color: #fff;
+        display: block;
+        width: 18%;
+        content: attr(data-content);
+        overflow: hidden;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-bar" data-content="当前进度：18%">当前进度：18%</div>
+  </body>
+</html>

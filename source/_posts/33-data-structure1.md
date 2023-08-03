@@ -13,7 +13,7 @@ ES5、ES6、ES2015、ES7、ES2016、ES8、ES2017 和 ES.Next 的区别
 
 (2)ECMAScript2015(ES2015)在 2015 年 6 月标准化。负责起草 ECMAScript 规范的委员会决定把定义新标准的模式改为每年更新一次，新的特性
 一旦通过就加入标准。因此，ECMAScript 第六版更名为 ECMAScript2015(ES6)
-
+<!-- more -->
 (3)2016 年 6 月，ECMAScript 第七版被标准化，称为 ECMAScript2016 或 ES2016(ES7)
 
 (4)2017 年 6 月，ECMAScript 第八版被标准化。我们称它为 ECMAScript2017 或 ES2017(ES8)

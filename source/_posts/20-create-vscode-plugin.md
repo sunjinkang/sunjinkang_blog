@@ -16,3 +16,5 @@ npm install -g yo generator-code
 ```javascript
 yo code
 ```
+
+<!-- more -->

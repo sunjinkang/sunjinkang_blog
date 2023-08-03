@@ -15,7 +15,7 @@ const name = 'test_name';
 const obj = { ...name && {name}};
 console.log(obj); // { name: 'test_name'}
 ```
-
+<!-- more -->
 ###### 无中间变量交换变量值
 ```javascript
 let one = '12';

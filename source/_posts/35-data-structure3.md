@@ -9,7 +9,7 @@ tags:
 集合是由一组无序且唯一（即不能重复）的项组成的
 
 ###### 创建集合类
-
+<!-- more -->
 ```javascript
 class Set {
   constructor() {

@@ -11,7 +11,7 @@ tags:
 ###### scrollIntoView用法
 *element.scrollIntoView()*
 等同于element.scrollIntoView(true)
-
+<!-- more -->
 *element.scrollIntoView(boolean)*
 - boolean为true
   - 元素的顶端将和其所在滚动区域的可视区域的顶端对齐

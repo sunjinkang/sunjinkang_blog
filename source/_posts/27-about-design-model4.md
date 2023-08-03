@@ -9,7 +9,7 @@ tags:
 
 ###### 链模式
 链模式(Operate of Responsibility):通过在对象方法中将当前对象返回，实现对同一个对象多个方法的链式调用。从而简化对该对象的多个方法的多次调用时，对该对象的多次引用。
-
+<!-- more -->
 ![chain-model-1](chain-model-1.png)
 ![chain-model-2](chain-model-2.png)
 ![chain-model-3](chain-model-3.png)

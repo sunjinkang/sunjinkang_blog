@@ -13,6 +13,8 @@ tags:
 原因：使用的hexo-asset-image插件存在bug
 解决办法：手动修改node_modules/hexo-asset-image中index.js文件的处理方式
 
+<!-- more -->
+
 ```javascript
 'use strict';
 var cheerio = require('cheerio');

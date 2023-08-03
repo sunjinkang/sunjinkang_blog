@@ -24,6 +24,8 @@ tags:
 (12)实例销毁，vm.$destroy
 (13)销毁后调用unmounted
 
+<!-- more -->
+
 ## render函数
 ![render](render.png)
 (1)首先会判断Vnode是否存在，如果不存在，则调用unmount函数，进行组件的卸载

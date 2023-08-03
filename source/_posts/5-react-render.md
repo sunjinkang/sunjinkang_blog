@@ -14,6 +14,8 @@ tags:
 (1)本质为JS对象，使用键值对存储信息，嵌套表示层级关系
 (2)$$typeof：标识符，使用Symbol数据结构确保唯一性
 
+<!-- more -->
+
 #### 协调算法
 #### filter图示
 ![filter_tree](fiber_tree.png)

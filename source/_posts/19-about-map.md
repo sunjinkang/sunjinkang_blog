@@ -12,6 +12,9 @@ tags:
 const map = new Map();
 ```
 map可以使用一个对象作为键
+
+<!-- more -->
+
 ```javascript
 const map = new Map();
 const o = { p: 'string' };

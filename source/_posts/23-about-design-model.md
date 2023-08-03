@@ -10,6 +10,9 @@ tags:
 二、封装
 1、使用原型(prototype)为类添加属性和方法的两种方式(**注意两种不能混用**)：
 (1)为原型对象属性赋值
+
+<!-- more -->
+
 ```javascript
 Book.prototype.display = function() {
   // ....

@@ -11,6 +11,9 @@ tags:
 没什么特别意义，团队规范规定
 (3)vue3中在patch的时候，为什么在有了patchElement（感觉能满足大部分情况了）的情况下，分了其他几种类型？
 性能、更新
+
+<!-- more -->
+
 (4)react中react和react-dom的关系？vue3中vue.cjs.js和vue.global.js
 react-dom =》 渲染浏览器
 vue可以搭配react-dom

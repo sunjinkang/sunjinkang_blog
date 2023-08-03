@@ -13,6 +13,8 @@ tags:
 #### 查看== 、=== 、if()在不同情况下的执行结果
 [地址](https://dorey.github.io/JavaScript-Equality-Table/)
 
+<!-- more -->
+
 #### css层叠样式表
 [官方文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade)
 

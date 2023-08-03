@@ -21,6 +21,7 @@ tags:
 1 - undefined // NaN, undefined转换为数字为 NaN
 2 * ['5'] // 10, ['5']先变成'5'（这一步涉及拆箱操作）,然后变成数字5
 ```
+<!-- more -->
 {% btn /2022/08/09/devan-operation/, 拆箱操作, %}
 
 2、加运算

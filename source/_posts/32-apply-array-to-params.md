@@ -41,6 +41,7 @@ const array = [1, 2, 4, 6, 2, 8];
 Math.max.apply(null, array);
 // 8
 ```
+<!-- more -->
 
 ###### ES6中的扩展符
 ```javascript

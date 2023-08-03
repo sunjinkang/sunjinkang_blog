@@ -16,6 +16,7 @@ obj: 参数为要获取原型对象的对象
 注意：
 es5中，如果参数不是对象，会抛出TypeError错误
 es6中，如果参数不是对象，会强制类型转换为对象
+<!-- more -->
 **示例**
 ```javascript
 console.log(Object.getPrototypeOf('12') === String.prototype); // true

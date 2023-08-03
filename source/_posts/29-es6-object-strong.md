@@ -15,7 +15,7 @@ var obj = {
 };
 console.log(obj); // {name: 'test'}
 ```
-
+<!-- more -->
 (2)简化属性方法定义：给一个属性赋匿名函数方法时，可以使用更简洁的方法
 
 ```javascript

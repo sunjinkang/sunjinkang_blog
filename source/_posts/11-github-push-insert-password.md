@@ -10,6 +10,9 @@ tags:
 鉴于在输入实际操作中，两次输入username和password不知道应该怎么输入，做个记录，避免遗忘。
 
 (1)本地修改代码，提交。本文仅从git push开始记录，之前的命令和操作如果不知道怎么办，请自行百度或Google。
+
+<!-- more -->
+
 ```javascript
 git push
 ```
