@@ -895,7 +895,7 @@ canvas_nest: true # 开启动画 老版的不能用enable: true
 # canvas_nest: false # 关闭动画
 
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   pluginRootPath: live2dw/
   pluginJsPath: lib/
