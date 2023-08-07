@@ -24,7 +24,7 @@
     </span>
 
     {%- if post.header !== false %}
-      <header class="post-header">
+      <header class="post-header post-top-background" id="id-post-top">
         <{% if is_index %}h2{% else %}h1{% endif %} class="post-title{% if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="name headline">
           {# Link posts #}
           {%- if post.link %}

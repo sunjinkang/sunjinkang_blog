@@ -1,6 +1,9 @@
 if (hexo-config('back2top.enable')) {
   .back-to-top {
     font-size: $b2t-font-size;
+    width: 77px!important;
+    height: 70px;
+    background-color: rgba(0,0,0,0)!important;
 
     if (not hexo-config('back2top.scrollpercent')) {
       span {
@@ -40,6 +43,10 @@ if (hexo-config('back2top.enable')) {
       &.back-to-top-on {
         bottom: $b2t-position-bottom-on;
       }
+    }
+
+    img {
+      width: 65px;
     }
   }
 }
