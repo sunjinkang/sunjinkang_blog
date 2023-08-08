@@ -94,11 +94,12 @@ open_graph:
 # External url should start with http:// or https://
 menu:
   home: / || fa fa-home
-  about: /about || fa fa-user
-  tags: /tags || fa fa-tags
+  babel: /babel || fas fa-file-code
+  node: /nodejs || fab fa-node-js
+  # tags: /tags || fa fa-tags
   #categories: /categories/ || fa fa-th
   archives: /archives || fa fa-archive
-  vue: /vue || fa fa-archive
+  vue: /vue || fab fa-vuejs
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   commonweal: /404.html || fa fa-heartbeat

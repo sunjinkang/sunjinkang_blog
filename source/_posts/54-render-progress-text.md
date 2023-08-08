@@ -6,7 +6,7 @@ tags:
 
 ###### 前言
 生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。
-
+<!-- more -->
 ###### 实现一：使用伪类
 
 *预置说明*
@@ -43,7 +43,7 @@ p:before {
 ```
 
 注意：attr理论上可以单独使用，但由于浏览器兼容性问题，目前最好不要使用，本文中attr是与content一起使用，限制较小。
-![content_attr](./53-render-progress-text/content_attr.png)
+![content_attr](content_attr.png)
 
 方案：使用content和attr可以获取标签中的属性，将进度条的文字同时放在标签的属性里面，再通过伪类和content、attr搭配，根据进度显示不同宽度，将新的文字覆盖到原有的底层文字之上，实现进度条文字反差的效果。
 
@@ -77,7 +77,7 @@ p:before {
 ```
 
 效果如下：
-![content进度条](./53-render-progress-text/content-progress.png)
+![content进度条](content-progress.png)
 
 *说明*
 该方案中的文字好像只能处于默认的左侧位置，使用伪类获取的内容文字无法位于中间，暂未找到解决办法

@@ -82,7 +82,7 @@ read('package.json', 'utf8')(function(err, str){
 });
 ```
 *注意：thunkify中存在一个检查机制，回调函数只运行一次。*
-![thunkify源码](./51-about-thunk-function/thunkify.png)
+![thunkify源码](thunkify.png)
 
 ```javascript
 import thunkify from 'thunkify';
@@ -147,7 +147,7 @@ co地址：https://github.com/tj/co
 
 *注意：co从4.0.0开始返回的是promise，之前返回的是thunk函数，4.0.0之前会把promise转成thunk函数*
 
-![promiseToThunk](./51-about-thunk-function/promiseToThunk.png)
+![promiseToThunk](promiseToThunk.png)
 ```javascript
 var co = require('co');
 // 这里的thunk函数也可以自己实现
@@ -174,7 +174,7 @@ co(function *(){
 })()
 ```
 
-![thunkToPromise](./51-about-thunk-function/thunkToPromise.png)
+![thunkToPromise](thunkToPromise.png)
 ```javascript
 import co from 'co';
 co(function* () {

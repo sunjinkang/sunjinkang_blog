@@ -1,20 +1,20 @@
 .posts-expand .post-header {
   font-size: $font-size-large;
-  padding-bottom: 80px;
   text-align: center;
-  height: 270px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  &.post-top-background {
+    padding-bottom: 80px;
+    height: 270px;
+  }
 }
 
 .posts-expand .post-title {
   font-size: $font-size-largest;
   font-weight: normal;
   margin: initial;
-  padding-top: 120px;
-  color: #00ff8c;
+  color: #f00;
   word-wrap();
-
   if (hexo-config('post_edit.enable')) {
     .post-edit-link {
       border-bottom: 0;
@@ -35,9 +35,13 @@
   }
 }
 
+.posts-expand .post-top-background .post-title {
+    padding-top: 120px;
+  }
+
 .posts-expand .post-title-link {
   border-bottom: 0;
-  color: var(--link-color);
+  color: #f00;
   display: inline-block;
   position: relative;
 
@@ -72,7 +76,7 @@
 }
 
 .posts-expand .post-meta-container {
-  color: #00ff8c;
+  color: #f00;
   font-family: $font-family-posts;
   font-size: $font-size-smallest;
   margin-top: 3px;
@@ -83,7 +87,7 @@
   }
 
   time {
-    border-bottom: 1px dashed #00ff8c;
+    border-bottom: 1px dashed #f00;
   }
 }
 
