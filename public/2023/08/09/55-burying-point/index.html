@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言假设你所在的公司有一个购物网站，想要分析不同用户的喜好偏向，预测商品销售情况等一些情况，这时就需要收集线上活动的用户行为的数据，并结合具体的指标进行分析。那么这些数据怎么收集？通常就可以通过埋点的方式解决类似的问题。 什么是埋点？埋点是一种常用的数据采集方法，是收集并记录用户行为数据的过程。 通过埋点收集用户行为的有效信息，用作统计页面加载和事件行为的数据支撑，比如访问量、点击率、跳出率等，同">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="关于埋点">
+<meta property="og:url" content="https://sunjinkang.github.io/2023/08/09/55-burying-point/index.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="前言假设你所在的公司有一个购物网站，想要分析不同用户的喜好偏向，预测商品销售情况等一些情况，这时就需要收集线上活动的用户行为的数据，并结合具体的指标进行分析。那么这些数据怎么收集？通常就可以通过埋点的方式解决类似的问题。 什么是埋点？埋点是一种常用的数据采集方法，是收集并记录用户行为数据的过程。 通过埋点收集用户行为的有效信息，用作统计页面加载和事件行为的数据支撑，比如访问量、点击率、跳出率等，同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/08/09/55-burying-point/bury_point_type.jpg">
+<meta property="article:published_time" content="2023-08-09T08:39:45.000Z">
+<meta property="article:modified_time" content="2023-08-11T06:15:13.563Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2023/08/09/55-burying-point/bury_point_type.jpg">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2023/08/09/55-burying-point/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2023/08/09/55-burying-point/","path":"2023/08/09/55-burying-point/","title":"关于埋点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于埋点 | Sun with no word</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%8B%E7%82%B9%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么是埋点？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%8B%E7%82%B9%E5%8E%9F%E5%88%99%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">埋点原则：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%8B%E7%82%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">埋点方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%9F%8B%E7%82%B9%E5%B7%A5%E5%85%B7"><span class="nav-number">5.</span> <span class="nav-text">一些埋点工具</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%8B%E7%82%B9%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">埋点数据采集遇到的问题：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/08/09/55-burying-point/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于埋点 | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header post-top-background" id="id-post-top">
+        <h1 class="post-title" itemprop="name headline">
+          关于埋点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-09 16:39:45" itemprop="dateCreated datePublished" datetime="2023-08-09T16:39:45+08:00">2023-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-11 14:15:13" itemprop="dateModified" datetime="2023-08-11T14:15:13+08:00">2023-08-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><p>假设你所在的公司有一个购物网站，想要分析不同用户的喜好偏向，预测商品销售情况等一些情况，这时就需要收集线上活动的用户行为的数据，并结合具体的指标进行分析。那么这些数据怎么收集？通常就可以通过埋点的方式解决类似的问题。</p>
+<h6 id="什么是埋点？"><a href="#什么是埋点？" class="headerlink" title="什么是埋点？"></a>什么是埋点？</h6><p>埋点是一种常用的数据采集方法，是收集并记录用户行为数据的过程。</p>
+<p>通过埋点收集用户行为的有效信息，用作统计页面加载和事件行为的数据支撑，比如访问量、点击率、跳出率等，同时埋点为数据运营提供基础，为未来的业务发展提供有力支持。</p>
+<h6 id="埋点原则："><a href="#埋点原则：" class="headerlink" title="埋点原则："></a>埋点原则：</h6><p>1、获取目标数据；<br>2、获取当前版本情况；<br>    1）新功能使用情况是否符合预期；<br>    2）新功能对其他功能、整体是否有积极影响；<br>    3）运营活动目标群体特征获取；<br>    4）新增商业化目标监测。<br>3、为后续版本做数据支持。<br>    1）规划方向的用户行为分析；<br>    2）画像特征分析；<br>常见沟通过程以埋点文档为载体，以数据埋点评审为终结。</p>
+<h6 id="埋点方式"><a href="#埋点方式" class="headerlink" title="埋点方式"></a>埋点方式</h6><p>埋点方式可以分为前端埋点和后端埋点，目前比较常见的前端埋点有：前端代码埋点、全埋点和可视化埋点。后端埋点通常指的就是后端代码埋点。</p>
+<p>1、代码埋点：<br>实施人员：代码开发人员<br>优点：可以详细的设置某一个事件自定义属性，数据较为准确，比如：约定的id等属性；<br>缺点：时间、人力成本大，需要确定上传的数据，需要开发人员对代码进行修改；数据传输的时效性较差，因为涉及网络，甚至可能出现因为断网等原因导致数据无法上报。</p>
+<p>2、可视化埋点：在可视化界面，点击具体点位做埋点配置；<br>实施人员：数据产品、数据分析师<br>优点：埋点只需业务同学接入，无需开发支持；<br>缺点：仅支持客户端行为。</p>
+<p>可视化埋点的具体流程：</p>
+<ul>
+<li>手机APP嵌入开启可视化功能的SDK，通过WebSocket的方式和服务器、前端进行相互通信，SDK会定时收到服务器下发的页面请求；</li>
+<li>然后会上报页面快照和界面因子信息到服务器，服务器收到信息后会根据界面因子信息对页面的每个元素进行分析，根据控件的类型来标记哪些页面元素是可以被埋点的；</li>
+<li>最后将可埋点信息交给前端渲染，此时，前端Web页面上展示就的就是可以埋点的页面。</li>
+<li>埋点人员在渲染出来的前端Web页面上进行框选，标记事件属性等进行埋点。</li>
+<li>前端Web页面会将对应的埋点信息传递给服务器保存，SDK则会通过策略定时从服务器获取埋点信息。</li>
+</ul>
+<p>3、无埋点：又叫做全埋点，应用集成SDK，SDK自动监测用户所有行为。<br>定义：开发集成SDK后，SDK直接开始捕捉和检测用户在应用中的所有行为。<br>实施人员：数据产品、数据分析师<br>优点：<br>    1）无需开发，业务人员埋点即可；<br>    2）支持先上报数据，后进行埋点。<br>缺点：<br>    1）数据量大；<br>    2）多数有清空机制，超过n天，清空数据，无法追溯；<br>    3）仅仅支持客户端。<br><em>注：无埋点不是不埋点</em></p>
+<p>注意：<br>全埋点和可视化埋点很像。从实际的实现上看，二者的区别就是：可视化埋点先通过界面配置哪些控件的操作数据需要收集；“无埋点”则是先尽可能收集所有的控件的操作数据，然后再通过界面配置哪些数据需要在系统里面进行分析。</p>
+<p>“无埋点”相比可视化埋点的优点：<br>1、解决了数据“回溯”的问题，可视化埋点方案，只能从这一时刻向后收集数据，“无埋点”则从部署 SDK 的时候数据就一直都在收集了；<br>2、“无埋点”方案也可以自动获取很多启发性的信息，例如，“无埋点”可以告诉使用者这个界面上每个控件分别被点击的概率是多大，哪些控件值得做更进一步的分析等等。</p>
+<p><img src="bury_point_type.jpg" alt="bury-point-type"></p>
+<h6 id="一些埋点工具"><a href="#一些埋点工具" class="headerlink" title="一些埋点工具"></a>一些埋点工具</h6><ul>
+<li>百度统计</li>
+<li>神策数据</li>
+<li>FireBase</li>
+<li>TalkingData</li>
+</ul>
+<h6 id="埋点数据采集遇到的问题："><a href="#埋点数据采集遇到的问题：" class="headerlink" title="埋点数据采集遇到的问题："></a>埋点数据采集遇到的问题：</h6><p>实时性：无网条件下产生的数据，无法实时上报；<br>完整性：部分数据无法采集，根据《用户隐私协议》和《欧盟通用数据保护条例》<br>异常：部分埋点，随版本升级变化，无法获取。</p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------已经到底啦！<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/03/54-render-progress-text/" rel="prev" title="进度条中同一文字颜色反差的实现">
+                  <i class="fa fa-chevron-left"></i> 进度条中同一文字颜色反差的实现
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">61k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:41</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>
