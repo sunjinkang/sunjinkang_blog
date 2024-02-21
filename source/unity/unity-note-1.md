@@ -71,7 +71,7 @@ __文本资源__是导入的文本文件的格式。将文本文件拖放到 Pro
 
 注意：
 文本资源与所有其他资源一样会在构建中经过序列化。发布游戏时并不包含物理文本文件。
-文本资源不适用于在运行时生成文本文件。
+文本资源不适用于在运行时生成文本文件。(https://docs.unity.cn/cn/current/Manual/class-TextAsset.html)
 
 - 资源元数据
 Unity 为资源分配唯一 ID。（ID 通常在编辑器中不可见）
@@ -82,8 +82,61 @@ Unity 针对空文件夹采用以下特定方式：
 如果 Unity 检测到一个空文件夹不再含有相应的元文件，如果该文件夹以前有元文件，Unity 会假设元文件被另一个用户通过在 VCS 中删除该文件夹时删除，并在本地删除该空文件夹。
 如果 Unity 检测到文件夹有一个新的元文件，但该文件夹在本地不存在，则 Unity 会假设新元文件是被另一个用户通过在 VCS 中添加文件夹而创建，并在本地创建相应的空文件夹。
 
+- 资源数据库
+对于大多数类型的资源，Unity 需要将资源的源文件中的数据转换为可用于游戏或实时应用程序的格式。这些转换后的文件及其关联的数据会存储在资源数据库 (Asset Database) 中。
+
+*资源导入依赖项*
+资源数据库可以跟踪每个资源的所有依赖项，并保留导入版本的所有资源的缓存。
+资源的导入依赖项包括可能影响所导入数据的全部数据。例如，一个资源的源文件是一个依赖项以及资源的导入设置（例如纹理的压缩类型）或项目的目标平台（例如，PS4 硬件要求的数据格式与 Android 硬件不同）。如果修改其中任意一个依赖项，则缓存版本的已导入资源都将变为无效状态，并且 Unity 必须将其重新导入才能反映所做的更改。
+
+*资源缓存*
+资源缓存是 Unity 存储导入版本的资源的位置。默认情况下，Unity 使用本地缓存，这意味着导入版本的资源将缓存在本地计算机上项目文件夹的 Library 文件夹中。应该使用 ignore file 从版本控制中排除此文件夹。类似Git。
+团队成员并且使用版本控制系统，最好使用 [Unity Accelerator](https://docs.unity.cn/cn/current/Manual/UnityAccelerator.html)，它可以跨 LAN 共享资源缓存。
+
+*源资源和 Artifact*
+Unity 在 Library 文件夹中保留两个数据库文件，它们统称为资源数据库。这两个数据库可以跟踪有关源资源文件和 Artifact（这是有关导入结果的信息）的信息。
+数据库文件位于项目的 Library 文件夹中，因此应从版本控制系统中将这些文件排除。可以在以下位置找到它们：
+(1).源资源数据库：Library\SourceAssetDB
+(2).Artifact 数据库：Library\ArtifactDB
+
+- 特殊文件夹名称
+Assets: Assets 文件夹是包含 Unity 项目使用的资源的主文件夹。
+Editor: Editor脚本在开发过程中为Unity添加功能，Editor文件夹中的脚本作为Editor脚本运行，而不是运行时脚本。
+Editor Default Resources：Editor 脚本可以使用通过 EditorGUIUtility.Load 函数按需加载的资源文件。此函数在名为 Editor Default Resources 的文件夹中查找资源文件。
+Gizmos：Gizmos 允许将图形添加到 Scene 视图，以帮助可视化不可见的设计细节。Gizmos.DrawIcon 函数在场景中放置一个图标，作为特殊对象或位置的标记。必须将用于绘制此图标的图像文件放在名为 Gizmos 的文件夹中，这样才能被 DrawIcon 函数找到。
+Resources：可从脚本中按需加载资源，而不必在场景中创建资源实例以用于游戏。为此，应将资源放在一个名为 Resources 的文件夹中。通过使用 Resources.Load 函数即可加载这些资源。
+Standard Assets
+StreamingAssets：流媒体文件
+Android Asset Packs：以.androidpack结尾的文件夹
+Android 库项目：以.androidlib结尾的文件夹
+
+隐藏的资源
+在导入过程中，Unity 忽略 Assets 文件夹（或其子文件夹）中的以下文件和文件夹：
+隐藏的文件夹。
+以“.”开头的文件和文件夹。
+以“~”结尾的文件和文件夹。
+名为 cvs 的文件和文件夹。
+扩展名为 .tmp 的文件。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 文本资源不适用于在运行时生成文本文件？？？？
-VCS？？？
+VCS: version control system (版本控制系统)
+unity的开发保存在哪里？本地？线上？
+不可序列化变量??? (https://docs.unity.cn/cn/current/Manual/AssetDatabaseRefreshing.html)

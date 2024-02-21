@@ -100,6 +100,8 @@ menu:
   #categories: /categories/ || fa fa-th
   archives: /archives || fa fa-archive
   vue: /vue || fab fa-vuejs
+  unity: /unity || fab fa-unity
+  linux: /linux || fab fa-linux
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   commonweal: /404.html || fa fa-heartbeat
