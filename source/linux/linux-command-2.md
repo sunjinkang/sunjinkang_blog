@@ -179,6 +179,14 @@ yum clean all               # 清除缓存目录下的所有缓存
 yum makecache               # 建立元数据缓存
 yum -y update               # 升级所有软件包和系统内核
 yum -y upgrade              # 只升级软件包不升级内核
+
+# 注意：-y 表示自动安装，不需要交互，如果不加 -y ，安装中会出现问询，需要手动处理。
+# -y 下载安装
+
+# 以下两种试了一下，并不能用于命令中，会导致命令直接报错
+# -d 只下载不安装
+# -N 不安装
+
 #downloadonly可以仅下载所需软件和及其依赖包，大大解决了无网安装时找依赖包的问题
 yum install [软件包名称] --downloadonly --downloaddir=/tmp/mysoftware
 ```
@@ -187,3 +195,12 @@ yum install [软件包名称] --downloadonly --downloaddir=/tmp/mysoftware
 以上命令大部分可同时安装多个软件包或查询多个命令，具体使用可查看man手册
 https://man7.org/linux/man-pages/man8/yum.8@@yum.html
 
+
+
+某些系统中的，或者是某个包
+需要掌握换源这类知识。
+进程守护 systemctrl
+        DMP使用进程守护拉起来
+ushard分库分表和读写分离写了大量日志，不用的话可以卸载
+
+扩展数据库组件用的

@@ -1,7 +1,7 @@
 ---
 title: linux - 关于磁盘命令
 date: 2024-02-11 19:23:54
-tags:
+tags: [linux, 磁盘]
 ---
 
 #### linux查看磁盘使用情况命令
@@ -195,13 +195,3 @@ lsof: no pwd entry for UID 5701
 
 #### 以上内容可在man手册中查看具体内容
 man手册地址：https://man7.org
-
-man手册分为man1-man8：
-- man1:用户命令；
-- man2:系统调用；
-- man3:C库调用；
-- man4:设备文件及特殊文件；
-- man5:文件格式：(配置文件格式)；
-- man6:游戏使用帮助；
-- man7:杂项；
-- man8:管理工具及守护进行。
