@@ -89,9 +89,10 @@ gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
 - [extras]yum的ID，必须唯一的，本地有多个yum源的时候，这里也必须是唯一的。
 - name 具体的yum源名称，相当于对它的描述信息。
 - mirrorlist 是镜像服务器地址列表，里面有很多的服务器地址。
-- baseurl 和mirrorlist一样，都是指向yum源的地址，不同的是包含地址的多少，一帮只写一个地址，直接用baseurl。
+- baseurl 和mirrorlist一样，都是指向yum源的地址，不同的是包含地址的多少，一般只写一个地址，直接用baseurl。
 - gpgcheck 0=取消验证，1=使用公钥检验rpm的正确性。
 - gpgkey 校验的key地址，如果gpgcheck=0的话，那么gpgkey就可以不用填写。
+- failovermethod 有两个选项roundrobin 和priority，意思分别是有多个url可供选择时，yum 选择的次序，roundrobin 是随机选择，如果连接失败则使用下一个，依次循环，priority 则根据url 的次序从第一个开始。如果不指明，默认是roundrobin
 
 yum通常会有一个配置文件yum.conf，一般位于 etc文件夹下
 ![yumconf](./image/yumconf.png)
