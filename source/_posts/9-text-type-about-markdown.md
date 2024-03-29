@@ -41,10 +41,10 @@ const name = 'eric';
 ```
 
 ###### 文字大小
-<font size="10">文字</font>
+<font size=4>文字</font>
 ```javascript
-<font size="10">文字</font>
-<font size="14">文字</font>
+<font size=4>文字</font>
+<font size=5>文字</font>
 ```
 
 ###### 文字字体

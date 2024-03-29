@@ -1,7 +1,9 @@
 ---
 title: 关于docker的使用问题
 date: 2024-01-29 16:10:54
+headimg: '/images/docker-headimg.png'
 tags:
+- docker
 ---
 
 **问题：删除docker网络，报错存在active endpoints**

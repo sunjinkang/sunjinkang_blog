@@ -5,7 +5,7 @@
 # Site
 title: Sun with no word
 subtitle: something about what I have learned and some interesting things
-description: ''
+description: 'study blog from sun jinkang'
 keywords: ''
 author: Sun Jinkang
 language: zh-CN
@@ -41,8 +41,8 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
-relative_link: true
+post_asset_folder: false
+relative_link: false
 future: true
 highlight:
   enable: true
@@ -105,7 +105,8 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 plugins: hexo-generator-feed
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: volantis
 
 symbols_count_time:
   symbols: true
@@ -125,3 +126,5 @@ excerpt:			# 一定要顶格写，注意格式
   excerpt_excludes: []
   more_excludes: []
   hideWholePostExcerpts: true
+
+favicon: ./images/fire_s.ico

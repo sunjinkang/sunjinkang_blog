@@ -45,8 +45,25 @@ repolist: 26,737
 
 
 yum缓存目录下的 headers是什么东西？？
+解决需要多次下载问题
+
+什么时候需要被删？
+硬件损坏
+包损坏
 
 yum配置文件地址有多个时使用了baseurl，既然有多个，为什么不用mirrorlist ??
 baseurl=http://mirrors.aliyun.com/centos/$releasever/contrib/$basearch/
         http://mirrors.aliyuncs.com/centos/$releasever/contrib/$basearch/
         http://mirrors.cloud.aliyuncs.com/centos/$releasever/contrib/$basearch/
+
+随机选择一个地址下载，失败后换新的下载。
+确认某一个mirrorlist哪个最快，类似每一个都ping一下，但只能确定ping的时候哪一个最快。所以实际连接时候可能
+
+
+3d for js 编译为rpk??
+andiriod 
+
+
+Makefile语言学习，实现一个脚本
+选择之前先考量一下，类似makefile的语言，大家都在用什么，未来走向，对比一下，再确定。
+时间久，过时了，有没有什么新的
