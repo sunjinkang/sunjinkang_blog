@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 1.console.log
+    let name = 'Tom';
+    let age = 18;
+    console.log(name); // Tom
+    console.log(age); // 18
+
+    console.log('Name: %s, Age: %d', name, age); // Name: Tom, Age: 18
+
+    console.log('My Name is %cTom', 'color: skyblue; font-size: 30px;');
+
+    console.log(
+      '%c ',
+      'background-image:url("http://iyeslogo.orbrand.com/150902Google/005.gif");background-size:120% 120%;background-repeat:no-repeat;background-position:center center;line-height:60px;padding:30px 120px;'
+    );
+    console.log('%o', document.body);
+    console.log('%O', document.body);
+    console.log(
+      '--------------------------------------------------------------------------------'
+    );
+    // 2.console.warn
+    let name1 = 'Tom';
+    let age1 = 18;
+    console.warn(name1); // Tom
+    console.warn(age1); // 18
+
+    console.warn('Name: %s, Age: %d', name1, age1); // Name: Tom, Age: 18
+
+    console.warn('My Name is %cTom', 'color: skyblue; font-size: 30px;');
+
+    console.warn(
+      '%c ',
+      'background-image:url("http://iyeslogo.orbrand.com/150902Google/005.gif");background-size:120% 120%;background-repeat:no-repeat;background-position:center center;line-height:60px;padding:30px 120px;'
+    );
+    console.warn('%o', document.body);
+    console.warn('%O', document.body);
+    console.warn(
+      '--------------------------------------------------------------------------------'
+    );
+    // 3.console.error
+    let name2 = 'Tom';
+    let age2 = 18;
+    console.error(name2); // Tom
+    console.error(age2); // 18
+
+    console.error('Name: %s, Age: %d', name2, age2); // Name: Tom, Age: 18
+
+    console.error('My Name is %cTom', 'color: skyblue; font-size: 30px;');
+
+    console.error(
+      '%c ',
+      'background-image:url("http://iyeslogo.orbrand.com/150902Google/005.gif");background-size:120% 120%;background-repeat:no-repeat;background-position:center center;line-height:60px;padding:30px 120px;'
+    );
+    console.error('%o', document.body);
+    console.error('%O', document.body);
+    function a() {
+      b();
+    }
+    function b() {
+      console.error('error');
+    }
+    function c() {
+      a();
+    }
+    c();
+    console.error(
+      '--------------------------------------------------------------------------------'
+    );
+    // 4. console.info
+    let name3 = 'Tom';
+    let age3 = 18;
+    console.info(name3); // Tom
+    console.info(age3); // 18
+
+    console.info('Name: %s, Age: %d', name3, age3); // Name: Tom, Age: 18
+
+    console.info('My Name is %cTom', 'color: skyblue; font-size: 30px;');
+
+    console.info(
+      '%c ',
+      'background-image:url("http://iyeslogo.orbrand.com/150902Google/005.gif");background-size:120% 120%;background-repeat:no-repeat;background-position:center center;line-height:60px;padding:30px 120px;'
+    );
+    console.info('%o', document.body);
+    console.info('%O', document.body);
+    console.info(
+      '--------------------------------------------------------------------------------'
+    );
+    // 5. console.time和console.timeEnd
+    console.time('timer1');
+    console.time('timer2');
+
+    setTimeout(() => {
+      console.timeEnd('timer1');
+    }, 1000);
+
+    setTimeout(() => {
+      console.timeEnd('timer2');
+    }, 2000);
+    // 6. console.timeLog
+    console.time('timer');
+
+    setTimeout(() => {
+      console.timeLog('timer');
+      setTimeout(() => {
+        console.timeLog('timer');
+        console.timeEnd('timer');
+      }, 2000);
+    }, 1000);
+    // 7. console.group & console.groupEnd
+    console.group('1');
+    console.log('1-1');
+    console.log('1-2');
+    console.log('1-3');
+    console.group('2');
+    console.log('2-1');
+    console.log('2-2');
+    console.groupEnd('2');
+    console.groupEnd('1');
+    // 8. console.groupCollapsed
+    console.groupCollapsed('1');
+    console.log('1-1');
+    console.log('1-2');
+    console.log('1-3');
+    console.groupCollapsed('2');
+    console.log('2-1');
+    console.log('2-2');
+    console.groupEnd('2');
+    console.groupEnd('1');
+    // 9. console.count
+    for (i = 0; i < 5; i++) {
+      console.count();
+    }
+    // 10. console.resetCount
+    console.count();
+    console.count('a');
+    console.count('b');
+    console.count('a');
+    console.count('a');
+    console.count();
+    console.count();
+
+    console.countReset();
+    console.countReset('a');
+    console.countReset('b');
+
+    console.count();
+    console.count('a');
+    console.count('b');
+    // 11. console.table
+    let table = [
+      {
+        index: '1',
+        first: '2',
+        second: '3',
+      },
+      {
+        index: '6',
+        first: '7',
+        second: '8',
+      },
+      {
+        index: '11',
+        first: '12',
+        second: '13',
+      },
+    ];
+
+    console.table(table, ['index', 'first', 'second']);
+    // 12. console.assert
+    console.assert([1, 2, 3, 4, 5, 5].length < 3, 'Node count is > 100');
+    // 13. console.trace
+    function a() {
+      b();
+    }
+    function b() {
+      console.trace();
+    }
+    function c() {
+      a();
+    }
+    c();
+    // 14. console.dir
+    console.log(document.body);
+    console.dir(document.body);
+    // 15. console.dirxml
+    console.log(document.body);
+    console.dirxml(document.body);
+  </script>
+</html>

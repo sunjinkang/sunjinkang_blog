@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "gen": "node ./scripts/generateScripts/index.js",
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
@@ -12,7 +13,14 @@
     "version": "5.4.2"
   },
   "dependencies": {
+    "@babel/generator": "^7.25.0",
+    "@babel/parser": "^7.24.8",
+    "@babel/traverse": "^7.24.8",
+    "@babel/types": "^7.24.9",
+    "chalk": "^5.4.1",
     "co": "3.1.0",
+    "commander": "^13.1.0",
+    "fs": "^0.0.1-security",
     "giscus": "^1.5.0",
     "hexo": "^5.4.2",
     "hexo-asset-image": "^1.0.0",
@@ -31,9 +39,19 @@
     "hexo-server": "^2.0.0",
     "hexo-theme-landscape": "^0.0.3",
     "hexo-word-counter": "^0.1.0",
+    "moment": "^2.30.1",
+    "path": "^0.12.7",
     "save": "^2.9.0",
     "thunkify": "^2.1.2",
-    "wordcount": "^1.1.1"
+    "wordcount": "^1.1.1",
+    "zod": "^3.24.3"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__traverse": "^7.20.6",
+    "@types/moment": "^2.11.29",
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
 }

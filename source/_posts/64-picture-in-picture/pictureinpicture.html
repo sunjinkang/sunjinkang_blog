@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <video width="200px" height="160px" controls src="weed-dream.mp4"></video>
+    <button id="pip-button">开启画中画</button>
+  </body>
+  <script type="text/javascript">
+    const video = document.querySelector('video');
+    const pipButton = document.getElementById('pip-button');
+    pipButton.disabled = true;
+
+    video.addEventListener('loadedmetadata', () => {
+      pipButton.disabled = false;
+    });
+    video.load();
+
+    // 检测浏览器是否支持画中画
+    if (!document.pictureInPictureEnabled) {
+      pipButton.disabled = true;
+      console.log('当前浏览器不支持画中画功能');
+    }
+
+    // 测试一下一段时间之后自动切换为画中画
+    setTimeout(async () => {
+      await video.requestPictureInPicture();
+    }, 5000);
+
+    // 点击按钮开启画中画
+    pipButton.addEventListener('click', async () => {
+      try {
+        if (video !== document.pictureInPictureElement) {
+          await video.requestPictureInPicture();
+        } else {
+          await document.exitPictureInPicture();
+        }
+      } catch (error) {
+        console.error('画中画操作失败：', error);
+      }
+    });
+
+    // 监听进入画中画事件
+    video.addEventListener('enterpictureinpicture', () => {
+      pipButton.textContent = '退出画中画';
+    });
+
+    // 监听退出画中画事件
+    video.addEventListener('leavepictureinpicture', () => {
+      pipButton.textContent = '开启画中画';
+    });
+  </script>
+</html>
