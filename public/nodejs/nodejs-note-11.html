@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.2">
+
+  
+    <meta name="description" content="study blog from sun jinkang">
+  
+
+  
+
+  
+    <meta name="author" content="Sun Jinkang">
+  
+
+  
+
+  
+
+  <title>nodejs基础知识(4) | Sun with no word</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Sun with no word
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/archives">归档</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">nodejs基础知识(4)</h1>
+        
+      </div>
+    </div>
+  
+  
+</header>
+
+    <!-- 分页(其他自定义页面) -->
+
+<!-- 自定义页面 -->
+
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <p>Node.js在单个线程中运行单个实例。 用户(开发者)为了使用现在的多核系统，有时候,用户(开发者)会用一串Node.js进程去处理负载任务。</p>
+<p>cluster 模块允许简单容易的创建共享服务器端口的子进程。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> numCPUs = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>).<span class="title function_">cpus</span>().<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.<span class="property">isMaster</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`主进程 <span class="subst">$&#123;process.pid&#125;</span> 正在运行`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 衍生工作进程。</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numCPUs; i++) &#123;</span><br><span class="line">    cluster.<span class="title function_">fork</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cluster.<span class="title function_">on</span>(<span class="string">&#x27;exit&#x27;</span>, <span class="function">(<span class="params">worker, code, signal</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`工作进程 <span class="subst">$&#123;worker.process.pid&#125;</span> 已退出`</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 工作进程可以共享任何 TCP 连接。</span></span><br><span class="line">  <span class="comment">// 在本例子中，共享的是一个 HTTP 服务器。</span></span><br><span class="line">  http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;你好世界\n&#x27;</span>);</span><br><span class="line">  &#125;).<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`工作进程 <span class="subst">$&#123;process.pid&#125;</span> 已启动`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>cluster模块支持两种连接分发模式（将新连接安排给某一工作进程处理）。</p>
+<p>第一种方法（也是除Windows外所有平台的默认方法），是循环法。由主进程负责监听端口，接收新连接后再将连接循环分发给工作进程。在分发中使用了一些内置技巧防止工作进程任务过载。</p>
+<p>第二种方法是，主进程创建监听socket后发送给感兴趣的工作进程，由工作进程负责直接接收连接。</p>
+<p>理论上第二种方法应该是效率最佳的，但在实际情况下，由于操作系统调度机制的难以捉摸，会使分发变得不稳定。我们遇到过这种情况：8个进程中的2个，分担了70%的负载。</p>
+<p><strong>Class: Worker</strong><br>Worker对象包含了关于工作进程的所有public信息和方法。<br>在一个主进程里，可以使用cluster.workers来获取Worker对象。<br>在一个工作进程里，可以使用cluster.worker来获取Worker对象。</p>
+<p><strong>Event: ‘disconnect’</strong><br>虽然与 cluster.on(‘disconnect’)事件 是相似的,但是这个进程又有其他特征。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cluster.fork().<span class="literal">on</span>(<span class="string">&#x27;disconnect&#x27;</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="regexp">//</span> Worker has disconnected</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘error’</strong><br>此事件和 child_process.fork()提供的error事件相同。<br>在一个工作进程中，可以使用process.on(‘error’)</p>
+<p><strong>Event: ‘exit’</strong></p>
+<ul>
+<li>code <number> 若正常退出，表示退出代码.</li>
+<li>signal <string> 引发进程被kill的信号名称（如’SIGHUP’）.<br>和cluster.on(‘exit’)事件类似，但针对特定的工作进程。<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> worker = cluster.fork();</span><br><span class="line">worker.on(<span class="string">&#x27;exit&#x27;</span>, (code, <span class="keyword">signal</span><span class="string">) </span>=&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">signal</span><span class="string">) &#123;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`worker was killed by signal: <span class="subst">$&#123;signal&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (code !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`worker exited with error code: <span class="subst">$&#123;code&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="title">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;worker success!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>Event: ‘listening’</strong><br>address <Object><br>和cluster.on(‘listening’)事件类似，但针对特定的工作进程。<br>本事件不会在工作进程内触发。</p>
+<p><strong>Event: ‘message’</strong><br>message <Object><br>handle <undefined> | <Object><br>和cluster.on(‘message’)事件类似，但针对特定的工作进程。<br>在工作进程内，可以使用process.on(‘message’)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.<span class="property">isMaster</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 跟踪 http 请求</span></span><br><span class="line">  <span class="keyword">let</span> numReqs = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`numReqs = <span class="subst">$&#123;numReqs&#125;</span>`</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 计算请求数目</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">messageHandler</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (msg.<span class="property">cmd</span> &amp;&amp; msg.<span class="property">cmd</span> === <span class="string">&#x27;notifyRequest&#x27;</span>) &#123;</span><br><span class="line">      numReqs += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 启动 worker 并监听包含 notifyRequest 的消息</span></span><br><span class="line">  <span class="keyword">const</span> numCPUs = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>).<span class="title function_">cpus</span>().<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numCPUs; i++) &#123;</span><br><span class="line">    cluster.<span class="title function_">fork</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> id <span class="keyword">in</span> cluster.<span class="property">workers</span>) &#123;</span><br><span class="line">    cluster.<span class="property">workers</span>[id].<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, messageHandler);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Worker 进程有一个http服务器</span></span><br><span class="line">  http.<span class="title class_">Server</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;hello world\n&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知 master 进程接收到了请求</span></span><br><span class="line">    process.<span class="title function_">send</span>(&#123; <span class="attr">cmd</span>: <span class="string">&#x27;notifyRequest&#x27;</span> &#125;);</span><br><span class="line">  &#125;).<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘online’</strong><br>和cluster.on(‘online’)事件类似，但针对特定的工作进程。<br>本事件不会在工作进程内部被触发。</p>
+<p><strong>worker.disconnect()</strong><br>Returns: <Worker> 一个 worker 的引用。<br>在一个工作进程内，调用此方法会关闭所有的server，并等待这些server的 ‘close’事件执行，然后关闭IPC管道。</p>
+<p>在主进程内，会给工作进程发送一个内部消息，导致工作进程自身调用.disconnect()。</p>
+<p>会设置.exitedAfterDisconnect 。</p>
+<p>需要注意的是，当一个server关闭后，它将不再接收新的连接，但新连接会被其他正在监听的工作进程接收。已建立的连接可以正常关闭。当所有连接都关闭后，通往该工作进程的IPC管道将会关闭，允许工作进程优雅地死掉</p>
+<p>需要注意的是，我们这里的方法是disconnect，同时还有一个不一样的方法process.disconnect，大家不要混淆了</p>
+<p><strong>worker.exitedAfterDisconnect</strong><br><boolean><br>当调用 .kill() 或者 .disconnect()方法时被设置，在这之前都是 undefined。<br>worker.exitedAfterDisconnect可以用于区分自发退出还是被动退出，主进程可以根据这个值决定是否重新衍生新的工作进程。<br><em>与worker.suicide等价</em></p>
+<p><strong>worker.id</strong><br><number><br>每一个新衍生的工作进程都会被赋予自己独一无二的编号，这个编号就是储存在id里面。<br>当工作进程还存活时，id可以作为在cluster.workers中的索引。</p>
+<p><strong>worker.isConnected()</strong><br>当工作进程通过IPC管道连接至主进程时，这个方法返回true，否则返回false。<br>一个工作进程在创建后会自动连接到它的主进程，当’disconnect’ 事件被触发时才会断开连接。</p>
+<p><strong>worker.isDead()</strong><br>当工作进程被终止时（包括自动退出或被发送信号），这个方法返回true ，否则返回false。</p>
+<p><strong>worker.kill([signal=’SIGTERM’])</strong><br>signal <string> 被发送kill信号的工作进程名称。<br>这个方法将会kill工作进程。在主进程中，通过断开与worker.process的连接来实现，一旦断开连接后，通过signal来杀死工作进程。在工作进程中，通过断开IPC管道来实现，然后以代码0退出进程。<br>将导致.exitedAfterDisconnect被设置。<br>为向后兼容，这个方法与worker.destroy()等义。<br>需要注意的是，在工作进程中有一个方法process.kill() ，这个方法本方法不同，本方法是kill。</p>
+<p><strong>worker.process</strong><br><ChildProcess><br>所有的工作进程都是通过child_process.fork()来创建的，这个方法返回的对象被存储为.process。在工作进程中， process属于全局对象。<br>需要注意：当process上发生 ‘disconnect’事件，并且.exitedAfterDisconnect的值不是true时，工作进程会调用 process.exit(0)。这样就可以防止连接意外断开。</p>
+<p><strong>worker.send(message[, sendHandle][, callback])</strong><br>发送一个消息给工作进程或主进程，也可以附带发送一个handle。<br>主进程调用这个方法会发送消息给具体的工作进程。还有一个等价的方法是ChildProcess.send()。<br>工作进程调用这个方法会发送消息给主进程。还有一个等价方法是process.send()。</p>
+<p><strong>Event: ‘disconnect’</strong><br>worker &lt;cluster.Worker&gt;<br>在工作进程的IPC管道被断开后触发本事件。可能导致事件触发的原因包括：工作进程优雅地退出、被kill或手动断开连接（如调用worker.disconnect()）。<br>‘disconnect’ 和 ‘exit’事件之间可能存在延迟。这些事件可以用来检测进程是否在清理过程中被卡住，或是否存在长时间运行的连接。</p>
+<p><strong>Event: ‘exit’</strong><br>worker &lt;cluster.Worker&gt;<br>code <number> 正常退出情况下，是退出代码.<br>signal <string> 导致进程被kill的信号名称 (例如 ‘SIGHUP’)<br>当任何一个工作进程关闭的时候，cluster模块都将触发’exit’事件。<br>可以被用来重启工作进程（通过调用.fork()）</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cluster.on(<span class="string">&#x27;exit&#x27;</span>, (worker, code, <span class="keyword">signal</span><span class="string">) </span>=&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;worker %d died (%s). restarting...&#x27;</span>,</span><br><span class="line">              worker.process.pid, <span class="keyword">signal</span><span class="string"> || code)</span>;</span><br><span class="line">  cluster.fork();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘fork’</strong><br>worker &lt;cluster.Worker&gt;<br>当新的工作进程被fork时，cluster模块将触发’fork’事件。 可以被用来记录工作进程活动，产生一个自定义的timeout。</p>
+<p><strong>Event: ‘listening’</strong><br>worker &lt;cluster.Worker&gt;<br>address <Object><br>当一个工作进程调用listen()后，工作进程上的server会触发’listening’ 事件，同时主进程上的 cluster 也会被触发’listening’事件。<br>事件处理器使用两个参数来执行，其中worker包含了工作进程对象，address 包含了以下连接属性： address、port 和 addressType。当工作进程同时监听多个地址时，这些参数非常有用。<br>addressType 可选值包括:</p>
+<ul>
+<li>4 (TCPv4)</li>
+<li>6 (TCPv6)</li>
+<li>-1 (unix domain socket)</li>
+<li>“udp4” or “udp6” (UDP v4 or v6)</li>
+</ul>
+<p><strong>Event: ‘message’</strong><br>worker &lt;cluster.Worker&gt;<br>message <Object><br>handle <undefined> | <Object><br>当cluster主进程接收任意工作进程发送的消息后被触发。</p>
+<p><strong>Event: ‘online’</strong><br>worker &lt;cluster.Worker&gt;<br>当新建一个工作进程后，工作进程应当响应一个online消息给主进程。当主进程收到online消息后触发这个事件。 ‘fork’ 事件和 ‘online’事件的不同之处在于，前者是在主进程新建工作进程后触发，而后者是在工作进程运行的时候触发。</p>
+<p><strong>Event: ‘setup’</strong><br>settings <Object><br>每当 .setupMaster() 被调用的时候触发。<br>settings 对象是 setupMaster() 被调用时的 cluster.settings 对象，并且只能查询，因为在一个 tick 内 .setupMaster() 可以被调用多次。<br>如果精确度十分重要，请使用 cluster.settings。</p>
+<p><strong>cluster.disconnect([callback])</strong><br>callback <Function> 当所有工作进程都断开连接并且所有handle关闭的时候调用。<br>在cluster.workers的每个工作进程中调用 .disconnect()。<br>当所有工作进程断开连接后，所有内部handle将会关闭，这个时候如果没有等待事件的话，运行主进程优雅地关闭。<br>这个方法可以选择添加一个回调参数，当结束时会调用这个回调函数。<br>这个方法只能由主进程调用。</p>
+<p><strong>cluster.fork([env])</strong><br>env <Object> 增加进程环境变量，以Key/value对的形式。<br>return &lt;cluster.Worker&gt;<br>衍生出一个新的工作进程。<br>只能通过主进程调用。</p>
+<p><strong>cluster.isMaster</strong><br><boolean><br>当该进程是主进程时，返回 true。这是由process.env.NODE_UNIQUE_ID决定的，当process.env.NODE_UNIQUE_ID未定义时，isMaster为true。</p>
+<p><strong>cluster.isWorker</strong><br><boolean><br>当进程不是主进程时，返回 true。（和cluster.isMaster刚好相反）</p>
+<p><strong>cluster.schedulingPolicy</strong><br>调度策略，包括循环计数的 cluster.SCHED_RR，以及由操作系统决定的cluster.SCHED_NONE。 这是一个全局设置，当第一个工作进程被衍生或者调动cluster.setupMaster()时，都将第一时间生效。</p>
+<p><strong>cluster.settings</strong><br><Object><br>execArgv <Array> 传递给Node.js可执行文件的参数列表。 (Default=process.execArgv)<br>exec <string> worker文件路径。 (Default=process.argv[1])<br>args <Array> 传递给worker的参数。(Default=process.argv.slice(2))<br>silent <boolean> 是否需要发送输出值父进程的stdio。(Default=false)<br>stdio <Array> 配置fork进程的stdio。 由于cluster模块运行依赖于IPC，这个配置必须包含’ipc’。当提供了这个选项后，将撤销silent。<br>uid <number> 设置进程的user标识符。 (见 setuid(2).)<br>gid <number> 设置进程的group标识符。 (见 setgid(2).)<br>inspectPort <number> | <function> Sets inspector port of worker. This can be a number, or a function that takes no arguments and returns a number. By default each worker gets its own port, incremented from the master’s process.debugPort.<br>调用.setupMaster() (或 .fork())后，这个settings对象将会包含这些设置项，包括默认值。<br>这个对象不打算被修改或手动设置。</p>
+<p><strong>cluster.setupMaster([settings])</strong><br>settings <Object> 详见 cluster.settings。<br>用于修改默认’fork’ 行为。一旦调用，将会按照cluster.settings进行设置。<br><em>只能由主进程调用</em><br>注意:</p>
+<ul>
+<li>所有的设置只对后来的 .fork()调用有效，对之前的工作进程无影响。</li>
+<li>唯一无法通过 .setupMaster()设置的属性是传递给.fork()的env属性。</li>
+<li>上述的默认值只在第一次调用时有效，当后续调用时，将采用cluster.setupMaster()调用时的当前值。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">cluster</span> = <span class="keyword">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line">cluster.<span class="title function_ invoke__">setupMaster</span>(&#123;</span><br><span class="line">  <span class="attr">exec</span>: <span class="string">&#x27;worker.js&#x27;</span>,</span><br><span class="line">  <span class="attr">args</span>: [<span class="string">&#x27;--use&#x27;</span>, <span class="string">&#x27;https&#x27;</span>],</span><br><span class="line">  <span class="attr">silent</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line">cluster.<span class="title function_ invoke__">fork</span>(); <span class="comment">// https worker</span></span><br><span class="line">cluster.<span class="title function_ invoke__">setupMaster</span>(&#123;</span><br><span class="line">  <span class="attr">exec</span>: <span class="string">&#x27;worker.js&#x27;</span>,</span><br><span class="line">  <span class="attr">args</span>: [<span class="string">&#x27;--use&#x27;</span>, <span class="string">&#x27;http&#x27;</span>]</span><br><span class="line">&#125;);</span><br><span class="line">cluster.<span class="title function_ invoke__">fork</span>(); <span class="comment">// http worker</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>cluster.worker</strong><br><Object><br>当前工作进程对象的引用，对于主进程则无效。</p>
+<p><strong>cluster.workers</strong><br><Object><br>这是一个哈希表，储存了活跃的工作进程对象，id作为key。有了它，可以方便地遍历所有工作进程。只能在主进程中调用。</p>
+<p>工作进程断开连接以及退出后，将会从cluster.workers里面移除。这两个事件的先后顺序并不能预先确定，但可以保证的是， cluster.workers的移除工作在’disconnect’ 和 ‘exit’两个事件中的最后一个触发之前完成。</p>
+
+      </section>
+
+      
+      
+
+      
+      
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>84</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        2
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2025 <a href="/" target="_blank">Sun Jinkang</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

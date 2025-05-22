@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.2">
+
+  
+    <meta name="description" content="study blog from sun jinkang">
+  
+
+  
+
+  
+    <meta name="author" content="Sun Jinkang">
+  
+
+  
+
+  
+
+  <title>nodejs基础知识(10) | Sun with no word</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Sun with no word
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/archives">归档</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">nodejs基础知识(10)</h1>
+        
+      </div>
+    </div>
+  
+  
+</header>
+
+    <!-- 分页(其他自定义页面) -->
+
+<!-- 自定义页面 -->
+
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h4 id="ECMAScript-模块"><a href="#ECMAScript-模块" class="headerlink" title="ECMAScript 模块"></a>ECMAScript 模块</h4><p>ECMAScript 模块是来打包 JavaScript 代码以供重用的官方标准格式。 模块使用各种 import 和 export 语句定义。<br>Node.js 完全支持当前指定的 ECMAScript 模块，并且提供它们与其原始模块格式 CommonJS 之间的互操作性。</p>
+<p><em>通过 .mjs 文件扩展名、package.json “type” 字段、或 –input-type 标志告诉 Node.js 使用 ECMAScript 模块加载器。 在这些情况之外，Node.js 将使用 CommonJS 模块加载器。</em></p>
+<p><strong>import 说明符</strong><br>import 语句的说明符是 from 关键字之后的字符串，例如 import { sep } from ‘node:path’ 中的 ‘node:path’。 说明符也用于 export from 语句，并作为 import() 表达式的参数。<br>说明符类型：</p>
+<ul>
+<li>相对说明符，如 ‘./startup.js’ 或 ‘../config.mjs’。 它们指的是相对于导入文件位置的路径。 文件扩展名对于这些始终是必需的。</li>
+<li>裸说明符，如 ‘some-package’ 或 ‘some-package/shuffle’。 它们可以通过包名称来引用包的主要入口点，或者根据示例分别以包名称为前缀的包中的特定功能模块。 包括文件扩展名仅适用于没有 “exports” 字段的包。</li>
+<li>绝对说明符，如 ‘file:///opt/nodejs/config.js’。 它们直接且明确地引用完整的路径。</li>
+</ul>
+<p><em>裸说明符解析由 Node.js 模块解析算法处理。 所有其他说明符解析始终仅使用标准的相对网址解析语义进行解析。</em><br><em>就像在 CommonJS 中一样，包中的模块文件可以通过在包名称后附加路径来访问，除非包的 package.json 包含 “exports” 字段，在这种情况下，包中的文件只能通过 “exports” 中定义的路径访问。</em></p>
+<p>强制的文件扩展名<br>使用 import 关键字解析相对或绝对的说明符时，必须提供文件扩展名，并完全指定目录索引。</p>
+<p>URL<br>ES 模块被解析并缓存为 URL。 这意味着特殊字符必须是百分比编码的，比如使用 %23 的 #、使用 %3F 的 ?。支持 file:、node: 和 data: URL 协议。 除非使用自定义的 HTTPS 加载器，否则 Node.js 本身不支持像 ‘<a target="_blank" rel="noopener" href="https://example.com/app.js&#39;">https://example.com/app.js&#39;</a> 这样的说明符</p>
+<p>file: URL<br>如果用于解析模块的 import 说明符具有不同的查询或片段，则会多次加载模块。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import <span class="string">&#x27;./foo.mjs?query=1&#x27;</span>; <span class="regexp">//</span> 加载具有 <span class="string">&quot;?query=1&quot;</span> 查询的 ./foo.mjs</span><br><span class="line">import <span class="string">&#x27;./foo.mjs?query=2&#x27;</span>; <span class="regexp">//</span> 加载具有 <span class="string">&quot;?query=2&quot;</span> 查询的 ./foo.mjs</span><br></pre></td></tr></table></figure>
+<p>可以通过 /、//、或 file:/// 引用卷根。 鉴于网址和路径解析的差异（例如百分比编码细节），建议在导入路径时使用 <a target="_blank" rel="noopener" href="http://shouce.gree020.cn/node/api/url.html#urlpathtofileurlpath">url.pathToFileURL</a>。</p>
+<p>data: 导入<br>data: URL 支持使用以下 MIME 类型导入：</p>
+<ul>
+<li>text/javascript 用于 ES 模块</li>
+<li>pplication/json 用于 JSON</li>
+<li>application/wasm 用于 Wasm<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;data:text/javascript,console.log(&quot;hello!&quot;);&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">&#x27;data:application/json,&quot;world!&quot;&#x27;</span> <span class="keyword">assert</span> &#123; <span class="keyword">type</span>: <span class="string">&#x27;json&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
+data: URL 仅解析内置模块的裸说明符和绝对说明符。 解析相对说明符不起作用，因为 data: 不是特殊协议。 例如，尝试从 data:text/javascript,import “./foo”; 加载 ./foo 无法解析，因为 data: URL 没有相对解析的概念。</li>
+</ul>
+<p>node: 导入<br>支持 node: URL 作为加载 Node.js 内置模块的替代方法。 此 URL 协议允许有效的绝对的 URL 字符串引用内置模块。</p>
+<p>内置模块<br>核心模块提供了其公共 API 的命名导出。 还提供了默认导出，其是 CommonJS 导出的值。 默认导出可用于修改命名导出等。 内置模块的命名导出仅通过调用 module.syncBuiltinESMExports() 进行更新。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">EventEmitter</span> <span class="keyword">from</span> <span class="string">&#x27;node:events&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; readFile &#125; <span class="keyword">from</span> <span class="string">&#x27;node:fs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fs, &#123; readFileSync &#125; <span class="keyword">from</span> <span class="string">&#x27;node:fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; syncBuiltinESMExports &#125; <span class="keyword">from</span> <span class="string">&#x27;node:module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Buffer</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;node:buffer&#x27;</span>;</span><br><span class="line">fs.<span class="property">readFileSync</span> = <span class="function">() =&gt;</span> <span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&#x27;Hello, ESM&#x27;</span>);</span><br><span class="line"><span class="title function_">syncBuiltinESMExports</span>();</span><br><span class="line">fs.<span class="property">readFileSync</span> === readFileSync;</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>import() 表达式<br>import.meta</p>
+<p>import.meta.url<br><em><string> 模块的绝对的 file: URL。</em><br>这与提供当前模块文件 URL 的浏览器中的定义完全相同。<br>这可以启用有用的模式，使用举例：传入相对路径文件及import.meta.url，返回文件的绝对路径解析结果</p>
+<p><strong>与 CommonJS 的互操作性</strong><br>import 声明<br>import 语句可以引用 ES 模块或 CommonJS 模块。 import 语句只允许在 ES 模块中使用，但 CommonJS 支持动态 import() 表达式来加载 ES 模块。</p>
+<p>require<br>CommonJS 模块 require 总是将它引用的文件视为 CommonJS。<br>不支持使用 require 加载 ES 模块，因为 ES 模块具有异步执行。 而是，使用 import() 从 CommonJS 模块加载 ES 模块。</p>
+<p><strong>ES 模块和 CommonJS 之间的差异</strong></p>
+<ul>
+<li>没有 require、exports 或 module.exports<br>在大多数情况下，可以使用 ES 模块 import 加载 CommonJS 模块。<br>如果需要，可以使用 module.createRequire() 在 ES 模块中构造 require 函数。</li>
+<li>没有 __filename 或 __dirname<br>这些 CommonJS 变量在 ES 模块中不可用。<br>__filename 和 __dirname 用例可以通过 import.meta.url 复制。</li>
+<li>没有原生模块加载<br>ES 模块导入当前不支持原生模块。<br>它们可以改为加载 module.createRequire() 或 process.dlopen。</li>
+<li>没有 require.resolve<br>相对解析可以通过 new URL(‘./local’, import.meta.url) 处理。<br>对于完整的 require.resolve 替换，有标记的实验性 import.meta.resolve API。<br>也可以使用 module.createRequire()。</li>
+<li>没有 NODE_PATH<br>NODE_PATH 不是解析 import 说明符的一部分。 如果需要这种行为，则使用符号链接。</li>
+<li>没有 require.extensions<br>require.extensions 没有被 import 使用。 期望加载器钩子在未来可以提供这个工作流。</li>
+<li>没有 require.cache<br>require.cache 没有被 import 使用，因为 ES 模块加载器有自己独立的缓存。</li>
+</ul>
+<p>JSON 模块<br>import 可以引用 JSON 文件：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> packageConfig <span class="keyword">from</span> <span class="string">&#x27;./package.json&#x27;</span> <span class="keyword">assert</span> &#123; <span class="keyword">type</span>: <span class="string">&#x27;json&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p><em>assert { type: ‘json’ } 语法是强制性的</em><br>导入的 JSON 只暴露一个 default 导出。 不支持命名导出。 在 CommonJS 缓存中创建缓存条目，以避免重复。 如果 JSON 模块已经从同一路径导入，则在 CommonJS 中返回相同的对象。</p>
+<p>顶层的 await<br>await 关键字可以用在 ECMAScript 模块的顶层主体中。<br>如果顶层 await 表达式永远无法解析，则 node 进程将以 13 状态码退出。</p>
+<h4 id="package-包模块"><a href="#package-包模块" class="headerlink" title="package 包模块"></a>package 包模块</h4><p>包是由 package.json 文件描述的文件夹树。 包由包含 package.json 文件的文件夹和所有子文件夹组成，直到包含另一个 package.json 文件的下一个文件夹或名为 node_modules 的文件夹。</p>
+<p>当作为初始输入传入、或者当被 import 语句或 import() 表达式引用时，Node.js 会将以下视为ES 模块：</p>
+<ul>
+<li>扩展名为 .mjs 的文件。</li>
+<li>当最近的父 package.json 文件包含值为 “module” 的顶层 “type” 字段时，扩展名为 .js 的文件。</li>
+<li>字符串作为参数传入 –eval，或通过 STDIN 管道传输到 node，带有标志 –input-type=module。</li>
+</ul>
+<p>当被 import 语句或 import() 表达式或 require() 表达式引用时，Node.js 会将以下视为 CommonJS：</p>
+<ul>
+<li>扩展名为 .cjs 的文件。</li>
+<li>当最近的父 package.json 文件包含值为 “commonjs” 的顶层字段 “type” 时，则扩展名为 .js 的文件。</li>
+<li>字符串作为参数传入 –eval 或 –print，或通过 STDIN 管道传输到 node，带有标志 –input-type=commonjs。</li>
+</ul>
+<p><strong>模块加载器</strong><br>CommonJS 模块加载器：</p>
+<ul>
+<li>它是完全同步的。</li>
+<li>它负责处理 require() 调用。</li>
+<li>它是可修补的。</li>
+<li>它支持文件夹作为模块。</li>
+<li>当解析说明符时，如果没有找到完全的匹配，则它将尝试添加扩展名（.js、.json，最后是 .node），然后尝试将文件夹作为模块解析。</li>
+<li>它将 .json 视为 JSON 文本文件。</li>
+<li>.node 文件被解释为加载了 process.dlopen() 的编译插件模块。</li>
+<li>它将所有缺少 .json 或 .node 扩展名的文件视为 JavaScript 文本文件。</li>
+<li>它不能用于加载 ECMAScript 模块（尽管可以从 CommonJS 模块加载 ECMASCript 模块）。 当用于加载不是 ECMAScript 模块的 JavaScript 文本文件时，则它将作为 CommonJS 模块加载。</li>
+</ul>
+<p>ECMAScript 模块加载器：</p>
+<ul>
+<li>它是异步的。</li>
+<li>负责处理 import 语句和 import() 表达式。</li>
+<li>它不是可修补的，可以使用加载器钩子自定义。</li>
+<li>它不支持文件夹作为模块，必须完全指定目录索引（例如 ‘./startup/index.js’）。</li>
+<li>它不进行扩展名搜索。 当说明符是相对或绝对的文件 URL 时，必须提供文件扩展名。</li>
+<li>它可以加载 JSON 模块，但需要导入断言。</li>
+<li>它只接受 JavaScript 文本文件的 .js、.mjs 和 .cjs 扩展名。</li>
+<li>它可以用来加载 JavaScript CommonJS 模块。 这样的模块通过 es-module-lexer 来尝试识别命名的导出，如果可以通过静态分析确定的话是可用的。 导入的 CommonJS 模块将其 URL 转换为绝对路径，然后通过 CommonJS 模块加载器加载。</li>
+</ul>
+<p><strong>package.json 和文件扩展名</strong><br>如果 package.json 文件没有 “type” 字段或type 字段值为 commonjs，则 .js 文件将被视为 CommonJS。<br>如果 package.json “type” 值为”module”，该包中的 .js 文件解释为使用 ES 模块语法。</p>
+<p>.mjs </p>
+<ul>
+<li>文件总是作为 ES 模块加载，而不管最近的父级 package.json。</li>
+<li>在 “type”: “commonjs” 包中，Node.js 可以被指示将特定文件解释为 ES 模块，方法是使用 .mjs 扩展名命名它（因为 .js 和 .cjs 文件都被视为 “commonjs” 包中的 CommonJS）。<br>.cjs</li>
+<li>文件总是作为 CommonJS 加载，而不管最近的父级 package.json。</li>
+<li>在 “type”: “module” 包中，Node.js 可以通过使用 .cjs 扩展名命名它来指示将特定文件解释为 CommonJS（因为 .js 和 .mjs 文件都被视为 “module” 包中的 ES 模块）</li>
+</ul>
+<p><strong>–input-type 标志</strong><br>作为参数传给 –eval（或 -e），或通过 STDIN 管道传输到 node 的字符串</p>
+<ul>
+<li>设置 –input-type=module 标志时被视为 ES 模块</li>
+<li>设置 –input-type=commonjs 标志时被视为 ES 模块(未指定时的默认行为)</li>
+</ul>
+<p><strong>包的入口</strong><br>在包的 package.json 文件中，两个字段可以定义包的入口点：”main” 和 “exports”。 这两个字段都适用于 ES 模块和 CommonJS 模块入口点。<br>对于针对当前支持的 Node.js 版本的新包，建议使用 “exports” 字段。<br><em>对于支持 Node.js 10 及以下的包，”main” 字段是必需的。</em><br>如果同时定义了 “exports” 和 “main”，则在支持的 Node.js 版本中，”exports” 字段优先于 “main”。</p>
+<p><strong>子路径的模式</strong></p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;exports&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;./features/*.js&quot;</span>: <span class="string">&quot;./src/features/*.js&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;imports&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;<span class="subst">#internal</span>/*.js&quot;</span>: <span class="string">&quot;./src/internal/*.js&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>/* 映射公开嵌套的子路径，因为它只是字符串替换语法，右侧 * 的所有实例都将替换为该值，包括它是否包含任何 / 分隔符。<br>要从模式中排除私有子文件夹，可以使用 null</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import featureX from <span class="string">&#x27;es-module-package/features/x.js&#x27;</span>;</span><br><span class="line"><span class="regexp">//</span> 加载 .<span class="regexp">/node_modules/</span>es-module-package<span class="regexp">/src/</span>features/x.js</span><br><span class="line"></span><br><span class="line">import featureY from <span class="string">&#x27;es-module-package/features/y/y.js&#x27;</span>;</span><br><span class="line"><span class="regexp">//</span> 加载 .<span class="regexp">/node_modules/</span>es-module-package<span class="regexp">/src/</span>features<span class="regexp">/y/y</span>.js</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;exports&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;./features/*.js&quot;</span>: <span class="string">&quot;./src/features/*.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;./features/private-internal/*&quot;</span>: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import featureInternal from <span class="string">&#x27;es-module-package/features/private-internal/m.js&#x27;</span>;</span><br><span class="line"><span class="regexp">//</span> 抛出: ERR_PACKAGE_PATH_NOT_EXPORTED</span><br><span class="line"></span><br><span class="line">import featureX from <span class="string">&#x27;es-module-package/features/x.js&#x27;</span>;</span><br><span class="line"><span class="regexp">//</span> 加载 .<span class="regexp">/node_modules/</span>es-module-package<span class="regexp">/src/</span>features/x.js</span><br></pre></td></tr></table></figure>
+
+<p><strong>条件导出</strong><br>从最具体到最不具体的顺序列出，因为应该定义条件：</p>
+<ul>
+<li>“node-addons” - 类似于 “node” 并匹配任何 Node.js 环境。 此条件可用于提供使用原生 C++ 插件的入口点，而不是更通用且不依赖原生插件的入口点。 可以通过 –no-addons 标志禁用此条件。</li>
+<li>“node” - 匹配任何 Node.js 环境。 可以是 CommonJS 或 ES 模块文件。 在大多数情况下，不需要明确调用 Node.js 平台。</li>
+<li>“import” - 当包通过 import 或 import()，或者通过 ECMAScript 模块加载器的任何顶层导入或解析操作加载时匹配。 无论目标文件的模块格式如何，都适用。 始终与 “require” 互斥。</li>
+<li>“require” - 当包通过 require() 加载时匹配。 引用的文件应该可以用 require() 加载，尽管无论目标文件的模块格式如何，条件都匹配。 预期的格式包括 CommonJS、JSON 和原生插件，但不包括 ES 模块，因为 require() 不支持它们。 始终与 “import” 互斥。</li>
+<li>“default” - 始终匹配的通用后备。 可以是 CommonJS 或 ES 模块文件。 <em>此条件应始终放在最后。</em></li>
+</ul>
+<p><em>在 “exports” 对象中，键顺序很重要。 在条件匹配过程中，较早的条目具有更高的优先级并优先于较晚的条目。 一般规则是条件应该按照对象顺序从最具体到最不具体。</em></p>
+<p><strong>社区条件定义</strong></p>
+<ul>
+<li>“types” - 类型系统可以使用它来解析给定导出的类型文件。 此条件应始终首先包含在内。</li>
+<li>“deno” - 表示 Deno 平台的变体。</li>
+<li>“browser” - 任何网络浏览器环境。</li>
+<li>“development” - 可用于定义仅开发环境入口点，例如提供额外的调试上下文。 必须始终与 “production” 互斥。</li>
+<li>“production” - 可用于定义生产环境入口点。 必须始终与 “development” 互斥。</li>
+</ul>
+<p><strong>使用名称来引用包</strong><br>在一个包中，包的 package.json “exports” 字段中定义的值可以通过包的名称引用。<br><em>注意：</em></p>
+<ul>
+<li>自引用仅在 package.json 具有 “exports” 时可用，并且只允许导入 “exports”（在 package.json 中）允许的内容。</li>
+<li>在 ES 模块和 CommonJS 模块中使用 require 时也可以使用自引用。</li>
+<li>自引用也适用于作用域包。</li>
+</ul>
+<p><strong>在避免或最小化危害的同时编写双包</strong></p>
+<ul>
+<li>每种模式都有权衡，但有两种广泛的方法可以满足以下条件：</li>
+<li>该软件包可通过 require 和 import 使用。</li>
+<li>该包在当前 Node.js 和不支持 ES 模块的旧版本 Node.js 中都可用。</li>
+<li>包主入口点，例如 ‘pkg’ 可以被 require 用来解析 CommonJS 文件，也可以被 import 用来解析 ES 模块文件。 （对于导出的路径也是如此，例如 ‘pkg/feature’。）</li>
+<li>该包提供命名导出，例如 import { name } from ‘pkg’ 而不是 import pkg from ‘pkg’; pkg.name。</li>
+<li>该包可能在其他 ES 模块环境中可用，例如浏览器。</li>
+<li>避免或最小化上一节中描述的危害。</li>
+</ul>
+<p><strong>双包编写方法</strong></p>
+<ul>
+<li>使用 ES 模块封装器<br>在 CommonJS 中编写包或将 ES 模块源代码转换为 CommonJS，并创建定义命名导出的 ES 模块封装文件。 使用条件导出, import 使用 ES 模块封装器，require 使用 CommonJS 入口点。<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// ./node_modules/pkg/<span class="keyword">index</span>.cjs</span><br><span class="line">exports.name = <span class="string">&#x27;value&#x27;</span>;</span><br><span class="line"></span><br><span class="line">// ./node_modules/pkg/<span class="keyword">wrapper</span>.mjs</span><br><span class="line"><span class="keyword">import</span> cjsModule <span class="keyword">from</span> <span class="string">&#x27;./index.cjs&#x27;</span>;</span><br><span class="line">export const <span class="type">name</span> = cjsModule.name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cjsModule <span class="keyword">from</span> <span class="string">&#x27;./index.cjs&#x27;</span>;</span><br><span class="line">export const <span class="type">name</span> = cjsModule.name;</span><br><span class="line">export <span class="keyword">default</span> cjsModule;</span><br></pre></td></tr></table></figure>
+此方法适用于以下任何用例：</li>
+<li>该包目前是用 CommonJS 编写的，作者不希望将其重构为 ES 模块语法，而是希望为 ES 模块使用者提供命名导出。</li>
+<li>该包还有其他依赖它的包，最终用户可能会同时安装这个包和那些其他包。 比如 utilities 包直接在应用中使用，utilities-plus 包给 utilities 增加了一些功能。 因为封装器导出了底层的 CommonJS 文件，所以 utilities-plus 是用 CommonJS 还是 ES 模块语法编写的并不重要；无论哪种方式都可以。</li>
+<li>包存储内部状态，包作者宁愿不重构包以隔离其状态管理。 请参阅下一章节。</li>
+</ul>
+<p>此方法的变体不需要消费者有条件导出，可以添加一个导出，例如 “./module”，指向包的全 ES 模块语法版本。 如果用户确定 CommonJS 版本不会在应用程序的任何地方加载，例如通过依赖项，或者如果可以加载 CommonJS 版本但不影响 ES 模块版本（例如, 因为包是无状态的）：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> .<span class="regexp">/node_modules/</span>pkg/package.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;module&quot;</span>,</span><br><span class="line">  <span class="string">&quot;exports&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;.&quot;</span>: <span class="string">&quot;./index.cjs&quot;</span>,</span><br><span class="line">    <span class="string">&quot;./module&quot;</span>: <span class="string">&quot;./wrapper.mjs&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>隔离状态</li>
+</ul>
+<p><em>状态是一个问题的原因是因为包的 CommonJS 和 ES 模块版本都可能在应用程序中使用；例如，用户的应用程序代码可以 import ES 模块版本，而依赖项 require CommonJS 版本。 如果发生这种情况，包的两个副本将被加载到内存中，因此将出现两个不同的状态。 这可能会导致难以解决的错误。</em></p>
+<p>除了编写无状态包（例如，如果 JavaScript 的 Math 是一个包，它将是无状态的，因为它的所有方法都是静态的），还有一些方法可以隔离状态，以便在可能加载的 CommonJS 和 ES 模块之间共享它包的实例：<br>(1)如果可能，在实例化对象中包含所有状态。 比如 JavaScript 的 Date<br>(2)在包的 CommonJS 和 ES 模块版本之间共享的一个或多个 CommonJS 文件中隔离状态。 比如 CommonJS 和 ES 模块入口点分别是 index.cjs 和 index.mjs：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// ./node_modules/pkg/index.cjs</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">state</span> = require(&#x27;./<span class="keyword">state</span>.cjs&#x27;);</span><br><span class="line">module.exports.<span class="keyword">state</span> = <span class="keyword">state</span>;</span><br><span class="line"></span><br><span class="line">// ./node_modules/pkg/index.mjs</span><br><span class="line">import <span class="keyword">state</span> <span class="keyword">from</span> &#x27;./<span class="keyword">state</span>.cjs&#x27;;</span><br><span class="line">export &#123;</span><br><span class="line">  <span class="keyword">state</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此方法适用于以下任何用例：</p>
+<ul>
+<li>该包目前是用 ES 模块语法编写的，包作者希望在支持此类语法的任何地方使用该版本。</li>
+<li>包是无状态的，或者它的状态可以很容易地被隔离。</li>
+<li>该包不太可能有其他依赖它的公共包，或者如果有，则该包是无状态的，或者具有不需要在依赖项之间或与整个应用程序共享的状态。</li>
+</ul>
+<p><em>即使处于隔离状态，在 CommonJS 和 ES 模块版本之间仍然存在可能执行额外代码的成本。</em></p>
+<p>与之前的方法一样，这种方法的变体不需要消费者有条件的导出，可以添加一个导出，例如 “./module”，指向包的全 ES 模块语法版本</p>
+
+      </section>
+
+      
+      
+
+      
+      
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>84</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        2
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2025 <a href="/" target="_blank">Sun Jinkang</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

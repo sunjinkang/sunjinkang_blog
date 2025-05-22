@@ -22,7 +22,6 @@ tags:
 2 * ['5'] // 10, ['5']先变成'5'（这一步涉及拆箱操作）,然后变成数字5
 ```
 <!-- more -->
-{% btn /2022/08/09/devan-operation/, 拆箱操作, %}
 
 2、加运算
 **js中的加法运算，还可以用来拼接字符串**
@@ -86,4 +85,3 @@ undefined == false // false
 #### 类型转换对照网站
 https://dorey.github.io/JavaScript-Equality-Table/
 
-{% btn /,, home %}

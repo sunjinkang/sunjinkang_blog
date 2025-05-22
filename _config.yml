@@ -106,7 +106,7 @@ ignore:
 plugins: hexo-generator-feed
 ## Themes: https://hexo.io/themes/
 # theme: next
-theme: volantis
+theme: flexblock
 
 symbols_count_time:
   symbols: true
@@ -128,3 +128,23 @@ excerpt:			# 一定要顶格写，注意格式
   hideWholePostExcerpts: true
 
 favicon: ./images/fire_s.ico
+
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  debug: false
+  model:
+    use: live2d-widget-model-hijiki  # 模型名称，可更换
+  display:
+    position: right
+    width: 150
+    height: 300
+  mobile:
+    show: true  # 手机端是否显示
+  react:
+    opacityDefault: 0.7  # 默认透明度
+    opacityOnHover: 0.2  # 鼠标悬停透明度

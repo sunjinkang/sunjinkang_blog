@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.2">
+
+  
+    <meta name="description" content="study blog from sun jinkang">
+  
+
+  
+
+  
+    <meta name="author" content="Sun Jinkang">
+  
+
+  
+
+  
+
+  <title>nodejs基础知识(7) | Sun with no word</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Sun with no word
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/archives">归档</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">nodejs基础知识(7)</h1>
+        
+      </div>
+    </div>
+  
+  
+</header>
+
+    <!-- 分页(其他自定义页面) -->
+
+<!-- 自定义页面 -->
+
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <p>Node.js 包含一个进程外的调试工具，可以通过V8检查器与内置的调试客户端访问。 要使用它，需要以 inspect 参数启动 Node.js，并带上需要调试的脚本的路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node inspect test.<span class="property">js</span></span><br></pre></td></tr></table></figure>
+<p>在脚本的源代码中插入 debugger; 语句，则会在代码的那个位置启用一个断点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">debugger</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>repl 命令用于运行代码。 next 命令用于步入下一行。 输入 help 可查看其他可用的命令。<br>按下 enter 键且不输入命令，则可重复上一个调试命令。</p>
+<h6 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h6><p>在每个断点上，监视器列表中的每个表达式都会在当前上下文中被执行，并在断点的源代码列表之前立即显示。<br>输入 watch(‘my_expression’) 开始监视一个表达式。 watchers 命令会打印已激活的监视器。 输入 unwatch(‘my_expression’) 来移除一个监视器。</p>
+<h6 id="命令参考手册"><a href="#命令参考手册" class="headerlink" title="命令参考手册"></a>命令参考手册</h6><p><strong>步进</strong></p>
+<ul>
+<li>cont, c - 继续执行</li>
+<li>next, n - 下一步</li>
+<li>step, s - 跳进函数</li>
+<li>out, o - 跳出函数</li>
+<li>pause - 暂停运行代码（类似开发者工具中的暂停按钮）</li>
+</ul>
+<p><strong>断点</strong></p>
+<ul>
+<li>setBreakpoint(), sb() - 在当前行设置断点</li>
+<li>setBreakpoint(line), sb(line) - 在指定行设置断点</li>
+<li>setBreakpoint(‘fn()’), sb(…) - 在函数体的第一条语句设置断点</li>
+<li>setBreakpoint(‘script.js’, 1), sb(…) - 在 script.js 的第 1 行设置断点</li>
+<li>clearBreakpoint(‘script.js’, 1), cb(…) - 清除 script.js 第 1 行的断点</li>
+</ul>
+<p>也可以在一个还未被加载的文件（模块）中设置断点</p>
+<p><strong>信息</strong></p>
+<ul>
+<li>backtrace, bt - 打印当前执行框架的回溯</li>
+<li>list(5) - 列出脚本源代码的 5 行上下文（前后各 5 行）</li>
+<li>watch(expr) - 添加表达式到监视列表</li>
+<li>unwatch(expr) - 从监视列表移除表达式</li>
+<li>watchers - 列出所有监视器和它们的值（每个断点会自动列出）</li>
+<li>repl - 打开调试器的 repl，用于在所调试的脚本的上下文中进行执行</li>
+<li>exec expr - 在所调试的脚本的上下文中执行一个表达式</li>
+</ul>
+<p><strong>执行控制</strong></p>
+<ul>
+<li>run - 运行脚本（调试器开始时自动运行）</li>
+<li>restart - 重新启动脚本</li>
+<li>kill - 终止脚本</li>
+</ul>
+<p><strong>杂项</strong></p>
+<ul>
+<li>scripts - 列出所有已加载的脚本</li>
+<li>version - 显示 V8 引擎的版本号</li>
+</ul>
+<p>Node.js 的 V8 检查器集合<br>打开Chrome地址：chrome://inspect/#devices<br>运行 node –inspect-brk test.js<br>即可在浏览器中查看node运行结果<br><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/guides/debugging-getting-started/">相关文档地址</a></p>
+<h4 id="DNS-域名解析"><a href="#DNS-域名解析" class="headerlink" title="DNS(域名解析)"></a>DNS(域名解析)</h4><p>dns 模块包含两类函数：</p>
+<ol>
+<li>第一类函数，使用底层操作系统工具进行域名解析，且无需进行网络通信。 这类函数只有一个：[dns.lookup()]。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.<span class="title function_">lookup</span>(<span class="string">&#x27;iana.org&#x27;</span>, <span class="function">(<span class="params">err, address, family</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;IP 地址: %j 地址族: IPv%s&#x27;</span>, address, family);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// IP 地址: &quot;192.0.43.8&quot; 地址族: IPv4</span></span><br></pre></td></tr></table></figure></li>
+<li>第二类函数，连接到一个真实的 DNS 服务器进行域名解析，且始终使用网络进行 DNS 查询。 这类函数包含了 dns 模块中除 [dns.lookup()] 以外的所有函数。 这些函数使用与 dns.lookup() 不同的配置文件（例如 /etc/hosts）。 这类函数适合于那些不想使用底层操作系统工具进行域名解析、而是想使用网络进行 DNS 查询的开发者。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.<span class="title function_">resolve4</span>(<span class="string">&#x27;archive.org&#x27;</span>, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`IP 地址: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(addresses)&#125;</span>`</span>);</span><br><span class="line">  addresses.<span class="title function_">forEach</span>(<span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">    dns.<span class="title function_">reverse</span>(a, <span class="function">(<span class="params">err, hostnames</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">throw</span> err;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`IP 地址 <span class="subst">$&#123;a&#125;</span> 逆向解析到域名: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(hostnames)&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h6 id="Class-dns-Resolver"><a href="#Class-dns-Resolver" class="headerlink" title="Class dns.Resolver"></a>Class dns.Resolver</h6><p>DNS请求的独立解析程序。<br>使用默认的设置创建一个新的解析程序。为一个解析程序设置servers使用[resolver.setServers()][dns.setServers()]，它不会影响其他的解析程序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">Resolver</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> resolver = <span class="keyword">new</span> <span class="title class_">Resolver</span>();</span><br><span class="line">resolver.<span class="title function_">setServers</span>([<span class="string">&#x27;4.4.4.4&#x27;</span>]);</span><br><span class="line"><span class="comment">// This request will use the server at 4.4.4.4, independent of global settings.</span></span><br><span class="line">resolver.<span class="title function_">resolve4</span>(<span class="string">&#x27;example.org&#x27;</span>, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>dns模块方法：</p>
+<ul>
+<li>[resolver.getServers()][dns.getServers()]</li>
+<li>[resolver.setServers()][dns.setServers()]</li>
+<li>[resolver.resolve()][dns.resolve()]</li>
+<li>[resolver.resolve4()][dns.resolve4()]</li>
+<li>[resolver.resolve6()][dns.resolve6()]</li>
+<li>[resolver.resolveAny()][dns.resolveAny()]</li>
+<li>[resolver.resolveCname()][dns.resolveCname()]</li>
+<li>[resolver.resolveMx()][dns.resolveMx()]</li>
+<li>[resolver.resolveNaptr()][dns.resolveNaptr()]</li>
+<li>[resolver.resolveNs()][dns.resolveNs()]</li>
+<li>[resolver.resolvePtr()][dns.resolvePtr()]</li>
+<li>[resolver.resolveSoa()][dns.resolveSoa()]</li>
+<li>[resolver.resolveSrv()][dns.resolveSrv()]</li>
+<li>[resolver.resolveTxt()][dns.resolveTxt()]</li>
+<li>[resolver.reverse()][dns.reverse()]</li>
+</ul>
+<p><strong>resolver.cancel()</strong><br>取消这个解析程序的未解决的DNS查询，相应的回调用一个ECANCELLED码调用。</p>
+<p><strong>dns.getServers()</strong><br>返回一个用于当前DNS解析的IP地址的数组的字符串，格式根据[rfc5952][]。如果使用自定义端口，那么字符串将包括一个端口部分。</p>
+<p><strong>dns.lookup(hostname[, options], callback)</strong></p>
+<ul>
+<li>hostname <string></li>
+<li>options <integer> | <Object></li>
+<li>family <integer> The record family. Must be 4 or 6. IPv4 and IPv6 addresses are both returned by default.</li>
+<li>hints <number> One or more [supported getaddrinfo flags][]. Multiple flags may be passed by bitwise ORing their values.</li>
+<li>all <boolean> When true, the callback returns all resolved addresses in an array. Otherwise, returns a single address. Default: false</li>
+<li>verbatim <boolean> When true, the callback receives IPv4 and IPv6 addresses in the order the DNS resolver returned them. When false, IPv4 addresses are placed before IPv6 addresses. Default: currently false (addresses are reordered) but this is expected to change in the not too distant future. New code should use { verbatim: true }.</li>
+<li>callback <Function></li>
+<li>err <Error></li>
+<li>address <string> A string representation of an IPv4 or IPv6 address.</li>
+<li>family <integer> 4 or 6, denoting the family of address.<br>解析hostname(例如：’nodejs.org’)为第一个找到的A（IPv4）或AAAA（IPv6）记录。options可以是对象或者整数。如果options没有被提供，那么IPv4 和 IPv6都是有效的。如果options是整数，只能是4或6。<br>另外，options可以是一个含有以下属性的对象：</li>
+<li>family <Number> - T地址族。如果提供，必须为整数4或6。如果没有提供，只接受IPv4和IPv6地址。</li>
+<li>hints: <Number> - 如果提供，它必须是一个或多个支持的getaddrinfo标识。如果没有提供，那么没有标识被传递给getaddrinfo。多个标识可以通过在逻辑上ORing它们的值，来传递给hints。支持的getaddrinfo标识请参阅下文。有关支持的标志的更多信息请查询[supported getaddrinfo flags][]章节。</li>
+<li>all: <Boolean> - 值为true时， 回调函数返回一个包含所有解析后地址的数组，否则只返回一个地址。默认值为false。<br>所有的参数都是可选的。<br>回调函数包含(err, address, family)参数。address是IPv4或IPv6地址字符串。family、是整数4或6，表示地址族（不一定是最初传递给查找的值）。<br>当all属性被设置为true时，回调函数参数变为(err, addresses)，addresses则变成一个由address 和 family 属性组成的对象数组。<br>发生错误时，err是一个[Error][]对象，err.code是错误码。不仅在主机名不存在时，在如没有可用的文件描述符等情况下查找失败，err.code也会被设置为’ENOENT’。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  <span class="attr">family</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="attr">hints</span>: dns.<span class="property">ADDRCONFIG</span> | dns.<span class="property">V4MAPPED</span>,</span><br><span class="line">&#125;;</span><br><span class="line">dns.<span class="title function_">lookup</span>(<span class="string">&#x27;example.com&#x27;</span>, options, <span class="function">(<span class="params">err, address, family</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;address: %j family: IPv%s&#x27;</span>, address, family));</span><br><span class="line"><span class="comment">// address: &quot;::ffff:93.184.216.34&quot; family: IPv6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// When options.all is true, the result will be an Array.</span></span><br><span class="line">options.<span class="property">all</span> = <span class="literal">true</span>;</span><br><span class="line">dns.<span class="title function_">lookup</span>(<span class="string">&#x27;example.com&#x27;</span>, options, <span class="function">(<span class="params">err, addresses</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;addresses: %j&#x27;</span>, addresses));</span><br><span class="line"><span class="comment">// addresses: [&#123;&quot;address&quot;:&quot;::ffff:93.184.216.34&quot;,&quot;family&quot;:6&#125;]</span></span><br></pre></td></tr></table></figure>
+以下内容可以作为hints标志传递给[dns.lookup()]:</li>
+<li>dns.ADDRCONFIG: 返回当前系统支持的地址类型。例如，如果当前系统至少配置了一个 IPv4 地址，则返回 IPv4地址。不考虑回环地址。</li>
+<li>dns.V4MAPPED: 如果指定了 IPv6 家族， 但是没有找到 IPv6 地址，将返回 IPv4 映射的 IPv6地址。在有些操作系统中不支持</li>
+</ul>
+<p>dns.lookupService(address, port, callback)</p>
+<ul>
+<li>address <string></li>
+<li>port <number></li>
+<li>callback <Function></li>
+<li>err <Error></li>
+<li>hostname <string> e.g. example.com</li>
+<li>service <string> e.g. http<br>将参数address和port传入操作系统底层getnameinfo服务来解析处理并返回主机名。<br>如果address不是有效的IP地址，会抛出TypeError。port必须是一个整数.如果不是规定的端口号，会抛出TypeError.<br>出错情况下，err是一个Error对象，err.code代码错误码。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">&#x27;dns&#x27;</span>);</span><br><span class="line">dns.<span class="title function_">lookupService</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">22</span>, <span class="function">(<span class="params">err, hostname, service</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hostname, service);</span><br><span class="line">  <span class="comment">// DESKTOP-894BKU0 ssh</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+如果以 [util.promisify()][] 方式进行调用, 它将返回一个包含hostname和service属性的 Promise 对象。</li>
+</ul>
+<p>dns.resolve(hostname[, rrtype], callback)</p>
+<ul>
+<li>hostname <string> 解析的主机名。</li>
+<li>rrtype <string> 资源记录类型. 默认: ‘A’.</li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>records &lt;string[]&gt; | &lt;Object[]&gt; | <Object><br>使用DNS协议来解析一个主机名(e.g. ‘nodejs.org’)为一个资源记录的数组。回调函数的参数为(err, records)。当成功时，records将是一个资源记录的数组。它的类型和结构取决于rrtype<br><img src="./images/dns-resolve.png" alt="dns.resolve"><br>出错时，err是一个[Error][] object，err.code是DNS error codes的一种。</li>
+</ul>
+</li>
+</ul>
+<p>dns.resolve4(hostname[, options], callback)</p>
+<ul>
+<li>hostname <string> 需要解析的主机名。</li>
+<li>options <Object><ul>
+<li>ttl <boolean> 记录每一条记录的存活次数 (TTL)。如果为 true， 返回的结果将会为 Object 的数组，就像 { address: ‘1.2.3.4’, ttl: 60 } 带有 TTL 秒数的记录，而不是 string 的数组.</li>
+</ul>
+</li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>addresses &lt;string[]&gt; | &lt;Object[]&gt;<br>使用DNS协议解析IPv4地址主机名(A记录)。addresses参数是传递给callback函数的IPv4地址数组。（例如：[‘74.125.79.104’, ‘74.125.79.105’, ‘74.125.79.106’]）</li>
+</ul>
+</li>
+</ul>
+<p>dns.resolve6(hostname[, options], callback)<br><em>参数说明参考：dns.resolve4</em></p>
+<p>dns.resolveCname(hostname, callback)</p>
+<ul>
+<li>hostname <string></li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>addresses &lt;string[]&gt;<br>使用DNS协议解析CNAME记录主机名。addresses参数是传递给callback函数规范内有效的主机名数组（例如：[‘bar.example.com’]）</li>
+</ul>
+</li>
+</ul>
+<p>dns.resolveMx(hostname, callback)</p>
+<ul>
+<li>hostname <string></li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>addresses &lt;Object[]&gt;<br>使用DNS协议处理邮件交换记录主机名(MX记录)。addresses参数是传递给callback函数的主机名对象数组，对象包含priority和exchange属性（例如： [{priority: 10, exchange: ‘mx.example.com’}, …]）。</li>
+</ul>
+</li>
+</ul>
+<p>dns.resolveNaptr(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议来处理基于正则表达式匹配的记录(NAPTR记录)的主机名。addresses参数是传递给callback函数的主机名对象数组，对象包含属性：</p>
+<ul>
+<li>flags</li>
+<li>service</li>
+<li>regexp</li>
+<li>replacement</li>
+<li>order</li>
+<li>preference</li>
+</ul>
+<p>dns.resolveNs(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议处理名称服务器主机名记录(NS记录)。addresses为有效的名称服务器记录主机名数组（eg:[‘ns1.example.com’, ‘ns2.example.com’]）。</p>
+<p>dns.resolvePtr(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议处理主机名引用记录(PTR记录)。addresses参数将一个字符串数组传递给回调函数callback,其中包含回复记录。</p>
+<p>dns.resolveSoa(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议处理主机名子域名记录(SOA记录)。addresses参数为一个对象包含以下属性：</p>
+<ul>
+<li>nsname</li>
+<li>hostmaster</li>
+<li>serial</li>
+<li>refresh</li>
+<li>retry</li>
+<li>expire</li>
+<li>minttl</li>
+</ul>
+<p>dns.resolveSrv(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议来处理主机名服务记录(SRV记录)。callback函数返回的addresses参数为对象数组,每个对象包含以下属性：</p>
+<ul>
+<li>priority</li>
+<li>weight</li>
+<li>port</li>
+<li>name</li>
+</ul>
+<p>dns.resolveTxt(hostname, callback)<br><em>参数与上面的类似</em><br>使用DNS协议处理文本查询主机名(TXT记录)。回调函数callback会返回records参数，它是一个文本记录与主机名一一对应的二维数组(例如：[ [‘v=spf1 ip4:0.0.0.0 ‘, ‘~all’ ] ]). 每个数组文本块包含一条记录。根据用例,这些可以是连接在一起或单独对待。</p>
+<p>dns.resolveAny(hostname, callback)</p>
+<ul>
+<li>hostname <string></li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>ret &lt;Object[]&gt;<br>使用DNS协议解析所有记录(也称为ANY或 * query)。传递给回调函数的ret参数将是一个包含各种类型记录的数组。每个对象都有一个属性类型，用于指示当前记录的类型。根据类型的不同，额外的属性会出现在对象上:<br><img src="./images/dns-resolveany.png" alt="dns-resolveany"></li>
+</ul>
+</li>
+</ul>
+<p>dns.reverse(ip, callback)</p>
+<ul>
+<li>ip <string></li>
+<li>callback <Function><ul>
+<li>err <Error></li>
+<li>hostnames &lt;string[]&gt;<br>执行一个反向DNS查询返回IPv4或IPv6地址的主机名的数组。出错情况下，err是一个Error对象，err.code代码错误码。</li>
+</ul>
+</li>
+</ul>
+<p>dns.setServers(servers)<br>servers &lt;string[]&gt; array of [rfc5952][] formatted addresses<br>设置IP地址服务器端口在进行DNS解析时可用，servers参数是一个[rfc5952][]数组格式的地址。 如果端口是IANA默认端口(53),那么它可以被忽略。<br>ip地址无效将会报错。<br><em>dns.setServers()方法不要在DNS查询过程中使用。</em></p>
+<p><strong>错误码</strong><br>每个DNS查询可以返回一个错误代码如下:</p>
+<ul>
+<li>dns.NODATA: DNS服务返回没有数据.</li>
+<li>dns.FORMERR: DNS服务器查询没有格式化.</li>
+<li>dns.SERVFAIL: DNS服务器返回失败。</li>
+<li>dns.NOTFOUND: 域名未找到。</li>
+<li>dns.NOIMP: DNS服务器不执行请求的操作。</li>
+<li>dns.REFUSED: 查询DNS服务器拒绝。</li>
+<li>dns.BADQUERY: 未格式化DNS查询。</li>
+<li>dns.BADNAME: 未格式化主机名</li>
+<li>dns.BADFAMILY: 没有提供地址族</li>
+<li>dns.BADRESP: 未格式化DNS回复</li>
+<li>dns.CONNREFUSED: 无法连接DNS服务器</li>
+<li>dns.TIMEOUT: 连接DNS服务器超时</li>
+<li>dns.EOF: 文件末尾</li>
+<li>dns.FILE: 读取文件错误</li>
+<li>dns.NOMEM: 内存溢出</li>
+<li>dns.DESTRUCTION: 通道以及销毁</li>
+<li>dns.BADSTR: 未格式化字符串</li>
+<li>dns.BADFLAGS: 指定非法标记</li>
+<li>dns.NONAME: 给定的主机名不是数字。</li>
+<li>dns.BADHINTS: 指定非法的提示标志。</li>
+<li>dns.NOTINITIALIZED: c-ares异步DNS请求库初始化未完成。</li>
+<li>dns.LOADIPHLPAPI: 加载iphlpapi.dll(Windows IP辅助API应用程序接口模块)错误</li>
+<li>dns.ADDRGETNETWORKPARAMS: 找不到GetNetworkParams(读取本机DNS信息)函数</li>
+<li>dns.CANCELLED: DNS查询取消</li>
+</ul>
+
+      </section>
+
+      
+      
+
+      
+      
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>84</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        2
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2025 <a href="/" target="_blank">Sun Jinkang</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

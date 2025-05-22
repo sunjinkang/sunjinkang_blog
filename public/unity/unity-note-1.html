@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.2">
+
+  
+    <meta name="description" content="study blog from sun jinkang">
+  
+
+  
+
+  
+    <meta name="author" content="Sun Jinkang">
+  
+
+  
+
+  
+
+  <title>unity手册笔记（1） | Sun with no word</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Sun with no word
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/archives">归档</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">unity手册笔记（1）</h1>
+        
+      </div>
+    </div>
+  
+  
+</header>
+
+    <!-- 分页(其他自定义页面) -->
+
+<!-- 自定义页面 -->
+
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h4 id="安装Unity-Editor"><a href="#安装Unity-Editor" class="headerlink" title="安装Unity Editor"></a>安装Unity Editor</h4><ol>
+<li><p>使用Hub安装<br>教程：<a target="_blank" rel="noopener" href="https://docs.unity.cn/hub/manual/InstallHub.html">https://docs.unity.cn/hub/manual/InstallHub.html</a></p>
+</li>
+<li><p>使用命令行安装<br>教程：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/InstallingUnity.html">https://docs.unity.cn/cn/current/Manual/InstallingUnity.html</a></p>
+</li>
+<li><p>离线安装<br>教程：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/DeployingUnityOffline.html">https://docs.unity.cn/cn/current/Manual/DeployingUnityOffline.html</a></p>
+</li>
+</ol>
+<h4 id="Unity界面"><a href="#Unity界面" class="headerlink" title="Unity界面"></a>Unity界面</h4><p><img src="./images/unity-editor.png" alt="unity-editor"></p>
+<h6 id="场景拾取控件"><a href="#场景拾取控件" class="headerlink" title="场景拾取控件"></a>场景拾取控件</h6><p>要切换场景可拾取性，请执行以下操作：</p>
+<ul>
+<li>单击 Hierarchy 窗口中游戏对象的可拾取性图标，在启用和禁用游戏对象及其子项的拾取之间进行切换。<br>注意：切换游戏对象及其子项的可拾取性会影响所有子游戏对象（从“目标”游戏对象一直到层级视图的底部）。</li>
+<li>按住 Alt 并单击 Hierarchy 窗口中游戏对象的可拾取性图标，在仅启用和禁用这个游戏对象的拾取之间进行切换。<br>注意：切换单个游戏对象的可拾取性不会影响其子项。这些子项会保留以前具有的任何可拾取性状态。</li>
+</ul>
+<h6 id="资源工作流程"><a href="#资源工作流程" class="headerlink" title="资源工作流程"></a>资源工作流程</h6><p>资源表示 Unity 项目中用来创建游戏或应用的任何项。资源可以代表项目中的视觉或音频元素，例如 3D 模型、纹理、精灵、音效或音乐。资源还可以表示更抽象的项目，例如任何用途的颜色渐变、动画遮罩或任意文本或数字数据。<br>流程：导入、创建、构建、分发、加载，具体如下：<br>将资源导入 Unity 编辑器<br>使用 Unity 编辑器通过这些资源创建内容。<br>构建您的应用或游戏文件，以及可选的随附内容包<br>分发构建的文件，以便您的用户可以通过发布者或应用程序商店访问<br>根据您用户的行为以及您对内容进行分组和捆绑的方式，在运行时根据需要加载进一步更新。</p>
+<ul>
+<li><p>工作流程考虑事项<br>如果您使用大量作为单独包发布的资源，可能会发现将部分资源组分离为单独的项目很有帮助，这样您的团队成员就不需要一次性加载大型项目来使用这些资源包。</p>
+</li>
+<li><p>平台注意事项<br>用户对平台的期望也是一个重要的考虑因素。例如，在移动平台上，漫长的初始下载和安装过程可能会导致玩家尚未尝试就放弃了您的应用。出于这个原因，移动应用通常在初始构建中只包含最少的资源集，并在用户第一次运行您的应用时从远程服务器下载剩余的资源。</p>
+</li>
+<li><p>常用的资源类型<br>3D 模型文件<br>图像文件<br>音频文件||Text、HTML、XML、JSON</p>
+</li>
+<li><p>内置导入器<br>unity有自己的内置导入期，具体可查看：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/BuiltInImporters.html">内置导入器</a></p>
+</li>
+<li><p>脚本化导入器 (Scripted Importer)<br>Scripted Importer 是 Unity Scripting API 的一部分。您可以使用 Scripted Importer 使用 C# 为 Unity 本身不支持的文件格式编写自定义资源导入器，从而添加支持。</p>
+</li>
+</ul>
+<p><em>注意：Scripted Importer 无法处理已由 Unity 本身处理的文件扩展名。</em><br><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/ScriptedImporters.html">脚本化导入器</a></p>
+<ul>
+<li><p>导入器一致性<br>资源导入器，包括您编写的任何脚本化导入器，应产生一致（确定性）的结果。这意味着它们应始终从相同的输入和依赖集产生相同的输出。<br>检查一致性的两种方法是：<br>在编辑器中手动重新导入一项或多项资源<br>使用 -consistencyCheck 命令行参数打开编辑器。</p>
+</li>
+<li><p>Text assets<br>__文本资源__是导入的文本文件的格式。将文本文件拖放到 Project 文件夹中时，它将转换为文本资源。支持的文本格式如下：<br>.txt<br>.html<br>.htm<br>.xml<br>.bytes<br>.json<br>.csv<br>.yaml<br>.fnt</p>
+</li>
+</ul>
+<p>注意：<br>文本资源与所有其他资源一样会在构建中经过序列化。发布游戏时并不包含物理文本文件。<br>文本资源不适用于在运行时生成文本文件。(<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/class-TextAsset.html">https://docs.unity.cn/cn/current/Manual/class-TextAsset.html</a>)</p>
+<ul>
+<li>资源元数据<br>Unity 为资源分配唯一 ID。（ID 通常在编辑器中不可见）<br>Unity 创建一个伴随资源文件的 .meta 文件。<br>Unity 对资源进行处理。</li>
+</ul>
+<p>Unity 针对空文件夹采用以下特定方式：<br>如果 Unity 检测到一个空文件夹不再含有相应的元文件，如果该文件夹以前有元文件，Unity 会假设元文件被另一个用户通过在 VCS 中删除该文件夹时删除，并在本地删除该空文件夹。<br>如果 Unity 检测到文件夹有一个新的元文件，但该文件夹在本地不存在，则 Unity 会假设新元文件是被另一个用户通过在 VCS 中添加文件夹而创建，并在本地创建相应的空文件夹。</p>
+<ul>
+<li>Unity中常见的资源类型<br>1、原始资源文件（从外部创建并导入Unity，每一个类型都对应一个AssetImporter）：<br>Texture、Model、AudioClip、VideoClip、TextAsset、Font、其他。</li>
+</ul>
+<p>2、代码文件：<br>C#脚本文件、代码库文件、shader文件 等。导入时Unity会进行一次编译 </p>
+<p>3、序列化文件（可在Unity中创建、编辑，能够被Unity运行时反序列化的文件）<br>Sprite、SpriteAtlas、Prefab、Scene、Script、Shader、Materrial、AnimationClip、RenderTexture、CustomRenderTexture、AudioMixer、CustomFont、GUISkin、PhysicMaterial、ComputeShader、AnimatorController、AnimatorOverrideController、AvatarMask、Brush、Cubemap、LightmapParameters、Timeline、Signal、TerrainLayer、AssemblyDefinition、AssemblyDefinitionReference、Asset(ScriptableObject)文件、其他。</p>
+<p>4、文本文档（Unity 识别为 TextAsset，无 ImportSetting）<br>txt、xml、json、二进制文件、其他。</p>
+<p>5、非序列化文件（Unity无法识别的文件，如文件夹）</p>
+<p>6、Meta文件<br><em>可能会依赖其他资源的资源</em>：<br>Model、SpriteAtlas、Prefab、Scene、Materrial、CustomFont、GUISkin、AnimatorController、AnimatorOverrideController、AvatarMask、Brush、Cubemap、Timeline、TerrainLayer、其他。</p>
+<ul>
+<li>特定资源文件夹<br>Unity会将许多文件夹名解释为一条指令，说明文件夹中的内容应该以一种特殊的方式处理。</li>
+</ul>
+<p>1、Assets: Unity项目资源主文件夹。除了部分函数需要将Assets文件夹包含在资源路径名中(例如，AssetDatabase类中的某些函数)， 其他大部分都不用。</p>
+<p>2、Editor: 放在Editor文件夹中的脚本被视为Editor脚本而不是运行时脚本，这些脚本在开发期间向Editor添加功能，并在运行时的构建中不可用。<br>可在Assets文件夹中的任何位置添加多个Editor文件夹。应将Editor脚本放在Editor文件夹内或其子文件夹内。</p>
+<p>3、Editor Default Resources：Editor脚本可以通过 EditorGUIUtility.Load 函数按需加载资源文件，此函数将在 Editor Default Resources 文件夹中查找资源文件（也可放在Editor/Resources下）。<br>只能有一个 Editor Default Resources 文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。资源可放在其子文件夹，加载时需拼上路径。</p>
+<p>4、Gizmos：此文件夹允许将图形添加到Scene视图，以帮助可视化不可见的设计细节。Gizmos.DrawIcon 函数在场景中放置一个图标，作为特殊对象或位置标记。必须将图像放在Gizmos文件夹中，才能被DrawIcon函数找到。<br>只能有一个Gizmos 文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。资源可放在其子文件夹，加载时需拼上路径。</p>
+<p>5、Plugins：可为项目添加插件来扩展Unity的功能。插件通常是用C/C++编写的本地DLL。这些插件可以访问第三方代码库、系统调用和其他Unity内置功能。请始终将插件放在 名为 Plugins 的文件夹中，才能被Unity检测到。<br>只能有一个Plugins 文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。</p>
+<p>6、Resources: 可从脚本中按需加载资源。应将资源放在名为 Resources的文件夹中，使用 Resources.Load函数加载。<br>可在Assets文件夹中的任何位置添加多个Resources文件夹。资源可放在其子文件夹，加载时需拼上路径。<br>注意，如果Resources是Ediotr的子文件夹，则其中的资源可通过Editor脚本加载，但会从构建中剥离。</p>
+<p>7、Standard Assets: 标准资源导入后的文件夹。<br>只能有一个Standard Assets文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。资源可放在其子文件夹。</p>
+<p>8、StreamingAssets: 希望资源以其原始格式作为单独的文件使用。例如文件系统访问视频文件。StreamingAssets中的文件可以按原样复制到目标计算机，然后就能从特定文件夹中访问该文件。<br>只能有一个StreamingAssets文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。资源可放在其子文件夹，加载时需拼上路径。</p>
+<p>9、隐藏的资源：为防止导入由操作系统或其他应用程序创建的特殊文件和临时文件，Unity会忽略Assets文件夹中的以下文件：隐藏的文件夹、以**.<strong>开头的文件和文件夹、以</strong>~**结尾的文件和文件夹、名为cvs的文件和文件夹、扩展名为.tmp的文件。</p>
+<ul>
+<li>系统资源路径<br>1、Application.dataPath：包含游戏数据文件夹的路径（只读）。<br>和平台相关：<br>Unity Editor: <path to project folder>/Assets<br>iOS: <path to player app bundle>/&lt;AppName.app&gt;/Data（只读文件夹，可使用Application.persistentDataPath保存）<br>Android: 通常它会直接指向APK。但如果正在运行拆分的二进制构建，它将指向OBB（Opaque Binary Blob ）<br>Mac player: <path to player app bundle>/Contents<br>Win/Linux player: <path to executablename_Data folder>（请注意，大多数Linux安装都区分大小写！）<br>WebGL: 播放器数据文件目录的绝对url(不含实际的数据文件名)<br>Windows Store Apps: 播放器数据文件目录的绝对url（只读文件夹，可使用Application.persistentDataPath保存）</li>
+</ul>
+<p>2、Application.persistentDataPath：包含持久数据目录的路径（可读可写）。<br>该值是一个目录路径，其中可以存储需要在运行之间保留的数据。在 iOS 和 Android 上发布时，persistentDataPath 将指向设备上的公共目录。每次更新应用程序时，不会擦除此位置中的文件。但用户可以直接删除这些文件。</p>
+<p><em>请注意</em>，在构建应用程序时，将基于 Bundle ID 生成 GUID，并且此 GUID 将成为 persistentDataPath 的一部分。如果您在将来的版本中保留相同的 Bundle ID，那么应用程序将在每次更新时继续访问相同的位置。<br>Windows Store Apps: 指向 %userprofile%\AppData\Local\Packages&lt;productname&gt;\LocalState.<br>iOS: 指向 /var/mobile/Containers/Data/Application/<guid>/Documents.<br>Android: 通常指向 /storage/emulated/0/Android/data/<packagename>/files  (一些旧手机可能会指向SD卡上的位置), 可使用 android.content.Context.getExternalFilesDir 解析路径。</p>
+<p>3、Application.streamingAssetsPath：StreamingAssets文件夹的路径(只读)。<br>在运行时，Application.streamingAssetsPath 提供文件夹的路径。如果将资产添加到 StreamingAssets文件夹。构建的应用程序就可以在这个地址加载资产。<br>在WebGL和Android平台上不能访问StreamingAssets文件夹。因为 WebGL上没有可用的文件访问；而Android使用一个压缩的 .apk 文件，文件会被包含在压缩在 .jar文件（其格式与标准的zip压缩文件基本相同）中。这些平台返回一个URL，可以使用UnityWebRequest类访问URL来获得资产。<br>Windows/MacOS:  Application.dataPath + “/StreamingAssets”.<br>    iOS: Application.dataPath + “/RAW”.<br>    Android: “jar://file://“ + Application.dataPath + “!/assets/“.<br>    注意：位于 StreamingAssets 文件夹中的 .dll 文件不参与编译。<br>4、Application.temporaryCachePath：包含临时数据/缓存目录的路径（只读）。<br>    该值是可以存储临时数据的目录路径。</p>
+<ul>
+<li>资源数据库<br>对于大多数类型的资源，Unity 需要将资源的源文件中的数据转换为可用于游戏或实时应用程序的格式。这些转换后的文件及其关联的数据会存储在资源数据库 (Asset Database) 中。</li>
+</ul>
+<p><em>资源导入依赖项</em><br>资源数据库可以跟踪每个资源的所有依赖项，并保留导入版本的所有资源的缓存。<br>资源的导入依赖项包括可能影响所导入数据的全部数据。例如，一个资源的源文件是一个依赖项以及资源的导入设置（例如纹理的压缩类型）或项目的目标平台（例如，PS4 硬件要求的数据格式与 Android 硬件不同）。如果修改其中任意一个依赖项，则缓存版本的已导入资源都将变为无效状态，并且 Unity 必须将其重新导入才能反映所做的更改。</p>
+<p><em>资源缓存</em><br>资源缓存是 Unity 存储导入版本的资源的位置。默认情况下，Unity 使用本地缓存，这意味着导入版本的资源将缓存在本地计算机上项目文件夹的 Library 文件夹中。应该使用 ignore file 从版本控制中排除此文件夹。类似Git。<br>团队成员并且使用版本控制系统，最好使用 <a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/UnityAccelerator.html">Unity Accelerator</a>，它可以跨 LAN 共享资源缓存。</p>
+<p><em>源资源和 Artifact</em><br>Unity 在 Library 文件夹中保留两个数据库文件，它们统称为资源数据库。这两个数据库可以跟踪有关源资源文件和 Artifact（这是有关导入结果的信息）的信息。<br>数据库文件位于项目的 Library 文件夹中，因此应从版本控制系统中将这些文件排除。可以在以下位置找到它们：<br>(1).源资源数据库：Library\SourceAssetDB<br>(2).Artifact 数据库：Library\ArtifactDB</p>
+<ul>
+<li>特殊文件夹名称<br>Assets: Assets 文件夹是包含 Unity 项目使用的资源的主文件夹。<br>Editor: Editor脚本在开发过程中为Unity添加功能，Editor文件夹中的脚本作为Editor脚本运行，而不是运行时脚本。<br>Editor Default Resources：Editor 脚本可以使用通过 EditorGUIUtility.Load 函数按需加载的资源文件。此函数在名为 Editor Default Resources 的文件夹中查找资源文件。<br>Gizmos：Gizmos 允许将图形添加到 Scene 视图，以帮助可视化不可见的设计细节。Gizmos.DrawIcon 函数在场景中放置一个图标，作为特殊对象或位置的标记。必须将用于绘制此图标的图像文件放在名为 Gizmos 的文件夹中，这样才能被 DrawIcon 函数找到。<br>Resources：可从脚本中按需加载资源，而不必在场景中创建资源实例以用于游戏。为此，应将资源放在一个名为 Resources 的文件夹中。通过使用 Resources.Load 函数即可加载这些资源。<br>Standard Assets<br>StreamingAssets：流媒体文件<br>Android Asset Packs：以.androidpack结尾的文件夹<br>Android 库项目：以.androidlib结尾的文件夹</li>
+</ul>
+<p>隐藏的资源<br>在导入过程中，Unity 忽略 Assets 文件夹（或其子文件夹）中的以下文件和文件夹：<br>隐藏的文件夹。<br>以“.”开头的文件和文件夹。<br>以“~”结尾的文件和文件夹。<br>名为 cvs 的文件和文件夹。<br>扩展名为 .tmp 的文件。</p>
+<p>四、发布时会被打入包内的资源：<br>1、Assets下所有非编辑器脚本文件。<br>2、Assets下所有 参与构建的Scene文件（BuildSettings Scenes In Build 处设置）。<br>3、Assets下直接或间接被 “参与构建的Scene文件” 所依赖的文件。<br>4、Resources下的所有文件。<br>5、Assets下直接或间接被 “Resources下的文件” 所依赖的文件。<br>6、StreamingAssets下的所有文件（会被逐字拷入目标平台的特定文件夹）。<br>7、Assets下所有 参与构建的Shader文件（ProjectSetting Built-in Shader Setting处设置）。<br>8、Plugins下的对应平台下的文件。</p>
+<p>文本资源不适用于在运行时生成文本文件？？？？<br>VCS: version control system (版本控制系统)<br>unity的开发保存在哪里？本地？线上？<br>不可序列化变量??? (<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/AssetDatabaseRefreshing.html">https://docs.unity.cn/cn/current/Manual/AssetDatabaseRefreshing.html</a>)</p>
+
+      </section>
+
+      
+      
+
+      
+      
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>84</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        2
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2025 <a href="/" target="_blank">Sun Jinkang</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

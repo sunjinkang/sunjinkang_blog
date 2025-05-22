@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.2">
+
+  
+    <meta name="description" content="study blog from sun jinkang">
+  
+
+  
+
+  
+    <meta name="author" content="Sun Jinkang">
+  
+
+  
+
+  
+
+  <title>nodejs基础知识(10) | Sun with no word</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Sun with no word
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/archives">归档</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">nodejs基础知识(10)</h1>
+        
+      </div>
+    </div>
+  
+  
+</header>
+
+    <!-- 分页(其他自定义页面) -->
+
+<!-- 自定义页面 -->
+
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h4 id="Inspector"><a href="#Inspector" class="headerlink" title="Inspector"></a>Inspector</h4><p>inspector.console</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">&#x27;node:inspector&#x27;</span>).<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;a message&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>检查器控制台与Node.js控制台没有API平等性。</p>
+<p>inspector.url()</p>
+<ul>
+<li>Returns: <string> | <undefined><br>返回活动检查器的URL，如果没有则未定义<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">node</span> --inspect -p &#x27;inspector.url()&#x27;</span><br><span class="line"><span class="attribute">Debugger</span> listening <span class="literal">on</span> ws://<span class="number">127.0.0.1:9229</span>/<span class="number">967</span>be145-cb64-<span class="number">4</span>ab0-<span class="number">8</span>aa7-c4bc4aab37b9</span><br><span class="line"><span class="attribute">For</span> help, see: https://nodejs.org/en/docs/inspector</span><br><span class="line"><span class="attribute">ws</span>://<span class="number">127.0.0.1:9229</span>/<span class="number">967</span>be145-cb64-<span class="number">4</span>ab0-<span class="number">8</span>aa7-c4bc4aab37b9</span><br><span class="line"></span><br><span class="line"><span class="attribute">node</span> --inspect=localhost:<span class="number">3000</span> -p &#x27;inspector.url()&#x27;</span><br><span class="line"><span class="attribute">Debugger</span> listening <span class="literal">on</span> ws://localhost:<span class="number">3000</span>/<span class="number">3</span>bc267b0-<span class="number">4</span>ecd-<span class="number">4106</span>-a1ff-<span class="number">6</span>d2d9fa6fe79</span><br><span class="line"><span class="attribute">Debugger</span> listening <span class="literal">on</span> ws://localhost:<span class="number">3000</span>/<span class="number">3</span>bc267b0-<span class="number">4</span>ecd-<span class="number">4106</span>-a1ff-<span class="number">6</span>d2d9fa6fe79</span><br><span class="line"><span class="attribute">For</span> help, see: https://nodejs.org/en/docs/inspector</span><br><span class="line"><span class="attribute">ws</span>://localhost:<span class="number">3000</span>/<span class="number">3</span>bc267b0-<span class="number">4</span>ecd-<span class="number">4106</span>-a1ff-<span class="number">6</span>d2d9fa6fe79</span><br><span class="line"></span><br><span class="line"><span class="attribute">node</span> -p &#x27;inspector.url()&#x27;</span><br><span class="line"><span class="attribute">undefined</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>inspector.waitForDebugger()<br>阻塞，直到客户端(现有的或以后连接的)发送Runtime.runIfWaitingForDebugger命令。<br>如果没有活动检查器，则会引发异常。</p>
+<p><strong>Class: inspector.Session</strong></p>
+<p>new inspector.Session()<br>创建新的inspector.session实例。在将消息分派到检查器后端之前，需要通过session.connect()连接检查器会话。</p>
+<p>Event: ‘inspectorNotification’</p>
+<ul>
+<li><Object> 信息对象<br>v8检查器收到任务通知时执行<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.<span class="keyword">on</span>(<span class="string">&#x27;inspectorNotification&#x27;</span>, (<span class="keyword">message</span>) =&gt; console.log(<span class="keyword">message</span>.method));</span><br><span class="line"><span class="comment">// Debugger.paused</span></span><br><span class="line"><span class="comment">// Debugger.resumed</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Event: <inspector-protocol-method>;</p>
+<ul>
+<li><Object> 信息对象<br>当接收到方法字段设置为<inspector-protocol-method>值的检查器通知时触发。</li>
+</ul>
+<p><em><inspector-protocol-method>表示某个具体方法，如下添加Debugger.paused监听事件</em></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">session.<span class="literal">on</span>(<span class="string">&#x27;Debugger.paused&#x27;</span>, <span class="function"><span class="params">(&#123; params &#125;)</span> =&gt;</span> &#123;</span><br><span class="line">  console.log(params.hitBreakpoints);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="regexp">//</span> [ <span class="string">&#x27;/the/file/that/has/the/breakpoint.js:11:0&#x27;</span> ]</span><br></pre></td></tr></table></figure>
+
+<p>session.connectToMainThread()<br>将会话连接到主线程检查器后端。如果没有在Worker线程上调用此API，则会抛出异常。</p>
+<p>session.disconnect()<br>立即关闭会话。所有挂起的消息回调都将被调用并报错。需要调用Session.connect()才能再次发送消息。重新连接的会话将丢失所有检查器状态，例如启用的代理或配置的断点。</p>
+<p>session.post(method[, params][, callback])</p>
+<ul>
+<li>method <string></li>
+<li>params <Object></li>
+<li>callback <Function><br>向检查器后端发布消息。 callback 将在接收到响应时收到通知。 callback 是接受两个可选参数（错误和特定于消息的结果）的函数。<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.post(<span class="string">&#x27;Runtime.evaluate&#x27;</span>, &#123; <span class="name">expression</span>: <span class="string">&#x27;2 + 2&#x27;</span> &#125;,</span><br><span class="line">             <span class="function"><span class="params">(<span class="built_in">error</span>, &#123; result &#125;)</span> =&gt;</span> console.log(result));</span><br><span class="line">// 输出：&#123; <span class="name">type</span>: <span class="string">&#x27;number&#x27;</span>, <span class="name">value</span>: <span class="number">4</span>, <span class="name">description</span>: <span class="string">&#x27;4&#x27;</span> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>CPU 分析器代码示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inspector = <span class="built_in">require</span>(<span class="string">&#x27;node:inspector&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;node:fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> session = <span class="keyword">new</span> inspector.<span class="title class_">Session</span>();</span><br><span class="line">session.<span class="title function_">connect</span>();</span><br><span class="line"></span><br><span class="line">session.<span class="title function_">post</span>(<span class="string">&#x27;Profiler.enable&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  session.<span class="title function_">post</span>(<span class="string">&#x27;Profiler.start&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在此处调用测量中的业务逻辑...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一段时间之后...</span></span><br><span class="line">    session.<span class="title function_">post</span>(<span class="string">&#x27;Profiler.stop&#x27;</span>, <span class="function">(<span class="params">err, &#123; profile &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 将分析文件写入磁盘、上传等</span></span><br><span class="line">      <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">        fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;./profile.cpuprofile&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(profile));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>堆分析器代码示例</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const inspector = require(&#x27;node:inspector&#x27;);</span><br><span class="line">const fs = require(&#x27;node:fs&#x27;);</span><br><span class="line">const session = <span class="keyword">new</span> inspector.<span class="constructor">Session()</span>;</span><br><span class="line"></span><br><span class="line">const fd = fs.<span class="keyword">open</span><span class="constructor">Sync(&#x27;<span class="params">profile</span>.<span class="params">heapsnapshot</span>&#x27;, &#x27;<span class="params">w</span>&#x27;)</span>;</span><br><span class="line"></span><br><span class="line">session.connect<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">session.on(&#x27;<span class="module-access"><span class="module"><span class="identifier">HeapProfiler</span>.</span></span>addHeapSnapshotChunk&#x27;,<span class="function"> (<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">  fs.write<span class="constructor">Sync(<span class="params">fd</span>, <span class="params">m</span>.<span class="params">params</span>.<span class="params">chunk</span>)</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">session.post(&#x27;<span class="module-access"><span class="module"><span class="identifier">HeapProfiler</span>.</span></span>takeHeapSnapshot&#x27;, null,<span class="function"> (<span class="params">err</span>, <span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">  console.log(&#x27;<span class="module-access"><span class="module"><span class="identifier">HeapProfiler</span>.</span></span>takeHeapSnapshot <span class="keyword">done</span>:&#x27;, err, r);</span><br><span class="line">  session.disconnect<span class="literal">()</span>;</span><br><span class="line">  fs.close<span class="constructor">Sync(<span class="params">fd</span>)</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Internationalization"><a href="#Internationalization" class="headerlink" title="Internationalization"></a>Internationalization</h4><p>构建 Node.js 的选项<br>为了控制在 Node.js 中如何使用 ICU，在编译期间提供了四个 configure 选项。 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/HEAD/BUILDING.md">BUILDING.md</a> 中记录了有关如何编译 Node.js 的其他详细信息。</p>
+<p>–with-intl=none/–without-intl<br>–with-intl=system-icu<br>–with-intl=small-icu<br>–with-intl=full-icu（默认）<br>每个 configure 选项的可用 Node.js 和 JavaScript 特性概述：<br><img src="./images/international.png" alt="international"><br>“(不识别区域设置)” 表示该函数执行其操作就像函数的非 Locale 版本一样，如果存在的话。 比如在 none 模式下，Date.prototype.toLocaleString() 的操作和 Date.prototype.toString() 是一样的。</p>
+<p><em>禁用全部国际化特性（none）</em><br>如果选择此选项，则 ICU 将被禁用，并且上述大多数国际化特性在生成的 node 二进制文件中将不可用。</p>
+<p><em>使用预装的 ICU 构建（system-icu）</em><br>Node.js 可以链接到系统上已安装的 ICU。 事实上，大多数 Linux 发行版已经安装了 ICU，这个选项可以复用操作系统中其他组件使用的相同数据集。<br>system-icu 完全支持仅需要 ICU 库本身的功能，例如 String.prototype.normalize() 和 WHATWG 网址解析器。 另外需要 ICU 语言环境数据的特性，例如 Intl.DateTimeFormat 可能完全或部分支持，具体取决于系统上安装的 ICU 数据的完整性。</p>
+<p><em>嵌入 ICU 数据的有界集（small-icu）</em><br>此选项静态地生成针对 ICU 库的二进制链接，并在 node 可执行文件中包含 ICU 数据的子集（通常只有英文区域设置）。<br>small-icu 完全支持仅需要 ICU 库本身的功能，例如 String.prototype.normalize() 和 WHATWG 网址解析器。 另外需要 ICU 语言环境数据的特性，比如 Intl.DateTimeFormat，一般只适用于英文语言环境：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> january = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">9e8</span>);</span><br><span class="line"><span class="keyword">const</span> english = <span class="keyword">new</span> <span class="title class_">Intl</span>.<span class="title class_">DateTimeFormat</span>(<span class="string">&#x27;en&#x27;</span>, &#123; <span class="attr">month</span>: <span class="string">&#x27;long&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> spanish = <span class="keyword">new</span> <span class="title class_">Intl</span>.<span class="title class_">DateTimeFormat</span>(<span class="string">&#x27;es&#x27;</span>, &#123; <span class="attr">month</span>: <span class="string">&#x27;long&#x27;</span> &#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(english.<span class="title function_">format</span>(january));</span><br><span class="line"><span class="comment">// 打印 &quot;January&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(spanish.<span class="title function_">format</span>(january));</span><br><span class="line"><span class="comment">// 在 small-icu 上打印 &quot;M01&quot; 或 &quot;January&quot;，具体取决于用户的默认语言环境</span></span><br><span class="line"><span class="comment">// 应该打印 &quot;enero&quot;</span></span><br></pre></td></tr></table></figure>
+<p>此模式提供了特性和二进制大小之间的平衡。<br>如果使用 small-icu 选项，则仍然可以在运行时提供额外的语言环境数据，以便 JS 方法适用于所有 ICU 语言环境。 假设数据文件存储在 /some/directory，它可以通过以下任一方式提供给 ICU：</p>
+<ul>
+<li>NODE_ICU_DATA 环境变量：env NODE_ICU_DATA=/some/directory node</li>
+<li>–icu-data-dir 命令行参数：node –icu-data-dir=/some/directory<br>（如果两者都指定，则 –icu-data-dir 命令行参数优先。）<br>ICU 能够自动查找和加载多种数据格式，但数据必须适合 ICU 版本，并且文件命名正确。 数据文件最常见的名称是 icudt6X[bl].dat，其中 6X 表示预期的 ICU 版本，而 b 或 l 表示系统的字节序。<br>full-icu npm 模块通过检测运行中的 node 可执行文件的 ICU 版本并下载相应的数据文件，可以大大简化 ICU 数据安装。 通过 npm i full-icu 安装模块后，数据文件将在 ./node_modules/full-icu 可用。 然后可以将此路径传给 NODE_ICU_DATA 或 –icu-data-dir，如上所示以启用完整的 Intl 支持。</li>
+</ul>
+<p><em>嵌入整个 ICU（full-icu）</em><br>此选项使生成的二进制链接与 ICU 静态地关联并包含全套 ICU 数据。 以这种方式创建的二进制文件没有进一步的外部依赖项并支持所有语言环境，但可能相当大。 如果没有传入 –with-intl 标志，则这是默认行为。 官方的二进制文件也是以这种模式构建的。</p>
+<p><strong>检测国际化支持</strong><br>要验证是否启用了 ICU（system-icu、small-icu 或 full-icu），只需检查 Intl 是否存在就足够了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hasICU = <span class="keyword">typeof</span> <span class="title class_">Intl</span> === <span class="string">&#x27;object&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>或者，检查 process.versions.icu，一个仅在启用 ICU 时定义的属性，也可以工作：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hasICU = <span class="keyword">typeof</span> process.versions.icu === <span class="string">&#x27;string&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>要检查对非英语语言环境（即 full-icu 或 system-icu）的支持，Intl.DateTimeFormat 可能是一个很好的区分因素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hasFullICU = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> january = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">9e8</span>);</span><br><span class="line">    <span class="keyword">const</span> spanish = <span class="keyword">new</span> <span class="title class_">Intl</span>.<span class="title class_">DateTimeFormat</span>(<span class="string">&#x27;es&#x27;</span>, &#123; <span class="attr">month</span>: <span class="string">&#x27;long&#x27;</span> &#125;);</span><br><span class="line">    <span class="keyword">return</span> spanish.<span class="title function_">format</span>(january) === <span class="string">&#x27;enero&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>有关 Intl 支持的更详细的测试，以下资源可能会有所帮助：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/srl295/btest402">btest402</a>: 一般用于检查是否正确地构建了支持 Intl 的 Node.js。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tc39/test262/tree/HEAD/test/intl402">Test262</a>: ECMAScript 的官方一致性测试套件包括一个专门针对 ECMA-402 的部分。</li>
+</ul>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><p><strong>Module 对象</strong></p>
+<p>module.builtinModules</p>
+<ul>
+<li>&lt;string[]&gt;<br>Node.js 提供的所有模块的名称列表。 可用于验证模块是否由第三方维护。</li>
+</ul>
+<p>module.createRequire(filename)</p>
+<ul>
+<li>filename <string> | <URL> 用于构造 require 函数的文件名。 必须是文件网址对象、文件网址字符串、或绝对路径字符串。</li>
+<li>返回: <require> require 函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRequire &#125; <span class="keyword">from</span> <span class="string">&#x27;node:module&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">require</span> = <span class="title function_">createRequire</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// sibling-module.js 是 CommonJS 模块。</span></span><br><span class="line"><span class="keyword">const</span> siblingModule = <span class="built_in">require</span>(<span class="string">&#x27;./sibling-module&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>module.isBuiltin(moduleName)</p>
+<ul>
+<li>moduleName <string> 模块名称<br>返回: <boolean> 如果模块是内置的，则返回 true，否则返回 false</li>
+</ul>
+<p>module.syncBuiltinESMExports()<br>module.syncBuiltinESMExports() 方法更新内置的 ES 模块的所有实时绑定，以匹配 CommonJS 导出的属性。 它不会在 ES 模块中添加或删除导出的名称。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&#x27;node:fs&#x27;);</span><br><span class="line">const <span class="keyword">assert</span> = require(&#x27;node:<span class="keyword">assert</span>&#x27;);</span><br><span class="line">const &#123; syncBuiltinESMExports &#125; = require(&#x27;node:<span class="keyword">module</span>&#x27;);</span><br><span class="line"></span><br><span class="line">fs.readFile = newAPI;</span><br><span class="line"></span><br><span class="line">delete fs.readFileSync;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="keyword">new</span><span class="constructor">API()</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fs.newAPI = newAPI;</span><br><span class="line"></span><br><span class="line">sync<span class="constructor">BuiltinESMExports()</span>;</span><br><span class="line"></span><br><span class="line">import(&#x27;node:fs&#x27;).<span class="keyword">then</span>((esmFS) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 它将现有的 readFile 属性与新值同步</span></span><br><span class="line">  <span class="keyword">assert</span>.strict<span class="constructor">Equal(<span class="params">esmFS</span>.<span class="params">readFile</span>, <span class="params">newAPI</span>)</span>;</span><br><span class="line">  <span class="comment">// readFileSync 已从所需的 fs 中删除</span></span><br><span class="line">  <span class="keyword">assert</span>.strict<span class="constructor">Equal(&#x27;<span class="params">readFileSync</span>&#x27; <span class="params">in</span> <span class="params">fs</span>, <span class="params">false</span>)</span>;</span><br><span class="line">  <span class="comment">// syncBuiltinESMExports() 不会从 esmFS 中删除 readFileSync</span></span><br><span class="line">  <span class="keyword">assert</span>.strict<span class="constructor">Equal(&#x27;<span class="params">readFileSync</span>&#x27; <span class="params">in</span> <span class="params">esmFS</span>, <span class="params">true</span>)</span>;</span><br><span class="line">  <span class="comment">// syncBuiltinESMExports() 不添加名称</span></span><br><span class="line">  <span class="keyword">assert</span>.strict<span class="constructor">Equal(<span class="params">esmFS</span>.<span class="params">newAPI</span>, <span class="params">undefined</span>)</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Source Map V3 的支持</strong><br>与源映射缓存交互的助手。 当启用源映射解析并且在模块的页脚中找到源映射包含指令时，则会填充此缓存。<br>要启用源映射解析，则 Node.js 必须使用标志 –enable-source-maps 运行、或者通过设置 NODE_V8_COVERAGE=dir 启用代码覆盖率。</p>
+<p>module.findSourceMap(path)</p>
+<ul>
+<li>path <string></li>
+<li>返回: &lt;module.SourceMap&gt;<br>path 是文件的解析路径，应为其获取相应的源映射。</li>
+</ul>
+<p><strong>module.SourceMap 类</strong></p>
+<p>new SourceMap(payload)</p>
+<ul>
+<li>payload <Object><br>创建新的 sourceMap 实例。<br>payload 是键匹配 Source map v3 格式的对象：</li>
+<li>file: <string></li>
+<li>version: <number></li>
+<li>sources: &lt;string[]&gt;</li>
+<li>sourcesContent: &lt;string[]&gt;</li>
+<li>names: &lt;string[]&gt;</li>
+<li>mappings: <string></li>
+<li>sourceRoot: <string></li>
+</ul>
+<p>sourceMap.payload</p>
+<ul>
+<li>返回: <Object><br>用于构造 SourceMap 实例的有效负载的获取器。</li>
+</ul>
+<p>sourceMap.findEntry(lineNumber, columnNumber)</p>
+<ul>
+<li>lineNumber <number></li>
+<li>columnNumber <number></li>
+<li>返回: <Object><br>给定生成的源文件中的行号和列号，返回表示原始文件中位置的对象。 返回的对象包含以下键：</li>
+<li>generatedLine: <number></li>
+<li>generatedColumn: <number></li>
+<li>originalSource: <string></li>
+<li>originalLine: <number></li>
+<li>originalColumn: <number></li>
+<li>name: <string></li>
+</ul>
+
+      </section>
+
+      
+      
+
+      
+      
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>84</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        2
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2025 <a href="/" target="_blank">Sun Jinkang</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
