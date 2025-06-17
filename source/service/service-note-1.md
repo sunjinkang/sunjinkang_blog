@@ -1,6 +1,7 @@
 ---
 title: service - 部署纯前端服务
 date: 2025-05-12 20:18:30
+cover: https://cdn.pixabay.com/photo/2024/03/29/02/30/ai-generated-8662021_640.jpg
 tags: [服务器, 部署, 纯前端]
 ---
 

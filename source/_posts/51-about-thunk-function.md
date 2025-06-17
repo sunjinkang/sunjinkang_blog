@@ -1,6 +1,7 @@
 ---
 title: Thunk函数
 date: 2023-04-19 17:00:23
+cover: https://cdn.pixabay.com/photo/2024/03/04/14/17/ai-generated-8612487_640.jpg
 tags:
 ---
 

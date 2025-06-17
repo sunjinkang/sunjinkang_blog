@@ -1,6 +1,7 @@
 ---
 title: js中的void运算符
 date: 2023-08-03 13:42:02
+cover: https://cdn.pixabay.com/photo/2024/07/14/14/19/moon-8894630_640.jpg
 tags:
 ---
 

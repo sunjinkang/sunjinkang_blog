@@ -1,6 +1,7 @@
 ---
 title: Vite 插件
 date: 2023-06-15 21:13:24
+cover: https://cdn.pixabay.com/photo/2018/05/30/15/39/thunderstorm-3441687_640.jpg
 tags:
 ---
 

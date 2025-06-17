@@ -1,6 +1,7 @@
 ---
 title: diff算法 -- 双端对比
 date: 2023-11-09 13:27:17
+cover: https://cdn.pixabay.com/photo/2021/12/11/15/06/northern-lights-6862969_640.jpg
 tags:
 ---
 

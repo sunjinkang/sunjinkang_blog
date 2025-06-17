@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Sun with no word
+title: HTW_KAP
 subtitle: something about what I have learned and some interesting things
-description: 'study blog from sun jinkang'
+description: 
 keywords: ''
-author: Sun Jinkang
+author: HTW_KAP
 language: zh-CN
 timezone: Asia/Shanghai
 rss: /atom.xml

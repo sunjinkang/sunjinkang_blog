@@ -1,6 +1,7 @@
 ---
 title: 关于grid布局的相关内容
 date: 2023-01-03 15:28:21
+cover: https://cdn.pixabay.com/photo/2024/06/20/11/12/nature-8841864_1280.png
 tags:
 ---
 

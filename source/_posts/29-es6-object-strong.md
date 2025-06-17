@@ -1,6 +1,7 @@
 ---
 title: es6对象增强
 date: 2022-09-02 10:42:05
+cover: https://cdn.pixabay.com/photo/2024/05/30/12/34/landscape-8798442_640.jpg
 tags:
 ---
 

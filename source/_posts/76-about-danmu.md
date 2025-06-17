@@ -1,6 +1,7 @@
 ---
 title: 76-关于弹幕
 date: 2025-05-20 20:57:18
+cover: https://cdn.pixabay.com/photo/2015/04/23/21/59/tree-736875_1280.jpg
 tags:
 ---
 

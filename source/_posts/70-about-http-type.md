@@ -1,6 +1,7 @@
 ---
 title: http协议请求类型
 date: 2022-05-13 13:14:58
+cover: https://cdn.pixabay.com/photo/2015/11/07/19/19/nature-1032523_640.jpg
 tags:
 ---
 

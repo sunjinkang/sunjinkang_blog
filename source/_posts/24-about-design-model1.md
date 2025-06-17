@@ -1,6 +1,7 @@
 ---
 title: JavaScript设计模式读书笔记(2)
 date: 2022-09-04 21:29:09
+cover: https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_640.jpg
 tags:
 ---
 

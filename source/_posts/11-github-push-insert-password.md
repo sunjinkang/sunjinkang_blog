@@ -1,6 +1,7 @@
 ---
 title: github推送代码弹窗应该怎么输入？
 date: 2022-06-30 10:45:15
+cover: https://cdn.pixabay.com/photo/2022/02/18/18/31/moon-7021271_640.jpg
 tags:
 ---
 

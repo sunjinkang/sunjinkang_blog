@@ -1,6 +1,7 @@
 ---
 title: javascript DOM编程艺术阅读笔记
 date: 2022-07-31 13:42:45
+cover: https://cdn.pixabay.com/photo/2021/01/05/01/15/home-5889366_640.jpg
 tags:
 ---
 

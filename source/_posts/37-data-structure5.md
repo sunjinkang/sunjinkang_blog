@@ -1,6 +1,7 @@
 ---
 title: 数据结构与算法阅读笔记(5)
 date: 2022-10-08 16:33:37
+cover: https://cdn.pixabay.com/photo/2021/01/25/08/16/northern-lights-5947608_640.jpg
 tags:
 ---
 

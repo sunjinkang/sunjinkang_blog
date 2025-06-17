@@ -1,6 +1,7 @@
 ---
 title: 关于github个人博客使用giscus作为评论系统的操作说明
 date: 2024-03-28 14:05:44
+cover: https://cdn.pixabay.com/photo/2022/12/23/15/41/moon-7674557_640.jpg
 tags:
 - blog, giscus
 ---

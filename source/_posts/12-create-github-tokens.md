@@ -1,6 +1,7 @@
 ---
 title: github生成令牌(Personal_access_tokens)操作步骤
 date: 2022-06-30 11:23:56
+cover: https://cdn.pixabay.com/photo/2016/11/22/21/31/dark-1850638_640.jpg
 tags:
 ---
 

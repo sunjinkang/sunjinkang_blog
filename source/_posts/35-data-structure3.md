@@ -1,6 +1,7 @@
 ---
 title: 数据结构与算法阅读笔记(3)
 date: 2022-09-29 10:49:51
+cover: https://cdn.pixabay.com/photo/2015/04/23/22/01/tree-736887_640.jpg
 tags:
 ---
 

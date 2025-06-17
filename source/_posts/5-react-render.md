@@ -1,6 +1,7 @@
 ---
 title: react渲染
 date: 2022-06-22 22:12:37
+cover: https://cdn.pixabay.com/photo/2024/06/25/21/42/hd-wallpaper-8853669_640.png
 tags:
 ---
 

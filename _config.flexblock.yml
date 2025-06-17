@@ -4,17 +4,19 @@ menu:
   分类: /categories
   标签: /tags
   归档: /archives
+  # 友链: /links
 
 # 主页banner图
-banner: https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg
+banner: https://cdn.pixabay.com/photo/2021/11/01/22/10/night-6761907_640.jpg
 
 # 站点通知信息
-notice: flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block
+notice: 暂无
+# notice: flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block
 
 # 作者信息
 author:
-  name: Sun Jinkang
-  avatar: ./images/fire_s.ico
+  name: HTW_KAP
+  avatar: ../images/avatar.jpg
   description: 9+1=10
 
 toc:
@@ -93,7 +95,7 @@ baidu_analytics:
 # 腾讯分析
 tencent_analytics: 
 # 站点ico
-favicon: ./images/fire_s.ico
+favicon: ./images/avatar.jpg
 
 
 # Social Icon
@@ -103,5 +105,5 @@ social_icon:
     ins     :
     zhihu   :
     weibo   : 
-    github  : https://github.com/miiiku/
-    twitter : https://twitter.com/guanquanhong
+    github  : https://github.com/sunjinkang/
+    twitter : https://x.com/JinkangSun7069

@@ -1,6 +1,7 @@
 ---
 title: try...catch和return
 date: 2023-04-19 10:42:04
+cover: https://cdn.pixabay.com/photo/2024/07/23/12/36/moon-8915240_640.png
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 前端常见的安全攻击
 date: 2022-05-20 13:20:18
+cover: https://cdn.pixabay.com/photo/2023/05/06/13/27/ai-generated-7974303_640.jpg
 tags:
 ---
 

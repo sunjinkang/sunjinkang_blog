@@ -1,6 +1,7 @@
 ---
 title: 微信小游戏制作
 date: 2023-09-04 14:21:41
+cover: https://cdn.pixabay.com/photo/2021/10/31/10/23/moon-6756978_640.png
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 前端常见的布局方式
 date: 2021-11-12 10:59:54
+cover: https://cdn.pixabay.com/photo/2018/05/26/01/48/thunderstorm-3430471_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: js-新建固定长度数据
 date: 2022-06-27 10:20:46
+cover: https://cdn.pixabay.com/photo/2022/12/01/09/42/night-7628754_640.jpg
 tags:
 ---
 

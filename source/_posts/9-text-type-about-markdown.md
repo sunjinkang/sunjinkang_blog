@@ -1,6 +1,7 @@
 ---
 title: MarkDown语法及示例
 date: 2022-06-27 10:43:07
+cover: https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_640.jpg
 tags:
 ---
 

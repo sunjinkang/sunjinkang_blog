@@ -1,6 +1,7 @@
 ---
 title: 尾调用与尾递归
 date: 2022-10-17 10:26:13
+cover: https://cdn.pixabay.com/photo/2022/08/28/01/33/northern-7415567_640.jpg
 tags:
 ---
 

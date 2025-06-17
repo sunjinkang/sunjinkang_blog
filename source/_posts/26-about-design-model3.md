@@ -1,6 +1,7 @@
 ---
 title: JavaScript设计模式读书笔记(4)
 date: 2022-09-07 17:40:43
+cover: https://cdn.pixabay.com/photo/2023/08/01/08/21/waterfall-8162449_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: linux系统进程相关笔记
 date: 2023-01-17 10:45:24
+cover: https://cdn.pixabay.com/photo/2020/02/24/06/33/crescent-4875339_640.jpg
 tags:
 ---
 

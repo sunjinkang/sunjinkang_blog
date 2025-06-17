@@ -1,6 +1,7 @@
 ---
 title: 数据结构与算法阅读笔记(6)
 date: 2022-10-13 14:15:28
+cover: https://cdn.pixabay.com/photo/2017/05/26/08/59/moon-2345575_640.jpg
 tags:
 ---
 

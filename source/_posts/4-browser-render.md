@@ -1,6 +1,7 @@
 ---
 title: 浏览器渲染
 date: 2022-05-23 14:13:56
+cover: https://cdn.pixabay.com/photo/2017/01/31/13/40/shooting-star-2024127_640.png
 tags:
 ---
 

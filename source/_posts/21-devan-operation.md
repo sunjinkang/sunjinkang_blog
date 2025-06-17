@@ -1,6 +1,7 @@
 ---
 title: 装箱拆箱操作
 date: 2022-08-09 13:43:57
+cover: https://cdn.pixabay.com/photo/2022/08/03/13/09/moon-7362632_640.jpg
 tags:
 ---
 

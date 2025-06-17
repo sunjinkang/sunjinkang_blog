@@ -1,6 +1,7 @@
 ---
 title: JavaScript设计模式读书笔记(3)
 date: 2022-09-06 15:11:48
+cover: https://cdn.pixabay.com/photo/2016/01/27/15/35/heart-1164739_640.jpg
 tags:
 ---
 

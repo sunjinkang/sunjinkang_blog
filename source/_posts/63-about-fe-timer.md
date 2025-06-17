@@ -1,6 +1,7 @@
 ---
 title: 前端定时器
 date: 2024-05-15 15:57:42
+cover: https://cdn.pixabay.com/photo/2024/01/05/14/41/ai-generated-8489630_640.png
 tags:
 ---
 

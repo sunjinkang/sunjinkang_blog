@@ -1,6 +1,7 @@
 ---
 title: linux系统常见操作命令
 date: 2023-01-17 10:17:43
+cover: https://cdn.pixabay.com/photo/2011/12/14/12/21/christmas-background-11107_640.jpg
 tags:
 ---
 

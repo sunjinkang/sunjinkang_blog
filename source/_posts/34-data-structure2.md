@@ -1,6 +1,7 @@
 ---
 title: 数据结构与算法阅读笔记(2)
 date: 2022-09-23 15:52:54
+cover: https://cdn.pixabay.com/photo/2020/06/07/13/33/fireworks-5270439_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: vue3渲染
 date: 2022-06-22 22:12:51
+cover: https://cdn.pixabay.com/photo/2016/11/29/12/22/stars-1869447_640.jpg
 tags:
 ---
 

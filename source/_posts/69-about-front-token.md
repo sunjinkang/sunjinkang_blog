@@ -1,6 +1,7 @@
 ---
 title: 前端鉴权的几种方式
 date: 2022-02-18 11:28:12
+cover: https://cdn.pixabay.com/photo/2021/11/24/22/36/moon-6822203_640.jpg
 tags:
 ---
 

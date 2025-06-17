@@ -1,6 +1,7 @@
 ---
 title: diff算法 -- 快速对比
 date: 2023-11-14 19:51:24
+cover: https://cdn.pixabay.com/photo/2019/02/14/07/28/painting-3995999_640.jpg
 tags:
 ---
 

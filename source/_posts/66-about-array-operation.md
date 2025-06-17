@@ -1,6 +1,7 @@
 ---
 title: 数组的操作之去重、排序（去重和排序的方法）
 date: 2021-11-05 10:23:32
+cover: https://cdn.pixabay.com/photo/2022/12/20/12/10/santa-7667744_640.jpg
 tags:
 ---
 

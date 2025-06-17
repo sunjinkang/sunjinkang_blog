@@ -1,6 +1,7 @@
 ---
 title: js-类型转换
 date: 2022-07-19 15:59:15
+cover: https://cdn.pixabay.com/photo/2021/01/24/20/21/cloud-5946381_640.jpg
 tags:
 ---
 

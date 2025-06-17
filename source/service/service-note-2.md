@@ -1,6 +1,7 @@
 ---
 title: service - 资源传输开启压缩
 date: 2025-05-13 20:54:25
+cover: https://cdn.pixabay.com/photo/2015/03/20/01/21/space-681638_640.jpg
 tags: [服务器, 传输, 压缩]
 ---
 

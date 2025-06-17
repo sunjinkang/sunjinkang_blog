@@ -1,6 +1,7 @@
 ---
 title: 关于shadow dom及如何创建一个shadow dom
 date: 2024-01-16 11:20:34
+cover: https://cdn.pixabay.com/photo/2024/07/26/08/33/stars-8922990_640.jpg
 tags:
 ---
 

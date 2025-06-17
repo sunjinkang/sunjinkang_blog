@@ -1,6 +1,7 @@
 ---
 title: 生成器函数和yield关键字
 date: 2023-03-31 14:00:46
+cover: https://cdn.pixabay.com/photo/2016/12/22/09/50/science-1925058_640.png
 tags:
 ---
 

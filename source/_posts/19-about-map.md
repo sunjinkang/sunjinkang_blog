@@ -1,6 +1,7 @@
 ---
 title: Map 结构
 date: 2022-08-04 14:07:12
+cover: https://cdn.pixabay.com/photo/2020/04/30/20/14/sky-5114499_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 如何实现一个图片验证？
 date: 2024-08-16 15:05:58
+cover: https://cdn.pixabay.com/photo/2024/09/08/05/59/ai-generated-9031225_640.jpg
 tags:
 ---
 

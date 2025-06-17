@@ -1,6 +1,7 @@
 ---
 title: meta标签的使用
 date: 2022-06-28 22:16:30
+cover: https://cdn.pixabay.com/photo/2016/11/25/23/15/moon-1859616_640.jpg
 tags:
 ---
 

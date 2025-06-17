@@ -1,6 +1,7 @@
 ---
-title: 76-关于弹幕
+title: 76-关于IndexedDB
 date: 2025-05-15 18:59:20
+cover: https://cdn.pixabay.com/photo/2022/02/07/15/14/mountains-6999626_640.jpg
 tags:
 ---
 

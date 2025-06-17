@@ -1,6 +1,7 @@
 ---
 title: JavaScript设计模式读书笔记(6)
 date: 2022-09-20 15:22:12
+cover: https://cdn.pixabay.com/photo/2017/08/08/00/33/constellations-2609647_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 如何有效利用浏览器的Devtools？
 date: 2024-11-15 06:48:08
+cover: https://cdn.pixabay.com/photo/2023/12/06/11/55/galaxy-8433576_640.jpg
 tags:
 ---
 

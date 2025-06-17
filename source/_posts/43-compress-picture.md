@@ -1,6 +1,7 @@
 ---
 title: 前端压缩图片方法-canvas.toDataURL & canvas.toBlob
 date: 2022-12-08 16:48:13
+cover: https://cdn.pixabay.com/photo/2024/05/16/17/39/universe-8766586_640.jpg
 tags:
 ---
 

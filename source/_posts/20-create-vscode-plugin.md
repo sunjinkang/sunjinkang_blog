@@ -1,6 +1,7 @@
 ---
 title: 开发一个vscode插件的流程
 date: 2022-08-05 10:33:23
+cover: https://cdn.pixabay.com/photo/2012/04/13/01/23/moon-31665_640.png
 tags:
 ---
 

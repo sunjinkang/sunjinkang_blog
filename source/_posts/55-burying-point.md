@@ -1,6 +1,7 @@
 ---
 title: 关于埋点
 date: 2023-08-09 16:39:45
+cover: https://cdn.pixabay.com/photo/2021/11/15/20/33/moon-6799328_640.jpg
 tags:
 ---
 

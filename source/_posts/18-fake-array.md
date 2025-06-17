@@ -1,6 +1,7 @@
 ---
 title: 伪数组
 date: 2022-08-04 10:57:14
+cover: https://cdn.pixabay.com/photo/2016/11/29/02/20/astronomy-1866822_640.jpg
 tags:
 ---
 

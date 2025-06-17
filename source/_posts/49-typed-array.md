@@ -1,6 +1,7 @@
 ---
 title: js类型化数组
 date: 2023-04-18 18:17:14
+cover: https://cdn.pixabay.com/photo/2024/08/26/04/47/ai-generated-8998132_640.png
 tags:
 ---
 

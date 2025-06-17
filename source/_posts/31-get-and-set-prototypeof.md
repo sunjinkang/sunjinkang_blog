@@ -1,6 +1,7 @@
 ---
 title: Object获取及设置原型对象
 date: 2022-09-05 13:54:58
+cover: https://cdn.pixabay.com/photo/2019/02/22/13/26/lightning-4013537_640.jpg
 tags:
 ---
 

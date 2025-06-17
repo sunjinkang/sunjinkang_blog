@@ -1,6 +1,7 @@
 ---
 title: 关于画中画的介绍及简单实现
 date: 2025-02-14 10:07:32
+cover: https://cdn.pixabay.com/photo/2023/09/18/22/08/ai-generated-8261536_640.jpg
 tags:
 ---
 

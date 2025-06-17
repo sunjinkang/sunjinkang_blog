@@ -1,6 +1,7 @@
 ---
 title: react & vue渲染问题
 date: 2022-06-23 13:21:12
+cover: https://cdn.pixabay.com/photo/2021/06/14/22/46/milky-way-6337038_640.jpg
 tags:
 ---
 

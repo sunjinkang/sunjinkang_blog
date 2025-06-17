@@ -1,6 +1,7 @@
 ---
 title: 开发中使用的便捷代码
 date: 2022-09-05 13:24:10
+cover: https://cdn.pixabay.com/photo/2015/11/22/15/16/lightning-1056419_640.jpg
 tags:
 ---
 

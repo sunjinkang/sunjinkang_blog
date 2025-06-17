@@ -1,6 +1,7 @@
 ---
 title: 使用hexo相关
 date: 2022-03-26 21:14:29
+cover: https://cdn.pixabay.com/photo/2023/10/24/19/09/nevada-8338929_640.jpg
 tags:
 ---
 

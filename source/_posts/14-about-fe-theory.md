@@ -1,6 +1,7 @@
 ---
 title: 前端概念相关-渐进增强与优雅降级
 date: 2022-07-12 10:37:56
+cover: https://cdn.pixabay.com/photo/2020/03/24/11/21/thunder-4963719_640.jpg
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: CSS 方法与属性介绍
 date: 2025-02-21 15:51:10
+cover: https://cdn.pixabay.com/photo/2024/04/21/14/04/ai-generated-8710688_640.png
 tags:
 ---
 

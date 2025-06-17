@@ -1,6 +1,7 @@
 ---
 title: scrollIntoView参数项说明
 date: 2022-11-10 10:39:52
+cover: https://cdn.pixabay.com/photo/2023/10/23/17/10/landscape-8336497_640.jpg
 tags:
 ---
 

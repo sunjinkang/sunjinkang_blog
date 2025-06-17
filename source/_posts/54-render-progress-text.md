@@ -1,6 +1,7 @@
 ---
 title: 进度条中同一文字颜色反差的实现
 date: 2023-08-03 15:19:59
+cover: https://cdn.pixabay.com/photo/2024/01/31/03/58/sky-8543170_640.jpg
 tags:
 ---
 

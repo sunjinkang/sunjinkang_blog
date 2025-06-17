@@ -1,6 +1,7 @@
 ---
 title: 各类文档地址
 date: 2022-07-05 16:17:32
+cover: https://cdn.pixabay.com/photo/2022/08/31/13/05/sea-7423274_640.jpg
 tags:
 ---
 

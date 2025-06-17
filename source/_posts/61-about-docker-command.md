@@ -2,6 +2,7 @@
 title: 关于docker的使用问题
 date: 2024-01-29 16:10:54
 headimg: '/images/docker-headimg.png'
+cover: https://cdn.pixabay.com/photo/2024/06/22/21/34/ai-generated-8847013_640.jpg
 tags:
 - docker
 ---

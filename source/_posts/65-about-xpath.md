@@ -1,6 +1,7 @@
 ---
 title: 关于xpath
 date: 2024-11-22 10:10:27
+cover: https://cdn.pixabay.com/photo/2017/08/10/16/37/moon-2624625_640.jpg
 tags:
 ---
 

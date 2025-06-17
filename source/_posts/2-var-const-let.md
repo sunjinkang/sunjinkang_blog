@@ -1,6 +1,7 @@
 ---
 title: var、const、let区别
 date: 2022-03-26 21:04:12
+cover: https://cdn.pixabay.com/photo/2016/11/29/13/01/stars-1869692_640.jpg
 tags:
 ---
 

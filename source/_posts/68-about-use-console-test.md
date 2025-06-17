@@ -1,6 +1,7 @@
 ---
 title: console调试技巧
 date: 2022-02-11 11:09:18
+cover: https://cdn.pixabay.com/photo/2020/04/19/19/11/moon-5065113_640.jpg
 tags:
 ---
 

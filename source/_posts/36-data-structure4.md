@@ -1,6 +1,7 @@
 ---
 title: 数据结构与算法阅读笔记(4)
 date: 2022-10-08 13:25:18
+cover: https://cdn.pixabay.com/photo/2016/02/09/19/57/christmas-background-1190254_640.jpg
 tags:
 ---
 
