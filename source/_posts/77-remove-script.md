@@ -149,7 +149,7 @@ html直接在浏览器中打开，控制台报错：
 > Access to script at 'file:///D:/sunjinkang/normal-test/1-test-remove-script/test.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app
 
 原因：
-- 当使用 <script type="module"> 动态加载 JS 文件时，浏览器会将其视为一个 ES Module。
+- 当使用 `<script type="module">` 动态加载 JS 文件时，浏览器会将其视为一个 ES Module。
 - ES Modules 遵循严格的 CORS 规则，而 file:// 协议下的页面属于 origin: null，浏览器出于安全原因禁止跨源加载 module 类型的脚本，即使路径是本地文件。
 
 解决方法：
