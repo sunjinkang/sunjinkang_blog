@@ -14,7 +14,7 @@ tags:
 
 - 建一个公共库
 由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的*公共仓库*，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。
-![create-repo](create-repo.png)
+{% asset_img create-repo.png create-repo %}
 
 *除了要求是个公共库之外，是否需要README、gitignore无具体要求*
 
@@ -22,7 +22,7 @@ tags:
 - 开启公共库的discussion功能
 
 公共库 -> Settings -> General -> Features -> 勾选discussion
-![check-discussion](check-discussion.png)
+{% asset_img check-discussion.png check-discussion %}
 
 #### 步骤二
 

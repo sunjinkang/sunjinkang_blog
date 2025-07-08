@@ -54,7 +54,7 @@ function factorial(n) {
 console.log(factorial(5)); // 120
 ```
 
-![factorial](factorial.png)
+{% asset_img factorial.png factorial %}
 
 如果忘记加上用以停止函数递归调用的基线条件，递归并不会无限地执行下去，浏览器会抛出错误，也就是所谓的栈溢出错误（stack overflow error）
 
@@ -150,24 +150,24 @@ fibonacciMemoization(9); // 34
 节点的一个属性是深度，节点的深度取决于它的祖先节点的数量。
 
 树的高度取决于所有节点深度的最大值。一棵树也可以被分解成层级。根节点在第 0 层，它的子节点在第 1 层，以此类推。
-![tree](tree.png)
+{% asset_img tree.png tree %}
 
 ###### 二叉树和二叉搜索树
 
 二叉树中的节点最多只能有两个子节点：一个是左侧子节点，另一个是右侧子节点。这个定义有助于我们写出更高效地在树中插入、查找和删除节点的算法。二叉树在计算机科学中的应用非常广泛。
 
 二叉搜索树（BST）是二叉树的一种，但是只允许你在左侧节点存储（比父节点）小的值，在右侧节点存储（比父节点）大的值。
-![binary-search-tree](binary-search-tree.png)
+{% asset_img binary-search-tree.png binary-search-tree %}
 
 通过指针（引用）来表示节点之间的关系（树相关的术语称其为边）
 键是树相关的术语中对节点的称呼
 
 **中序遍历**
-![in-order-traverse](in-order-traverse.png)
+{% asset_img in-order-traverse.png in-order-traverse %}
 **先序遍历**
-![pre-order-traverse](pre-order-traverse.png)
+{% asset_img pre-order-traverse.png pre-order-traverse %}
 **后序遍历**
-![post-order-traverse](post-order-traverse.png)
+{% asset_img post-order-traverse.png post-order-traverse %}
 
 ```javascript
 export class Node {
@@ -345,7 +345,7 @@ export default class BinarySearchTree {
 (3) 但是，这样在树中就有两个拥有相同键的节点了，这是不行的。要继续把右侧子树中的
 最小节点移除，毕竟它已经被移至要移除的节点的位置了（行{20}）。
 (4) 最后，向它的父节点返回更新后节点的引用（行{21}）。
-![remove-left-right](remove-left-right.png)
+{% asset_img remove-left-right.png remove-left-right %}
 
 ###### 自平衡树
 
@@ -498,8 +498,8 @@ class AVLTree extends BinarySearchTree {
 **平衡操作——AVL 旋转**
 (1)左-左（LL）：向右的单旋转
 这种情况出现于节点的左侧子节点的高度大于右侧子节点的高度时，并且左侧子节点也是平衡或左侧较重的
-![left-left-1](left-left-1.png)
-![left-left-2](left-left-2.png)
+{% asset_img left-left-1.png left-left-1 %}
+{% asset_img left-left-2.png left-left-2 %}
 
 rotationLL 方法
 与平衡操作相关的节点有三个（X、Y、Z），将节点 X 置于节点 Y（平衡因子为+2）所在的位置（行{1}）；
@@ -509,8 +509,8 @@ rotationLL 方法
 
 (2)右-右（RR）：向左的单旋转
 右  右的情况和左  左的情况相反。它出现于右侧子节点的高度大于左侧子节点的高度，并且右侧子节点也是平衡或右侧较重的
-![right-right-1](right-right-1.png)
-![right-right-2](right-right-2.png)
+{% asset_img right-right-1.png right-right-1 %}
+{% asset_img right-right-2.png right-right-2 %}
 
 rotationRR 方法
 与平衡操作相关的节点有三个（X、Y、Z），将节点 X 置于节点 Y（平衡因子为 2）所在的位置（行{1}）；
@@ -520,8 +520,8 @@ rotationRR 方法
 
 (3)左-右（LR）：向右的双旋转
 这种情况出现于左侧子节点的高度大于右侧子节点的高度，并且左侧子节点右侧较重。在这种情况下，我们可以对左侧子节点进行左旋转来修复，这样会形成左-左的情况，然后再对不平衡的节点进行一个右旋转来修复
-![left-right-1](left-right-1.png)
-![left-right-2](left-right-2.png)
+{% asset_img left-right-1.png left-right-1 %}
+{% asset_img left-right-2.png left-right-2 %}
 
 rotationLR 方法
 将节点 X 置于节点 Y（平衡因子为 2）所在的位置；
@@ -532,8 +532,8 @@ rotationLR 方法
 
 (4)右-左（RL）：向左的双旋转
 右-左的情况和左  右的情况相反。这种情况出现于右侧子节点的高度大于左侧子节点的高度，并且右侧子节点左侧较重。在这种情况下我们可以对右侧子节点进行右旋转来修复，这样会形成右  右的情况，然后我们再对不平衡的节点进行一个左旋转来修复
-![right-left-1](right-left-1.png)
-![right-left-2](right-left-2.png)
+{% asset_img right-left-1.png right-left-1 %}
+{% asset_img right-left-2.png right-left-2 %}
 
 rotationRL 方法
 将节点 X 置于节点 Y（平衡因子为+2）所在的位置；
@@ -706,7 +706,7 @@ class RedBlackTree extends BinarySearchTree {
 左-右（LR）：父节点是祖父节点的左侧子节点，节点是父节点的右侧子节点（情形 2A）。
 右-右（RR）：父节点是祖父节点的右侧子节点，节点是父节点的右侧子节点（情形 2A）。
 右-左（RL）：父节点是祖父节点的右侧子节点，节点是父节点的左侧子节点（情形 2A）。
-![red-black-2a](red-black-2a.png)
-![red-black-3a](red-black-3a.png)
-![red-black-2b](red-black-2b.png)
-![red-black-3b](red-black-3b.png)
+{% asset_img red-black-2a.png red-black-2a %}
+{% asset_img red-black-3a.png red-black-3a %}
+{% asset_img red-black-2b.png red-black-2b %}
+{% asset_img red-black-3b.png red-black-3b %}

@@ -44,7 +44,7 @@ p:before {
 ```
 
 注意：attr理论上可以单独使用，但由于浏览器兼容性问题，目前最好不要使用，本文中attr是与content一起使用，限制较小。
-![content_attr](content_attr.png)
+{% asset_img content_attr.png content_attr %}
 
 方案：使用content和attr可以获取标签中的属性，将进度条的文字同时放在标签的属性里面，再通过伪类和content、attr搭配，根据进度显示不同宽度，将新的文字覆盖到原有的底层文字之上，实现进度条文字反差的效果。
 
@@ -78,7 +78,7 @@ p:before {
 ```
 
 效果如下：
-![content进度条](content-progress.png)
+{% asset_img content-progress.png content进度条 %}
 
 *说明*
 该方案中的文字好像只能处于默认的左侧位置，使用伪类获取的内容文字无法位于中间，暂未找到解决办法

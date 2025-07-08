@@ -39,7 +39,7 @@ function swap(array, a, b) {
 }
 ```
 
-![sort-1](sort-1.png)
+{% asset_img sort-1.png sort-1 %}
 _改进后的冒泡排序_
 
 ```javascript
@@ -57,7 +57,7 @@ function modifiedBubbleSort(array, compareFn = defaultCompare) {
 }
 ```
 
-![sort-2](sort-2.png)
+{% asset_img sort-2.png sort-2 %}
 
 **选择排序**
 选择排序算法(_复杂度为 O(n2)_)是一种原址比较排序算法。选择排序大致的思路是找到数据结构中的最小值并将其放置在第一位，接着找到第二小的值并将其放在第二位，以此类推.
@@ -85,7 +85,7 @@ function selectionSort(array, compareFn = defaultCompare) {
 }
 ```
 
-![sort-3](sort-3.png)
+{% asset_img sort-3.png sort-3 %}
 
 **插入排序**
 插入排序每次排一个数组项，以此方式构建最后的排序数组。假定第一项已经排序了。接着，它和第二项进行比较——第二项是应该待在原位还是插到第一项之前呢？这样，头两项就已正确排序，接着和第三项比较（它是该插入到第一、第二还是第三的位置呢），以此类推.
@@ -109,7 +109,7 @@ function insertionSort(array, compareFn = defaultCompare) {
 }
 ```
 
-![sort-4](sort-4.png)
+{% asset_img sort-4.png sort-4 %}
 _排序小型数组时，插入排序算法比选择排序和冒泡排序性能要好。_
 
 **归并排序**
@@ -150,7 +150,7 @@ function merge(left, right, compareFn) {
 }
 ```
 
-![sort-5](sort-5.png)
+{% asset_img sort-5.png sort-5 %}
 
 **快速排序**
 快速排序也许是最常用的排序算法了。它的复杂度为 O(nlog(n))，且性能通常比其他复杂度为 O(nlog(n))的排序算法要好。和归并排序一样，快速排序也使用分而治之的方法，将原始数组分为较小的数组（但它没有像归并排序那样将它们分割开）
@@ -208,13 +208,13 @@ function partition(array, left, right, compareFn) {
 ```
 
 划分操作的第一次执行
-![sort-6](sort-6.png)
+{% asset_img sort-6.png sort-6 %}
 对有较小值的子数组执行的划分操作
-![sort-7](sort-7.png)
+{% asset_img sort-7.png sort-7 %}
 针对有较大值的子数组
-![sort-8](sort-8.png)
-![sort-9](sort-9.png)
-![sort-10](sort-10.png)
+{% asset_img sort-8.png sort-8 %}
+{% asset_img sort-9.png sort-9 %}
+{% asset_img sort-10.png sort-10 %}
 
 **计数排序**
 计数排序是一个分布式排序。分布式排序使用已组织好的辅助数据结构（称为桶），然后进行合并，得到排好序的数组。计数排序使用一个用来存储每个元素在原始数组中出现次数的临时数组。在所有元素都计数完成后，临时数组已排好序并可迭代以构建排序后的结果数组
@@ -314,7 +314,7 @@ function sortBuckets(buckets) {
 }
 ```
 
-![sort-11](sort-11.png)
+{% asset_img sort-11.png sort-11 %}
 
 **基数排序**
 基数排序也是一个分布式排序算法，它根据数字的有效位或基数（这也是它为什么叫基数排序）将整数分布到桶中。基数是基于数组中值的记数制的。
@@ -369,7 +369,7 @@ function countingSortForRadix(array, radixBase, significantDigit, minValue) {
 }
 ```
 
-![sort-12](sort-12.png)
+{% asset_img sort-12.png sort-12 %}
 
 ###### 搜索算法
 
@@ -390,7 +390,7 @@ function sequentialSearch(array, value, equalsFn = defaultEquals) {
 }
 ```
 
-![search-1](search-1.png)
+{% asset_img search-1.png search-1 %}
 
 **二分搜索**
 个算法要求被搜索的数据结构已排序。以下是该算法遵循的步骤。
@@ -427,7 +427,7 @@ function lesserOrEquals(a, b, compareFn) {
 }
 ```
 
-![search-2](search-2.png)
+{% asset_img search-2.png search-2 %}
 
 **内插搜索**
 内插搜索是改良版的二分搜索。二分搜索总是检查 mid 位置上的值，而内插搜索可能会根据要搜索的值检查数组中的不同地方。
@@ -484,7 +484,7 @@ function biggerOrEquals(a, b, compareFn) {
 }
 ```
 
-![search-3](search-3.png)
+{% asset_img search-3.png search-3 %}
 
 ###### 随机算法
 
@@ -501,4 +501,4 @@ function shuffle(array) {
 }
 ```
 
-![search-4](search-4.png)
+{% asset_img search-4.png search-4 %}

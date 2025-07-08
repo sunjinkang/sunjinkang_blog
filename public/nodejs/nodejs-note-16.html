@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2021/11/01/22/10/night-6761907_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -159,9 +157,9 @@
 </ul>
 <h6 id="fs-FSWatcher-类"><a href="#fs-FSWatcher-类" class="headerlink" title="fs.FSWatcher 类"></a>fs.FSWatcher 类</h6><p>从 fs.watch() 返回的对象是该类型。<br>提供给 fs.watch() 的 listener 回调会接收返回的 FSWatcher 的 change 事件。<br>该对象本身可触发以下事件：</p>
 <ul>
-<li><p>‘change’ 事件<br>eventType <string> fs 变化的类型<br>filename <string> | <Buffer> 变化的文件名（如果是相关的/可用的）<br>当一个被监视的目录或文件有变化时触发。 详见 fs.watch()。<br>filename 参数可能不会被提供，这依赖于操作系统支持。 如果提供了 filename，则若 fs.watch() 被调用时 encoding 选项被设置为 ‘buffer’ 则它会是一个 Buffer，否则 filename 是一个字符串。</p>
+<li><p>‘change’ 事件<br>eventType <string> fs 变化的类型<br>filename <string> | <Buffer> 变化的文件名（如果是相关的/可用的）<br>当一个被监视的目录或文件有变化时触发。 详见 fs.watch()。<br>filename 参数可能不会被提供，这依赖于操作系统支持。 如果提供了 filename，则若 fs.watch() 被调用时 encoding 选项被设置为 ‘buffer’ 则它会是一个 Buffer，否则 filename 是一个字符串。</Buffer></string></string></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子，处理 fs.watch 监听器</span></span><br><span class="line">fs.<span class="title function_">watch</span>(<span class="string">&#x27;./tmp&#x27;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&#x27;buffer&#x27;</span> &#125;, <span class="function">(<span class="params">eventType, filename</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (filename) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(filename);</span><br><span class="line">    <span class="comment">// 输出: &lt;Buffer ...&gt;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>‘error’ 事件<br>error <Error><br>当发生错误时触发。</p>
+<li><p>‘error’ 事件<br>error <Error><br>当发生错误时触发。</Error></p>
 </li>
 <li><p>watcher.close()<br>停止监听 fs.FSWatcher 的变化。</p>
 </li>
@@ -170,7 +168,7 @@
 <ul>
 <li><p>‘close’ 事件<br>当 ReadStream 底层的文件描述符被关闭时触发。</p>
 </li>
-<li><p>‘open’ 事件<br>fd <integer> 被 ReadStream 使用的整数文件描述符。<br>当 ReadStream 的文件被打开时触发。</p>
+<li><p>‘open’ 事件<br>fd <integer> 被 ReadStream 使用的整数文件描述符。<br>当 ReadStream 的文件被打开时触发。</integer></p>
 </li>
 <li><p>readStream.bytesRead<br>已读取的字节数。</p>
 </li>
@@ -196,15 +194,15 @@
 </ul>
 <h6 id="fs-WriteStream-类"><a href="#fs-WriteStream-类" class="headerlink" title="fs.WriteStream 类"></a>fs.WriteStream 类</h6><p>WriteStream 一个可写流。</p>
 <p>‘close’ 事件<br>当 WriteStream 底层的文件描述符被关闭时触发。</p>
-<p>‘open’ 事件<br>fd <integer> 被 WriteStream 使用的整数文件描述符。<br>当 WriteStream 的文件被打开时触发。</p>
+<p>‘open’ 事件<br>fd <integer> 被 WriteStream 使用的整数文件描述符。<br>当 WriteStream 的文件被打开时触发。</integer></p>
 <p>writeStream.bytesWritten<br>已写入的字节数。 不包括仍在排队等待写入的数据。</p>
 <p>writeStream.path<br>流正在写入的文件的路径，指定在 fs.createWriteStream() 的第一个参数。 如果 path 传入的是一个字符串，则 writeStream.path 是一个字符串。 如果 path 传入的是一个 Buffer，则 writeStream.path 是一个 Buffer。</p>
 <p>fs.access(path[, mode], callback)</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></li>
-<li>mode <integer> Default: fs.constants.F_OK</li>
-<li>callback <Function></li>
-<li>err <Error><br>测试 path 指定的文件或目录的用户权限。 mode 是一个可选的整数，指定要执行的可访问性检查。 以下常量定义了 mode 的可能值。 可以创建由两个或更多个值的位或组成的掩码（例如 fs.constants.W_OK | fs.constants.R_OK）。</li>
+<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>mode <integer> Default: fs.constants.F_OK</integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>测试 path 指定的文件或目录的用户权限。 mode 是一个可选的整数，指定要执行的可访问性检查。 以下常量定义了 mode 的可能值。 可以创建由两个或更多个值的位或组成的掩码（例如 fs.constants.W_OK | fs.constants.R_OK）。</Error></li>
 <li>fs.constants.F_OK - path 文件对调用进程可见。 这在确定文件是否存在时很有用，但不涉及 rwx 权限。 如果没指定 mode，则默认为该值。</li>
 <li>fs.constants.R_OK - path 文件可被调用进程读取。</li>
 <li>fs.constants.W_OK - path 文件可被调用进程写入。</li>
@@ -218,25 +216,25 @@
 
 <p>fs.appendFile(file, data[, options], callback)</p>
 <ul>
-<li>file <string> | <Buffer> | <URL> | <number> 文件名或文件描述符</li>
-<li>data <string> | <Buffer></li>
-<li>options <Object> | <string></li>
-<li>encoding <string> | <null> 默认为 ‘utf8’</li>
-<li>mode <integer> 默认为 0o666</li>
-<li>flag <string> 默认为 ‘a’</li>
-<li>callback <Function></li>
+<li>file <string> | <Buffer> | <URL> | <number> 文件名或文件描述符</number></URL></Buffer></string></li>
+<li>data <string> | <Buffer></Buffer></string></li>
+<li>options <Object> | <string></string></Object></li>
+<li>encoding <string> | <null> 默认为 ‘utf8’</null></string></li>
+<li>mode <integer> 默认为 0o666</integer></li>
+<li>flag <string> 默认为 ‘a’</string></li>
+<li>callback <Function></Function></li>
 <li>err <Error><br>异步地追加数据到一个文件，如果文件不存在则创建文件。 data 可以是一个字符串或 Buffer。<br>如果 options 是一个字符串，则它指定了字符编码。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">appendFile</span>(<span class="string">&#x27;message.txt&#x27;</span>, <span class="string">&#x27;data to append&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;The &quot;data to append&quot; was appended to file!&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-file 可能是一个被打开用来追加数据的数字文件描述符（通过 fs.open() 或者 fs.openSync()）。这样的文件描述符将不会被自动关闭。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">open</span>(<span class="string">&#x27;message.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="function">(<span class="params">err, fd</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  fs.<span class="title function_">appendFile</span>(fd, <span class="string">&#x27;data to append&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    fs.<span class="title function_">close</span>(fd, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+file 可能是一个被打开用来追加数据的数字文件描述符（通过 fs.open() 或者 fs.openSync()）。这样的文件描述符将不会被自动关闭。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">open</span>(<span class="string">&#x27;message.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="function">(<span class="params">err, fd</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  fs.<span class="title function_">appendFile</span>(fd, <span class="string">&#x27;data to append&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    fs.<span class="title function_">close</span>(fd, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></Error></li>
 </ul>
 <p>fs.appendFileSync(file, data[, options])<br>参数说明同上</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  fs.<span class="title function_">appendFileSync</span>(<span class="string">&#x27;message.txt&#x27;</span>, <span class="string">&#x27;data to append&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;The &quot;data to append&quot; was appended to file!&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="comment">/* Handle the error */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fd;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  fd = fs.<span class="title function_">openSync</span>(<span class="string">&#x27;message.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  fs.<span class="title function_">appendFileSync</span>(fd, <span class="string">&#x27;data to append&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="comment">/* Handle the error */</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (fd !== <span class="literal">undefined</span>)</span><br><span class="line">    fs.<span class="title function_">closeSync</span>(fd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>fs.chmod(path, mode, callback)</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></li>
-<li>mode <integer></li>
-<li>callback <Function></li>
-<li>err <Error><br>异步地改变文件的权限。 完成回调只有一个可能的异常参数。</li>
+<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>mode <integer></integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>异步地改变文件的权限。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
 <h6 id="File-modes"><a href="#File-modes" class="headerlink" title="File modes"></a>File modes</h6><p>mode 参数会在 fs.chmod() 和 fs.chmodSync()方法中用到，它是用下面的常量进行逻辑或(logical OR)操作后的数字掩码：<br><img src="./images/file-mode.png" alt="file mode"><br>一个构造 mode 的更简单的方式是使用3位八进制串（比如，765）。最左侧的数字（例中的7）代表了文件所有者的权限。中间一位（例中的6）代表了组的权限。最右侧的数字（例中的5）代表其他人的权限。<br><img src="./images/permission-number.png" alt="permission number"><br>例如，八进制值 0o765 表示：</p>
 <ul>
@@ -247,89 +245,89 @@ file 可能是一个被打开用来追加数据的数字文件描述符（通过
 <p>fs.chmodSync(path, mode)<br>同步地改变文件的权限。 返回 undefined。 fs.chmod()的同步版本。</p>
 <p>fs.chown(path, uid, gid, callback)</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></li>
-<li>uid <integer></li>
-<li>gid <integer></li>
-<li>callback <Function></li>
-<li>err <Error><br>异步地改变文件的所有者和群组。 完成回调只有一个可能的异常参数。</li>
+<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>uid <integer></integer></li>
+<li>gid <integer></integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>异步地改变文件的所有者和群组。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
 <p>fs.chownSync(path, uid, gid)<br>同步地改变文件的所有者和群组。 返回 undefined。 fs.chown() 的同步版本。</p>
-<p>fs.close(fd, callback)<br>fd <integer><br>callback <Function><br>err <Error><br>异步的 close(2)。 完成回调只有一个可能的异常参数。</p>
+<p>fs.close(fd, callback)<br>fd <integer><br>callback <Function><br>err <Error><br>异步的 close(2)。 完成回调只有一个可能的异常参数。</Error></Function></integer></p>
 <p>fs.closeSync(fd)<br>同步的 close(2)。返回 undefined。</p>
 <p>fs.constants<br>返回一个包含常用文件系统操作的常量的对象。 具体的常量定义在 FS Constants 中描述。</p>
 <p>fs.copyFile(src, dest[, flags], callback)</p>
 <ul>
-<li>src <string> | <Buffer> | <URL> 要被拷贝的源文件名称</li>
-<li>dest <string> | <Buffer> | <URL> 拷贝操作的目标文件名</li>
-<li>flags <number> 拷贝操作修饰符 默认: 0</li>
-<li>callback <Function><br>异步的将 src 拷贝到 dest。Asynchronously copies src to dest. 默认情况下，如果 dest 已经存在会被覆盖。回调函数没有给出除了异常以外的参数。Node.js 不能保证拷贝操作的原子性。如果目标文件打开后出现错误，Node.js 将尝试删除它。<br>flags 是一个可选的整数，用于指定行为的拷贝操作。唯一支持的 flag 是 fs.constants.COPYFILE_EXCL ，如果 dest 已经存在，则会导致拷贝操作失败。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认情况下，destination.txt 将创建或覆盖</span></span><br><span class="line">fs.<span class="title function_">copyFile</span>(<span class="string">&#x27;source.txt&#x27;</span>, <span class="string">&#x27;destination.txt&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;source.txt was copied to destination.txt&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果第三个参数是数字，那么肯定是 flags，代码如下</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="variable constant_">COPYFILE_EXCL</span> &#125; = fs.<span class="property">constants</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 COPYFILE_EXCL ，如果 destination.txt 文件存在，操作将失败。</span></span><br><span class="line">fs.<span class="title function_">copyFile</span>(<span class="string">&#x27;source.txt&#x27;</span>, <span class="string">&#x27;destination.txt&#x27;</span>, <span class="variable constant_">COPYFILE_EXCL</span>, callback);</span><br></pre></td></tr></table></figure></li>
+<li>src <string> | <Buffer> | <URL> 要被拷贝的源文件名称</URL></Buffer></string></li>
+<li>dest <string> | <Buffer> | <URL> 拷贝操作的目标文件名</URL></Buffer></string></li>
+<li>flags <number> 拷贝操作修饰符 默认: 0</number></li>
+<li>callback <Function><br>异步的将 src 拷贝到 dest。Asynchronously copies src to dest. 默认情况下，如果 dest 已经存在会被覆盖。回调函数没有给出除了异常以外的参数。Node.js 不能保证拷贝操作的原子性。如果目标文件打开后出现错误，Node.js 将尝试删除它。<br>flags 是一个可选的整数，用于指定行为的拷贝操作。唯一支持的 flag 是 fs.constants.COPYFILE_EXCL ，如果 dest 已经存在，则会导致拷贝操作失败。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认情况下，destination.txt 将创建或覆盖</span></span><br><span class="line">fs.<span class="title function_">copyFile</span>(<span class="string">&#x27;source.txt&#x27;</span>, <span class="string">&#x27;destination.txt&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;source.txt was copied to destination.txt&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果第三个参数是数字，那么肯定是 flags，代码如下</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="variable constant_">COPYFILE_EXCL</span> &#125; = fs.<span class="property">constants</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 COPYFILE_EXCL ，如果 destination.txt 文件存在，操作将失败。</span></span><br><span class="line">fs.<span class="title function_">copyFile</span>(<span class="string">&#x27;source.txt&#x27;</span>, <span class="string">&#x27;destination.txt&#x27;</span>, <span class="variable constant_">COPYFILE_EXCL</span>, callback);</span><br></pre></td></tr></table></figure></Function></li>
 </ul>
 <p>fs.copyFileSync(src, dest[, flags])<br>参数说明同上</p>
 <p>fs.createReadStream(path[, options])</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></li>
-<li>options <string> | <Object></li>
-<li>flags <string></li>
-<li>encoding <string></li>
-<li>fd <integer></li>
-<li>mode <integer></li>
-<li>autoClose <boolean></li>
-<li>start <integer></li>
-<li>end <integer></li>
+<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>options <string> | <Object></Object></string></li>
+<li>flags <string></string></li>
+<li>encoding <string></string></li>
+<li>fd <integer></integer></li>
+<li>mode <integer></integer></li>
+<li>autoClose <boolean></boolean></li>
+<li>start <integer></integer></li>
+<li>end <integer></integer></li>
 <li>highWaterMark <integer><br>返回一个新建的 ReadStream 对象（详见可读流）。<br>不同于在一个可读流上设置的 highWaterMark 默认值（16 kb），该方法在相同参数下返回的流具有 64 kb 的默认值。<br>options 是一个带有以下默认值的对象或字符串：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaults = &#123;</span><br><span class="line">  <span class="attr">flags</span>: <span class="string">&#x27;r&#x27;</span>,</span><br><span class="line">  <span class="attr">encoding</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">fd</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="number">0o666</span>,</span><br><span class="line">  <span class="attr">autoClose</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">highWaterMark</span>: <span class="number">64</span> * <span class="number">1024</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-options 可以包括 start 和 end 值，使其可以从文件读取一定范围的字节而不是整个文件。 start 和 end 都是包括在内的，并且起始值是 0。 如果指定了 fd 且 start 不传或为 undefined，则 fs.createReadStream() 从当前文件位置按顺序地读取。 encoding 可以是任何可以被 Buffer 接受的值。</li>
+options 可以包括 start 和 end 值，使其可以从文件读取一定范围的字节而不是整个文件。 start 和 end 都是包括在内的，并且起始值是 0。 如果指定了 fd 且 start 不传或为 undefined，则 fs.createReadStream() 从当前文件位置按顺序地读取。 encoding 可以是任何可以被 Buffer 接受的值。</integer></li>
 </ul>
 <p>如果指定了 fd，则 ReadStream 会忽略 path 参数并且会使用指定的文件描述符。 这意味着不会触发 ‘open’ 事件。 注意，fd 应该是阻塞的；非阻塞的 fd 们应该传给 net.Socket。</p>
 <p>如果 autoClose 为 false，则文件描述符不会被关闭，即使有错误。 应用程序需要负责关闭它，并且确保没有文件描述符泄漏。 如果 autoClose 被设置为 true（默认），则在 error 或 end 时，文件描述符会被自动关闭。</p>
 <p>mode 用于设置文件模式（权限和粘结位），但仅限创建文件时。<br>如果 options 是一个字符串，则它指定了字符编码。</p>
 <p>fs.createWriteStream(path[, options])</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></li>
-<li>options <string> | <Object></li>
-<li>flags <string></li>
-<li>encoding <string></li>
-<li>fd <integer></li>
-<li>mode <integer></li>
-<li>autoClose <boolean></li>
+<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>options <string> | <Object></Object></string></li>
+<li>flags <string></string></li>
+<li>encoding <string></string></li>
+<li>fd <integer></integer></li>
+<li>mode <integer></integer></li>
+<li>autoClose <boolean></boolean></li>
 <li>start <integer><br>返回一个新建的 WriteStream 对象（详见可写流）。<br>options 是一个带有以下默认值的对象或字符串：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaults = &#123;</span><br><span class="line">  <span class="attr">flags</span>: <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">  <span class="attr">encoding</span>: <span class="string">&#x27;utf8&#x27;</span>,</span><br><span class="line">  <span class="attr">fd</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="number">0o666</span>,</span><br><span class="line">  <span class="attr">autoClose</span>: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-options 也可以包括一个 start 选项，使其可以写入数据到文件某个位置。 如果是修改一个文件而不是覆盖它，则需要flags 模式为 r+ 而不是默认的 w 模式。</li>
+options 也可以包括一个 start 选项，使其可以写入数据到文件某个位置。 如果是修改一个文件而不是覆盖它，则需要flags 模式为 r+ 而不是默认的 w 模式。</integer></li>
 </ul>
-<p>fs.existsSync(path)<br>path <string> | <Buffer> | <URL><br>fs.exists() 的同步版本。 如果路径存在，则返回 true，否则返回 false。<br><em>注意，虽然 fs.exists() 是废弃的，但 fs.existsSync() 不是。 （fs.exists() 的回调接收的参数与其他 Node.js 回调不一致，fs.existsSync() 不使用回调。）</em></p>
+<p>fs.existsSync(path)<br>path <string> | <Buffer> | <URL><br>fs.exists() 的同步版本。 如果路径存在，则返回 true，否则返回 false。<br><em>注意，虽然 fs.exists() 是废弃的，但 fs.existsSync() 不是。 （fs.exists() 的回调接收的参数与其他 Node.js 回调不一致，fs.existsSync() 不使用回调。）</em></URL></Buffer></string></p>
 <p>fs.fchmod(fd, mode, callback)</p>
 <ul>
-<li>fd <integer></li>
-<li>mode <integer></li>
-<li>callback <Function></li>
-<li>err <Error><br>更改文件权限（文件描述符）。异步的 fchmod(2)。 完成回调只有一个可能的异常参数。</li>
+<li>fd <integer></integer></li>
+<li>mode <integer></integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>更改文件权限（文件描述符）。异步的 fchmod(2)。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
 <p>fs.fchmodSync(fd, mode)</p>
 <ul>
-<li>fd <integer></li>
-<li>mode <integer><br>同步的 fchmod(2)。返回 undefined。</li>
+<li>fd <integer></integer></li>
+<li>mode <integer><br>同步的 fchmod(2)。返回 undefined。</integer></li>
 </ul>
 <p>fs.fchown(fd, uid, gid, callback)</p>
 <ul>
-<li>fd <integer></li>
-<li>uid <integer></li>
-<li>gid <integer></li>
-<li>callback <Function></li>
-<li>err <Error><br>更改给定文件描述符的所有者和组。异步的 fchown(2)。 完成回调只有一个可能的异常参数。</li>
+<li>fd <integer></integer></li>
+<li>uid <integer></integer></li>
+<li>gid <integer></integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>更改给定文件描述符的所有者和组。异步的 fchown(2)。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
 <p>fs.fchownSync(fd, uid, gid)</p>
 <ul>
-<li>fd <integer></li>
-<li>uid <integer></li>
-<li>gid <integer><br>同步的 fchown(2)。返回 undefined。</li>
+<li>fd <integer></integer></li>
+<li>uid <integer></integer></li>
+<li>gid <integer><br>同步的 fchown(2)。返回 undefined。</integer></li>
 </ul>
 <p>fs.fdatasync(fd, callback)</p>
 <ul>
-<li>fd <integer></li>
-<li>callback <Function></li>
-<li>err <Error><br>文件数据同步。异步的 fdatasync(2)。 完成回调只有一个可能的异常参数。</li>
+<li>fd <integer></integer></li>
+<li>callback <Function></Function></li>
+<li>err <Error><br>文件数据同步。异步的 fdatasync(2)。 完成回调只有一个可能的异常参数。</Error></li>
 </ul>
 <p>fs.fdatasyncSync(fd)</p>
 <ul>
-<li>fd <integer><br>同步的 fdatasync(2)。返回 undefined。</li>
+<li>fd <integer><br>同步的 fdatasync(2)。返回 undefined。</integer></li>
 </ul>
 <p>fs.mkdtemp(prefix[, options], callback)<br>创建一个唯一的临时目录。<br>生成六位随机字符附加到一个要求的 prefix 后面，然后创建一个唯一的临时目录。<br>创建的目录路径会作为字符串传给回调的第二个参数。<br>可选的 options 参数可以是一个字符串并指定一个字符编码，或是一个对象且由一个 encoding 属性指定使用的字符编码。<br><em>注意：fs.mkdtemp() 方法会直接附加六位随机选择的字符串到 prefix 字符串。 例如，指定一个目录 /tmp，如果目的是要在 /tmp 里创建一个临时目录，则 prefix 必须 以一个指定平台的路径分隔符（require(‘path’).sep）结尾。</em></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; sep &#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line">fs.<span class="title function_">mkdtemp</span>(<span class="string">`<span class="subst">$&#123;tmpDir&#125;</span><span class="subst">$&#123;sep&#125;</span>`</span>, <span class="function">(<span class="params">err, folder</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(folder);</span><br><span class="line">  <span class="comment">// 会输出类似于 `/tmp/abc123`。</span></span><br><span class="line">  <span class="comment">// 一个新的临时目录会被创建在 /tmp 目录里。</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -370,10 +368,10 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -411,7 +409,7 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -461,7 +459,7 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -469,7 +467,7 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -581,6 +579,6 @@ options 也可以包括一个 start 选项，使其可以写入数据到文件�
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

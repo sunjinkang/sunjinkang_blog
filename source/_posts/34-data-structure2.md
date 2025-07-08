@@ -209,7 +209,7 @@ function palindromeChecker(aString) {
 #### 链表
 
 ###### 链表数据结构
-![链表](chain-table-1.png)
+{% asset_img chain-table-1.png 链表 %}
 链表的好处：添加或移除元素的时候不需要移动其他元素
 要想访问链表中间的一个元素，需要从起点（表头）开始迭代链表直到找到所需的元素
 ```javascript
@@ -345,7 +345,7 @@ export default class LinkedList {
 
 ###### 双向链表
 在双向链表中，链接是双向的：一个链向下一个元素，另一个链向前一个元素
-![双向链表](chain-table-2.png)
+{% asset_img chain-table-2.png 双向链表 %}
 ```javascript
 class DoublyNode extends Node { // {1} 
  constructor(element, next, prev) { 
@@ -428,8 +428,8 @@ class DoublyLinkedList extends LinkedList { // {4}
 ###### 循环链表
 循环链表可以像链表一样只有单向引用，也可以像双向链表一样有双向引用。循环链表和链表之间唯一的区别在于，最后一个元素指向下一个元素的指针（tail.next）不是引用undefined，而是指向第一个元素（head）
 双向循环链表有指向 head 元素的 tail.next 和指向 tail 元素的 head.prev
-![循环链表](chain-table-3.png)
-![双向循环链表](chain-table-4.png)
+{% asset_img chain-table-3.png 循环链表 %}
+{% asset_img chain-table-4.png 双向循环链表 %}
 
 ```javascript
 class CircularLinkedList extends LinkedList { 

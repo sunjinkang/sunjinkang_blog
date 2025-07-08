@@ -173,3 +173,14 @@ sudo alternatives --config java
 java -version
 # 显示版本是 17+
 ```
+
+*go-agent未生效*
+pipeline中的agent列表是空的，导致无法执行pipeline任务，查看日志存在如下报错
+```bash
+[root@iZuf67coc42l6mbacxpizeZ ~]# sudo cat /var/log/go-agent/go-agent-bootstrapper-wrapper.log | grep serverUrl
+INFO   | jvm 1    | 2025/06/19 17:30:30 | [Thu Jun 19 17:30:30 CST 2025]   Application arguments: [-serverUrl, http://localhost:8153/go]
+```
+
+原因：
+安装GOCD时，自动生成了`/usr/share/go-agent/wrapper-config/wrapper-properties.conf`文件，其中包含端口相关的配置，导致自定义修改端口不生效，直接修改该文件中的配置即可解决问题
+

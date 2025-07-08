@@ -14,11 +14,11 @@ tags:
 **Chrome中查看Shadow Dom**
 1.打开浏览器控制台的设置选项
 2.找到Preference -> Elements，把show user anent shadow dom勾上
-![chrome-setting](chrome-setting.png)
-![shadow-dom](shadow-dom.png)
+{% asset_img chrome-setting.png chrome-setting %}
+{% asset_img shadow-dom.png shadow-dom %}
 
 #### Shadow Dom的结构
-![shadow-dom-structure](shadow-dom-structure.png)
+{% asset_img shadow-dom-structure.png shadow-dom-structure %}
 
 Shadow DOM术语
 Shadow host: Shadow DOM 附加到的常规 DOM 节点。
@@ -60,20 +60,20 @@ const shadowSpan = firstParent.shadowRoot?.querySelectorAll('span');
 - closed
 拒绝从 js 外部访问关闭的 shadow root 节点, shadowRoot 返回 null
 
-![open-closed](open-closed.png)
+{% asset_img open-closed.png open-closed %}
 
 *可以挂载Shadow DOM的标签*
 
-![mount-tag](mount-tag.png)
+{% asset_img mount-tag.png mount-tag %}
 
 注意：如果将Shadow DOM挂载到不可挂载标签上，挂载会失败，控制台会报错。
-![mount-tag-error](mount-tag-error.png)
+{% asset_img mount-tag-error.png mount-tag-error %}
 
 #### Shadow DOM特点
 
 - 外部的样式不影响Shadow DOM内部
 Shadow DOM是游离在 DOM 树之外的节点树，所以文档上的CSS不会作用在他身上
-![normal-css](normal-css.png)
+{% asset_img normal-css.png normal-css %}
 
 在MDN上提到了两种方式可以修改Shadow DOM的样式，感兴趣的可以自己去看看：
 https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_shadow_DOM#%E5%9C%A8%E5%BD%B1%E5%AD%90_dom_%E5%86%85%E5%BA%94%E7%94%A8%E6%A0%B7%E5%BC%8F
@@ -112,8 +112,8 @@ span3.innerHTML = `
 `;
 shadow3.appendChild(span3);
 ```
-![css-class](css-class.png)
-![css-host](css-host.png)
+{% asset_img css-class.png css-class %}
+{% asset_img css-host.png css-host %}
 
 - 样式钩子
 shadow dom还有一个非常重要的一个特点就是可以使用CSS自定义属性来创建样式占位符，并允许用户填充。
@@ -142,7 +142,7 @@ span3.innerHTML = `
   </style>
 `;
 ```
-![css-hook](css-hook.png)
+{% asset_img css-hook.png css-hook %}
 
 - 使用伪类修改Shadow DOM的内部样式
 ```js
@@ -162,4 +162,4 @@ input[placeholder='user']::-webkit-input-placeholder {
 />
 ```
 
-![fake-class](fake-class.png)
+{% asset_img fake-class.png fake-class %}

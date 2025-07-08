@@ -12,7 +12,7 @@ tags:
 #### 什么是双端对比？
 > 双端对比，即双端diff算法，一种同时对新旧两组子节点的两个端点进行比较的算法。
 但就从上面这句话来看，可能有点抽象，可参考下面这张图片
-![double-end-contrast](double-end-contrast.png)
+{% asset_img double-end-contrast.png double-end-contrast %}
 
 #### 双端对比的简单实现
 

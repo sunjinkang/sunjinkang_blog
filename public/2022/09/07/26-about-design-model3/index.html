@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2023/08/01/08/21/waterfall-8162449_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -118,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-08-03T03:02:06.784Z" itemprop="dateUpdated">2023-08-03</time>
+              <time  class="article-updated" datetime="2025-06-17T07:06:31.177Z" itemprop="dateUpdated">2025-06-17</time>
             </h2>
           
           
@@ -153,38 +151,38 @@
 <h6 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h6><p>模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。</p>
 <p>多用于归一化组件</p>
 <span id="more"></span>
-<p><img src="basic-model.png" alt="basic-model"><br><img src="inherit-model.png" alt="inherit-model"><br><img src="inherit-as-basic-model.png" alt="inherit-as-basic-model"></p>
+<p><img src="/basic-model.png" alt="basic-model"><br><img src="/inherit-model.png" alt="inherit-model"><br><img src="/inherit-as-basic-model.png" alt="inherit-as-basic-model"></p>
 <h6 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h6><p>观察者模式(Observer):又被称作发布-订阅者模式或消息机制，定义了一种依赖关系，解决了主体对象与观察者之间功能的耦合。</p>
 <p>观察者对象包含：一个消息容器，订阅消息方法、取消订阅的消息方法、发送订阅的消息方法</p>
-<p><img src="observer.png" alt="observer"><br><img src="observer-regist.png" alt="observer-regist"><br><img src="observer-fire.png" alt="observer-fire"><br><img src="observer-remove.png" alt="observer-remove"></p>
-<p><img src="regist-message.png" alt="regist-message"><br><img src="regist-change-num.png" alt="regist-change-num"><br><img src="add-message.png" alt="add-message"></p>
+<p><img src="/observer.png" alt="observer"><br><img src="/observer-regist.png" alt="observer-regist"><br><img src="/observer-fire.png" alt="observer-fire"><br><img src="/observer-remove.png" alt="observer-remove"></p>
+<p><img src="/regist-message.png" alt="regist-message"><br><img src="/regist-change-num.png" alt="regist-change-num"><br><img src="/add-message.png" alt="add-message"></p>
 <h6 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h6><p>状态模式(State):当一个对象的内部状态发生改变时，会导致其行为的改变，这看起来像是改变了对象。</p>
 <p>状态模式简化了分支判断遍历逻辑</p>
-<p><img src="vote-status.png" alt="vote-status"></p>
-<p>示例<br>思路：首先创建一个状态对象，内部保存状态变量，然后内部封装好每种,动作对应的状态，最后状态对象返回一个接口对象，它可以对内部的状态修改或者调用<br><img src="marry-state.png" alt="marry-state"><br><img src="marry-state1.png" alt="marry-state1"></p>
+<p><img src="/vote-status.png" alt="vote-status"></p>
+<p>示例<br>思路：首先创建一个状态对象，内部保存状态变量，然后内部封装好每种,动作对应的状态，最后状态对象返回一个接口对象，它可以对内部的状态修改或者调用<br><img src="/marry-state.png" alt="marry-state"><br><img src="/marry-state1.png" alt="marry-state1"></p>
 <h6 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h6><p>策略模式(Strategy):将定义的一组算法封装起来，使其相互之间可以替换。封装的算法具有一定独立性，不会随客户端变化而变化。</p>
 <p><strong>与状态模式异同点</strong><br>相同点：结构上与状态模式很像，也是在内部封装一个对象，然后通过返回的接口对象实现对内部对象的调用<br>不同点：策略模式不需要管理状态、状态间没有依赖关系、策略之间可以相互替换、在策略对象内部保存的是相互独立的一些算法</p>
-<p><img src="price-strategy.png" alt="price-strategy"></p>
+<p><img src="/price-strategy.png" alt="price-strategy"></p>
 <p><strong>策略模式的优点</strong><br>第一，策略模式封装了一组代码簇，并且封装的代码相互之间独立，便于对算法的重复引用，提高了算法的复用率。<br>第二，策略模式与继承相比，在类的继承中继承的方法是被封装在类中，因此当需求很多算法时，就不得不创建出多种类，这样会导致算法与算法的使用者耦合在一起,不利于算法的独立演化，并且在类的外部改变类的算法难度也是极大的。<br>第三，同状态模式一样,策略模式也是一种优化分支判断语句的模式,采用策略模式对算法封装使得算法更利于维护。</p>
 <p><strong>策略模式的缺点</strong><br>由于选择哪种算法的决定权在用户，所以对用户来说就必须了解每种算法的实现,增加了用户对策略对象的使用成本。<br>由于每种算法间相互独立，这样对于一些复杂的算法处理相同逻辑的部分无法实现共享，这就会造成一些资源的浪费</p>
 <p><strong>优化分支语句的模式</strong><br>工厂方法模式，状态模式与策略模式<br>工厂方法模式：一种创建型模式，最终目的是创建对象。<br>状态模式是行为型模式，不过在状态模式中，其核心是对状态的控制来决定表现行为，所以状态之间通常是不能相互替代的，否则将产生不同的行为结果。<br>策略模式是行为型模式，核心是算法，由于每种算法要处理的业务逻辑相同，因此他们可以相互替换，当然策略模式并不关心使用者环境，因为同一种策略模式最终产出的结果是一定的。</p>
 <h6 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h6><p>职责链模式(Chain of Responsibility):解决请求的发送者与请求的接受者之间的耦合，通过职责链上的多个对象对分解请求流程，实现请求在多个对象之间的传递，直到最后一个对象完成请求的处理。</p>
-<p>示例<br><img src="send-data.png" alt="send-data"><br><img src="deal-data.png" alt="deal-data"><br><img src="create-component.png" alt="create-component"></p>
+<p>示例<br><img src="/send-data.png" alt="send-data"><br><img src="/deal-data.png" alt="deal-data"><br><img src="/create-component.png" alt="create-component"></p>
 <p><strong>缺点</strong><br>职责链上的每一个对象不一定都能参与请求的传递，有时会造成一丝资源的浪费<br>多个对象参与请求的传递，在代码调试时增加了调试成本</p>
-<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6><p>命令模式(Command):将请求与实现解耦并封装成独立对象，从而使不同的请求对客户端的实现参数化。<br>命令模式常用于解耦<br><img src="command-model-1.png" alt="command-model-1"><br><img src="command-model-2.png" alt="command-model-2"><br><img src="command-model-3.png" alt="command-model-3"></p>
+<h6 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h6><p>命令模式(Command):将请求与实现解耦并封装成独立对象，从而使不同的请求对客户端的实现参数化。<br>命令模式常用于解耦<br><img src="/command-model-1.png" alt="command-model-1"><br><img src="/command-model-2.png" alt="command-model-2"><br><img src="/command-model-3.png" alt="command-model-3"></p>
 <p>命令模式的优点:<br>解决命令使用者之间的耦合。新的命令很容易加入到命令系统中，供使用者使用。<br>命令的使用具有一致性，多数的命令在一定程度上是简化操作方法的使用的。</p>
 <p>命令模式的缺点:<br>命令模式是对一些操作的封装，这就造成每执行一次操作都要调用一次命令对象，增加了系统的复杂度。</p>
 <h6 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h6><p>访问者模式(Visitor):针对于对象结构中的元素，定义在不改变该对象的前提下访问结构中元素的新方法。</p>
-<p><img src="visitor-model.png" alt="visitor-model"></p>
+<p><img src="/visitor-model.png" alt="visitor-model"></p>
 <h6 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h6><p>中介者模式(Mediator):通过中介者对象封装一系列对象之间的交互，使对象之间不再相互引用，降低他们之间的耦合。有时中介者对象也可改变对象之间的交互。</p>
 <p>(1)观察者模式与中介者模式的区别<br>相同点<br>都是通过消息的收发机制实现的<br>差异点<br>在观察者模式中，一个对象既可以是消息的发送者也可以是消息的接收者，他们之间信息交流依托于消息系统实现的解耦,需要写一个消息系统<br>中介者模式中消息的发送方只有一个，就是中介者对象，而且中介者对象不能订阅消息，只有那些活跃对象(订阅者)才可订阅中介者的消息，当然你也可以看作是将消息系统封装在中介者对象内部，所以中介者对象只能是消息的发送者</p>
-<p><img src="mediator-model.png" alt="mediator-model"></p>
+<p><img src="/mediator-model.png" alt="mediator-model"></p>
 <h6 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h6><p>备忘录模式(Memento):在不破坏对象的封装性的前提下，在对象之外捕获并保存该对象内部的状态以便日后对象使用或者对象恢复到以前的某个状态。</p>
-<p><img src="cache-model.png" alt="cache-model"></p>
+<p><img src="/cache-model.png" alt="cache-model"></p>
 <h6 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h6><p>迭代器模式(Iterator):在不暴露对象内部结构的同时，可以顺序地访问聚合对象内部的元素。</p>
-<p><img src="iterator-model.png" alt="iterator-model"></p>
+<p><img src="/iterator-model.png" alt="iterator-model"></p>
 <h6 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h6><p>解释器模式(Interpreter):对于一种语言，给出其文法表示形式，并定义一种解释器，通过使用这种解释器来解释语言中定义的句子。</p>
-<p><img src="explain-model-1.png" alt="explain-model-1"><br><img src="explain-model-2.png" alt="explain-model-2"><br><img src="explain-model-3.png" alt="explain-model-3"></p>
+<p><img src="/explain-model-1.png" alt="explain-model-1"><br><img src="/explain-model-2.png" alt="explain-model-2"><br><img src="/explain-model-3.png" alt="explain-model-3"></p>
 <p>解释器即是对客户提出的需求，经过解析而形成的一个抽象解释程序。而是否可以应用解释器模式的一条重要准侧是<strong>能否根据需求解析出一套完成的语法规则,不论该语法规则简单或是复杂都是必须的</strong>。因为解释器要按照这套规则才能实现相应的功能。</p>
 
       </section>
@@ -195,6 +193,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2022/09/17/23/56/moon-7461962_640.jpg"></div>
     
     <div class="card-text">
       
@@ -210,6 +210,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2016/01/27/15/35/heart-1164739_640.jpg"></div>
     
     <div class="card-text">
       
@@ -242,10 +244,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -285,7 +287,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -334,7 +336,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -342,7 +344,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -454,6 +456,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2021/11/01/22/10/night-6761907_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -129,7 +127,7 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <p>node [options] [V8 options] [script.js | -e “script” | -] [–] [arguments]</p>
-<p>node debug [script.js | -e “script” | <host>:<port>] …</p>
+<p>node debug [script.js | -e “script” | <host>:<port>] …</port></host></p>
 <p>node –v8-options</p>
 <p>执行时不带参数，会启动 [REPL]。</p>
 <h6 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h6><p>-v, –version<br>打印 node 的版本号。</p>
@@ -253,11 +251,11 @@
 <p>console.clear()<br>当 stdout 是一个 TTY 时，调用 console.clear() 将尝试清除 TTY。 当 stdout 不是一个TTY时，该方法什么都不做。<br>注意：console.clear() 的具体行为可能因操作系统和终端类型而异。 对于大多数Linux操作系统，console.clear() 与 clear shell 命令行为类似。 在Windows上，console.clear() 将只清除当前终端视图中Node.js二进制文件的输出。</p>
 <p>console.count([label])</p>
 <ul>
-<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>维护一个指定 label 的内部计数器并且输出到 stdout 指定 label 调用 console.count() 的次数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line"><span class="attr">default</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;xyz&#x27;</span>)</span><br><span class="line"><span class="attr">xyz</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">3</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li>
+<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>维护一个指定 label 的内部计数器并且输出到 stdout 指定 label 调用 console.count() 的次数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line"><span class="attr">default</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;xyz&#x27;</span>)</span><br><span class="line"><span class="attr">xyz</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">3</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></string></li>
 </ul>
 <p>console.countReset([label=’default’])</p>
 <ul>
-<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>重置指定 label 的内部计数器。</li>
+<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>重置指定 label 的内部计数器。</string></li>
 </ul>
 <p>console.debug(data[, …args])<br>console.debug()函数是console.log()的别名。</p>
 <p>console.dir(obj[, options])<br>在 obj 上使用 util.inspect() 并打印结果字符串到 stdout。(在控制台中显示指定对象的属性，并通过类似文件树样式的交互列表显示。)<br>该函数会绕过任何定义在 obj 上的自定义的 inspect() 函数。<br>可选的 options 对象可以传入用于改变被格式化的字符串：</p>
@@ -267,7 +265,7 @@
 <li>colors - 如果为 true，则输出会带有 ANSI 颜色代码。 默认为 false。 颜色是可定制的，详见定制 util.inspect() 颜色。</li>
 </ul>
 <p>console.error([data][, …args])<br>打印到 stderr，并带上换行符。 可以传入多个参数，第一个参数作为主要信息，其他参数作为类似于 printf(3) 中的代替值（参数都会传给 util.format()）。<br>如果在第一个字符串中没有找到格式化元素（如 %d），则在每个参数上调用 util.inspect() 并将结果字符串值拼在一起。 详见 <a target="_blank" rel="noopener" href="https://www.nodeapp.cn/util.html#util_util_format_format_args">util.format()</a>。</p>
-<p>console.group([…label])#<br>…label <any><br>将后续行的缩进增加两个空格。<br>如果提供了一个或多个 labels，则首先打印这些 labels，而不需要额外的缩进。</p>
+<p>console.group([…label])#<br>…label <any><br>将后续行的缩进增加两个空格。<br>如果提供了一个或多个 labels，则首先打印这些 labels，而不需要额外的缩进。</any></p>
 <p>console.groupCollapsed()<br>console.group()的一个别名.</p>
 <p>console.groupEnd()<br>将后续行的缩进减少两个空格。</p>
 <p>console.info([data][, …args])<br>console.info() 函数是 console.log() 的一个别名。</p>
@@ -291,10 +289,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -332,7 +330,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -382,7 +380,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -390,7 +388,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -502,6 +500,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

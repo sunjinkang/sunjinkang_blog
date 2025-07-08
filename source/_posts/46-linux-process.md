@@ -7,13 +7,13 @@ tags:
 
 #### 查看进程
 ps
-![ps](ps.png)
+{% asset_img ps.png ps %}
 <!-- more -->
 ps aux
-![ps-aux](ps-aux.png)
+{% asset_img ps-aux.png ps-aux %}
 
 ps -elf
-![ps-elf](ps-elf.png)
+{% asset_img ps-elf.png ps-elf %}
 
 字段说明：
 - USER：启动该进程的用户账号名称 
@@ -42,7 +42,7 @@ ps -elf
 - PPID为父进程的PID
 
 top
-![top](top.png)
+{% asset_img top.png top %}
 - Tasks（系统任务）信息：
   - total，总进程数；
   - running，正在运行的进程数；

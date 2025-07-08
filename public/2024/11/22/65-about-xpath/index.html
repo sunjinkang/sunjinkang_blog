@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2017/08/10/16/37/moon-2624625_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -118,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2025-05-22T10:17:58.659Z" itemprop="dateUpdated">2025-05-22</time>
+              <time  class="article-updated" datetime="2025-06-17T07:27:40.986Z" itemprop="dateUpdated">2025-06-17</time>
             </h2>
           
           
@@ -150,31 +148,31 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>Xpath 是一种用在 XML 文档中定位元素的语言，同样也支持 HTML 元素的解析。这篇文章主要是关于HTML部分的内容，从这个名字可以看出来，Xpath是关于路径的，Xpath是通过路径查找元素。</p>
-<h4 id="HTML中的Xpath"><a href="#HTML中的Xpath" class="headerlink" title="HTML中的Xpath"></a>HTML中的Xpath</h4><p><img src="html.png" alt="html"><br><img src="html-tree.png" alt="html-tree"></p>
+<h4 id="HTML中的Xpath"><a href="#HTML中的Xpath" class="headerlink" title="HTML中的Xpath"></a>HTML中的Xpath</h4><p><img src="/html.png" alt="html"><br><img src="/html-tree.png" alt="html-tree"></p>
 <p>HTML是一种树形结构，HTML 是根节点，所有的其他元素节点都是从根节点发出的。其他的元素都是这棵树上的节点Node，每个节点还可能有属性和文本。<br>而路径就是指某个节点到另一个节点的路线。</p>
-<p>我们一般的路径可以分为绝对路径和相对路径。Xpath中的绝对路径从 HTML 根节点开始算，相对路径从任意节点开始。<br>在浏览器中，我们可以直接复制需要节点的Xpath数据。<br><img src="copy-path.png" alt="copy-path"><br>chrome浏览器中复制的相对路径会从举例最近的有id的元素开始找。<br><img src="copy-path-result.png" alt="copy-path-result"><br>从上面这个路径我们可以看到，虽然能根据这个路径找到对应的目标元素，但是这里面有div[1]这种结构，即父节点下面的第一个div，这种路径并不是很可靠。所以，需要我们自己根据需要自定义Xpath数据。</p>
+<p>我们一般的路径可以分为绝对路径和相对路径。Xpath中的绝对路径从 HTML 根节点开始算，相对路径从任意节点开始。<br>在浏览器中，我们可以直接复制需要节点的Xpath数据。<br><img src="/copy-path.png" alt="copy-path"><br>chrome浏览器中复制的相对路径会从举例最近的有id的元素开始找。<br><img src="/copy-path-result.png" alt="copy-path-result"><br>从上面这个路径我们可以看到，虽然能根据这个路径找到对应的目标元素，但是这里面有div[1]这种结构，即父节点下面的第一个div，这种路径并不是很可靠。所以，需要我们自己根据需要自定义Xpath数据。</p>
 <h4 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h4><p>绝对路径是从根节点/html开始往下，一层层的表示出来直到需要的节点为止，使用起来较为麻烦。这里就不多做介绍了，我们主要来看一下相对路径。</p>
 <h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>Xpath 中更常用的方式是相对路径定位方法，以“//”开头。相对路径可以从任意节点开始，不过一般会选取一个可以唯一定位到的元素作为起始节点，可以增加查找的准确性。</p>
 <h5 id="定位语法"><a href="#定位语法" class="headerlink" title="定位语法"></a>定位语法</h5><p>| 表达式 | 说明    | 举例 |<br>| / |    从根节点开始选取 |    /html/div/span |<br>| // |    从任意节点开始选取 |    //input |<br>| . |    选取当前节点 |  |<br>| .. |    选取当前节点的父节点 |    //input/.. 会选取 input 的父节点 |<br>| @ |    选取属性，或者根据属性选取 |    //input[@data] 选取具备 data 属性的 input 元素 //@data 选取所有 data 属性 |<br>| * |    通配符，表示任意节点或任意属性 |  |</p>
 <h5 id="常见的定位方法"><a href="#常见的定位方法" class="headerlink" title="常见的定位方法"></a>常见的定位方法</h5><h6 id="元素属性定位"><a href="#元素属性定位" class="headerlink" title="元素属性定位"></a>元素属性定位</h6><p>属性定位是通过 @ 符号指定需要使用的属性。</p>
-<p>根据元素是否具备某个属性查找元素<br><img src="at-sign.png" alt="at-sign"></p>
-<p>根据属性是否等于某值查找元素<br><img src="at-sign-1.png" alt="at-sign-1"></p>
-<p><img src="at-sign-2.png" alt="at-sign-2"><br>svg和path标签无法进行查找</p>
+<p>根据元素是否具备某个属性查找元素<br><img src="/at-sign.png" alt="at-sign"></p>
+<p>根据属性是否等于某值查找元素<br><img src="/at-sign-1.png" alt="at-sign-1"></p>
+<p><img src="/at-sign-2.png" alt="at-sign-2"><br>svg和path标签无法进行查找</p>
 <p>注意，属性值必须要加引号，单双引号都可以。</p>
 <h6 id="层级属性结合定位"><a href="#层级属性结合定位" class="headerlink" title="层级属性结合定位"></a>层级属性结合定位</h6><p>遇到某些元素无法精确定位的时候，可以查找其父级及其祖先节点，找到有确定的祖先节点后通过层级依次向下定位。<br>使用星号找不特定的元素；使用..找父级节点；使用//找某一类型的节点等等。</p>
-<h6 id="使用谓语定位"><a href="#使用谓语定位" class="headerlink" title="使用谓语定位"></a>使用谓语定位</h6><p>谓语是 Xpath 中用于描述元素位置。主要有数字下标、最后一个子元素last()、元素下标函数position()，还可以通过position()的比较大小查找某个范围的元素。<br><img src="at-sign-3.png" alt="at-sign-3"><br><img src="at-sign-4.png" alt="at-sign-4"><br><img src="at-sign-5.png" alt="at-sign-5"></p>
+<h6 id="使用谓语定位"><a href="#使用谓语定位" class="headerlink" title="使用谓语定位"></a>使用谓语定位</h6><p>谓语是 Xpath 中用于描述元素位置。主要有数字下标、最后一个子元素last()、元素下标函数position()，还可以通过position()的比较大小查找某个范围的元素。<br><img src="/at-sign-3.png" alt="at-sign-3"><br><img src="/at-sign-4.png" alt="at-sign-4"><br><img src="/at-sign-5.png" alt="at-sign-5"></p>
 <h6 id="使用逻辑运算符"><a href="#使用逻辑运算符" class="headerlink" title="使用逻辑运算符"></a>使用逻辑运算符</h6><p>如果元素的某个属性无法精确定位到这个元素，我们还可以用逻辑运算符 and、or、| 进行运算定位。</p>
-<p><img src="at-sign-6.png" alt="at-sign-6"></p>
+<p><img src="/at-sign-6.png" alt="at-sign-6"></p>
 <p>注意：|是同时查找多个路径的。</p>
-<h6 id="使用文本定位"><a href="#使用文本定位" class="headerlink" title="使用文本定位"></a>使用文本定位</h6><p>使用文本定位，是 Xpath 中的一大特色。可以通过 text()、string()方法获取元素节点的文本内容。<br>注意：text()和string()的区别在于text()只能获取当前节点的文本内容，string()可以获取当前节点内部所有元素节点的文本内容。<br><img src="at-sign-7.png" alt="at-sign-7"><br>注意：使用string()查找的时候，在满足文本要求的前提下，查找的元素会把尽可能多的满足要求的节点都列出来，所以，如果需要查找具体的节点，要保证条件限制尽可能严格一点。</p>
+<h6 id="使用文本定位"><a href="#使用文本定位" class="headerlink" title="使用文本定位"></a>使用文本定位</h6><p>使用文本定位，是 Xpath 中的一大特色。可以通过 text()、string()方法获取元素节点的文本内容。<br>注意：text()和string()的区别在于text()只能获取当前节点的文本内容，string()可以获取当前节点内部所有元素节点的文本内容。<br><img src="/at-sign-7.png" alt="at-sign-7"><br>注意：使用string()查找的时候，在满足文本要求的前提下，查找的元素会把尽可能多的满足要求的节点都列出来，所以，如果需要查找具体的节点，要保证条件限制尽可能严格一点。</p>
 <h6 id="使用部分匹配函数"><a href="#使用部分匹配函数" class="headerlink" title="使用部分匹配函数"></a>使用部分匹配函数</h6><p>Xpath 中有提供了几个函数，用来进行部分匹配。</p>
 <p>| 函数    | 说明    | 举例 |<br>| contains |    选取属性或者文本包含某些字符 |    //div[contains(@id, ‘data’)] 选取 id 属性包含 data 的 div 元素，//div[contains(string(), ‘支付宝’)] 选取内部文本包含“支付宝”的 div 元素 |<br>| starts-with |    选取属性或者文本以某些字符开头 |    //div[starts-with(@id, ‘data’)] 选取 id 属性以 data 开头的 div 元素，//div[starts-with(string(), ‘银联’)] 选取内部文本以“银联”开头的 div 元素 |<br>| ends-with |    选取属性或者文本以某些字符开头    | //div[ends-with(@id, ‘require’)] 选取 id 属性以 require 结尾的 div 元素，//div[ends-with(string(), ‘支付’)] 选取内部文本以“支付”结尾的 div 元素 |</p>
-<p><img src="at-sign-8.png" alt="at-sign-8"></p>
+<p><img src="/at-sign-8.png" alt="at-sign-8"></p>
 <p><em>注意</em><br>兼容性和替代方案<br>需要注意的是，ends-with函数是XPath 2.0的语法，而一些浏览器可能只支持XPath 1.0。如果你在使用XPath 1.0的环境中遇到问题，可以使用以下替代方案：<br>//input[substring(@id, string-length(@id) - string-length(‘123’) + 1) = ‘123’]</p>
 <h5 id="验证-Xpath"><a href="#验证-Xpath" class="headerlink" title="验证 Xpath"></a>验证 Xpath</h5><p>验证 xpath 有两种方法：</p>
 <ul>
 <li>在开发者工具的 Elements 中按Ctrl + F，在搜索框中输入 Xpath</li>
-<li>在开发者工具的 Console 中使用 $x()<br><img src="at-sign-9.png" alt="at-sign-9"></li>
+<li>在开发者工具的 Console 中使用 $x()<br><img src="/at-sign-9.png" alt="at-sign-9"></li>
 </ul>
 <h5 id="Xpath用处"><a href="#Xpath用处" class="headerlink" title="Xpath用处"></a>Xpath用处</h5><ul>
 <li>在网络爬虫中，XPath是一个非常强大的工具，可以帮助我们精确定位和提取需要的数据。</li>
@@ -190,6 +188,8 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2023/09/18/22/08/ai-generated-8261536_640.jpg"></div>
+    
     <div class="card-text">
       
         <a href="/2025/02/14/64-about-picture-in-picture/" itemprop="url">
@@ -204,6 +204,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2023/12/06/11/55/galaxy-8433576_640.jpg"></div>
     
     <div class="card-text">
       
@@ -236,10 +238,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -279,7 +281,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -328,7 +330,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -336,7 +338,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -448,6 +450,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

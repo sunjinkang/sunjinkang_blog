@@ -16,7 +16,7 @@ notice: 暂无
 # 作者信息
 author:
   name: HTW_KAP
-  avatar: ../images/avatar.jpg
+  avatar: /images/avatar.jpg
   description: 9+1=10
 
 toc:

@@ -81,7 +81,7 @@ undefined == false // false
 ```
 
 #### 类型转换表
-![类型转换对照表](convert-table.png)
+{% asset_img convert-table.png 类型转换对照表 %}
 
 #### 类型转换对照网站
 https://dorey.github.io/JavaScript-Equality-Table/

@@ -16,7 +16,7 @@ tags:
 《小游戏可视化制作工具》的账号密码登录为团队开发登录使用，暂未开放注册。
 
 ###### 小游戏编辑器介绍
-![weixin_idea](weixin_idea.png)
+{% asset_img weixin_idea.png weixin_idea %}
 
 概览编辑器，可分为8个区域，分别是：
 - 工具栏：添加素材，运行游戏，预览发布，搜索，保存退出等功能入口；
@@ -55,7 +55,7 @@ tags:
 
 - 工具栏
   - 作品设置
-![work_setting](work_setting.png)
+{% asset_img work_setting.png work_setting %}
 [适配模式] 我们可以调整在移动端的适配模式，推荐竖屏游戏使用宽度适配，横屏游戏使用高度适配
 [使用默认资源进度条] 是否显示默认资源加载中的提示
 [资源加载方式] 如果项目非常大并且多个场景，建议选择切换场景时加载，并且搭配[资源管理]插件一起使用，建议默认选择全部加载后启动
@@ -90,7 +90,7 @@ tags:
 *素材库中的积木小Y是主要 文本/数字 等素材的导入入口，其中 [基础文字] 最为常用*
 
   - 上传素材
-![upload](upload.png)
+{% asset_img upload.png upload %}
 使用上传素材需要切换到[我的素材]Tab页，同时针对上传的素材有特殊要求：
 - 单图和音频：将素材拖拽扔进我的素材或者上传素材的上传区域即可
 - 帧动画组：打开上传素材界面，并将帧动画组的素材名称规范命名为：xx1.png、xx2.png、xx3.png、xx4.png、xx5.png...，然后选中整个帧动画组整体拖拽扔进上传区域，即可自动生成帧动画组素材
@@ -151,20 +151,20 @@ tags:
 大部分情况下，资源能设置的只有宽高和造型
 
 通用属性
-![normal](normal.png)
+{% asset_img normal.png normal %}
 
 精灵特有属性
-![jingling](jingling.png)
+{% asset_img jingling.png jingling %}
 
 数字特有属性
-![number](number.png)
+{% asset_img number.png number %}
 
 文本特有属性
 纯文本不支持部分属性如宽高或翻转，对话框文本由两个部分组成，修改宽高会修改对话框部分
-![text](text.png)
+{% asset_img text.png text %}
 
 容器特有属性
-![wrapper](wrapper.png)
+{% asset_img wrapper.png wrapper %}
 
 插件特有属性
 每个插件都有自己定义的属性，各不同用
@@ -204,16 +204,16 @@ Y: 纵坐标
 事件
 丰富的事件钩子积木能快速简单的控制游戏流程，监听状态和输入
 启动事件都是“头部积木”，只有启动事件被触发，其中包含的积木队列才会被依次执行。
-![event](event.png)
+{% asset_img event.png event %}
 
 逻辑
-![logic](logic.png)
+{% asset_img logic.png logic %}
 
 控制
-![control](control.png)
+{% asset_img control.png control %}
 
 运动
-![move](move.png)
+{% asset_img move.png move %}
 
 函数
 函数是一系列积木的组合，由开发者自己创建，在当前项目使用

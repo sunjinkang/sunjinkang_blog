@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2021/11/01/22/10/night-6761907_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -161,14 +159,14 @@
 <p>BDD对测试用例的组织主要采用describe和it进行组织。describe可以描述多层级的结构，具体到测试用例时，用it。另外，它还提供before、after、beforeEach和afterEach这4个钩子方法，用于协助describe中测试用例的准备、安装、卸载和回收等工作。before和after分别在进入和退出describe时触发执行，beforeEach和afterEach则分别在describe中每一个测试用例（it）执行前和执行后触发执行<br><img src="./images/test.png" alt="单测"><br>mocha的TDD风格示例</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">suite(&#x27;Array&#x27;, function()&#123; </span><br><span class="line"> setup(<span class="name">function</span>()&#123; </span><br><span class="line"> // ... </span><br><span class="line"> &#125;)<span class="comment">; </span></span><br><span class="line"> suite(&#x27;#indexOf()&#x27;, function()&#123; </span><br><span class="line"> test(&#x27;should return <span class="number">-1</span> when not present&#x27;, function()&#123; </span><br><span class="line"> assert.equal(<span class="name">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">4</span>))<span class="comment">; </span></span><br><span class="line"> &#125;)<span class="comment">; </span></span><br><span class="line"> &#125;)<span class="comment">; </span></span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>TDD对测试用例的组织主要采用suite和test完成。suite也可以实现多层级描述，测试用例用test。它提供的钩子函数仅包含setup和teardown，对应BDD中的before和after。<br><img src="./images/test-1.png" alt="单测"></p>
-<p>测试报告<br>mocha提供了相当丰富的报告格式，调用mocha –reporters即可查看所有的报告格式<br>默认的报告格式为dot，其他比较常用的格式有spec、json、html-cov等。执行mocha -R <reporter>命令即可采用这些报告。json报告因为其格式非常通用，多用于将结果传递给其他程序进行处理，而html-cov则用于可视化地观察代码覆盖率</p>
+<p>测试报告<br>mocha提供了相当丰富的报告格式，调用mocha –reporters即可查看所有的报告格式<br>默认的报告格式为dot，其他比较常用的格式有spec、json、html-cov等。执行mocha -R <reporter>命令即可采用这些报告。json报告因为其格式非常通用，多用于将结果传递给其他程序进行处理，而html-cov则用于可视化地观察代码覆盖率</reporter></p>
 <p>测试用例<br>测试用例最少需要通过正向测试和反向测试来保证测试对功能的覆盖，这是最基本的测试用例。对于Node而言，不仅有这样简单的方法调用，还有异步代码和超时设置需要关注</p>
 <ul>
 <li>异步测试<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">it(&#x27;fs.readFile should be ok&#x27;, function (<span class="name">done</span>) &#123; </span><br><span class="line"> fs.readFile(&#x27;file_path&#x27;, &#x27;utf-8&#x27;, function (<span class="name">err</span>, data) &#123; </span><br><span class="line"> should.not.exist(<span class="name">err</span>)<span class="comment">; </span></span><br><span class="line"> done()<span class="comment">; </span></span><br><span class="line"> &#125;)<span class="comment">; </span></span><br><span class="line">&#125;)<span class="comment">; </span></span><br></pre></td></tr></table></figure>
 测试用例方法it()接受两个参数；用例标题（title）和回调函数（fn）。通过检查这个回调函数的形参长度（fn.length）来判断这个用例是否是异步调用，如果是异步调用，在执行测试用例时，会将一个函数done()注入为实参，测试代码需要主动调用这个函数通知测试框架当前测试用例执行完成，然后测试框架才进行下一个测试用例的执行</li>
 <li>超时设置<br>mocha给所有涉及异步的测试用例添加了超时限制，如果一个用例的执行时间超过了预期时间，将会记录下一个超时错误，然后执行下一个测试用例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;async test&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="comment">// 模拟一个要执行很久的异步方法</span></span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">10000</span>); </span><br><span class="line">&#125;); </span><br></pre></td></tr></table></figure>
 mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>设置所有用例的超时时间。若需更细粒度地设置超时时间，可以在测试用例it中调用this.timeout(ms)实现对单个用例的特殊设置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;should take less than 500ms&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="variable language_">this</span>.<span class="title function_">timeout</span>(<span class="number">500</span>); </span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">300</span>); </span><br><span class="line">&#125;); </span><br></pre></td></tr></table></figure>
-也可以在描述describe中调用this.timeout(ms)设置描述下当前层级的所有用例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;a suite of tests&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line"> <span class="variable language_">this</span>.<span class="title function_">timeout</span>(<span class="number">500</span>); </span><br><span class="line"> <span class="title function_">it</span>(<span class="string">&#x27;should take less than 500ms&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">300</span>); </span><br><span class="line"> &#125;); </span><br><span class="line"> <span class="title function_">it</span>(<span class="string">&#x27;should take less than 500ms as well&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">200</span>); </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;); </span><br></pre></td></tr></table></figure></li>
+也可以在描述describe中调用this.timeout(ms)设置描述下当前层级的所有用例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;a suite of tests&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line"> <span class="variable language_">this</span>.<span class="title function_">timeout</span>(<span class="number">500</span>); </span><br><span class="line"> <span class="title function_">it</span>(<span class="string">&#x27;should take less than 500ms&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">300</span>); </span><br><span class="line"> &#125;); </span><br><span class="line"> <span class="title function_">it</span>(<span class="string">&#x27;should take less than 500ms as well&#x27;</span>, <span class="keyword">function</span> (<span class="params">done</span>) &#123; </span><br><span class="line"> <span class="built_in">setTimeout</span>(done, <span class="number">200</span>); </span><br><span class="line"> &#125;); </span><br><span class="line">&#125;); </span><br></pre></td></tr></table></figure></ms></li>
 </ul>
 <p><em>测试覆盖率</em><br>测试覆盖率是单元测试中的一个重要指标，它能够概括性地给出整体的覆盖度，也能明确地给出统计到行的覆盖情况</p>
 <p>若要探知这个测试用例对源代码的覆盖率，需要一种工具来统计每一行代码是否执行，这里要介绍的相关工具是jscover模块。通过npm install jscover -g的方式可以安装该模块</p>
@@ -310,10 +308,10 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -351,7 +349,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -401,7 +399,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -409,7 +407,7 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -521,6 +519,6 @@ mocha的默认超时时间为2000毫秒。一般情况下，通过mocha -t <ms>�
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

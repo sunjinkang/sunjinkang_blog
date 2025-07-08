@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2022/12/23/15/41/moon-7674557_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -116,6 +114,11 @@
             <time  class="article-date" datetime="2024-03-28T06:05:44.000Z" itemprop="datePublished">2024-03-28</time>
           </h2>
           
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2025-06-17T07:26:41.363Z" itemprop="dateUpdated">2025-06-17</time>
+            </h2>
+          
           
           <ul class="wrap-list dark">
   
@@ -148,28 +151,28 @@
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>本人使用github搭建个人博客，博客框架为Hexo(5.4.2)，博客主题为Volantis(5.8.0)。为了便于使用，接入了Giscus作为评论系统。本篇文章主要说明接入Giscus的具体操作。</p>
 <h4 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h4><ul>
-<li>建一个公共库<br>由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的<em>公共仓库</em>，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。<br><img src="create-repo.png" alt="create-repo"></li>
+<li>建一个公共库<br>由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的<em>公共仓库</em>，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。<br><img src="/create-repo.png" alt="create-repo"></li>
 </ul>
 <p><em>除了要求是个公共库之外，是否需要README、gitignore无具体要求</em></p>
 <ul>
 <li>开启公共库的discussion功能</li>
 </ul>
-<p>公共库 -&gt; Settings -&gt; General -&gt; Features -&gt; 勾选discussion<br><img src="check-discussion.png" alt="check-discussion"></p>
+<p>公共库 -&gt; Settings -&gt; General -&gt; Features -&gt; 勾选discussion<br><img src="/check-discussion.png" alt="check-discussion"></p>
 <h4 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h4><ul>
-<li>公共库安装Giscus<br>前往<a target="_blank" rel="noopener" href="https://github.com/apps/giscus">这里</a>，点击 <font color="red">Install</font> 安装Giscus<br><img src="install-giscus.png" alt="install-giscus"></li>
+<li>公共库安装Giscus<br>前往<a target="_blank" rel="noopener" href="https://github.com/apps/giscus">这里</a>，点击 <font color="red">Install</font> 安装Giscus<br><img src="/install-giscus.png" alt="install-giscus"></li>
 </ul>
-<p>选择创建的公共库，将公共库与Giscus关联起来<br><img src="giscus-select-repo.png" alt="giscus-select-repo"></p>
+<p>选择创建的公共库，将公共库与Giscus关联起来<br><img src="/giscus-select-repo.png" alt="giscus-select-repo"></p>
 <h4 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h4><ul>
-<li>Giscus官网配置<br>前往 <a target="_blank" rel="noopener" href="https://giscus.app/">Giscus官网</a>，进行配置。<br><img src="giscus-config1.png" alt="giscus-config1"><br>仓库名有三个前置条件，如果按照本文顺序进行安装，这里的检查会通过，否则会报错。如果报错了，请检查一下之前的配置是不是有哪里配置错了。</li>
+<li>Giscus官网配置<br>前往 <a target="_blank" rel="noopener" href="https://giscus.app/">Giscus官网</a>，进行配置。<br><img src="/giscus-config1.png" alt="giscus-config1"><br>仓库名有三个前置条件，如果按照本文顺序进行安装，这里的检查会通过，否则会报错。如果报错了，请检查一下之前的配置是不是有哪里配置错了。</li>
 </ul>
-<p><img src="giscus-config2.png" alt="giscus-config2"><br>可以根据自己的需要选择，本文默认选了第一个。</p>
-<p><img src="giscus-config3.png" alt="giscus-config3"><br>选择 Announcements 类型即可，官方也是这样推荐的，因为这样便于管理。</p>
+<p><img src="/giscus-config2.png" alt="giscus-config2"><br>可以根据自己的需要选择，本文默认选了第一个。</p>
+<p><img src="/giscus-config3.png" alt="giscus-config3"><br>选择 Announcements 类型即可，官方也是这样推荐的，因为这样便于管理。</p>
 <p>其他的配置使用默认配置就好。</p>
-<p><img src="giscus-config4.png" alt="giscus-config4"><br>在你想出现评论的位置添加上面的 <em>&lt;/script/&gt;</em> 标签。但如果已经存在带有giscus类的元素，则评论会被放在那里。<br>将上面标签中的数据填入项目中giscus配置的对应位置。</p>
+<p><img src="/giscus-config4.png" alt="giscus-config4"><br>在你想出现评论的位置添加上面的 <em>&lt;/script/&gt;</em> 标签。但如果已经存在带有giscus类的元素，则评论会被放在那里。<br>将上面标签中的数据填入项目中giscus配置的对应位置。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">giscus:</span></span><br><span class="line">  <span class="comment"># 以下配置按照 yml 格式增删填写即可</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="comment">#data-repo</span></span><br><span class="line">  <span class="attr">repo-id:</span> <span class="comment">#data-repo-id</span></span><br><span class="line">  <span class="attr">category:</span> <span class="comment">#data-category</span></span><br><span class="line">  <span class="attr">category-id:</span> <span class="comment">#data-category-id</span></span><br><span class="line">  <span class="attr">mapping:</span> <span class="string">&quot;pathname&quot;</span></span><br><span class="line">  <span class="attr">reactions-enabled:</span> <span class="string">&quot;1&quot;</span></span><br><span class="line">  <span class="attr">emit-metadata:</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>以上配置完成后，理论上项目中就可以使用评论系统了。</p>
-<p>登录后，输入评论，可以查看公共库的discussion中是否有对应的评论<br><img src="giscus-comments.png" alt="giscus-comments"><br><img src="github-comments.png" alt="github-comments"><br>可以看到，博客中的评论在github的公共仓库中也存在，配置Giscus的评论系统成功！</p>
+<p>登录后，输入评论，可以查看公共库的discussion中是否有对应的评论<br><img src="/giscus-comments.png" alt="giscus-comments"><br><img src="/github-comments.png" alt="github-comments"><br>可以看到，博客中的评论在github的公共仓库中也存在，配置Giscus的评论系统成功！</p>
 
       </section>
 
@@ -179,6 +182,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2024/01/05/14/41/ai-generated-8489630_640.png"></div>
     
     <div class="card-text">
       
@@ -194,6 +199,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2024/06/22/21/34/ai-generated-8847013_640.jpg"></div>
     
     <div class="card-text">
       
@@ -226,10 +233,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -269,7 +276,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -318,7 +325,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -326,7 +333,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -438,6 +445,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

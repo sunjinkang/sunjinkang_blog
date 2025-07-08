@@ -12,7 +12,7 @@ ArrayLike，也叫作类数组。是一种按照索引存储数据且具有lengt
 1、具有length属性
 2、按照索引方式存储数据
 3、不具有数组的方法，如push、pop等
-![document获取的伪数组](document.png)
+{% asset_img document.png document获取的伪数组 %}
 
 <!-- more -->
 
@@ -40,8 +40,8 @@ array instanceof Array; // true
 
 #### 将数组转为真正数组的方法
 1、使用Array.prototype.slice.call()
-![Array.prototype.slice.call转换](prototype_call.png)
+{% asset_img prototype_call.png Array.prototype.slice.call转换 %}
 2、使用[].slice.call()
-![slice.call转换](slice_call.png)
+{% asset_img slice_call.png slice.call转换 %}
 3、使用Array.from()
-![array.from转换](array_from.png)
+{% asset_img array_from.png array.from转换 %}

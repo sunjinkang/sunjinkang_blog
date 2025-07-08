@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2022/09/17/23/56/moon-7461962_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -118,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-08-03T03:02:14.866Z" itemprop="dateUpdated">2023-08-03</time>
+              <time  class="article-updated" datetime="2025-06-17T07:06:54.140Z" itemprop="dateUpdated">2025-06-17</time>
             </h2>
           
           
@@ -152,32 +150,32 @@
         <h4 id="技巧型设计模式"><a href="#技巧型设计模式" class="headerlink" title="技巧型设计模式"></a>技巧型设计模式</h4><p>技巧型设计模式是通过一些特定技巧来解决组件的某些方面的问题，这类技巧一般通过实践经验总结得到。</p>
 <h6 id="链模式"><a href="#链模式" class="headerlink" title="链模式"></a>链模式</h6><p>链模式(Operate of Responsibility):通过在对象方法中将当前对象返回，实现对同一个对象多个方法的链式调用。从而简化对该对象的多个方法的多次调用时，对该对象的多次引用。</p>
 <span id="more"></span>
-<p><img src="chain-model-1.png" alt="chain-model-1"><br><img src="chain-model-2.png" alt="chain-model-2"><br><img src="chain-model-3.png" alt="chain-model-3"></p>
-<p>jOuery获取的元素更像一个数组，上面框架返回的更像是一个对象<br>原因：由于JavaScript 的弱类型语言，并且数组、对象、函数都被看成是对象的实例，所以JavaScript中并没有一个纯粹的数组类型。而且JavaScript引擎的实现也没有做严格的校验，也是基于对象实现的。一些浏览器解析引擎在判断对象是否是数组的时候不仅仅判断其有没有length 属性，可否通过‘![索引值]’方式访问元素，还会判断其是否具有数组方法来确定是否要用数组的形式展现，所以只需要在 A.fn中添加几个数组常用的方法来增强数组特性就可以解决问题了<br><img src="chain-model-4.png" alt="chain-model-4"></p>
-<p><img src="chain-model-5.png" alt="chain-model-5"><br><img src="chain-model-6.png" alt="chain-model-6"></p>
+<p><img src="/chain-model-1.png" alt="chain-model-1"><br><img src="/chain-model-2.png" alt="chain-model-2"><br><img src="/chain-model-3.png" alt="chain-model-3"></p>
+<p>jOuery获取的元素更像一个数组，上面框架返回的更像是一个对象<br>原因：由于JavaScript 的弱类型语言，并且数组、对象、函数都被看成是对象的实例，所以JavaScript中并没有一个纯粹的数组类型。而且JavaScript引擎的实现也没有做严格的校验，也是基于对象实现的。一些浏览器解析引擎在判断对象是否是数组的时候不仅仅判断其有没有length 属性，可否通过‘![索引值]’方式访问元素，还会判断其是否具有数组方法来确定是否要用数组的形式展现，所以只需要在 A.fn中添加几个数组常用的方法来增强数组特性就可以解决问题了<br><img src="/chain-model-4.png" alt="chain-model-4"></p>
+<p><img src="/chain-model-5.png" alt="chain-model-5"><br><img src="/chain-model-6.png" alt="chain-model-6"></p>
 <h6 id="委托模式"><a href="#委托模式" class="headerlink" title="委托模式"></a>委托模式</h6><p>委托模式(Entrust):多个对象接收并处理同一请求，他们将请求委托给另一个对象统一处理请求。</p>
 <p>委托模式可以优化页面中事件的数量。</p>
 <p>事件委托是将子元素的事件委托给父元素，然后通过事件冒泡传递的，再通过判断事件源的某种特性来执行某一业务逻辑</p>
-<p><img src="entrust-model-1.png" alt="entrust-model-1"><br><img src="entrust-model-2.png" alt="entrust-model-2"></p>
+<p><img src="/entrust-model-1.png" alt="entrust-model-1"><br><img src="/entrust-model-2.png" alt="entrust-model-2"></p>
 <h6 id="数据访问对象模式"><a href="#数据访问对象模式" class="headerlink" title="数据访问对象模式"></a>数据访问对象模式</h6><p>数据访问对象模式(Data access object-DAO):抽象和封装对数据源的访问与存储，DAO通过对数据源链接的管理方便对数据的访问与存储。</p>
-<p><img src="localstorage-model-1.png" alt="localstorage-model-1"><br><img src="localstorage-model-2.png" alt="localstorage-model-2"><br><img src="localstorage-model-3.png" alt="localstorage-model-3"><br><img src="localstorage-model-4.png" alt="localstorage-model-4"><br><img src="localstorage-model-5.png" alt="localstorage-model-5"><br><img src="localstorage-model-6.png" alt="localstorage-model-6"></p>
+<p><img src="/localstorage-model-1.png" alt="localstorage-model-1"><br><img src="/localstorage-model-2.png" alt="localstorage-model-2"><br><img src="/localstorage-model-3.png" alt="localstorage-model-3"><br><img src="/localstorage-model-4.png" alt="localstorage-model-4"><br><img src="/localstorage-model-5.png" alt="localstorage-model-5"><br><img src="/localstorage-model-6.png" alt="localstorage-model-6"></p>
 <h6 id="节流模式"><a href="#节流模式" class="headerlink" title="节流模式"></a>节流模式</h6><p>节流模式(Throttler):对重复的业务逻辑进行节流控制，执行最后一次操作并取消其他操作，以提高性能。</p>
-<p><img src="throttle-model-1.png" alt="throttle-model-1"><br><img src="throttle-model-2.png" alt="throttle-model-2"><br><img src="throttle-model-3.png" alt="throttle-model-3"></p>
+<p><img src="/throttle-model-1.png" alt="throttle-model-1"><br><img src="/throttle-model-2.png" alt="throttle-model-2"><br><img src="/throttle-model-3.png" alt="throttle-model-3"></p>
 <p>节流模式的核心思想是创建计时器，延迟程序的执行。这也使得计时器中回调函数的操作异步执行(这里的异步执行并不是说JavaScript是多线程语言，JavaScript 从设计之初就是单线程语言，异步只是说脱离原来程序执行的顺序,看上去，异步程序像是在同时执行。但是某一时刻，当前执行的程序一定是所有异步程序(包括原程序)中的某一个)。</p>
 <p>节流模式优势<br>(1)第一，程序能否执行是可控的。执行前的某一时刻是否清除计时器来决定程序是否可以继续执行<br>(2)第二，程序是异步的。由于计时器机制，使得程序脱离原程序而异步执行(当然随着worker技术的兴起，也可开启多线程模式实现)，因此不会影响后面的程序的正常执行。在其他方面，比如对异步请求(ajax)应用节流，此时可以优化请求次数来节省资源。</p>
 <h6 id="简单模板模式"><a href="#简单模板模式" class="headerlink" title="简单模板模式"></a>简单模板模式</h6><p>简单模板模式(Simple template):通过格式化字符串拼凑出视图避免创建视图时大量节点操作。优化内存开销。</p>
-<p><img src="template-model-1.png" alt="template-model-1"><br><img src="template-model-2.png" alt="template-model-2"><br><img src="template-model-3.png" alt="template-model-3"><br><img src="template-model-4.png" alt="template-model-4"><br><img src="template-model-5.png" alt="template-model-5"><br><img src="template-model-6.png" alt="template-model-6"></p>
+<p><img src="/template-model-1.png" alt="template-model-1"><br><img src="/template-model-2.png" alt="template-model-2"><br><img src="/template-model-3.png" alt="template-model-3"><br><img src="/template-model-4.png" alt="template-model-4"><br><img src="/template-model-5.png" alt="template-model-5"><br><img src="/template-model-6.png" alt="template-model-6"></p>
 <h6 id="惰性模式"><a href="#惰性模式" class="headerlink" title="惰性模式"></a>惰性模式</h6><p>惰性模式(layier):减少每次代码执行时的重复性的分支判断，通过对对象重定义来屏蔽原对象中的分支判断。</p>
 <p>两种实现方式<br>(1)第一种就是在文件加载进来时通过闭包执行该方法对其重新定义。不过这样会使页面加载时占用一定资源。<br>(2)第二种方式是在第一种方式基础上做一次延迟执行，在函数第一次调用的时候对其重定义。这么做的好处就是减少文件加载时的资源消耗，但是却在第一次执行时有一定的资源消耗</p>
-<p><img src="lazy-model-1.png" alt="lazy-model-1"><br><img src="lazy-model-2.png" alt="lazy-model-2"><br><img src="lazy-model-3.png" alt="lazy-model-3"><br><img src="lazy-model-4.png" alt="lazy-model-4"><br><img src="lazy-model-5.png" alt="lazy-model-5"><br><img src="lazy-model-6.png" alt="lazy-model-6"></p>
+<p><img src="/lazy-model-1.png" alt="lazy-model-1"><br><img src="/lazy-model-2.png" alt="lazy-model-2"><br><img src="/lazy-model-3.png" alt="lazy-model-3"><br><img src="/lazy-model-4.png" alt="lazy-model-4"><br><img src="/lazy-model-5.png" alt="lazy-model-5"><br><img src="/lazy-model-6.png" alt="lazy-model-6"></p>
 <h6 id="参与者模式"><a href="#参与者模式" class="headerlink" title="参与者模式"></a>参与者模式</h6><p>参与者(participator):在特定的作用域中执行给定的函数，并将参数原封不动地传递。</p>
-<p><img src="participate-model-1.png" alt="participate-model-1"><br><img src="participate-model-2.png" alt="participate-model-2"></p>
+<p><img src="/participate-model-1.png" alt="participate-model-1"><br><img src="/participate-model-2.png" alt="participate-model-2"></p>
 <p>函数柯里化的思想是对函数的参数分割，这有点像其他面向语言中的类的多态，就是根据传递的参数不同，可以让一个函数存在多种状态，只不过函数柯里化处理的是函数，因此要实现函数的柯里化是要以函数为基础的，借助柯里化器伪造其他函数，让这些伪造的函数在执行时调用这个基函数完成不同的功能</p>
-<p><img src="participate-model-3.png" alt="participate-model-3"><br><img src="participate-model-4.png" alt="participate-model-4"><br><img src="participate-model-5.png" alt="participate-model-5"></p>
+<p><img src="/participate-model-3.png" alt="participate-model-3"><br><img src="/participate-model-4.png" alt="participate-model-4"><br><img src="/participate-model-5.png" alt="participate-model-5"></p>
 <p>参与者模式实质上是两种技术的结晶，函数绑定和函数柯里化<br>(1)对于函数绑定，它将函数以函数指针(函数名)的形式传递，使函数在被绑定的对象作用域中执行，因此函数的执行中可以顺利地访问到对象内部的数据，由于函数绑定构造复杂，执行时需消耗更多的内存，因此执行速度上要稍慢一些。不过相对于解决的问题来说这种消耗还是值得的，因此它常用于事件，setTimeout或setInterval等异步逻辑中的回调函数。<br>(2)对于函数柯里化即是将接受多个参数的函数转化为接受一部分参数的新函数,余下的参数保存下来，当函数调用时，返回传入的参数与保存的参数共同执行的结果。通常保存下来的参数保存于闭包内,因此函数柯里化的实现要消耗一定的资源。函数的柯里化有点类似类的重载,不同点是类的重载是同一个类对象,函数的柯里化是两个不同的函数。</p>
-<p>随着函数柯里化的发展，现在又衍生出一种反柯里化的函数，其目的是方便我们对方法的调用<br><img src="participate-model-6.png" alt="participate-model-6"></p>
+<p>随着函数柯里化的发展，现在又衍生出一种反柯里化的函数，其目的是方便我们对方法的调用<br><img src="/participate-model-6.png" alt="participate-model-6"></p>
 <h6 id="等待者模式"><a href="#等待者模式" class="headerlink" title="等待者模式"></a>等待者模式</h6><p>等待者模式(waiter):通过对多个异步进程监听，来触发未来发生的动作。</p>
-<p><img src="waiter-model-1.png" alt="waiter-model-1"><br><img src="waiter-model-2.png" alt="waiter-model-2"><br><img src="waiter-model-3.png" alt="waiter-model-3"><br><img src="waiter-model-4.png" alt="waiter-model-4"><br><img src="waiter-model-5.png" alt="waiter-model-5"><br><img src="waiter-model-6.png" alt="waiter-model-6"><br><img src="waiter-model-7.png" alt="waiter-model-7"><br><img src="waiter-model-8.png" alt="waiter-model-8"></p>
+<p><img src="/waiter-model-1.png" alt="waiter-model-1"><br><img src="/waiter-model-2.png" alt="waiter-model-2"><br><img src="/waiter-model-3.png" alt="waiter-model-3"><br><img src="/waiter-model-4.png" alt="waiter-model-4"><br><img src="/waiter-model-5.png" alt="waiter-model-5"><br><img src="/waiter-model-6.png" alt="waiter-model-6"><br><img src="/waiter-model-7.png" alt="waiter-model-7"><br><img src="/waiter-model-8.png" alt="waiter-model-8"></p>
 
       </section>
 
@@ -187,6 +185,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2017/08/08/00/33/constellations-2609647_640.jpg"></div>
     
     <div class="card-text">
       
@@ -202,6 +202,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2023/08/01/08/21/waterfall-8162449_640.jpg"></div>
     
     <div class="card-text">
       
@@ -234,10 +236,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -277,7 +279,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -326,7 +328,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -334,7 +336,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -446,6 +448,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

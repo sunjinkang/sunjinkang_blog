@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2016/01/27/15/35/heart-1164739_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -118,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-08-03T03:02:00.842Z" itemprop="dateUpdated">2023-08-03</time>
+              <time  class="article-updated" datetime="2025-06-17T07:06:15.085Z" itemprop="dateUpdated">2025-06-17</time>
             </h2>
           
           
@@ -152,18 +150,18 @@
         <h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p>
 <h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p>
 <span id="more"></span>
-<p>多用于兼容模式<br><img src="out-look.png" alt="out-look"></p>
+<p>多用于兼容模式<br><img src="/out-look.png" alt="out-look"></p>
 <h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p>
 <p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p>
 <h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p>
-<p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><img src="station-culculate.png" alt="station-culculate"></p>
+<p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><img src="/station-culculate.png" alt="station-culculate"></p>
 <p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p>
 <p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p>
-<h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><img src="decorator.png" alt="decorator"></p>
+<h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><img src="/decorator.png" alt="decorator"></p>
 <p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p>
 <h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p>
 <p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p>
-<p><img src="bridge1.png" alt="bridge1"><br><img src="bridge2.png" alt="bridge2"><br><img src="bridge3.png" alt="bridge3"></p>
+<p><img src="/bridge1.png" alt="bridge1"><br><img src="/bridge2.png" alt="bridge2"><br><img src="/bridge3.png" alt="bridge3"></p>
 <p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p>
 <h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
 <p>组合模式常用语创建表单。</p>
@@ -180,6 +178,8 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2023/08/01/08/21/waterfall-8162449_640.jpg"></div>
+    
     <div class="card-text">
       
         <a href="/2022/09/07/26-about-design-model3/" itemprop="url">
@@ -194,6 +194,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2019/02/22/13/26/lightning-4013537_640.jpg"></div>
     
     <div class="card-text">
       
@@ -226,10 +228,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -269,7 +271,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -318,7 +320,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -326,7 +328,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -438,6 +440,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2021/11/01/22/10/night-6761907_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -188,10 +186,10 @@
 <p>8、StreamingAssets: 希望资源以其原始格式作为单独的文件使用。例如文件系统访问视频文件。StreamingAssets中的文件可以按原样复制到目标计算机，然后就能从特定文件夹中访问该文件。<br>只能有一个StreamingAssets文件夹，且必须放在项目的根目录（直接位于Assets文件夹中）。资源可放在其子文件夹，加载时需拼上路径。</p>
 <p>9、隐藏的资源：为防止导入由操作系统或其他应用程序创建的特殊文件和临时文件，Unity会忽略Assets文件夹中的以下文件：隐藏的文件夹、以**.<strong>开头的文件和文件夹、以</strong>~**结尾的文件和文件夹、名为cvs的文件和文件夹、扩展名为.tmp的文件。</p>
 <ul>
-<li>系统资源路径<br>1、Application.dataPath：包含游戏数据文件夹的路径（只读）。<br>和平台相关：<br>Unity Editor: <path to project folder>/Assets<br>iOS: <path to player app bundle>/&lt;AppName.app&gt;/Data（只读文件夹，可使用Application.persistentDataPath保存）<br>Android: 通常它会直接指向APK。但如果正在运行拆分的二进制构建，它将指向OBB（Opaque Binary Blob ）<br>Mac player: <path to player app bundle>/Contents<br>Win/Linux player: <path to executablename_Data folder>（请注意，大多数Linux安装都区分大小写！）<br>WebGL: 播放器数据文件目录的绝对url(不含实际的数据文件名)<br>Windows Store Apps: 播放器数据文件目录的绝对url（只读文件夹，可使用Application.persistentDataPath保存）</li>
+<li>系统资源路径<br>1、Application.dataPath：包含游戏数据文件夹的路径（只读）。<br>和平台相关：<br>Unity Editor: <path to project folder></path>/Assets<br>iOS: <path to player app bundle></path>/&lt;AppName.app&gt;/Data（只读文件夹，可使用Application.persistentDataPath保存）<br>Android: 通常它会直接指向APK。但如果正在运行拆分的二进制构建，它将指向OBB（Opaque Binary Blob ）<br>Mac player: <path to player app bundle></path>/Contents<br>Win/Linux player: <path to executablename_data folder></path>（请注意，大多数Linux安装都区分大小写！）<br>WebGL: 播放器数据文件目录的绝对url(不含实际的数据文件名)<br>Windows Store Apps: 播放器数据文件目录的绝对url（只读文件夹，可使用Application.persistentDataPath保存）</li>
 </ul>
 <p>2、Application.persistentDataPath：包含持久数据目录的路径（可读可写）。<br>该值是一个目录路径，其中可以存储需要在运行之间保留的数据。在 iOS 和 Android 上发布时，persistentDataPath 将指向设备上的公共目录。每次更新应用程序时，不会擦除此位置中的文件。但用户可以直接删除这些文件。</p>
-<p><em>请注意</em>，在构建应用程序时，将基于 Bundle ID 生成 GUID，并且此 GUID 将成为 persistentDataPath 的一部分。如果您在将来的版本中保留相同的 Bundle ID，那么应用程序将在每次更新时继续访问相同的位置。<br>Windows Store Apps: 指向 %userprofile%\AppData\Local\Packages&lt;productname&gt;\LocalState.<br>iOS: 指向 /var/mobile/Containers/Data/Application/<guid>/Documents.<br>Android: 通常指向 /storage/emulated/0/Android/data/<packagename>/files  (一些旧手机可能会指向SD卡上的位置), 可使用 android.content.Context.getExternalFilesDir 解析路径。</p>
+<p><em>请注意</em>，在构建应用程序时，将基于 Bundle ID 生成 GUID，并且此 GUID 将成为 persistentDataPath 的一部分。如果您在将来的版本中保留相同的 Bundle ID，那么应用程序将在每次更新时继续访问相同的位置。<br>Windows Store Apps: 指向 %userprofile%\AppData\Local\Packages&lt;productname&gt;\LocalState.<br>iOS: 指向 /var/mobile/Containers/Data/Application/<guid>/Documents.<br>Android: 通常指向 /storage/emulated/0/Android/data/<packagename>/files  (一些旧手机可能会指向SD卡上的位置), 可使用 android.content.Context.getExternalFilesDir 解析路径。</packagename></guid></p>
 <p>3、Application.streamingAssetsPath：StreamingAssets文件夹的路径(只读)。<br>在运行时，Application.streamingAssetsPath 提供文件夹的路径。如果将资产添加到 StreamingAssets文件夹。构建的应用程序就可以在这个地址加载资产。<br>在WebGL和Android平台上不能访问StreamingAssets文件夹。因为 WebGL上没有可用的文件访问；而Android使用一个压缩的 .apk 文件，文件会被包含在压缩在 .jar文件（其格式与标准的zip压缩文件基本相同）中。这些平台返回一个URL，可以使用UnityWebRequest类访问URL来获得资产。<br>Windows/MacOS:  Application.dataPath + “/StreamingAssets”.<br>    iOS: Application.dataPath + “/RAW”.<br>    Android: “jar://file://“ + Application.dataPath + “!/assets/“.<br>    注意：位于 StreamingAssets 文件夹中的 .dll 文件不参与编译。<br>4、Application.temporaryCachePath：包含临时数据/缓存目录的路径（只读）。<br>    该值是可以存储临时数据的目录路径。</p>
 <ul>
 <li>资源数据库<br>对于大多数类型的资源，Unity 需要将资源的源文件中的数据转换为可用于游戏或实时应用程序的格式。这些转换后的文件及其关联的数据会存储在资源数据库 (Asset Database) 中。</li>
@@ -218,10 +216,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -259,7 +257,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -309,7 +307,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -317,7 +315,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -429,6 +427,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

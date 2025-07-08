@@ -118,7 +118,7 @@ sudo gitlab-ctl restart
 sudo gitlab-ctl status
 ```
 
-执行上面的步骤之后成功后，打开浏览器，输入http://your_server_ip:8090地址，一般来说就能正常显示gitlab的登录页
+执行上面的步骤之后成功后，打开浏览器，输入`http://your_server_ip:8090`，地址，一般来说就能正常显示gitlab的登录页
 
 PS: 可能会遇到打开后页面显示502 Waiting for Gitlab to boot，一般来说等一会就可以，但是如果等待了超过10分钟还是这样，就不要再等了，应该是产生错误了，需要查看错误原因进行修改
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#3367D6"/>
@@ -27,7 +27,7 @@
   
 
   
-    <link rel="shortcut icon" href="/./images/fire_s.ico">
+    <link rel="shortcut icon" href="/./images/avatar.jpg">
   
 
   <!--mathjax latex数学公式显示支持-->
@@ -44,15 +44,15 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="HTW_KAP" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/custom.css"></head>
 <body>
-  <div class="root-container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
     
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://cdn.pixabay.com/photo/2017/08/08/00/33/constellations-2609647_640.jpg)"></div>
   
 
   <!-- navbar -->
@@ -76,8 +76,6 @@
       <ul class="navbar-list">
         
           <li class="navbar-list-item"><a href="/">首页</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
         
           <li class="navbar-list-item"><a href="/about">关于</a></li>
         
@@ -118,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-08-03T03:02:21.988Z" itemprop="dateUpdated">2023-08-03</time>
+              <time  class="article-updated" datetime="2025-06-17T07:07:09.167Z" itemprop="dateUpdated">2025-06-17</time>
             </h2>
           
           
@@ -153,22 +151,22 @@
 <h6 id="同步模块模式"><a href="#同步模块模式" class="headerlink" title="同步模块模式"></a>同步模块模式</h6><p>模块化:将复杂的系统分解成高内聚、低耦合的模块，使系统开发变得可控、可维护、可拓展，提高模块的复用率。<br>同步模块模式——SMD (Synchronous Module Definition):请求发出后，无论模块是否存在，立即执行后续的逻辑，实现模块开发中对模块的立即引用。</p>
 <span id="more"></span>
 <p>(1)实现模块化开发，首先要有一个模块管理器，它管理着模块的创建与调度。对于模块的调用分为两类，第一类同步模块调度的实现比较简单，不需要考虑模块间的异步加载。第二类异步模块调度的实现就比较繁琐。它可实现对模块的加载调度。</p>
-<p><img src="module-model-1.png" alt="module-model-1"><br><img src="module-model-2.png" alt="module-model-2"><br><img src="module-model-3.png" alt="module-model-3"><br><img src="module-model-4.png" alt="module-model-4"><br><img src="module-model-5.png" alt="module-model-5"></p>
+<p><img src="/module-model-1.png" alt="module-model-1"><br><img src="/module-model-2.png" alt="module-model-2"><br><img src="/module-model-3.png" alt="module-model-3"><br><img src="/module-model-4.png" alt="module-model-4"><br><img src="/module-model-5.png" alt="module-model-5"></p>
 <h6 id="异步模块模式"><a href="#异步模块模式" class="headerlink" title="异步模块模式"></a>异步模块模式</h6><p>异步模块模式——AMD (Asynchronous Module Definition):请求发出后，继续其他业务逻辑，知道模块加载完成执行后续的逻辑，实现模块开发中对模块加载完成后的引用。</p>
-<p><img src="async-module-model-1.png" alt="async-module-model-1"><br><img src="async-module-model-2.png" alt="async-module-model-2"><br><img src="async-module-model-3.png" alt="async-module-model-3"><br><img src="async-module-model-4.png" alt="async-module-model-4"><br><img src="async-module-model-5.png" alt="async-module-model-5"><br><img src="async-module-model-6.png" alt="async-module-model-6"><br><img src="async-module-model-7.png" alt="async-module-model-7"><br><img src="async-module-model-8.png" alt="async-module-model-8"><br><img src="async-module-model-9.png" alt="async-module-model-9"></p>
+<p><img src="/async-module-model-1.png" alt="async-module-model-1"><br><img src="/async-module-model-2.png" alt="async-module-model-2"><br><img src="/async-module-model-3.png" alt="async-module-model-3"><br><img src="/async-module-model-4.png" alt="async-module-model-4"><br><img src="/async-module-model-5.png" alt="async-module-model-5"><br><img src="/async-module-model-6.png" alt="async-module-model-6"><br><img src="/async-module-model-7.png" alt="async-module-model-7"><br><img src="/async-module-model-8.png" alt="async-module-model-8"><br><img src="/async-module-model-9.png" alt="async-module-model-9"></p>
 <h6 id="Widget模式"><a href="#Widget模式" class="headerlink" title="Widget模式"></a>Widget模式</h6><p>Widget:(Web Widget指的是一块可以在任意页面中执行的代码块)Widget模式是指借用Web Widget思想将页面分解成部件，针对部件开发，最终组合成完整的页面。</p>
-<p><img src="widget-model-1.png" alt="widget-model-1"><br><img src="widget-model-2.png" alt="widget-model-2"><br><img src="widget-model-3.png" alt="widget-model-3"><br><img src="widget-model-4.png" alt="widget-model-4"><br><img src="widget-model-5.png" alt="widget-model-5"><br><img src="widget-model-6.png" alt="widget-model-6"></p>
+<p><img src="/widget-model-1.png" alt="widget-model-1"><br><img src="/widget-model-2.png" alt="widget-model-2"><br><img src="/widget-model-3.png" alt="widget-model-3"><br><img src="/widget-model-4.png" alt="widget-model-4"><br><img src="/widget-model-5.png" alt="widget-model-5"><br><img src="/widget-model-6.png" alt="widget-model-6"></p>
 <h6 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h6><p>MVC即模型(model)一视图(view)一控制器(controller)，用一种将业务逻辑、数据、视图分离的方式组织架构代码。</p>
-<p><img src="mvc-model-1.png" alt="mvc-model-1"></p>
+<p><img src="/mvc-model-1.png" alt="mvc-model-1"></p>
 <p><strong>每个对象是一个自动执行的函数</strong><br><strong>3个层次对象可被调用，而声明的函数在执行前是不能被调用的，比如模型对象要被视图和控制器调用，因此执行一遍为其他对象调用提供接口方法</strong></p>
-<p><img src="mvc-model-2.png" alt="mvc-model-2"><br><img src="mvc-model-3.png" alt="mvc-model-3"><br>视图层只有3个部分，一是操作模型数据对象方法的引用(M),二是内部视图创建方法对象，三是外部获取视图创建方法接口</p>
-<p><img src="mvc-model-4.png" alt="mvc-model-4"></p>
+<p><img src="/mvc-model-2.png" alt="mvc-model-2"><br><img src="/mvc-model-3.png" alt="mvc-model-3"><br>视图层只有3个部分，一是操作模型数据对象方法的引用(M),二是内部视图创建方法对象，三是外部获取视图创建方法接口</p>
+<p><img src="/mvc-model-4.png" alt="mvc-model-4"></p>
 <h6 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h6><p>MVP即模型(Model)一视图(View)一管理器(Presenter): View层不直接引用Model层内的数据，而是通过Presenter层实现对Model层内的数据访问。即所有层次的交互都发生在Presenter层中。</p>
-<p><img src="mvp-model-1.png" alt="mvp-model-1"><br><img src="mvp-model-2.png" alt="mvp-model-2"><br><img src="mvp-model-3.png" alt="mvp-model-3"><br><img src="mvp-model-4.png" alt="mvp-model-4"><br><img src="mvp-model-5.png" alt="mvp-model-5"><br><img src="mvp-model-6.png" alt="mvp-model-6"><br><img src="mvp-model-7.png" alt="mvp-model-7"></p>
+<p><img src="/mvp-model-1.png" alt="mvp-model-1"><br><img src="/mvp-model-2.png" alt="mvp-model-2"><br><img src="/mvp-model-3.png" alt="mvp-model-3"><br><img src="/mvp-model-4.png" alt="mvp-model-4"><br><img src="/mvp-model-5.png" alt="mvp-model-5"><br><img src="/mvp-model-6.png" alt="mvp-model-6"><br><img src="/mvp-model-7.png" alt="mvp-model-7"></p>
 <p>MVP与MVC相比最重要的特征就是MVP中将视图层与数据层完全解耦，使得对视图层的修改不会影响到数据层，数据层内的数据改动又不会影响到视图层。因此，我们在管理器中对数据或者视图灵活地调用就可使数据层内的数据与视图层内的视图得到更高效的复用。因此，MVP模式也可以实现一个管理器，可以调用多个数据，或者创建多种视图，而且是不受限制的。因而管理器有更高的操作权限，因此对于业务逻辑与需求的实现只需专注于管理器的开发即可，当然管理器内过多的逻辑也使得其开发与维护成本提高。</p>
 <h6 id="MVVM模式"><a href="#MVVM模式" class="headerlink" title="MVVM模式"></a>MVVM模式</h6><p>MVVM模式，模型(Model)-视图(View)-视图模型(ViewModel):为视图层(View)量身定做一套视图模型(ViewModel)，并在视图模型(ViewModel)中创建属性和方法，为视图层(View)绑定数据(Model)并实现交互。</p>
-<p><img src="mvvm-model-1.png" alt="mvvm-model-1"><br><img src="mvvm-model-2.png" alt="mvvm-model-2"><br><img src="mvvm-model-3.png" alt="mvvm-model-3"><br><img src="mvvm-model-4.png" alt="mvvm-model-4"><br><img src="mvvm-model-5.png" alt="mvvm-model-5"><br><img src="mvvm-model-6.png" alt="mvvm-model-6"><br><img src="mvvm-model-7.png" alt="mvvm-model-7"><br><img src="mvvm-model-8.png" alt="mvvm-model-8"></p>
-<h6 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h6><p><img src="appendix-1.png" alt="appendix-1"><br><img src="appendix-2.png" alt="appendix-2"><br><img src="appendix-3.png" alt="appendix-3"><br><img src="appendix-4.png" alt="appendix-4"><br><img src="appendix-5.png" alt="appendix-5"><br><img src="appendix-6.png" alt="appendix-6"><br><img src="appendix-7.png" alt="appendix-7"><br><img src="appendix-8.png" alt="appendix-8"><br><img src="appendix-9.png" alt="appendix-9"><br><img src="appendix-10.png" alt="appendix-10"></p>
+<p><img src="/mvvm-model-1.png" alt="mvvm-model-1"><br><img src="/mvvm-model-2.png" alt="mvvm-model-2"><br><img src="/mvvm-model-3.png" alt="mvvm-model-3"><br><img src="/mvvm-model-4.png" alt="mvvm-model-4"><br><img src="/mvvm-model-5.png" alt="mvvm-model-5"><br><img src="/mvvm-model-6.png" alt="mvvm-model-6"><br><img src="/mvvm-model-7.png" alt="mvvm-model-7"><br><img src="/mvvm-model-8.png" alt="mvvm-model-8"></p>
+<h6 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h6><p><img src="/appendix-1.png" alt="appendix-1"><br><img src="/appendix-2.png" alt="appendix-2"><br><img src="/appendix-3.png" alt="appendix-3"><br><img src="/appendix-4.png" alt="appendix-4"><br><img src="/appendix-5.png" alt="appendix-5"><br><img src="/appendix-6.png" alt="appendix-6"><br><img src="/appendix-7.png" alt="appendix-7"><br><img src="/appendix-8.png" alt="appendix-8"><br><img src="/appendix-9.png" alt="appendix-9"><br><img src="/appendix-10.png" alt="appendix-10"></p>
 <p>疑问点：<br>(1)为什么要缓存Array的slice方法？slice = Array.prototype.slice<br>编程方式区分，不要糅合在一起<br>对性能影响可以忽略不计</p>
 <p>(2)有一些模式很像，一定需要做区分吗？<br>从实际场景触发，贴合场景选择设计模式<br>设计模式一定要符合当下场景，在此基础上考虑一些将来的扩展，如果未来不符合要求了，优先考虑修改涉及模式以解决当前场景问题</p>
 <p>(3)柯理化<br>函数；<br>接受多个参数（一个参数没必要用柯理化）；<br>将接受多个参数的函数变成 接受一个参数 的函数（函数嵌套），每个函数返回一个新函数并接受一个新的参数，直到最后返回计算结果<br>调用方式不一样。普通函数：函数名(参数1, 参数2, …);   柯理化：函数名(参数1)(参数2)…</p>
@@ -182,6 +180,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2016/11/22/21/43/sand-1850713_640.jpg"></div>
     
     <div class="card-text">
       
@@ -197,6 +197,8 @@
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.pixabay.com/photo/2022/09/17/23/56/moon-7461962_640.jpg"></div>
     
     <div class="card-text">
       
@@ -229,10 +231,10 @@
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
   <div class="widget-body">
     
-      <img src="./images/fire_s.ico" class="soft-size--round soft-style--box" alt="Sun Jinkang">
+      <img src="/images/avatar.jpg" class="soft-size--round soft-style--box" alt="HTW_KAP">
     
     
-      <h2>Sun Jinkang</h2>
+      <h2>HTW_KAP</h2>
     
     
       <p>9+1=10</p>
@@ -272,7 +274,7 @@
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+    <p>暂无</p>
   </div>
 </section>
 
@@ -321,7 +323,7 @@
         
       
         
-          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/sunjinkang/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
 </svg>
@@ -329,7 +331,7 @@
         
       
         
-          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/JinkangSun7069" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
             <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
 </svg>
@@ -441,6 +443,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 -->
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
