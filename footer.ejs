@@ -1,0 +1,36 @@
+<!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <% if (theme.social_icon.enable) { %>
+    <div class="social-icons">
+      <% for (var i in theme.social_icon.icons) { %>
+        <% if (theme.social_icon.icons[i]) { %>
+          <a href="<%= theme.social_icon.icons[i] %>" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <%- partial("../_svg/social-"+ i +".svg") %>
+          </a>
+        <% } %>
+      <% } %>
+    </div>
+    <% } %> 
+    <p>&copy; <%= date(new Date(), 'YYYY') %> <a href="/" target="_blank"><%= config.author %></a></p>
+
+    <div style="display: flex; align-items: center; gap: 10px;justify-content: center;">
+      <div class="beian-container">
+        <img style="width: 16px;position: relative;top: 2px;margin-right: 2px;" src="https://beian.mps.gov.cn/favicon.ico" alt="沪公网安备31011702890758号" />
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011702890758" rel="noreferrer" target="_blank">沪公网安备31011702890758号</a>
+      </div>
+
+      <% if (theme.beian) { %>
+        <p style="margin: 0;"><a href="https://beian.miit.gov.cn" target="_blank"><%= theme.beian %></a></p>
+      <% } %>
+    </div>
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>

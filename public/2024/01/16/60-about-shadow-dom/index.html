@@ -116,7 +116,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2025-06-17T07:25:37.443Z" itemprop="dateUpdated">2025-06-17</time>
+              <time  class="article-updated" datetime="2025-07-09T09:24:33.492Z" itemprop="dateUpdated">2025-07-09</time>
             </h2>
           
           
@@ -151,8 +151,12 @@
 <p>一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。</p>
 </blockquote>
 <p>浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，内部的配置也不会影响外部。</p>
-<p><strong>Chrome中查看Shadow Dom</strong><br>1.打开浏览器控制台的设置选项<br>2.找到Preference -&gt; Elements，把show user anent shadow dom勾上<br><img src="/chrome-setting.png" alt="chrome-setting"><br><img src="/shadow-dom.png" alt="shadow-dom"></p>
-<h4 id="Shadow-Dom的结构"><a href="#Shadow-Dom的结构" class="headerlink" title="Shadow Dom的结构"></a>Shadow Dom的结构</h4><p><img src="/shadow-dom-structure.png" alt="shadow-dom-structure"></p>
+<p><strong>Chrome中查看Shadow Dom</strong><br>1.打开浏览器控制台的设置选项<br>2.找到Preference -&gt; Elements，把show user anent shadow dom勾上</p>
+<img src="/2024/01/16/60-about-shadow-dom/chrome-setting.png" class title="chrome-setting">
+<img src="/2024/01/16/60-about-shadow-dom/shadow-dom.png" class title="shadow-dom">
+
+<h4 id="Shadow-Dom的结构"><a href="#Shadow-Dom的结构" class="headerlink" title="Shadow Dom的结构"></a>Shadow Dom的结构</h4><img src="/2024/01/16/60-about-shadow-dom/shadow-dom-structure.png" class title="shadow-dom-structure">
+
 <p>Shadow DOM术语<br>Shadow host: Shadow DOM 附加到的常规 DOM 节点。<br>Shadow tree: Shadow DOM 内部的 DOM 树。<br>Shadow boundary: Shadow DOM 终止，常规 DOM 开始的地方。<br>Shadow root: Shadow tree的根节点。</p>
 <h4 id="Shadow-DOM的作用及如何创建Shadow-DOM？"><a href="#Shadow-DOM的作用及如何创建Shadow-DOM？" class="headerlink" title="Shadow DOM的作用及如何创建Shadow DOM？"></a>Shadow DOM的作用及如何创建Shadow DOM？</h4><p><em>作用</em><br>Shadow DOM是独立于DOM树的，外部的样式不会影响到Shadow DOM的内部，并且使用一般的javascript操作dom的方式去操作Shadow DOM，都是不生效的。这种良好的密封性，使得Shadow DOM可以用于创建类似video这类的标签，方便开发。</p>
 <p><em>如何创建Shadow DOM？</em></p>
@@ -166,27 +170,31 @@
 <li><p>closed<br>拒绝从 js 外部访问关闭的 shadow root 节点, shadowRoot 返回 null</p>
 </li>
 </ul>
-<p><img src="/open-closed.png" alt="open-closed"></p>
+<img src="/2024/01/16/60-about-shadow-dom/open-closed.png" class title="open-closed">
+
 <p><em>可以挂载Shadow DOM的标签</em></p>
-<p><img src="/mount-tag.png" alt="mount-tag"></p>
-<p>注意：如果将Shadow DOM挂载到不可挂载标签上，挂载会失败，控制台会报错。<br><img src="/mount-tag-error.png" alt="mount-tag-error"></p>
+<img src="/2024/01/16/60-about-shadow-dom/mount-tag.png" class title="mount-tag">
+
+<p>注意：如果将Shadow DOM挂载到不可挂载标签上，挂载会失败，控制台会报错。</p>
+<img src="/2024/01/16/60-about-shadow-dom/mount-tag-error.png" class title="mount-tag-error">
+
 <h4 id="Shadow-DOM特点"><a href="#Shadow-DOM特点" class="headerlink" title="Shadow DOM特点"></a>Shadow DOM特点</h4><ul>
-<li>外部的样式不影响Shadow DOM内部<br>Shadow DOM是游离在 DOM 树之外的节点树，所以文档上的CSS不会作用在他身上<br><img src="/normal-css.png" alt="normal-css"></li>
+<li>外部的样式不影响Shadow DOM内部<br>Shadow DOM是游离在 DOM 树之外的节点树，所以文档上的CSS不会作用在他身上<img src="/2024/01/16/60-about-shadow-dom/normal-css.png" class title="normal-css"></li>
 </ul>
 <p>在MDN上提到了两种方式可以修改Shadow DOM的样式，感兴趣的可以自己去看看：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_shadow_DOM#%E5%9C%A8%E5%BD%B1%E5%AD%90_dom_%E5%86%85%E5%BA%94%E7%94%A8%E6%A0%B7%E5%BC%8F">https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_shadow_DOM#%E5%9C%A8%E5%BD%B1%E5%AD%90_dom_%E5%86%85%E5%BA%94%E7%94%A8%E6%A0%B7%E5%BC%8F</a></p>
 <p>这里给Shadow DOM添加样式使用的是第二种：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;div id=<span class="string">&quot;third&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>第三个例子<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">const</span> thirdParent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;third&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shadow3 = thirdParent.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> span3 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用class的方式设置样式</span></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;text&quot;&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    .text &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: pink;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用伪类host设置样式</span></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    :host &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: pink;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line">shadow3.<span class="title function_">appendChild</span>(span3);</span><br></pre></td></tr></table></figure>
-<p><img src="/css-class.png" alt="css-class"><br><img src="/css-host.png" alt="css-host"></p>
+<img src="/2024/01/16/60-about-shadow-dom/css-class.png" class title="css-class">
+<img src="/2024/01/16/60-about-shadow-dom/css-host.png" class title="css-host">
+
 <ul>
 <li><p>样式钩子<br>shadow dom还有一个非常重要的一个特点就是可以使用CSS自定义属性来创建样式占位符，并允许用户填充。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;div id=<span class="string">&quot;third&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>第三个例子<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// style</span></span><br><span class="line">#third &#123;</span><br><span class="line">  --<span class="attr">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">const</span> thirdParent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;third&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shadow3 = thirdParent.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> span3 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;text&quot;&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    .text &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: var(--color);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="/css-hook.png" alt="css-hook"></p>
-</li>
+<img src="/2024/01/16/60-about-shadow-dom/css-hook.png" class title="css-hook"></li>
 <li><p>使用伪类修改Shadow DOM的内部样式</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// style</span></span><br><span class="line">input[placeholder=<span class="string">&#x27;user&#x27;</span>]::-webkit-input-placeholder &#123;</span><br><span class="line">  <span class="attr">color</span>: red;</span><br><span class="line">  font-<span class="attr">size</span>: 18px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;input placeholder=<span class="string">&quot;user&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;user&quot;</span> name=<span class="string">&quot;user&quot;</span> type=<span class="string">&quot;text&quot;</span> /&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">placeholder</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">class</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">name</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">/&gt;</span></span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/fake-class.png" alt="fake-class"></p>
-
+<img src="/2024/01/16/60-about-shadow-dom/fake-class.png" class title="fake-class">
       </section>
 
       
@@ -260,7 +268,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>77</span>
+        <span>78</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -272,7 +280,7 @@
         <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
 </svg>
-        2
+        3
       </div>
     </div>
   </div>
@@ -317,7 +325,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a>
+      <a href="/tags/blog-giscus/" style="font-size: 10px;" class="tags-cloud-0">blog, giscus</a> <a href="/tags/docker/" style="font-size: 10px;" class="tags-cloud-0">docker</a> <a href="/tags/html-server-nginx/" style="font-size: 10px;" class="tags-cloud-0">html server nginx</a>
     </div>
   </div>
 </section>
@@ -357,7 +365,16 @@
      
     <p>&copy; 2025 <a href="/" target="_blank">HTW_KAP</a></p>
 
-    
+    <div style="display: flex; align-items: center; gap: 10px;justify-content: center;">
+      <div class="beian-container">
+        <img style="width: 16px;position: relative;top: 2px;margin-right: 2px;" src="https://beian.mps.gov.cn/favicon.ico" alt="沪公网安备31011702890758号" />
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011702890758" rel="noreferrer" target="_blank">沪公网安备31011702890758号</a>
+      </div>
+
+      
+        <p style="margin: 0;"><a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2025135150号-1</a></p>
+      
+    </div>
 
     <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
 
@@ -458,6 +475,6 @@
 
 
   
-  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+  <!-- 尾部用户自定义相关内容 -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>
