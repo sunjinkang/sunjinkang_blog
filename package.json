@@ -11,7 +11,7 @@
     "create": "hexo new"
   },
   "hexo": {
-    "version": "5.4.2"
+    "version": "7.3.0"
   },
   "dependencies": {
     "@babel/generator": "^7.25.0",
@@ -23,7 +23,7 @@
     "commander": "^13.1.0",
     "fs": "^0.0.1-security",
     "giscus": "^1.5.0",
-    "hexo": "^5.4.2",
+    "hexo": "^7.3.0",
     "hexo-asset-image": "^1.0.0",
     "hexo-cli": "^4.3.2",
     "hexo-deployer-git": "^3.0.0",
